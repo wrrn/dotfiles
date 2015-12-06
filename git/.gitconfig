@@ -1,0 +1,27 @@
+[user]
+	name = Warren Harper
+	email = warrenjharper@gmail.com
+[merge]
+	tool = meld
+[diff]
+	tool = meld
+[push]
+	default = simple
+[clean]
+	requireForce = false
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit 
+	diff = diff -w
+	last-diff = diff HEAD~1 HEAD
+
+    #Add non-whitespace changes
+    addnw = "!f() { git diff -w --no-color $@ | git apply --cached --ignore-space-change; }; f"
+    
+    # Flip a bit to ignore changes to a file locally
+	exclude-local = update-index --skip-worktree
+    # Reset a bit to start looking at changes in a file
+	no-exclude-local = update-index --no-skip-worktree
+[branch]
+	autosetuprebase = always
+[color]
+	ui = true

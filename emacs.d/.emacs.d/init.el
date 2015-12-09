@@ -12,8 +12,6 @@
 (setq inhibit-startup-screen t
       backup-inhibited t)
 (global-auto-revert-mode t)
-(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
-;;(global-set-key (kbd "C-x r") 'rename-buffer)
 (setq ring-bell-function 'ignore)
 
 

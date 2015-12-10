@@ -92,10 +92,13 @@
 
 (use-package tramp-term
   ;; Tramp Terminal
+  :ensure t
   :init (progn
-          (setq auto-revert-remote-files t)
-          (require 'tramp-term))
-  :config (defalias 'ssh 'tramp-term))
+          (setq auto-revert-remote-files t))
+    
+  :config (defalias 'ssh 'tramp-term)
+  :commands tramp-term)
+
 
 
 
@@ -149,6 +152,7 @@
 
 
 (use-package go-eldoc
+  :ensure t
   :requires go-autocomplete
   :init (progn
           (require 'go-eldoc)
@@ -217,6 +221,7 @@
   :init (setq ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-package wgrep
+  :ensure t
   :init (require 'wgrep))
 
 (use-package ansible

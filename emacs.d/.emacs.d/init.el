@@ -1,6 +1,7 @@
 ; Add ~/.emacs.d to load-path
 ;;(add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/elpa/")
+(make-directory "~/.emacs.d/github.com-packages/" t)
 (let ((default-directory "~/.emacs.d/github.com-packages/"))
   (normal-top-level-add-subdirs-to-load-path))
 

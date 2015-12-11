@@ -27,7 +27,7 @@ elif tput colors > /dev/null 2>&1; then
     test "`tput colors`" -gt 2 && color_prompt=yes
 fi
 
-if [ "$color_prompt" = yes]; then
+if [ "$color_prompt" = yes ]; then
     PS1='\[\033[01;32m\]\u@\H\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 else
     PS1='\u@\H:\W\$ '

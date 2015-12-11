@@ -4,9 +4,8 @@ if [ -d "$GHC_DOT_APP" ]; then
     PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
 
-export GOPATH="/Users/warren/workbench/go"
+export EDITOR="emacsclient"
 
-export EDITOR="/usr/local/Cellar/emacs/24.5/bin/emacsclient"
 
 
 PATH="${PATH}:$HOME/.rvm/bin:${GOPATH}/bin:${HOME}/bin" # Add RVM to PATH for scripting

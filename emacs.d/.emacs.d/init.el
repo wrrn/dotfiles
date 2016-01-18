@@ -27,8 +27,8 @@
 (show-paren-mode 1)
 (column-number-mode 1)
 (set-scroll-bar-mode nil)
-(set-face-attribute 'default nil :height 140)
-(set-face-attribute 'default nil :font "Hack")
+(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :font "Source Code Pro")
 (setq-default line-spacing 3)
 (toggle-frame-fullscreen)
 

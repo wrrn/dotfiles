@@ -8,7 +8,6 @@
 (use-package exec-path-from-shell
   ;; Used to get environment variables for mac
   :ensure t
-  :if (memq window-system '(mac ns))
   :init (progn
           (setq-default default-directory "/Users/warren")
           (exec-path-from-shell-initialize)

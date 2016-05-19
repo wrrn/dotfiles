@@ -167,14 +167,15 @@
             ;; Recursive count of todos
             (setq org-hierarchical-todo-statistics nil)
             (setq org-checkbox-hierarchical-statistics nil)
-            
+
+            ;; Add languages to code blocks
             (org-babel-do-load-languages
              'org-babel-load-languages
              '((emacs-lisp . t)
                (sh . t)))
             ;; Syntax highlighting in code blocks
             (setq org-src-fontify-natively t)
-            ;; Opens appointment reminders in current window
+            
             (add-hook 'org-after-todo-statistics-hook (lambda(n-done n-not-done)
                                                        "Switch entry to DONE when all subentries are done, to TODO otherwise"
                                                        (let (org-log-done org-log-status)
@@ -182,8 +183,12 @@
                                                                        "DONE"
                                                                      (org-get-todo-sequence-head (org-get-todo-state)))))))
 
+            ;; Opens appointment reminders in current window
             (setq appt-display-format 'window)
-            (setq appt-display-duration 30)))
+            (setq appt-display-duration 30)
+            (org-indent-mode)))
+
+
 
 (use-package web-mode
   :ensure t

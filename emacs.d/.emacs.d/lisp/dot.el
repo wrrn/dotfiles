@@ -72,12 +72,14 @@
 					       (linum-mode -1)
 					       (set (make-local-variable 'line-spacing) nil)))
   :config (progn
-            ;; Open terminal only if one doesn't exist
+            (term-set-escape-char ?\C-x)
             (defun wh-ansi-term ()
+              ;; Open terminal only if one doesn't exist
               (interactive)
               (let ((buffer (get-buffer "*ansi-term*")))
                 (if buffer
-                    (switch-to-buffer buffer)
+                    (pop-to-buffer buffer '((display-buffer-reuse-window)
+                                            (reusable-frames . t)))
                   (ansi-term (getenv "SHELL")))))
             (define-key global-map (kbd "C-x t") 'wh-ansi-term)
             ;; Kill terminal buffer on terminal exit

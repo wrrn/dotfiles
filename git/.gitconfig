@@ -13,7 +13,7 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit 
 	diff = diff -w
 	last-diff = diff HEAD~1 HEAD
-
+    s = status -s -b
     #Add non-whitespace changes
     addnw = "!f() { git diff -w --no-color $@ | git apply --cached --ignore-space-change; }; f"
     
@@ -21,6 +21,7 @@
 	exclude-local = update-index --skip-worktree
     # Reset a bit to start looking at changes in a file
 	no-exclude-local = update-index --no-skip-worktree
+    curr-branch = rev-parse --abbrev-ref HEAD
 [branch]
 	autosetuprebase = always
 [color]

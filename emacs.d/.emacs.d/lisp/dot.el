@@ -185,10 +185,10 @@
 
             ;; Opens appointment reminders in current window
             (setq appt-display-format 'window)
-            (setq appt-display-duration 30)
-            (org-indent-mode)))
+            (setq appt-display-duration 30)))
 
-
+(use-package org-indent
+  :init (setq org-indent-mode t))
 
 (use-package web-mode
   :ensure t

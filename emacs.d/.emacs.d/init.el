@@ -19,7 +19,11 @@
 ;; Define custom keymap
 (define-prefix-command 'wh-keymap)
 (global-set-key (kbd "C-o") 'wh-keymap)
-(define-key wh-keymap (kbd "r") 'rename-buffer)
+(define-key wh-keymap (kbd "C-r") 'rename-buffer)
+;; IMenu
+;; Allows me to jump to functions
+(define-key wh-keymap (kbd "C-f") 'imenu)
+
 
 
 
@@ -44,9 +48,6 @@
 
 
 
-;; IMenu
-;; Allows me to jump to functions
-(global-set-key (kbd "C-c C-f") 'imenu)
 
 ;; Frames
 (setq pop-up-windows t)

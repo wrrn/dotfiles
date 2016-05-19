@@ -91,11 +91,15 @@
                 ad-do-it))
             (ad-activate 'term-sentinel)))
 
+(use-package tramp
+  :init (setq tramp-default-method "ssh"))
+
 (use-package tramp-term
   ;; Tramp Terminal
   :ensure t
   :init (progn
-          (setq auto-revert-remote-files t))
+          (setq auto-revert-remote-files t)
+          (require 'tramp-term))
     
   :config (defalias 'ssh 'tramp-term)
   :commands tramp-term)

@@ -20,10 +20,10 @@
   )
           
 
-(use-package material-theme
+(use-package ample-theme
   ;; Dark theme
   :ensure t
-  :config (load-theme 'material t))
+  :config (load-theme 'ample t))
 
 (use-package ido
   ;; Nice mini-buffer
@@ -167,7 +167,7 @@
   :config (progn
             (setq org-enforce-todo-dependencies t)
             (setq org-todo-keywords
-                  '((sequence "TODO(t)" "|" "DONE(d)")))
+                  '((sequence "TODO(t)" "IN PROGESS(p!)" "|" "DONE(d)")))
             (setq org-log-done 'time)
             (setq org-enforce-todo-checkbox-dependencies t)
             ;; Recursive count of todos

@@ -18,5 +18,5 @@ fi
 
 
 PROFILE_CALLED=true
-export GOPATH=/home/nerraw/go
+export GOPATH=${HOME}/workshop/go
 export PATH=$PATH:$GOPATH/bin

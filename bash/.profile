@@ -20,3 +20,7 @@ fi
 PROFILE_CALLED=true
 export GOPATH=${HOME}/workshop/go
 export PATH=$PATH:$GOPATH/bin
+
+if [ -f $HOME/.profile.local ]; then
+    source $HOME/.profile.local
+fi

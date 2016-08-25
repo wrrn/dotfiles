@@ -10,10 +10,8 @@
   :ensure t
   :init (progn
           (setq-default default-directory "/Users/warren")
-          (exec-path-from-shell-initialize)
-          (exec-path-from-shell-copy-env "GOPATH")
-          (exec-path-from-shell-copy-env "PATH")))
-
+          (setq exec-path-from-shell-variables '("PATH" "MANPATH" "GOPATH" "PRMUNTY"))
+          (exec-path-from-shell-initialize)))
 
 (use-package diminish
   :ensure t

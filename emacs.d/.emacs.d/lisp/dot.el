@@ -287,6 +287,8 @@
   :ensure t
   :mode "Dockerfile.*\\'")
 
+(use-package window
+  :config (setq split-width-threshold 170))
 
 (when (memq window-system '(mac ns))
   (use-package frame

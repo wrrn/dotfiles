@@ -32,10 +32,10 @@
 (column-number-mode 1)
 (set-scroll-bar-mode nil)
 (set-face-attribute 'default nil :height 120)
-(set-face-attribute 'default nil :font "Source Code Pro")
+(set-face-attribute 'default nil :font "Space Mono")
 (setq-default line-spacing 3)
 (toggle-frame-fullscreen)
-
+(setq split-width-threshold 170)
                    
 ;;;;Get rid of tool and menu bars
 (and (fboundp 'tool-bar-mode) (tool-bar-mode -1))

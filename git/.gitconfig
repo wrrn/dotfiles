@@ -19,8 +19,13 @@
     
     # Flip a bit to ignore changes to a file locally
 	exclude-local = update-index --skip-worktree
+
     # Reset a bit to start looking at changes in a file
 	no-exclude-local = update-index --no-skip-worktree
+
+    # Reset local excludes
+    local-excludes = !git ls-files -v | grep "^S"
+    
     curr-branch = rev-parse --abbrev-ref HEAD
 [branch]
 	autosetuprebase = always

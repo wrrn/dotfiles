@@ -119,7 +119,6 @@
   :init (progn
 
           (require 'powerline)
-          (setq powerline-default-separator 'utf-8)
           (powerline-default-theme)))
 
 
@@ -286,9 +285,6 @@
 (use-package dockerfile-mode
   :ensure t
   :mode "Dockerfile.*\\'")
-
-(use-package window
-  :config (setq split-width-threshold 170))
 
 (when (memq window-system '(mac ns))
   (use-package frame

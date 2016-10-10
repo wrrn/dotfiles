@@ -114,14 +114,11 @@
 
 
 
-(use-package powerline
+(use-package smart-mode-line
   :ensure t
   :init (progn
-
-          (require 'powerline)
-          (powerline-default-theme)))
-
-
+          (setq sml/theme 'respectful)
+          (sml/setup)))
 
 
 (use-package go-mode

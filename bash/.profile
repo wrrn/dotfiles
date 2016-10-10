@@ -21,12 +21,16 @@ PROFILE_CALLED=true
 GOPATH=${HOME}/workshop/go
 PATH=$PATH:$GOPATH/bin
 
-if [ -f $HOME/.profile.local ]; then
+if [ -r $HOME/.profile.local ]; then
     source $HOME/.profile.local
 fi
+
 
 export GOPATH
 export PATH
 
+if [ -r $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
 
 export PATH="$HOME/.cargo/bin:$PATH"

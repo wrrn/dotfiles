@@ -34,7 +34,6 @@
 (set-face-attribute 'default nil :height 120)
 (set-face-attribute 'default nil :font "Space Mono")
 (setq-default line-spacing 3)
-(toggle-frame-fullscreen)
 (setq split-width-threshold 170)
                    
 ;;;;Get rid of tool and menu bars
@@ -44,14 +43,6 @@
 ;;Spacing
 (setq-default indent-tabs-mode nil
               tab-width 4)
-
-
-
-
-
-
-
-
 
 ;; Add time to modebar
 (setq display-time-string-forms '(24-hours "." minutes))
@@ -81,3 +72,5 @@
 
 
 (server-start)
+(toggle-frame-fullscreen)
+

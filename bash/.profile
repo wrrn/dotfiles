@@ -28,3 +28,5 @@ fi
 export GOPATH
 export PATH
 
+
+export PATH="$HOME/.cargo/bin:$PATH"

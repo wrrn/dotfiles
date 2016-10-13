@@ -129,8 +129,6 @@
             (require 'go-mode)
             (setq gofmt-command "goimports")
             (add-hook 'before-save-hook #'gofmt-before-save)
-            (load-file (concat gopath "/src/golang.org/x/tools/cmd/guru/go-guru.el"))
-            (setq go-oracle-command (concat gopath "/bin/oracle"))
             (add-hook 'go-mode-hook (lambda ()
                                       (set (make-local-variable 'compile-command) "go build")
                                       (subword-mode t)))))

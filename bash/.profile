@@ -8,9 +8,14 @@ export EDITOR="emacsclient"
 
 
 PATH="${PATH}:$HOME/.rvm/bin:${HOME}/bin" # Add RVM to PATH for scripting
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+if [ -d /usr/local/opt/coreutils/libexec/gnubin/ ]; then
+    PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+fi
 
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
+if [ -d /usr/local/opt/coreutils/libexec/gnuman ]; then
+    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
+fi
+
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
     source $HOME/.nix-profile/etc/profile.d/nix.sh

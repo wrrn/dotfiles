@@ -253,6 +253,8 @@
 
 (use-package rust-mode
   :ensure t
+  :config (progn
+            (setq rust-format-on-save t))
   :mode "\\.rs\\'")
 
 (use-package toml-mode

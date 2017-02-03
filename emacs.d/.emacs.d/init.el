@@ -70,6 +70,8 @@
 (when (memq window-system '(mac ns))
   (setq mac-command-modifier 'control))
 
+(when (file-exists-p "~/.emacs.d/project-inits")
+  (load-dir-one "~/.emacs.d/project-inits"))
 
 (server-start)
 (toggle-frame-fullscreen)

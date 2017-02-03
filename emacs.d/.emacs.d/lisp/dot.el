@@ -283,6 +283,9 @@
   :ensure t
   :mode "Dockerfile.*\\'")
 
+(use-package load-dir
+  :ensure t)
+
 (when (memq window-system '(mac ns))
   (use-package frame
     :init (progn

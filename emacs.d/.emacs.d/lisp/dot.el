@@ -161,6 +161,7 @@
 
 (use-package org
   :config (progn
+            (setq org-startup-indented t)
             (setq org-enforce-todo-dependencies t)
             (setq org-todo-keywords
                   '((sequence "TODO(t)" "IN PROGESS(p!)" "|" "DONE(d)")))
@@ -188,9 +189,6 @@
             ;; Opens appointment reminders in current window
             (setq appt-display-format 'window)
             (setq appt-display-duration 30)))
-
-(use-package org-indent
-  :init (setq org-indent-mode t))
 
 (use-package web-mode
   :ensure t

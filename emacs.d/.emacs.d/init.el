@@ -34,7 +34,7 @@
 (set-face-attribute 'default nil :height 120)
 (set-face-attribute 'default nil :font "Space Mono")
 (setq-default line-spacing 3)
-(setq split-width-threshold 170)
+(setq split-height-threshold 200)
                    
 ;;;;Get rid of tool and menu bars
 (and (fboundp 'tool-bar-mode) (tool-bar-mode -1))

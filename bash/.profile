@@ -25,6 +25,7 @@ fi
 PROFILE_CALLED=true
 GOPATH=${HOME}/workshop/go
 PATH=$PATH:$GOPATH/bin
+TERMINAL=alacritty
 
 if [ -r $HOME/.profile.local ]; then
     source $HOME/.profile.local
@@ -39,3 +40,4 @@ if [ -r $HOME/.cargo/env ]; then
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export TERMINAL

@@ -291,6 +291,9 @@
   :ensure t
   :mode "Dockerfile.*\\'")
 
+(use-package docker-tramp
+  :ensure t)
+
 (use-package load-dir
   :ensure t)
 

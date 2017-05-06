@@ -9,8 +9,8 @@
   ;; Used to get environment variables for mac
   :ensure t
   :init (progn
-          (setq-default default-directory "/Users/warren")
-          (setq exec-path-from-shell-variables '("PATH" "MANPATH" "GOPATH" "PRMUNTY"))
+          (setq exec-path-from-shell-variables '("PATH" "MANPATH" "GOPATH" "HOME" "PRMUNTY"))
+          (setq-default default-directory (getenv "HOME")
           (exec-path-from-shell-initialize)))
 
 (use-package diminish

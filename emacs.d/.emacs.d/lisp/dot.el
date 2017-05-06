@@ -288,6 +288,9 @@
 (use-package load-dir
   :ensure t)
 
+(use-package ztree
+  :ensure t)
+
 (when (memq window-system '(mac ns))
   (use-package frame
     :init (progn

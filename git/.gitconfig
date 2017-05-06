@@ -3,8 +3,9 @@
 	email = warrenjharper@gmail.com
 [merge]
 	tool = meld
+    conflictstyle = diff3
 [diff]
-	tool = meld
+	tool = icdiff
 [push]
 	default = simple
 [clean]
@@ -27,6 +28,9 @@
     local-excludes = !git ls-files -v | grep "^S"
     
     curr-branch = rev-parse --abbrev-ref HEAD
+
+    show-tags = log --tags --simplify-by-decoration --pretty='format:%ci %d'
+    
 [branch]
 	autosetuprebase = always
 [color]

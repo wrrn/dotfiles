@@ -23,30 +23,36 @@
   :ensure t
   :config (load-theme 'ample t))
 
-(use-package ido
-  ;; Nice mini-buffer
+(use-package ivy
+  ;; Interactive interface completion
   :ensure t
   :init (progn
-          (require 'ido)
-          (setq ido-everywhere t)
-          (setq ido-enable-flex-matching t)
-          (ido-mode t)))
+          (ivy-mode 1)
+          (setq ivy-use-virtual-buffers t)
+          (setq ivy-count-format "(%d/%d) ")
+          (setq ivy-sort-file-function 'string-lessp)
+          (setq ivy-extra-directories nil)
+          (setq magit-completing-read-function 'ivy-completing-read)
+          
+          (global-set-key (kbd "C-c C-r") 'ivy-resume)))
 
-(use-package ido-ubiquitous
-  ;; ido ubiquitously
+
+(use-package swiper
   :ensure t
-  :config (ido-ubiquitous-mode 1))
+  :init (progn
+          (global-set-key (kbd "C-s") 'swiper))
+  )
 
-(use-package ido-vertical-mode
-  ;; Vertical
-  :ensure
-  :config (ido-vertical-mode 1))
-
-(use-package smex
-  ;; M-x with ido-style
+(use-package counsel
   :ensure t
-  :config (smex-initialize)
-  :bind (("M-x" . smex)))
+  :init (progn
+          (global-set-key (kbd "M-x") 'counsel-M-x)
+          (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+          (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+          (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+          (global-set-key (kbd "<f1> l") 'counsel-find-library)
+          (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+          (global-set-key (kbd "<f2> u") 'counsel-unicode-char)))
 
 (use-package multiple-cursors
   ;; Multiple Cursors for Emacs.

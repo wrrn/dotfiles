@@ -39,5 +39,9 @@ if [ -r $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
 fi
 
+if [ -d $HOME/.local/bin ]; then
+    PATH=$PATH:$HOME/.local/bin
+fi
+
 export PATH="$HOME/.cargo/bin:$PATH"
 export TERMINAL

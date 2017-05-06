@@ -67,3 +67,7 @@ fi
 if [ -f ~/.bashrc.local ]; then
     . ~/.bashrc.local
 fi
+if [ -f $HOME/.local/bin/aws_bash_completer ]; then
+    source $HOME/.local/bin/aws_bash_completer
+fi
+

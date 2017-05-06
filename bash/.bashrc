@@ -19,6 +19,8 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+export LC=en_US.UTF-8
+export LANGUAGE=en_US.UTF
 export LANG="en_US.UTF-8"
 
 if tput Co > /dev/null 2>&1; then

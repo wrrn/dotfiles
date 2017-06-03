@@ -26,6 +26,7 @@
 (use-package ivy
   ;; Interactive interface completion
   :ensure t
+  :diminish ivy-mode
   :init (progn
           (ivy-mode 1)
           (setq ivy-use-virtual-buffers t)

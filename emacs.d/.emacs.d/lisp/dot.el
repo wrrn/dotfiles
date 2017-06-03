@@ -38,6 +38,7 @@
           (global-set-key (kbd "C-c C-r") 'ivy-resume)))
 
 
+
 (use-package swiper
   :ensure t
   :init (progn
@@ -211,12 +212,6 @@
                                      "Disable js2 toggle hide functions"
                                      (local-unset-key (kbd "C-c C-f"))
                                      (js2-minor-mode))))
-            
-                                    
-
-
-
-
 
 (use-package scss-mode
   :ensure t
@@ -318,37 +313,3 @@ fixes the bug where emacs dies when you try to kill a frame"
   )))
 
 (provide 'dot)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

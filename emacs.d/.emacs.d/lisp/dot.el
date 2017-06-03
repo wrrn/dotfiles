@@ -10,7 +10,7 @@
   :ensure t
   :init (progn
           (setq exec-path-from-shell-variables '("PATH" "MANPATH" "GOPATH" "HOME" "PRMUNTY"))
-          (setq-default default-directory (getenv "HOME")
+          (setq-default default-directory (getenv "HOME"))
           (exec-path-from-shell-initialize)))
 
 (use-package diminish

@@ -296,6 +296,10 @@
 (use-package ztree
   :ensure t)
 
+(use-package protobuf-mode
+  :ensure t
+  :mode ".*\.proto\\'")
+
 (when (memq window-system '(mac ns))
   (use-package frame
     :init (progn

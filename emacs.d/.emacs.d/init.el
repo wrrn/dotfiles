@@ -31,8 +31,8 @@
 (show-paren-mode 1)
 (column-number-mode 1)
 (set-scroll-bar-mode nil)
-(set-face-attribute 'default nil :height 120)
-(set-face-attribute 'default nil :font "Space Mono")
+(set-face-attribute 'default nil :height 130)
+(set-face-attribute 'default nil :font "Inconsolata")
 (setq-default line-spacing 3)
 (setq split-height-threshold 200)
                    

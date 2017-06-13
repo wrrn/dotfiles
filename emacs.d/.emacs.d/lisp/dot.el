@@ -18,10 +18,10 @@
   )
           
 
-(use-package ample-theme
+(use-package zenburn-theme
   ;; Dark theme
   :ensure t
-  :config (load-theme 'ample t))
+  :config (load-theme 'zenburn t))
 
 (use-package ivy
   ;; Interactive interface completion

@@ -128,6 +128,9 @@
           (setq sml/theme 'respectful)
           (sml/setup)))
 
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
 
 (use-package go-mode
   ;; GO Mode for editing go programs
@@ -146,6 +149,16 @@
 
 
 
+(use-package flycheck-gometalinter
+  :ensure t
+  :init (progn
+          (setq flycheck-gometalinter-enable-linters '("gofmt"))
+          (setq flycheck-gometalinter-vendor t)
+          (setq flycheck-gometalinter-concurrency 8)
+          (setq flycheck-gometalinter-deadline "10s"))
+  
+  :config  (progn
+    (flycheck-gometalinter-setup)))
 
 
 (use-package auto-complete

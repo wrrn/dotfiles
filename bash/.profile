@@ -31,7 +31,7 @@ if [ -r $HOME/.local/etc/bash_completion ]; then
 fi
 
 PROFILE_CALLED=true
-GOPATH=$HOME/workshop/go
+GOPATH=$HOME/go
 PATH=$PATH:$GOPATH/bin
 TERMINAL=alacritty
 

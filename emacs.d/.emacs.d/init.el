@@ -32,7 +32,9 @@
 (column-number-mode 1)
 (set-scroll-bar-mode nil)
 (set-face-attribute 'default nil :height 130)
-(set-face-attribute 'default nil :font "Inconsolata")
+(set-face-attribute 'default nil :font "Source Code Pro")
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
 (setq-default line-spacing 3)
 (setq split-height-threshold 200)
                    

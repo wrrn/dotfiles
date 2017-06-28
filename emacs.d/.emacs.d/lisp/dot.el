@@ -1,4 +1,6 @@
-;; Ensure that package use-package is initialized
+;;; dot.el --- load all of my custom packages
+;;; Commentary:
+;;; Code:
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -18,10 +20,10 @@
   )
           
 
-(use-package zenburn-theme
+(use-package monokai-theme
   ;; Dark theme
   :ensure t
-  :config (load-theme 'zenburn t))
+  :config (load-theme 'monokai t))
 
 (use-package ivy
   ;; Interactive interface completion
@@ -42,7 +44,7 @@
 (use-package swiper
   :ensure t
   :init (progn
-          (global-set-key (kbd "C-s") 'swiper))
+          (global-set-key (kbd "C-s") 'counsel-grep-or-swiper))
   )
 
 (use-package counsel
@@ -132,6 +134,10 @@
   :ensure t
   :init (global-flycheck-mode))
 
+(use-package ggtags
+  :ensure t
+  )
+
 (use-package go-mode
   ;; GO Mode for editing go programs
   :ensure t
@@ -146,6 +152,8 @@
             (use-package go-guru
               :ensure t)))
 
+(use-package go-rename
+  :ensure t)
 
 
 
@@ -330,3 +338,4 @@ fixes the bug where emacs dies when you try to kill a frame"
   )))
 
 (provide 'dot)
+;;; dot.el ends here

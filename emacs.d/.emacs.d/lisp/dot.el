@@ -160,7 +160,6 @@
 (use-package flycheck-gometalinter
   :ensure t
   :init (progn
-          (setq flycheck-gometalinter-enable-linters '("gofmt"))
           (setq flycheck-gometalinter-vendor t)
           (setq flycheck-gometalinter-concurrency 8)
           (setq flycheck-gometalinter-deadline "10s"))

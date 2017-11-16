@@ -11,14 +11,14 @@
   ;; Used to get environment variables for mac
   :ensure t
   :init (progn
-          (setq exec-path-from-shell-variables '("PATH" "MANPATH" "GOPATH" "HOME" "PRMUNTY"))
+          (setq-default exec-path-from-shell-variables '("PATH" "MANPATH" "GOPATH" "HOME"))
           (setq-default default-directory (getenv "HOME"))
           (exec-path-from-shell-initialize)))
 
 (use-package diminish
   :ensure t
   )
-          
+
 
 (use-package monokai-theme
   ;; Dark theme

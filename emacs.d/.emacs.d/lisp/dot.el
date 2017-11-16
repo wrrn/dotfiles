@@ -246,7 +246,8 @@
 
 (use-package markdown-mode
   :ensure t
-  :mode "\\.md\\'")
+  :mode "\\.md\\'"
+  :config (add-hook 'markdown-mode-hook 'auto-fill-mode))
 
 (use-package nginx-mode
   :ensure t

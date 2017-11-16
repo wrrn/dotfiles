@@ -145,19 +145,6 @@
 (use-package go-rename
   :ensure t)
 
-
-
-(use-package flycheck-gometalinter
-  :ensure t
-  :init (progn
-          (setq flycheck-gometalinter-vendor t)
-          (setq flycheck-gometalinter-concurrency 8)
-          (setq flycheck-gometalinter-deadline "10s"))
-  
-  :config  (progn
-    (flycheck-gometalinter-setup)))
-
-
 (use-package auto-complete
   :ensure t)
 
@@ -202,15 +189,16 @@
              'org-babel-load-languages
              '((emacs-lisp . t)
                (sh . t)))
+
             ;; Syntax highlighting in code blocks
             (setq org-src-fontify-natively t)
             
             (add-hook 'org-after-todo-statistics-hook (lambda(n-done n-not-done)
-                                                       "Switch entry to DONE when all subentries are done, to TODO otherwise"
-                                                       (let (org-log-done org-log-status)
-                                                         (org-todo (if (= n-not-done 0)
-                                                                       "DONE"
-                                                                     (org-get-todo-sequence-head (org-get-todo-state)))))))
+                                                        "Switch entry to DONE when all subentries are done, to TODO otherwise"
+                                                        (let (org-log-done org-log-status)
+                                                          (org-todo (if (= n-not-done 0)
+                                                                        "DONE"
+                                                                      (org-get-todo-sequence-head (org-get-todo-state)))))))
 
             ;; Opens appointment reminders in current window
             (setq appt-display-format 'window)

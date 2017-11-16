@@ -25,13 +25,18 @@
 (define-key wh-keymap (kbd "C-f") 'imenu)
 
 
+;; Fix the Mouse wheel with
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
+(setq mouse-wheel-progressive-speed nil)
+
+
 
 
 ;;Display
 (show-paren-mode 1)
 (column-number-mode 1)
 (set-scroll-bar-mode nil)
-(set-face-attribute 'default nil :height 130)
+(set-face-attribute 'default nil :height 120)
 (set-face-attribute 'default nil :font "Source Code Pro")
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)

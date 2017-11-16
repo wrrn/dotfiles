@@ -45,6 +45,12 @@
 ;;Spacing
 (setq-default indent-tabs-mode nil
               tab-width 4)
+(defvaralias 'c-basic-offset 'tab-width)
+(defvaralias 'cperl-indent-level 'tab-width)
+
+;; Fill
+(setq-default fill-column 80)
+
 
 ;; Add time to modebar
 (setq display-time-string-forms '(24-hours "." minutes))

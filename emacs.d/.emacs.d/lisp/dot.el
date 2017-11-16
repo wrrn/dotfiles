@@ -74,11 +74,11 @@
 
 
 (use-package term
-	     ;; Terminal
-	     :init (add-hook 'term-mode-hook (lambda ()
-					       "Remove global-linum-mode to stop flashing and line-spacing to fix less"
-					       (linum-mode -1)
-					       (set (make-local-variable 'line-spacing) nil)))
+  ;; Terminal
+  :init (add-hook 'term-mode-hook (lambda ()
+                                    "Remove global-linum-mode to stop flashing and line-spacing to fix less"
+                                    (linum-mode -1)
+                                    (set (make-local-variable 'line-spacing) nil)))
   :config (progn
             (term-set-escape-char ?\C-x)
             (defun wh-ansi-term ()
@@ -108,13 +108,9 @@
   :init (progn
           (setq auto-revert-remote-files t)
           (require 'tramp-term))
-    
+  
   :config (defalias 'ssh 'tramp-term)
   :commands tramp-term)
-
-
-
-
 
 (use-package magit
   :ensure t
@@ -122,17 +118,11 @@
           (setq magit-last-seen-setup-instructions "1.4.0")
           (define-key wh-keymap (kbd "g") 'magit-status)))
 
-
-
 (use-package smart-mode-line
   :ensure t
   :init (progn
           (setq sml/theme 'respectful)
           (sml/setup)))
-
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
 
 (use-package ggtags
   :ensure t
@@ -179,20 +169,28 @@
           (require 'auto-complete-config)
           (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)))
 
-
 (use-package go-eldoc
   :ensure t
   :requires go-autocomplete
   :init (progn
           (require 'go-eldoc)
           (add-hook 'go-mode-hook 'go-eldoc-setup)))
+(use-package ob-go
+  :ensure t
+  )
+
+;; TODO Add to org-babel-load-languages-list
+(use-package ob-go
+  :ensure t
+  )
 
 (use-package org
   :config (progn
             (setq org-startup-indented t)
             (setq org-enforce-todo-dependencies t)
             (setq org-todo-keywords
-                  '((sequence "TODO(t)" "IN PROGESS(p!)" "|" "DONE(d)")))
+                  '((sequence "TODO(t)" "IN PROGESS(p)" "|" "DONE(d)")
+                    (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
             (setq org-log-done 'time)
             (setq org-enforce-todo-checkbox-dependencies t)
             ;; Recursive count of todos
@@ -319,22 +317,32 @@
 (use-package protobuf-mode
   :ensure t
   :mode ".*\.proto\\'")
+(use-package rg
+  :ensure t)
+
+(use-package linum-off
+  :ensure t
+  :init (defvar linum-disabled-modes-list '(eshell-mode term-mode ivy-mode compilation-mode org-mode text-mode dired-mode pdf-view-mode)))
+
+;; (use-package linum-relative
+;;   :ensure t
+;;   :config (linum-relative-global-mode))
 
 (when (memq window-system '(mac ns))
   (use-package frame
     :init (progn
-          (defun kill-fullscreen(frame)
-            "When a FRAME is deleted, take it out of fullscreen first. This
+            (defun kill-fullscreen(frame)
+              "When a FRAME is deleted, take it out of fullscreen first. This
 fixes the bug where emacs dies when you try to kill a frame"
-            (modify-frame-parameters
-             frame
-             `(
-               (fullscreen
-                . ,(if (eq (frame-parameter frame 'maximized) 'maximized)
-                       'maximized)))))
-          (add-to-list 'delete-frame-functions #'kill-fullscreen)
-          
-  )))
+              (modify-frame-parameters
+               frame
+               `(
+                 (fullscreen
+                  . ,(if (eq (frame-parameter frame 'maximized) 'maximized)
+                         'maximized)))))
+            (add-to-list 'delete-frame-functions #'kill-fullscreen)
+            
+            )))
 
 (provide 'dot)
 ;;; dot.el ends here

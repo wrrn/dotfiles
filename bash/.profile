@@ -1,16 +1,25 @@
 # Add GHC 7.8.3 to the PATH, via http://ghcformacosx.github.io/
-
-export GHC_DOT_APP="/Applications/ghc-7.8.3.app"
-if [ -d "$GHC_DOT_APP" ]; then
-    PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
-fi
+pathmunge () {
+    case ":${PATH}:" in
+        *:"$1":*)
+            ;;
+        *)
+            if [ "$2" = "after" ] ; then
+                PATH=$PATH:$1
+            else
+                PATH=$1:$PATH
+            fi
+    esac
+}
 
 export EDITOR="emacsclient"
 
+pathmunge /usr/local/bin
 
-PATH="${PATH}:$HOME/.rvm/bin:${HOME}/bin" # Add RVM to PATH for scripting
+
+
 if [ -d /usr/local/opt/coreutils/libexec/gnubin/ ]; then
-    PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+    pathmunge "/usr/local/opt/coreutils/libexec/gnubin"
 fi
 
 if [ -d /usr/local/opt/coreutils/libexec/gnuman ]; then
@@ -22,6 +31,7 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
     source $HOME/.nix-profile/etc/profile.d/nix.sh
 fi
 
+
 if [ -f "$(brew --prefix || echo "")/etc/bash_completion" ]; then
     source $(brew --prefix)/etc/bash_completion
 fi
@@ -32,13 +42,13 @@ fi
 
 PROFILE_CALLED=true
 GOPATH=$HOME/go
-PATH=$PATH:$GOPATH/bin
+pathmunge $GOPATH/bin
 TERMINAL=alacritty
-
+pathmunge "$HOME/bin"
 if [ -r $HOME/.profile.local ]; then
     source $HOME/.profile.local
 fi
-
+pathmunge /usr/local/go/bin after
 
 export GOPATH
 export PATH
@@ -48,8 +58,10 @@ if [ -r $HOME/.cargo/env ]; then
 fi
 
 if [ -d $HOME/.local/bin ]; then
-    PATH=$PATH:$HOME/.local/bin
+    pathmunge $HOME/.local/bin
 fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
+pathmunge "$HOME/.cargo/bin"
 export TERMINAL
+
+unset -f pathmunge

@@ -64,7 +64,7 @@
 ;; Desktop
 (global-set-key (kbd "C-c C-d c") 'desktop-clear)
 (global-set-key (kbd "C-c C-d s") 'desktop-save)
-(global-set-key (kbd "C-c C-d r") 'desktop-remove) 
+(global-set-key (kbd "C-c C-d r") 'desktop-remove)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -88,4 +88,7 @@
 
 (server-start)
 (toggle-frame-fullscreen)
+;;; init.el ends here
+
+
 

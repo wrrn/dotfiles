@@ -20,10 +20,10 @@
   )
 
 
-(use-package monokai-theme
+(use-package flatui-theme
   ;; Dark theme
   :ensure t
-  :config (load-theme 'monokai t))
+  :config (load-theme 'flatui t))
 
 (use-package ivy
   ;; Interactive interface completion

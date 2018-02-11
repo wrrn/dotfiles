@@ -25,6 +25,10 @@
   :ensure t
   :config (load-theme 'flatui t))
 
+(use-package smex
+  :ensure t
+  :config (smex-initialize))
+
 (use-package ivy
   ;; Interactive interface completion
   :ensure t

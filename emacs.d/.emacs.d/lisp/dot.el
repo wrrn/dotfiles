@@ -180,7 +180,7 @@
             (setq org-startup-indented t)
             (setq org-enforce-todo-dependencies t)
             (setq org-todo-keywords
-                  '((sequence "TODO(t)" "IN PROGESS(p)" "|" "DONE(d)")
+                  '((sequence "TODO(t)" "IN PROGESS(p)" "IN PEER REVIEW(r)" "|" "DONE(d)")
                     (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
             (setq org-log-done 'time)
             (setq org-enforce-todo-checkbox-dependencies t)
@@ -277,6 +277,11 @@
 (use-package yaml-mode
   :ensure t
   :mode "\\.yml\\'")
+
+(use-package feature-mode
+  :ensure t
+  :config (setq feature-default-lanaguage "en")
+  :mode "\\.feature\\'")
 
 (use-package elec-pair
   :init (electric-pair-mode))

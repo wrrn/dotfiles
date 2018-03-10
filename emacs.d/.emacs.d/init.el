@@ -37,7 +37,7 @@
 (column-number-mode 1)
 (set-scroll-bar-mode nil)
 (set-face-attribute 'default nil :height 120)
-(set-face-attribute 'default nil :font "Source Code Pro")
+(set-face-attribute 'default nil :font "Fira Mono")
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (setq-default line-spacing 3)

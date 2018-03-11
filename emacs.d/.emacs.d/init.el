@@ -9,10 +9,14 @@
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
 
-;; Behaviour
+;; Start up into scratch
 (setq inhibit-startup-screen t
       backup-inhibited t)
+
+;; Revert files automatically when they are changed on disk
 (global-auto-revert-mode t)
+
+;; Disable bell ringing
 (setq ring-bell-function 'ignore)
 
 
@@ -20,6 +24,7 @@
 (define-prefix-command 'wh-keymap)
 (global-set-key (kbd "C-o") 'wh-keymap)
 (define-key wh-keymap (kbd "C-r") 'rename-buffer)
+
 ;; IMenu
 ;; Allows me to jump to functions
 (define-key wh-keymap (kbd "C-f") 'imenu)
@@ -43,7 +48,7 @@
 (setq-default line-spacing 3)
 (setq split-height-threshold 200)
                    
-;;;;Get rid of tool and menu bars
+;;Get rid of tool and menu bars
 (and (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (and (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 

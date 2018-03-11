@@ -62,15 +62,6 @@
 (setq-default fill-column 80)
 
 
-;; Add time to modebar
-(setq display-time-string-forms '(24-hours "." minutes))
-(display-time)
-
-;; Desktop
-(global-set-key (kbd "C-c C-d c") 'desktop-clear)
-(global-set-key (kbd "C-c C-d s") 'desktop-save)
-(global-set-key (kbd "C-c C-d r") 'desktop-remove)
-
 (put 'narrow-to-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)

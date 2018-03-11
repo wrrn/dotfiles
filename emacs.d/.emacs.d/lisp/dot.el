@@ -236,6 +236,18 @@
 (use-package ediff
   :init (setq ediff-window-setup-function 'ediff-setup-windows-plain))
 
+(use-package desktop
+  :init (progn
+          (define-key wh-keymap (kbd "C-d c") 'desktop-clear)
+          (define-key wh-keymap (kbd "C-d s") 'desktop-save)
+          (define-key wh-keymap (kbd "C-d d") 'desktop-remove)))
+
+(use-package time
+  :init (progn
+          ;; Add time to modebar
+          (setq display-time-string-forms '(24-hours "." minutes))
+          (display-time)))
+
 (use-package wgrep
   :ensure t
   :init (require 'wgrep))

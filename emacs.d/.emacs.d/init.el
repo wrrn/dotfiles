@@ -1,16 +1,12 @@
-; Add ~/.emacs.d to load-path
-;;(add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/elpa/")
-(make-directory "~/.emacs.d/github.com-packages/" t)
-(let ((default-directory "~/.emacs.d/github.com-packages/"))
-  (normal-top-level-add-subdirs-to-load-path))
 ;; init.el
 
-(add-to-list 'load-path "~/.emacs.d/lisp")
 ;; custom-set-variables that were added by Custom
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
+;; Add packages to load path
+(add-to-list 'load-path "~/.emacs.d/elpa/")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 
 ;; Behaviour

@@ -65,9 +65,9 @@
 (use-package multiple-cursors
   ;; Multiple Cursors for Emacs.
   :ensure t
-  :bind (("C-<" . mc/mark-previous-like-this)
+  :bind (("C-<" . mc/mark-previous-like-this-word)
          ("C-c <" . mc/skip-to-previous-like-this)
-         ("C->" . mc/mark-next-like-this)
+         ("C->" . mc/mark-next-like-this-word)
          ("C-c >" . mc/skip-to-next-like-this)
          ("C-c C-a" . mc/mark-all-like-this)))
 

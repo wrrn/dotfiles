@@ -207,7 +207,15 @@
 
             ;; Opens appointment reminders in current window
             (setq appt-display-format 'window)
-            (setq appt-display-duration 30)))
+            (setq appt-display-duration 30)
+            ;; Org to markdown conversion options
+            (setq org-export-with-toc nil)
+            (setq org-export-headline-levels 5)
+            ;; Export org files to github markdown
+            (use-package ox-gfm
+              :ensure t)
+            
+            (setq org-export-backends (quote (ascii html icalendar latex md gfm)))))
 
 (use-package web-mode
   :ensure t

@@ -192,7 +192,8 @@
             (org-babel-do-load-languages
              'org-babel-load-languages
              '((emacs-lisp . t)
-               (sh . t)))
+               (shell . t)
+               (go . t)))
 
             ;; Syntax highlighting in code blocks
             (setq org-src-fontify-natively t)

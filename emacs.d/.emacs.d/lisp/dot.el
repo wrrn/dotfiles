@@ -339,6 +339,11 @@
 (use-package rg
   :ensure t)
 
+(use-package zoom-window
+  :ensure t
+  :init (progn
+          (define-key wh-keymap (kbd "C-z") 'zoom-window-zoom)))
+
 (use-package linum-off
   :ensure t
   :init (defvar linum-disabled-modes-list '(eshell-mode term-mode ivy-mode compilation-mode org-mode text-mode dired-mode pdf-view-mode)))

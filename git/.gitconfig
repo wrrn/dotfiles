@@ -1,6 +1,6 @@
 [user]
 	name = Warren Harper
-	email = warrenjharper@gmail.com
+	email = warren@wjh.io
 [merge]
 	tool = meld
     conflictstyle = diff3

@@ -16,8 +16,6 @@ export EDITOR="emacsclient"
 
 pathmunge /usr/local/bin
 
-
-
 if [ -d /usr/local/opt/coreutils/libexec/gnubin/ ]; then
     pathmunge "/usr/local/opt/coreutils/libexec/gnubin"
 fi
@@ -32,7 +30,7 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
 fi
 
 
-if [ -f "$(brew --prefix || echo "")/etc/bash_completion" ]; then
+if command -v brew > /dev/null [ -f "$(brew --prefix || echo "")/etc/bash_completion" ]; then
     source $(brew --prefix)/etc/bash_completion
 fi
 
@@ -41,7 +39,7 @@ if [ -r $HOME/.local/etc/bash_completion ]; then
 fi
 
 PROFILE_CALLED=true
-GOPATH=$HOME/go
+GOPATH=$HOME/shed/go
 pathmunge $GOPATH/bin
 TERMINAL=alacritty
 pathmunge "$HOME/bin"

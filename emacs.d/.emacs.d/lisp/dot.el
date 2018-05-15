@@ -402,6 +402,14 @@
   :ensure t
   :init (defvar linum-disabled-modes-list '(eshell-mode term-mode ivy-mode compilation-mode org-mode text-mode dired-mode pdf-view-mode)))
 
+;; Ansi Color interpretation in the compilation buffer
+(use-package ansi-color
+  :ensure t
+  :init (progn
+          (defun colorize-compilation-buffer ()
+            (let ((inhibit-read-only t))
+              (ansi-color-apply-on-region (point-min) (point-max))))
+          (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)))
 (when (memq window-system '(mac ns))
   (use-package frame
     :init (progn

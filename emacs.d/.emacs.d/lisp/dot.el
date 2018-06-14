@@ -158,11 +158,12 @@
   :bind (:map wh-keymap
               ("g" . magit)))
 
-
-(use-package smart-mode-line
+(use-package powerline
   :ensure t
-  :init (setq sml/theme 'respectful)
-  :config (sml/setup))
+  :config (progn
+            (require 'powerline)
+            (setq powerline-image-apple-rgb t)
+            (powerline-default-theme)))
 
 (use-package ggtags
   :ensure t

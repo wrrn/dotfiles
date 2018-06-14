@@ -148,7 +148,7 @@
   :init (progn
           (setq auto-revert-remote-files t)
           (require 'tramp-term))
-  
+
   :config (defalias 'ssh 'tramp-term)
   :commands tramp-term)
 
@@ -249,7 +249,7 @@
 
             ;; Syntax highlighting in code blocks
             (setq org-src-fontify-natively t)
-            
+
             (add-hook 'org-after-todo-statistics-hook (lambda(n-done n-not-done)
                                                         "Switch entry to DONE when all subentries are done, to TODO otherwise"
                                                         (let (org-log-done org-log-status)
@@ -266,7 +266,7 @@
             ;; Export org files to github markdown
             (use-package ox-gfm
               :ensure t)
-            
+
             (setq org-export-backends (quote (ascii html icalendar latex md gfm)))))
 
 (use-package web-mode
@@ -394,7 +394,6 @@
 
 (use-package zoom-window
   :ensure t
-  :init 
   :bind (:map wh-keymap
               ("C-z" . zoom-window-zoom)))
 

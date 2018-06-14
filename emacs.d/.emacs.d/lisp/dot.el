@@ -20,10 +20,9 @@
   )
 
 
-(use-package dracula-theme
-  ;; Dark theme
-  :ensure t
-  :config (load-theme 'dracula t))
+(use-package spacemacs-common
+    :ensure spacemacs-theme
+    :config (load-theme 'spacemacs-dark t))
 
 (use-package smex
   :ensure t

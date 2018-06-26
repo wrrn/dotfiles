@@ -1,15 +1,14 @@
 # Add GHC 7.8.3 to the PATH, via http://ghcformacosx.github.io/
 pathmunge () {
-    case ":${PATH}:" in
-        *:"$1":*)
-            ;;
-        *)
-            if [ "$2" = "after" ] ; then
-                PATH=$PATH:$1
-            else
-                PATH=$1:$PATH
-            fi
-    esac
+    PATH=${PATH/":${1}:"/:}
+    PATH=${PATH/":${1}"/}
+    PATH=${PATH/"${1}:"/}
+    
+    if [ "$2" = "after" ] ; then
+        PATH=$PATH:$1
+    else
+        PATH=$1:$PATH
+    fi
 }
 
 export EDITOR="emacsclient"

@@ -19,18 +19,20 @@ if [ -r $HOME/.profile.local ]; then
     source $HOME/.profile.local
 fi
 
-if [ -d /usr/local/opt/coreutils/libexec/gnuman ]; then
-    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
+if command -v brew > /dev/null 2>&1; then
+    BREW_PREFIX="$(brew --prefix)"
+    pathmunge "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
+    MANPATH="${BREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
+    source ${BREW_PREFIX}/etc/bash_completion
 fi
-
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
     source $HOME/.nix-profile/etc/profile.d/nix.sh
 fi
 
 
-if command -v brew > /dev/null [ -f "$(brew --prefix || echo "")/etc/bash_completion" ]; then
-    source $(brew --prefix)/etc/bash_completion
+if [ -f "/etc/bash_completion" ]; then
+    source /etc/bash_completion
 fi
 
 if [ -r $HOME/.local/etc/bash_completion ]; then

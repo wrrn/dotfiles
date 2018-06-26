@@ -15,8 +15,8 @@ export EDITOR="emacsclient"
 
 pathmunge /usr/local/bin
 
-if [ -d /usr/local/opt/coreutils/libexec/gnubin/ ]; then
-    pathmunge "/usr/local/opt/coreutils/libexec/gnubin"
+if [ -r $HOME/.profile.local ]; then
+    source $HOME/.profile.local
 fi
 
 if [ -d /usr/local/opt/coreutils/libexec/gnuman ]; then
@@ -42,9 +42,7 @@ GOPATH=$HOME/shed/go
 pathmunge $GOPATH/bin
 TERMINAL=alacritty
 pathmunge "$HOME/bin"
-if [ -r $HOME/.profile.local ]; then
-    source $HOME/.profile.local
-fi
+
 pathmunge /usr/local/go/bin after
 
 export GOPATH

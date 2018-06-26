@@ -46,6 +46,7 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (setq-default line-spacing 3)
+(setq split-width-threshold 200)
 (setq split-height-threshold 200)
                    
 ;;Get rid of tool and menu bars

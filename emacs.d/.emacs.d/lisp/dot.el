@@ -224,17 +224,16 @@
             (setq company-echo-delay 0)                          ; remove annoying blinking
             (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing))
             (add-hook 'after-init-hook 'global-company-mode) ; Use company mode everywhere
-
-
             ))
 
 
 (use-package org
   :config (progn
-            (setq org-startup-indented t)
+            (setq org-startup-indented t) ; cleaner looking org-mode
+            (setq org-tags-column 80) ; calling org-align-all-tags puts all the tags on line 80
             (setq org-enforce-todo-dependencies t)
             (setq org-todo-keywords
-                  '((sequence "TODO(t)" "IN PROGESS(p)" "IN PEER REVIEW(r)" "|" "DONE(d)")
+                  '((sequence "TODO(t)" "In Progess(p)" "Waiting(w)" "In Peer Review(r)" "|" "DONE(d)")
                     (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
             (setq org-log-done 'time)
             (setq org-enforce-todo-checkbox-dependencies t)
@@ -246,8 +245,12 @@
             (org-babel-do-load-languages
              'org-babel-load-languages
              '((emacs-lisp . t)
+               (go . t)
+               (js . t)
+               (org . t)
+               (python . t)
                (shell . t)
-               (go . t)))
+               (sql . t)))
 
             ;; Syntax highlighting in code blocks
             (setq org-src-fontify-natively t)

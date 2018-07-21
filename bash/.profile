@@ -22,7 +22,7 @@ fi
 if command -v brew > /dev/null 2>&1; then
     BREW_PREFIX="$(brew --prefix)"
     pathmunge "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
-    MANPATH="${BREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
+    MANPATH="${BREW_PREFIX}/opt/coreutils/libexec/gnuman:${BREW_PREFIX}/share/man:${MANPATH}"
     source ${BREW_PREFIX}/etc/bash_completion
 fi
 

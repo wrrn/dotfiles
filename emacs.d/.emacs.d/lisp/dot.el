@@ -302,6 +302,7 @@
   :bind (:map wh-keymap
               ("C-d c" . desktop-clear)
               ("C-d s" . desktop-save)
+              ("C-d r" . desktop-read)
               ("C-d d" . desktop-remove)))
 
 (use-package time

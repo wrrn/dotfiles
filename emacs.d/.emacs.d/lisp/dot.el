@@ -37,8 +37,8 @@
           (setq ivy-count-format "(%d/%d) ")
           (setq ivy-sort-file-function 'string-lessp)
           (setq ivy-extra-directories nil)
-          (setq magit-completing-read-function 'ivy-completing-read))
-  :config (ivy-mode 1)
+          (setq magit-completing-read-function 'ivy-completing-read)
+          (ivy-mode 1))
   :bind (("C-c C-r" . ivy-resume)))
 
 

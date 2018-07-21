@@ -154,7 +154,9 @@
 
 (use-package magit
   :ensure t
-  :init (setq magit-last-seen-setup-instructions "1.4.0")
+  :init (progn
+          (setq magit-last-seen-setup-instructions "1.4.0")
+          (setq magit-diff-refine-hunk t))
   :bind (:map wh-keymap
               ("g" . magit)))
 

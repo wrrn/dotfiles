@@ -21,8 +21,8 @@
 
 
 (use-package spacemacs-common
-    :ensure spacemacs-theme
-    :config (load-theme 'spacemacs-dark t))
+    :ensure monokai-alt-theme
+    :config (load-theme 'monokai-alt t))
 
 (use-package smex
   :ensure t

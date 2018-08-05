@@ -180,9 +180,11 @@
             (setq gofmt-command "goimports")
             (add-hook 'before-save-hook #'gofmt-before-save)
             (add-hook 'go-mode-hook (lambda ()
-                                      (set (make-local-variable 'compile-command) "go build")
-                                      (subword-mode t)
-                                      (message "original go path mode hook")))
+                                      (set (make-local-variable 'compile-command)
+                                           (if (string-suffix-p "_test.go" (buffer-file-name))
+                                               "go test"
+                                             "go build"))
+                                      (subword-mode t)))
             (use-package go-guru
               :ensure t)
 

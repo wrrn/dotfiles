@@ -23,11 +23,6 @@
 ;; Define custom keymap
 (define-prefix-command 'wh-keymap)
 (global-set-key (kbd "C-o") 'wh-keymap)
-(define-key wh-keymap (kbd "C-r") 'rename-buffer)
-
-;; IMenu
-;; Allows me to jump to functions
-(define-key wh-keymap (kbd "C-f") 'imenu)
 
 
 ;; Fix the Mouse wheel with

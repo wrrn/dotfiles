@@ -362,10 +362,18 @@
   :config (setq feature-default-lanaguage "en")
   :mode "\\.feature\\'")
 
+;; Automatically create closing parens, braces, and quotes
 (use-package elec-pair
   :ensure t
   :init
   :config (electric-pair-mode))
+
+;; IMenu
+;; Allows me to jump to functions
+(use-package imenu
+  :ensure t
+  :bind (:map wh-keymap
+              ("C-f" . imenu)))
 
 (use-package simple
   :diminish visual-line-mode

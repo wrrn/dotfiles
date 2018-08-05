@@ -24,6 +24,9 @@
 (define-prefix-command 'wh-keymap)
 (global-set-key (kbd "C-o") 'wh-keymap)
 
+;; Replace
+;; Replace a regexp with a string
+(define-key wh-keymap (kbd "C-r") 'replace-regexp)
 
 ;; Fix the Mouse wheel with
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))

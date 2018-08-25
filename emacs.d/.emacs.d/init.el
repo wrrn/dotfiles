@@ -58,7 +58,9 @@
 (defvaralias 'cperl-indent-level 'tab-width)
 
 ;; Fill
+(auto-fill-mode 1)
 (setq-default fill-column 80)
+(setq-default adaptive-fill-regexp "[ 	]*\\([-–!|#%;>*·•‣⁃◦/]+[ 	]*\\)*")
 
 
 (put 'narrow-to-region 'disabled nil)

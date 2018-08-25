@@ -20,9 +20,9 @@
   )
 
 
-(use-package spacemacs-common
-    :ensure monokai-alt-theme
-    :config (load-theme 'monokai-alt t))
+(use-package dracula-theme
+    :ensure t
+    :config (load-theme 'dracula t))
 
 (use-package smex
   :ensure t

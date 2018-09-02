@@ -169,7 +169,8 @@
   :ensure t
   :config (progn
             (require 'powerline)
-            (setq powerline-image-apple-rgb t)
+            (when (memq window-system '(mac ns))
+              (setq powerline-image-apple-rgb t))
             (powerline-default-theme)))
 
 (use-package ggtags

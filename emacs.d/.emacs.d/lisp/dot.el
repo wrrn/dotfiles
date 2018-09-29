@@ -185,6 +185,8 @@
             (require 'go-mode)
             (setq gofmt-command "goimports")
             (add-hook 'before-save-hook #'gofmt-before-save)
+            ;; auto-fill comments only
+            (add-hook 'go-mode-hook (lambda () (set (make-local-variable 'comment-auto-fill-only-comments) t)))
             (add-hook 'go-mode-hook (lambda ()
                                       (set (make-local-variable 'compile-command)
                                            (if (string-suffix-p "_test.go" (buffer-file-name))

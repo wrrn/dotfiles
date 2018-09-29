@@ -243,7 +243,7 @@
             (setq org-tags-column 80) ; calling org-align-all-tags puts all the tags on line 80
             (setq org-enforce-todo-dependencies t)
             (setq org-todo-keywords
-                  '((sequence "TODO(t)" "In Progess(p)" "Waiting(w)" "In Peer Review(r)" "|" "DONE(d)")
+                  '((sequence "TODO(t)" "In Progess(p)" "Waiting(w)" "HOLD(h)" "In Peer Review(r)" "|" "DONE(d)")
                     (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
             (setq org-log-done 'time)
             (setq org-enforce-todo-checkbox-dependencies t)

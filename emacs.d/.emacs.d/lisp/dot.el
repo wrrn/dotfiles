@@ -391,6 +391,9 @@
   :init (setq visual-line-mode 80)
   :config (global-visual-line-mode))
 
+;; Make a small center margin
+(use-package fringe
+  :init (fringe-mode 1))
 
 (use-package erc
   :init(progn

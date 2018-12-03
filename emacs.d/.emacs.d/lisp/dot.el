@@ -367,6 +367,8 @@
   :ensure t
   :mode "\\.yml\\'")
 
+;; Editing gherkin files (.feature files)
+;; BDD
 (use-package feature-mode
   :ensure t
   :config (setq feature-default-lanaguage "en")
@@ -436,10 +438,6 @@
             (let ((inhibit-read-only t))
               (ansi-color-apply-on-region (point-min) (point-max))))
           (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)))
-
-(use-package pickle
-  :ensure t
-  :mode ("\\.feature\\'" . pickle-mode))
 
 (when (memq window-system '(mac ns))
   (use-package frame

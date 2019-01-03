@@ -419,8 +419,9 @@
   :ensure t
   :mode ".*\.proto\\'")
 (use-package rg
-  :ensure t)
-
+  :ensure t
+  :init  (progn
+           (setq-default rg-executable (concat (getenv "HOME") "/.cargo/bin/rg"))))
 (use-package zoom-window
   :ensure t
   :bind (:map wh-keymap

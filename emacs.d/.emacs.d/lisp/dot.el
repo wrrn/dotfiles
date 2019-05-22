@@ -165,14 +165,12 @@
   :bind (:map wh-keymap
               ("g" . magit)))
 
-(use-package powerline
+(use-package spaceline
   :ensure t
-  :config (progn
-            (require 'powerline)
-            (when (memq window-system '(mac ns))
-              (setq powerline-image-apple-rgb t))
-            (powerline-default-theme)))
-
+  :init (progn
+          (require 'spaceline-config)
+          (spaceline-spacemacs-theme)))
+  
 (use-package ggtags
   :ensure t
   )

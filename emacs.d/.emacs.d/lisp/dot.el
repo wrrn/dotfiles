@@ -179,6 +179,12 @@
   ;; GO Mode for editing go programs
   :ensure t
   :mode "\\.go\\'"
+  :bind (
+         :map go-mode-map
+              ;; Explicitly call lsp-find-references until 
+              ("M-?"       . lsp-find-references)
+              ("C-c C-d"   . lsp-describe-thing-at-point)
+          )
   :config (let (( gopath (getenv "GOPATH")))
             (require 'go-mode)
             (setq gofmt-command "goimports")
@@ -191,48 +197,27 @@
                                                "go test"
                                              "go build"))
                                       (subword-mode t)))
-            (use-package go-guru
+                      
+            (use-package ob-go
               :ensure t)
 
-            (use-package company-go
-              :ensure t
-              :requires auto-complete
-              :init (progn
-                      (require 'company-go)
-                      (require 'go-mode)))
-
-
-            (use-package go-eldoc
-              :ensure t
-              :requires go-autocomplete
-              :init (require 'go-eldoc))
-
-            (use-package ob-go
-              :ensure t
-              )
-
-            (add-hook 'go-mode-hook (lambda ()
-                                      (set (make-local-variable 'company-backends) '(company-go))
-                                      (company-mode)
-                                      (message "company-go hook")
-                                      ))
             (add-hook 'go-mode-hook 'go-eldoc-setup)
+            (add-hook 'go-mode-hook #'lsp)
 
             ))
 
 (use-package go-rename
   :ensure t)
 
-(use-package company
+
+(use-package lsp-mode
   :ensure t
-  :config (progn
-            (require 'company)
-            (setq company-tooltip-limit 20)                      ; bigger popup window
-            (setq company-idle-delay .1)                         ; decrease delay before autocompletion popup shows
-            (setq company-echo-delay 0)                          ; remove annoying blinking
-            (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing))
-            (add-hook 'after-init-hook 'global-company-mode) ; Use company mode everywhere
-            ))
+  :commands lsp
+  :bind (("C-<tab>"   . completion-at-point)
+         ("C-?"       . lsp-find-references)
+         ))
+
+
 
 
 (use-package org

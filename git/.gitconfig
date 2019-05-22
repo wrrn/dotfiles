@@ -41,7 +41,7 @@
 
   update = "!f(){ git fetch upstream; git rebase upstream/develop; }; f"
 
-  commit-extend = commit --amend --no-edit
+  fixup = commit --amend --no-edit
 
   fp = push --force-with-lease
 

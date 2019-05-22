@@ -226,8 +226,13 @@
             (setq org-tags-column 80) ; calling org-align-all-tags puts all the tags on line 80
             (setq org-enforce-todo-dependencies t)
             (setq org-todo-keywords
-                  '((sequence "TODO(t)" "In Progess(p)" "Waiting(w)" "HOLD(h)" "In Peer Review(r)" "|" "DONE(d)")
+                  '((sequence "TODO(t)" "IN PROGRESS(p)" "Waiting(w)" "HOLD(h)" "In Peer Review(r)" "|" "DONE(d)")
                     (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
+            (setq org-todo-keyword-faces
+                  '(("Waiting" . org-warning)
+                    ("HOLD" . org-warning)
+                    ("In Peer Review" . org-warning)
+                    ("IN PROGRESS" . (:foreground "#f1fa8c" :bold t :background "#373844"))))
             (setq org-log-done 'time)
             (setq org-enforce-todo-checkbox-dependencies t)
             ;; Recursive count of todos

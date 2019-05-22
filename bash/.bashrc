@@ -30,9 +30,9 @@ elif tput colors > /dev/null 2>&1; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[01;32m\]\u@\H\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+    PS1='\[\033[01;33m\][\t]\[\033[00m\] \[\033[01;32m\]\u@\H\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 else
-    PS1='\u@\H:\W\$ '
+    PS1='[\t] \u@\H:\W\$ '
 fi
 
 export PS1
@@ -72,3 +72,4 @@ fi
 if [ -f $HOME/.local/bin/aws_bash_completer ]; then
     source $HOME/.local/bin/aws_bash_completer
 fi
+[[ -s ~/.ironkube/bashrc ]] && source ~/.ironkube/bashrc

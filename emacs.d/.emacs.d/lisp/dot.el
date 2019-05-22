@@ -20,9 +20,9 @@
   )
 
 
-(use-package dracula-theme
+(use-package ample-theme
     :ensure t
-    :config (load-theme 'dracula t))
+    :config (load-theme 'ample-flat t))
 
 (use-package smex
   :ensure t

@@ -225,6 +225,7 @@
             (setq org-startup-indented t) ; cleaner looking org-mode
             (setq org-tags-column 80) ; calling org-align-all-tags puts all the tags on line 80
             (setq org-enforce-todo-dependencies t)
+            (setq org-hide-emphasis-markers t) ; Hide the emphasis markers for bold, strike-through, italic, underlined, verbatim, and code
             (setq org-todo-keywords
                   '((sequence "TODO(t)" "IN PROGRESS(p)" "Waiting(w)" "HOLD(h)" "In Peer Review(r)" "|" "DONE(d)")
                     (sequence "QUESTION(q)" "|" "ANSWERED(a)")))

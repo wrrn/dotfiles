@@ -222,6 +222,7 @@
 
 (use-package org
   :config (progn
+            (require 'org-tempo) ;; Get easy template functionality back.
             (setq org-startup-indented t) ; cleaner looking org-mode
             (setq org-tags-column 80) ; calling org-align-all-tags puts all the tags on line 80
             (setq org-enforce-todo-dependencies t)

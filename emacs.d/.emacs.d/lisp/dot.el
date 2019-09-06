@@ -236,6 +236,10 @@
                     ("In Peer Review" . org-warning)
                     ("IN PROGRESS" . (:foreground "#f1fa8c" :bold t :background "#373844"))))
             (setq org-log-done 'time)
+            (setq org-fontify-done-headline t)
+            (set-face-attribute 'org-done nil :strike-through t)
+            (set-face-attribute 'org-headline-done nil
+                      :strike-through t)
             (setq org-enforce-todo-checkbox-dependencies t)
             ;; Recursive count of todos
             (setq org-hierarchical-todo-statistics nil)

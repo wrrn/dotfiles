@@ -430,6 +430,11 @@
   :ensure t
   :init (defvar linum-disabled-modes-list '(eshell-mode term-mode ivy-mode compilation-mode org-mode text-mode dired-mode pdf-view-mode)))
 
+ (use-package flyspell
+   :ensure t
+   :hook ((text-mode . flyspell-mode)
+          (prog-mode . flyspell-prog-mode)))
+
 ;; Ansi Color interpretation in the compilation buffer
 (use-package ansi-color
   :ensure t

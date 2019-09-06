@@ -20,9 +20,9 @@
   )
 
 
-(use-package ample-theme
+(use-package flatui-theme
     :ensure t
-    :config (load-theme 'ample-flat t))
+    :config (load-theme 'flatui t))
 
 (use-package smex
   :ensure t

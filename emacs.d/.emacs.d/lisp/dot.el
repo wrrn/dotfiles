@@ -227,8 +227,9 @@
             (setq org-enforce-todo-dependencies t)
             (setq org-hide-emphasis-markers t) ; Hide the emphasis markers for bold, strike-through, italic, underlined, verbatim, and code
             (setq org-todo-keywords
-                  '((sequence "TODO(t)" "IN PROGRESS(p)" "Waiting(w)" "HOLD(h)" "In Peer Review(r)" "|" "DONE(d)")
-                    (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
+                  '((sequence "TODO(t)" "IN PROGRESS(p)" "In Peer Review(r)" "Waiting(w)" "HOLD(h)" "|" "DONE(d)")
+                    (sequence "QUESTION(q)" "|" "ANSWERED(a)")
+                    (sequence "|" "NOT DOING(n)")))
             (setq org-todo-keyword-faces
                   '(("Waiting" . org-warning)
                     ("HOLD" . org-warning)

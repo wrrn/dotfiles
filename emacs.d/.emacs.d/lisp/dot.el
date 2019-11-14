@@ -20,9 +20,9 @@
   )
 
 
-(use-package flatui-theme
+(use-package dracula-theme
     :ensure t
-    :config (load-theme 'flatui t))
+    :config (load-theme 'dracula t))
 
 (use-package smex
   :ensure t

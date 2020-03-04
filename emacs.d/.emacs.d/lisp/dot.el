@@ -460,5 +460,16 @@ fixes the bug where emacs dies when you try to kill a frame"
             (add-to-list 'delete-frame-functions #'kill-fullscreen)
             )))
 
+(use-package hl-line
+  :ensure t
+  :config (progn
+          (global-hl-line-mode t)))
+
+(use-package beacon
+  :ensure t
+  :config (progn
+            (require 'beacon)
+            (beacon-mode +1)))
+
 (provide 'dot)
 ;;; dot.el ends here

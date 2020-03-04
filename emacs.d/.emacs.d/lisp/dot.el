@@ -20,9 +20,9 @@
   )
 
 
-(use-package dracula-theme
+(use-package zenburn-theme
     :ensure t
-    :config (load-theme 'dracula t))
+    :config (load-theme 'zenburn t))
 
 (use-package smex
   :ensure t

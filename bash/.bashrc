@@ -16,8 +16,9 @@ PROMPT_DIRTRIM=3
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+export HISTSIZE=1000
+export HISTFILESIZE=2000
+export HISTTIMEFORMAT="%F %T:"
 
 export LC=en_US.UTF-8
 export LANGUAGE=en_US.UTF
@@ -72,4 +73,4 @@ fi
 if [ -f $HOME/.local/bin/aws_bash_completer ]; then
     source $HOME/.local/bin/aws_bash_completer
 fi
-[[ -s ~/.ironkube/bashrc ]] && source ~/.ironkube/bashrc
+

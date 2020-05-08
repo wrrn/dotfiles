@@ -20,9 +20,9 @@
   )
 
 
-(use-package zenburn-theme
+(use-package flucui-themes
     :ensure t
-    :config (load-theme 'zenburn t))
+    :config (load-theme 'flucui-light t))
 
 (use-package smex
   :ensure t

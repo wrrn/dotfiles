@@ -421,7 +421,8 @@
 (use-package rg
   :ensure t
   :init  (progn
-           (setq-default rg-executable (concat (getenv "HOME") "/.cargo/bin/rg"))))
+           (setq-default rg-executable (concat (getenv "HOME") "/.cargo/bin/rg"))
+           (setq-default rg-command-line-flags '("--sort path"))))
 (use-package zoom-window
   :ensure t
   :bind (:map wh-keymap

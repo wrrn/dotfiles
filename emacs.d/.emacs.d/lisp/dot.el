@@ -41,12 +41,6 @@
           (ivy-mode 1))
   :bind (("C-c C-r" . ivy-resume)))
 
-
-
-(use-package swiper
-  :ensure t
-  :bind (("C-s" . counsel-grep-or-swiper)))
-
 (use-package counsel
   :ensure t
   :init  (progn

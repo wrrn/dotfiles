@@ -291,7 +291,7 @@
   :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
-               ("C-c n j" . org-roam-jump-to-index)
+               ;; ("C-c n j" . org-roam-jump-to-index)
                ("C-c n b" . org-roam-switch-to-buffer)
                ("C-c n g" . org-roam-graph))
               :map org-mode-map
@@ -310,6 +310,7 @@
   (deft-directory (concat (getenv "HOME") "/.roam")))
 
 (use-package org-journal
+  :ensure t
   :bind
   ("C-c n j" . org-journal-new-entry)
   :custom

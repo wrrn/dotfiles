@@ -24,6 +24,111 @@
     :ensure t
     :config (load-theme 'flucui-light t))
 
+(use-package org
+  :custom
+  (org-startup-indented t) ; cleaner looking org-mode
+  (org-tags-column 80) ; calling org-align-all-tags puts all the tags on line 80
+  (org-startup-with-inline-images t) ; Show images inline any time there is a link to an image
+  (org-enforce-todo-dependencies t) ;; Force everything to DONE before marking a parent done.
+  (org-hide-emphasis-markers t) ; Hide the emphasis markers for bold, strike-through, italic, underlined, verbatim, and code
+  (org-todo-keywords
+        '((sequence "TODO(t)" "IN PROGRESS(p)" "In Peer Review(r)" "Waiting(w)" "HOLD(h)" "|" "DONE(d)")
+          (sequence "QUESTION(q)" "|" "ANSWERED(a)")
+          (sequence "|" "NOT DOING(n)")))
+  (org-todo-keyword-faces
+        '(("Waiting" . org-warning)
+          ("HOLD" . org-warning)
+          ("In Peer Review" . org-warning)
+          ("IN PROGRESS" . (:foreground "#f1fa8c" :bold t :background "#373844"))))
+  (org-log-done 'time) ;; Log when something was marked as done
+  (org-fontify-done-headline t) ;; Allow strike throughs for DONE items
+  (org-enforce-todo-checkbox-dependencies t) ;; Force checkboxes to be a dependency before moving TODO's to DONE
+  (org-hierarchical-todo-statistics nil) ;; Recursive count of todos
+  (org-checkbox-hierarchical-statistics nil) ;; Recursive count of todos
+  (org-src-fontify-natively t) ;; Syntax highlighting in code blocks
+  (appt-display-format 'window)   ;; Opens appointment reminders in current window
+  (appt-display-duration 30) ;; Display the appointment reminder for 30 seconds
+
+  (org-export-with-toc nil)   ;; Org to markdown conversion options
+  (org-export-headline-levels 5) 
+
+  :config (progn
+
+            ;; Strike through DONE
+            (set-face-attribute 'org-done nil :strike-through t)
+            (set-face-attribute 'org-headline-done nil
+                                :strike-through t)
+
+            ;; Add languages to code blocks
+            (org-babel-do-load-languages
+             'org-babel-load-languages
+             '((emacs-lisp . t)
+               (js . t)
+               (org . t)
+               (python . t)
+               (shell . t)
+               (sql . t)))
+            (add-hook 'org-after-todo-statistics-hook (lambda(n-done n-not-done)
+                                                        "Switch entry to DONE when all subentries are done, to TODO otherwise"
+                                                        (let (org-log-done org-log-status)
+                                                          (org-todo (if (= n-not-done 0)
+                                                                        "DONE"
+                                                                      (org-get-todo-sequence-head (org-get-todo-state)))))))
+            ;; Export org files to github markdown
+            (use-package ox-gfm
+              :ensure t)
+
+            (setq org-export-backends (quote (ascii html icalendar latex md gfm)))))
+
+(use-package org-bullets
+  :ensure t
+  :hook (org-mode . org-bullets-mode))
+
+(use-package ob-mermaid
+  :ensure t
+  :custom
+  (ob-mermaid-cli-path (concat (getenv "HOME") "/node_modules/.bin/mmdc"))
+  :init
+  (append org-babel-load-languages '((go . t))))
+
+(use-package org-roam
+  :ensure t
+  :hook
+  (after-init . org-roam-mode)
+  :custom
+  (org-roam-directory (concat (getenv "HOME") "/.roam"))
+  (org-roam-completion-system 'ivy)
+  :bind (:map org-roam-mode-map
+              (("C-c n l" . org-roam)
+               ("C-c n f" . org-roam-find-file)
+               ;; ("C-c n j" . org-roam-jump-to-index)
+               ("C-c n b" . org-roam-switch-to-buffer)
+               ("C-c n g" . org-roam-graph))
+              :map org-mode-map
+              (("C-c n i" . org-roam-insert))))
+
+;; Deft helps me look up org-roam files quickly. Like rg or grep but using ivy on the fly
+(use-package deft
+  :ensure t
+  :after org
+  :bind
+  ("C-c n d" . deft)
+  :custom
+  (deft-recursive t)
+  (deft-use-filter-string-for-filename t)
+  (deft-default-extension "org")
+  (deft-directory (concat (getenv "HOME") "/.roam")))
+
+(use-package org-journal
+  :ensure t
+  :bind
+  ("C-c n j" . org-journal-new-entry)
+  :custom
+  (org-journal-date-prefix "#+TITLE: ")
+  (org-journal-file-format "%Y-%m-%d.org")
+  (org-journal-dir (concat (getenv "HOME") "/.roam"))
+  (org-journal-date-format "%A, %d %B %Y"))
+
 (use-package smex
   :ensure t
   :config (smex-initialize))
@@ -193,7 +298,9 @@
                                       (subword-mode t)))
                       
             (use-package ob-go
-              :ensure t)
+              :ensure t
+              :init
+              (append org-babel-load-languages '((go . t))))
 
             (add-hook 'go-mode-hook 'go-eldoc-setup)
             (add-hook 'go-mode-hook #'lsp)
@@ -210,108 +317,6 @@
   :bind (("C-<tab>"   . completion-at-point)
          ("C-?"       . lsp-find-references)
          ))
-
-(use-package org
-  :config (progn
-            (setq org-startup-indented t) ; cleaner looking org-mode
-            (setq org-tags-column 80) ; calling org-align-all-tags puts all the tags on line 80
-            (setq org-startup-with-inline-images t) ; Show images inline any time there is a link to an image
-            (setq org-enforce-todo-dependencies t) ;; Force everything to DONE before marking a parent done.
-            (setq org-hide-emphasis-markers t) ; Hide the emphasis markers for bold, strike-through, italic, underlined, verbatim, and code
-            (setq org-todo-keywords
-                  '((sequence "TODO(t)" "IN PROGRESS(p)" "In Peer Review(r)" "Waiting(w)" "HOLD(h)" "|" "DONE(d)")
-                    (sequence "QUESTION(q)" "|" "ANSWERED(a)")
-                    (sequence "|" "NOT DOING(n)")))
-            (setq org-todo-keyword-faces
-                  '(("Waiting" . org-warning)
-                    ("HOLD" . org-warning)
-                    ("In Peer Review" . org-warning)
-                    ("IN PROGRESS" . (:foreground "#f1fa8c" :bold t :background "#373844"))))
-            (setq org-log-done 'time)
-            (setq org-fontify-done-headline t)
-            (set-face-attribute 'org-done nil :strike-through t)
-            (set-face-attribute 'org-headline-done nil
-                      :strike-through t)
-            (setq org-enforce-todo-checkbox-dependencies t)
-            ;; Recursive count of todos
-            (setq org-hierarchical-todo-statistics nil)
-            (setq org-checkbox-hierarchical-statistics nil)
-
-            ;; Add languages to code blocks
-            (org-babel-do-load-languages
-             'org-babel-load-languages
-             '((emacs-lisp . t)
-               (go . t)
-               (js . t)
-               (org . t)
-               (python . t)
-               (shell . t)
-               (sql . t)))
-
-            ;; Syntax highlighting in code blocks
-            (setq org-src-fontify-natively t)
-
-            (add-hook 'org-after-todo-statistics-hook (lambda(n-done n-not-done)
-                                                        "Switch entry to DONE when all subentries are done, to TODO otherwise"
-                                                        (let (org-log-done org-log-status)
-                                                          (org-todo (if (= n-not-done 0)
-                                                                        "DONE"
-                                                                      (org-get-todo-sequence-head (org-get-todo-state)))))))
-
-            ;; Opens appointment reminders in current window
-            (setq appt-display-format 'window)
-            (setq appt-display-duration 30)
-            ;; Org to markdown conversion options
-            (setq org-export-with-toc nil)
-            (setq org-export-headline-levels 5)
-
-            ;; Export org files to github markdown
-            (use-package ox-gfm
-              :ensure t)
-
-            (setq org-export-backends (quote (ascii html icalendar latex md gfm)))))
-
-(use-package org-bullets
-  :ensure t
-  :hook (org-mode . org-bullets-mode))
-
-(use-package org-roam
-  :ensure t
-  :hook
-  (after-init . org-roam-mode)
-  :custom
-  (org-roam-directory (concat (getenv "HOME") "/.roam"))
-  (org-roam-completion-system 'ivy)
-  :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ;; ("C-c n j" . org-roam-jump-to-index)
-               ("C-c n b" . org-roam-switch-to-buffer)
-               ("C-c n g" . org-roam-graph))
-              :map org-mode-map
-              (("C-c n i" . org-roam-insert))))
-
-;; Deft helps me look up org-roam files quickly. Like rg or grep but using ivy on the fly
-(use-package deft
-  :ensure t
-  :after org
-  :bind
-  ("C-c n d" . deft)
-  :custom
-  (deft-recursive t)
-  (deft-use-filter-string-for-filename t)
-  (deft-default-extension "org")
-  (deft-directory (concat (getenv "HOME") "/.roam")))
-
-(use-package org-journal
-  :ensure t
-  :bind
-  ("C-c n j" . org-journal-new-entry)
-  :custom
-  (org-journal-date-prefix "#+TITLE: ")
-  (org-journal-file-format "%Y-%m-%d.org")
-  (org-journal-dir (concat (getenv "HOME") "/.roam"))
-  (org-journal-date-format "%A, %d %B %Y"))
 
 (use-package web-mode
   :ensure t

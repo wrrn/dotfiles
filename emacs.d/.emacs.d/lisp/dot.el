@@ -124,10 +124,12 @@
   :bind
   ("C-c n j" . org-journal-new-entry)
   :custom
-  (org-journal-date-prefix "#+TITLE: ")
-  (org-journal-file-format "%Y-%m-%d.org")
+  (org-journal-file-header "#+TITLE: %B %Y")
+  (org-journal-file-format "%Y-%m.org")
   (org-journal-dir (concat (getenv "HOME") "/.roam"))
-  (org-journal-date-format "%A, %d %B %Y"))
+  (org-journal-date-format "%A, %F")
+  (org-journal-time-format "")
+  (org-journal-file-type 'monthly))
 
 (use-package smex
   :ensure t
@@ -281,8 +283,8 @@
   :bind (
          :map go-mode-map
               ;; Explicitly call lsp-find-references until 
-              ("M-?"       . lsp-find-references)
-              ("C-c C-d"   . lsp-describe-thing-at-point)
+              ;; ("M-?"       . lsp-find-references)
+              ;; ("C-c C-d"   . lsp-describe-thing-at-point)
           )
   :config (let (( gopath (getenv "GOPATH")))
             (require 'go-mode)

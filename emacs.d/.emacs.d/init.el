@@ -1,5 +1,8 @@
 ;; init.el
 
+;; Set the initial directory to start from
+(setq default-directory "~/")
+
 ;; custom-set-variables that were added by Custom
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
@@ -40,7 +43,7 @@
 (column-number-mode 1)
 (set-scroll-bar-mode nil)
 (set-face-attribute 'default nil :height 130)
-(set-face-attribute 'default nil :font "Input")
+(set-face-attribute 'default nil :font "Input Mono")
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (setq-default line-spacing 3)
@@ -71,8 +74,8 @@
 ;;Package Setup
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                           ("melpa" . "http://melpa.milkbox.net/packages/")
-                           ("org" . "http://orgmode.org/elpa/")))
+                         ("melpa" . "http://melpa.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")))
 (package-initialize)
 
 (require 'dot)

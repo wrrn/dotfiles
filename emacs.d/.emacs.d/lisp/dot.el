@@ -20,9 +20,9 @@
   )
 
 
-(use-package flucui-themes
+(use-package color-theme-sanityinc-tomorrow
     :ensure t
-    :config (load-theme 'flucui-light t))
+    :config (load-theme 'sanityinc-tomorrow-day t))
 
 (use-package org
   :custom
@@ -121,13 +121,15 @@
 
 (use-package org-journal
   :ensure t
-  :bind
-  ("C-c n j" . org-journal-new-entry)
+  :bind (:map wh-keymap
+              ("j e" . org-journal-new-entry))
   :custom
-  (org-journal-date-prefix "#+TITLE: ")
-  (org-journal-file-format "%Y-%m-%d.org")
+  (org-journal-file-header "#+TITLE: %B %Y")
+  (org-journal-file-format "%Y-%m.org")
   (org-journal-dir (concat (getenv "HOME") "/.roam"))
-  (org-journal-date-format "%A, %d %B %Y"))
+  (org-journal-date-format "%A, %F")
+  (org-journal-time-format "")
+  (org-journal-file-type 'monthly))
 
 (use-package smex
   :ensure t
@@ -211,32 +213,17 @@
   :bind (("C-c SPC" . ace-jump-char-mode)))
 
 
+(use-package vterm
+  :ensure t)
 
-(use-package term
-  ;; Terminal
-  :init (add-hook 'term-mode-hook (lambda ()
-                                    "Remove global-linum-mode to stop flashing and line-spacing to fix less"
-                                    (linum-mode -1)
-                                    (set (make-local-variable 'line-spacing) nil)))
-  :config (progn
-            (term-set-escape-char ?\C-x)
-            (defun wh-ansi-term ()
-              ;; Open terminal only if one doesn't exist
-              (interactive)
-              (let ((buffer (get-buffer "*ansi-term*")))
-                (if buffer
-                    (pop-to-buffer buffer '((display-buffer-reuse-window)
-                                            (reusable-frames . t)))
-                  (ansi-term (getenv "SHELL")))))
-            ;; Kill terminal buffer on terminal exit
-            (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
-              (if (memq (process-status proc) '(signal exit))
-                  (let ((buffer (process-buffer proc)))
-                    ad-do-it
-                    (kill-buffer buffer))
-                ad-do-it))
-            (ad-activate 'term-sentinel))
-  :bind (("C-x t" . wh-ansi-term)))
+(use-package multi-vterm
+  :ensure t
+  :requires vterm
+  :bind (("C-x t" . multi-vterm-dedicated-toggle)
+         :map wh-keymap
+               ("t" . multi-vterm-dedicated-toggle)
+               ("C-t" . multi-vterm)
+        ))
 
 (use-package tramp
   :init   (setq tramp-default-method "ssh")
@@ -494,11 +481,6 @@ fixes the bug where emacs dies when you try to kill a frame"
                          'maximized)))))
             (add-to-list 'delete-frame-functions #'kill-fullscreen)
             )))
-
-(use-package hl-line
-  :ensure t
-  :config (progn
-          (global-hl-line-mode t)))
 
 (use-package beacon
   :ensure t

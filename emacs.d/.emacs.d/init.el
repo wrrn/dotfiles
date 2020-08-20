@@ -25,7 +25,7 @@
 
 ;; Define custom keymap
 (define-prefix-command 'wh-keymap)
-(global-set-key (kbd "C-o") 'wh-keymap)
+(global-set-key (kbd "C-h") 'wh-keymap)
 
 ;; Replace
 ;; Replace a regexp with a string

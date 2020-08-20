@@ -1,3 +1,8 @@
+dont-slack() {
+    caffeinate -d -i -m -u -w $(pgrep -xo Slack) &
+    disown
+}
+
 pathmunge () {
     PATH=${PATH/":${1}:"/:}
     PATH=${PATH/":${1}"/}
@@ -9,7 +14,6 @@ pathmunge () {
         PATH=$1:$PATH
     fi
 }
-
 source /Users/warren.harper/.nix-profile/etc/profile.d/nix.sh
 pathmunge "$HOME/.cargo/bin"
 pathmunge "/usr/local/opt/coreutils/libexec/gnubin"

@@ -50,7 +50,8 @@
   (appt-display-duration 30) ;; Display the appointment reminder for 30 seconds
 
   (org-export-with-toc nil)   ;; Org to markdown conversion options
-  (org-export-headline-levels 5) 
+  (org-export-headline-levels 5)
+  (org-agenda-files (list (concat (getenv "HOME") "/.roam")))
 
   :config (progn
 

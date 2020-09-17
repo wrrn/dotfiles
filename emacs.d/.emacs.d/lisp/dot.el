@@ -456,10 +456,23 @@
   :ensure t
   :init  (progn
            (setq-default rg-command-line-flags '("--sort path"))))
+
+(use-package ace-window
+  :ensure t
+  :custom (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  :bind (("C-x o" . ace-window)
+         (:map wh-keymap
+               ("w" . ace-window))))
+
 (use-package zoom-window
   :ensure t
   :bind (:map wh-keymap
               ("C-z" . zoom-window-zoom)))
+
+;; Show emojis in emacs
+(use-package emojify
+  :ensure t
+  :hook (after-init . global-emojify-mode))
 
 (use-package linum-off
   :ensure t

@@ -131,7 +131,8 @@
   (org-journal-dir (concat (getenv "HOME") "/.roam"))
   (org-journal-date-format "%A, %F")
   (org-journal-time-format "")
-  (org-journal-file-type 'monthly))
+  (org-journal-file-type 'monthly)
+  (org-journal-carryover-items "/!"))
 
 (use-package smex
   :ensure t

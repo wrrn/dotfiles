@@ -1,0 +1,7 @@
+[custom.vterm]
+command = "echo '%{$(vterm_prompt_end)%}'"
+when = "true"
+prefix = ""
+
+[kubernetes]
+disabled = true

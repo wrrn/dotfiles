@@ -227,17 +227,16 @@
   :ensure t
   :bind (("C-c SPC" . ace-jump-char-mode)))
 
-
 (use-package vterm
   :ensure t)
 
 (use-package multi-vterm
   :ensure t
   :requires vterm
-  :bind (("C-x t" . multi-vterm-dedicated-toggle)
+  :bind (("C-c C-c" . vterm-send-C-c)
          :map wh-keymap
-               ("t" . multi-vterm-dedicated-toggle)
-               ("C-t" . multi-vterm)
+               ("t t" . multi-vterm-dedicated-toggle)
+               ("t n" . multi-vterm)
         ))
 
 (use-package tramp

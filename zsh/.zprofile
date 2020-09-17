@@ -21,3 +21,5 @@ pathmunge "/usr/local/opt/gnu-sed/libexec/gnubin"
 pathmunge "/usr/local/bin"
 pathmunge "$GOPATH/bin"
 export PATH
+
+export EDITOR=emacsclient

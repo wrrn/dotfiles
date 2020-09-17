@@ -3,7 +3,7 @@
 	email = warren@wjh.io
 [merge]
 	tool = meld
-  conflictstyle = diff3
+    conflictstyle = diff3
 [diff]
 	tool = icdiff
 	algorithm = patience
@@ -12,13 +12,13 @@
 [clean]
 	requireForce = false
 [alias]
-  lg = log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit 
-	diff = diff -w
-	last-diff = diff HEAD~1 HEAD
+  lg = log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  diff = diff -w
+  last-diff = diff HEAD~1 HEAD
   s = status -s -b
   #Add non-whitespace changes
   addnw = "!f() { git diff -w --no-color $@ | git apply --cached --ignore-space-change; }; f"
-    
+
   # Flip a bit to ignore changes to a file locally
   exclude-local = update-index --skip-worktree
 
@@ -31,12 +31,11 @@
   curr-branch = rev-parse --abbrev-ref HEAD
 
   show-tags = log --tags --simplify-by-decoration --pretty='format:%ci %d'
-    
 
   rs = remote show
 
   f = fetch
-  
+
   pull-requests-init = "!f() { local remote=$1; if [ -z \"$remote\" ]; then echo 'git pull-requests <remote>'; return 1; fi; if ! git config --get-all remote.origin.fetch | grep -q '\\+refs/pull/\\*/head:refs/pull/origin/\\*' ;then git config --add remote.${remote}.fetch +refs/pull/*/head:refs/pull/${remote}/*; fi; }; f $@"
 
   update = "!f(){ git fetch upstream; git rebase upstream/develop; }; f"

@@ -1,4 +1,3 @@
-
 ## Add the ability to track the directory in vterm
 vterm_printf(){
     if [ -n "$TMUX" ]; then
@@ -17,8 +16,6 @@ vterm_prompt_end() {
     vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
 }
 
-setopt PROMPT_SUBST
-PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 
 ## If we are running vterm in emacs then this will clear everything for us.
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
@@ -31,4 +28,8 @@ if type brew &>/dev/null; then
     
     autoload -Uz compinit
     compinit
+fi
+setopt PROMPT_SUBST
+if type starship &>/dev/null; then
+    eval "$(starship init zsh)"
 fi

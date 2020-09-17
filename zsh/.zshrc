@@ -29,6 +29,11 @@ if type brew &>/dev/null; then
     autoload -Uz compinit
     compinit
 fi
+
+if type kubectl &>/dev/null; then
+    source <(kubectl completion zsh)
+fi
+
 setopt PROMPT_SUBST
 if type starship &>/dev/null; then
     eval "$(starship init zsh)"

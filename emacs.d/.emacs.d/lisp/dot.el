@@ -246,7 +246,6 @@
                  (add-to-list 'tramp-default-proxies-alist
                               '((regexp-quote (system-name)) nil nil))))
 
-
 (use-package tramp-term
   ;; Tramp Terminal
   :ensure t
@@ -263,7 +262,8 @@
           (setq magit-last-seen-setup-instructions "1.4.0")
           (setq magit-diff-refine-hunk t))
   :bind (:map wh-keymap
-              ("g" . magit)))
+              ("g g" . magit)
+              ("g d" . magit-diff-range)))
 
 (use-package spaceline
   :ensure t

@@ -123,6 +123,7 @@
 (use-package org-journal
   :ensure t
   :bind (:map wh-keymap
+              ("j o" . org-journal-open-current-journal-file)
               ("j e" . org-journal-new-entry))
   :custom
   (org-journal-file-header "#+TITLE: %B %Y")

@@ -1,4 +1,4 @@
-;; init.el
+;;; init.el
 
 ;; Set the initial directory to start from
 (setq default-directory "~/")
@@ -79,6 +79,14 @@
 (package-initialize)
 
 (require 'dot)
+
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
+(add-to-list 'default-frame-alist '(frame-title-format . nil)) ;; assuming you are using a dark theme
+(add-to-list 'default-frame-alist '(icon-title-format . nil)) ;; assuming you are using a dark theme
+(add-to-list 'default-frame-alist '(title . " ")) ;; assuming you are using a dark theme
+(setq ns-use-proxy-icon nil)
+
 ;;Mac Environment
 (when (memq window-system '(mac ns))
   (setq mac-command-modifier 'control))
@@ -87,8 +95,4 @@
   (load-dir-one "~/.emacs.d/project-inits"))
 
 (server-start)
-(toggle-frame-fullscreen)
 ;;; init.el ends here
-
-
-

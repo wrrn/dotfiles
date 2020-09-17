@@ -148,6 +148,7 @@
           (setq ivy-sort-file-function 'string-lessp)
           (setq ivy-extra-directories nil)
           (setq magit-completing-read-function 'ivy-completing-read)
+          (setq ivy-display-style 'fancy)
           (ivy-mode 1))
   :bind (("C-c C-r" . ivy-resume)))
 
@@ -194,13 +195,24 @@
            )
   :bind(("M-x" . counsel-M-x)
         ("C-x C-f" . counsel-find-file)
-        ("<f1> f" . counsel-describe-function)
-        ("<f1> v" . counsel-describe-variable)
-        ("<f1> l" . counsel-find-library)
-        ("<f2> i" . counsel-info-lookup-symbol)
-        ("<f2> u" . counsel-unicode-char)
+        ("C-x b" . counsel-switch-buffer)
+        ("C-x 4 b" . counsel-switch-buffer-other-window)
+
         :map counsel-find-file-map
-        ("$" . counsel-expand-env)))
+        ("$" . counsel-expand-env)
+        
+        :map wh-keymap
+        ("h f" . counsel-describe-function)
+        ("h v" . counsel-describe-variable)
+        ("h l" . counsel-find-library)
+        ("h i" . counsel-info-lookup-symbol)
+        ("h u" . counsel-unicode-char)
+        ("y" . counsel-yank-pop)))
+
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . swiper-isearch)
+         ("C-r" . swiper-isearch-backward)))
 
 (use-package multiple-cursors
   ;; Multiple Cursors for Emacs.

@@ -1,3 +1,48 @@
+prompt_order = [
+    "time", "cmd_duration", 
+    "line_break",
+    "line_break",
+    "username",
+    "hostname",
+    "kubernetes",
+    "directory",
+    "git_branch",
+    "git_commit",
+    "git_state",
+    "git_status",
+    "hg_branch",
+    "docker_context",
+    "package",
+    "dotnet",
+    "elixir",
+    "elm",
+    "erlang",
+    "golang",
+    "java",
+    "julia",
+    "nim",
+    "nodejs",
+    "ocaml",
+    "php",
+    "purescript",
+    "python",
+    "ruby",
+    "rust",
+    "terraform",
+    "zig",
+    "nix_shell",
+    "conda",
+    "memory_usage",
+    "aws",
+    "env_var",
+    "crystal",
+    "custom",
+    "line_break",
+    "jobs",
+    "battery",
+    "character",
+]
+
 [custom.vterm]
 command = "echo '%{$(vterm_prompt_end)%}'"
 when = "true"
@@ -5,3 +50,7 @@ prefix = ""
 
 [kubernetes]
 disabled = true
+
+[time]
+format = "completed at %T"
+disabled = false

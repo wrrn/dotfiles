@@ -1,0 +1,14 @@
+# Load functions that allow for expansion of aliases
+source $HOME/.space-aliases
+
+# git aliases
+alias g="git"
+alias gs="git status"
+alias gco="git checkout"
+alias gr="git rebase"
+alias ga="git add"
+alias gc="git commit"
+
+# kubernetes aliases
+alias k="kubectl"
+

@@ -1,0 +1,9 @@
+# functionality
+expand-alias-space() {
+  zle _expand_alias
+  zle self-insert
+}
+zle -N expand-alias-space
+
+bindkey " " expand-alias-space
+bindkey -M isearch " " magic-space

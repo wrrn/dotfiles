@@ -16,7 +16,6 @@ vterm_prompt_end() {
     vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
 }
 
-
 ## If we are running vterm in emacs then this will clear everything for us.
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
@@ -38,3 +37,5 @@ setopt PROMPT_SUBST
 if type starship &>/dev/null; then
     eval "$(starship init zsh)"
 fi
+
+source $HOME/.aliases

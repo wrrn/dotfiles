@@ -38,4 +38,6 @@ if type starship &>/dev/null; then
     eval "$(starship init zsh)"
 fi
 
+setopt auto_cd
+
 source $HOME/.aliases

@@ -49,7 +49,7 @@ when = "true"
 prefix = ""
 
 [kubernetes]
-disabled = true
+disabled = false
 
 [time]
 format = "completed at %T"

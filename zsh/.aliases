@@ -1,6 +1,9 @@
 # Load functions that allow for expansion of aliases
 source $HOME/.space-aliases
 
+# docker aliases
+alias drma="docker rm -f \$(docker container ls -q -a)"
+
 # git aliases
 alias g="git"
 alias gs="git status"
@@ -11,4 +14,20 @@ alias gc="git commit"
 
 # kubernetes aliases
 alias k="kubectl"
+alias kh="kubectl help"
+alias -g ks="scale --replicas"
 
+
+# make
+alias m="make"
+
+# tmux
+alias tn="tmux new -s"
+
+
+# global aliases
+alias -g G="| grep"
+
+if [ -f $HOME/.aliases.custom ]; then 
+   source $HOME/.aliases.custom
+fi     

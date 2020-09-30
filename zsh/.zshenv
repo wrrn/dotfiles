@@ -5,6 +5,7 @@ PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 export PATH
 
 export EDITOR=emacsclient

@@ -35,9 +35,6 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 
-
-
-
 ;;Display
 (show-paren-mode 1)
 (column-number-mode 1)
@@ -65,10 +62,13 @@
 (setq-default fill-column 80)
 (setq-default adaptive-fill-regexp "[ 	]*\\([-–!|#%;>*·•‣⁃◦/]+[ 	]*\\)*")
 
-
+;; Enable these commands
 (put 'narrow-to-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+;; Insert a new line when saving a file
+(setq require-final-newline t)
 
 
 ;;Package Setup

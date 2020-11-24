@@ -48,3 +48,10 @@
 	autosetuprebase = always
 [color]
 	ui = true
+[github]
+	user = wrrn
+
+# [url "ssh://git@github.com/"]
+# 	insteadOf = https://github.com/
+[core]
+	attributesfile = /Users/warren.harper/.gitattributes

@@ -23,3 +23,7 @@ pathmunge "$GOPATH/bin"
 export PATH
 
 export EDITOR=emacsclient
+
+if [ -f $HOME/.zprofile.custom ]; then 
+   source $HOME/.zprofile.custom
+fi

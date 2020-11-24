@@ -33,6 +33,10 @@ if type kubectl &>/dev/null; then
     source <(kubectl completion zsh)
 fi
 
+if type kind &>/dev/null; then
+    kind completion zsh > "${fpath[1]}/_kind"
+fi
+
 setopt PROMPT_SUBST
 if type starship &>/dev/null; then
     eval "$(starship init zsh)"

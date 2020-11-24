@@ -16,7 +16,10 @@ alias gc="git commit"
 alias k="kubectl"
 alias kh="kubectl help"
 alias -g ks="scale --replicas"
-
+alias -g ke="exec -ti"
+alias -g kaa="apply -R -f ."
+alias -g klf="logs -f"
+alias -g kgy="get -o yaml"
 
 # make
 alias m="make"
@@ -27,7 +30,12 @@ alias tn="tmux new -s"
 
 # global aliases
 alias -g G="| grep"
+alias -g B="| bat"
+
+# ls
+alias ls="exa"
+alias ll="exa -l"
 
 if [ -f $HOME/.aliases.custom ]; then 
    source $HOME/.aliases.custom
-fi     
+fi

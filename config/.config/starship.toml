@@ -1,56 +1,61 @@
-prompt_order = [
-    "time", "cmd_duration", 
-    "line_break",
-    "line_break",
-    "username",
-    "hostname",
-    "kubernetes",
-    "directory",
-    "git_branch",
-    "git_commit",
-    "git_state",
-    "git_status",
-    "hg_branch",
-    "docker_context",
-    "package",
-    "dotnet",
-    "elixir",
-    "elm",
-    "erlang",
-    "golang",
-    "java",
-    "julia",
-    "nim",
-    "nodejs",
-    "ocaml",
-    "php",
-    "purescript",
-    "python",
-    "ruby",
-    "rust",
-    "terraform",
-    "zig",
-    "nix_shell",
-    "conda",
-    "memory_usage",
-    "aws",
-    "env_var",
-    "crystal",
-    "custom",
-    "line_break",
-    "jobs",
-    "battery",
-    "character",
-]
+format = """\
+    $time $cmd_duration\
+    $line_break\
+    $line_break\
+    $username\
+    $hostname\
+    $kubernetes\
+    $directory\
+    $git_branch\
+    $git_commit\
+    $git_state\
+    $git_status\
+    $hg_branch\
+    $docker_context\
+    $package\
+    $dotnet\
+    $elixir\
+    $elm\
+    $erlang\
+    $golang\
+    $java\
+    $julia\
+    $nim\
+    $nodejs\
+    $ocaml\
+    $php\
+    $purescript\
+    $python\
+    $ruby\
+    $rust\
+    $terraform\
+    $zig\
+    $nix_shell\
+    $conda\
+    $memory_usage\
+    $aws\
+    $env_var\
+    $crystal\
+    $custom\
+    $line_break\
+    $jobs\
+    $battery\
+    $character\
+"""
+
+add_newline=false
 
 [custom.vterm]
 command = "echo '%{$(vterm_prompt_end)%}'"
 when = "true"
-prefix = ""
+format = "$output"
 
 [kubernetes]
 disabled = false
 
 [time]
-format = "completed at %T"
+format = "[completed at](purple) [$time]($style)"
 disabled = false
+
+[cmd_duration]
+format = "[took](purple) [$duration]($style)"

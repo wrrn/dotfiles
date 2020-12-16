@@ -1,11 +1,32 @@
 ;;; dot.el --- load all of my custom packages
 ;;; Commentary:
 ;;; Code:
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(defvar straight-use-package-by-default t)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(straight-use-package 'use-package)
 
 (require 'use-package)
+
+
+
+;; (use-package color-theme-sanityinc-tomorrow
+;;     :ensure t
+;;     :config (load-theme 'sanityinc-tomorrow-night t))
+
+(use-package nano
+ :straight (nano :type git :host github :repo "rougier/nano-emacs"))
 
 (use-package exec-path-from-shell
   ;; Used to get environment variables for mac
@@ -18,11 +39,6 @@
 (use-package diminish
   :ensure t
   )
-
-
-(use-package color-theme-sanityinc-tomorrow
-    :ensure t
-    :config (load-theme 'sanityinc-tomorrow-night t))
 
 (use-package org
   :custom
@@ -223,9 +239,16 @@
          ("C-c >" . mc/skip-to-next-like-this)
          ("C-c C-a" . mc/mark-all-like-this)))
 
-(use-package ace-jump-mode
+(use-package avy
   :ensure t
-  :bind (("C-c SPC" . ace-jump-char-mode)))
+  :bind (("C-c SPC" . avy-goto-char)
+         ("C-c C-SPC w" . avy-goto-word-0 )
+         ("C-c C-SPC c l" . avy-copy-line)
+         ("C-c C-SPC c r" . avy-copy-region)
+         ("C-c C-SPC k l" . avy-kill-whole-line)
+         ("C-c C-SPC k r" . avy-kill-region)))
+  
+
 
 (use-package vterm
   :ensure t)
@@ -264,12 +287,6 @@
   :bind (:map wh-keymap
               ("g g" . magit)
               ("g d" . magit-diff-range)))
-
-(use-package spaceline
-  :ensure t
-  :init (progn
-          (require 'spaceline-config)
-          (spaceline-spacemacs-theme)))
   
 (use-package ggtags
   :ensure t
@@ -422,6 +439,7 @@
               ("C-f" . imenu)))
 
 (use-package simple
+  :straight f
   :diminish visual-line-mode
   ;; Nice Line Wrapping
   :init (setq visual-line-mode 80)
@@ -429,6 +447,7 @@
 
 ;; Make a small center margin
 (use-package fringe
+  :straight f
   :init (fringe-mode 1))
 
 (use-package erc
@@ -494,6 +513,7 @@
 
 (when (memq window-system '(mac ns))
   (use-package frame
+    :straight f
     :init (progn
             (defun kill-fullscreen(frame)
               "When a FRAME is deleted, take it out of fullscreen first. This

@@ -14,7 +14,11 @@ pathmunge () {
         PATH=$1:$PATH
     fi
 }
-source /Users/warren.harper/.nix-profile/etc/profile.d/nix.sh
+
+if [ -f /Users/warren.harper/.nix-profile/etc/profile.d/nix.sh ]; then
+    source /Users/warren.harper/.nix-profile/etc/profile.d/nix.sh
+fi
+
 pathmunge "$HOME/.cargo/bin"
 pathmunge "/usr/local/opt/coreutils/libexec/gnubin"
 pathmunge "/usr/local/opt/gnu-sed/libexec/gnubin"

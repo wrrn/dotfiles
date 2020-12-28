@@ -13,6 +13,7 @@
 	requireForce = false
 [alias]
   lg = log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
   diff = diff -w
   last-diff = diff HEAD~1 HEAD
   s = status -s -b

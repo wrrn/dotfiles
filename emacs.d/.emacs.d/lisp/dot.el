@@ -26,7 +26,9 @@
 ;;     :config (load-theme 'sanityinc-tomorrow-night t))
 
 (use-package nano
- :straight (nano :type git :host github :repo "rougier/nano-emacs"))
+  :straight (nano :type git :host github :repo "rougier/nano-emacs"
+                  :fork (:host github
+                               :repo "wrrn/nano-emacs")))
 
 (use-package exec-path-from-shell
   ;; Used to get environment variables for mac

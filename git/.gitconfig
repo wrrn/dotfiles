@@ -56,3 +56,5 @@
 # 	insteadOf = https://github.com/
 [core]
 	attributesfile = /Users/warren.harper/.gitattributes
+[init]
+	defaultBranch = main

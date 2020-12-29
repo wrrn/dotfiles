@@ -1,4 +1,5 @@
-export GOPATH=/Users/warren.harper/workshop/go
+export WORK=$HOME/work
+export GOPATH=$WORK/go
 
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"

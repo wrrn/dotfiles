@@ -28,7 +28,8 @@
 (use-package nano
   :straight (nano :type git :host github :repo "rougier/nano-emacs"
                   :fork (:host github
-                               :repo "wrrn/nano-emacs")))
+                               :repo "wrrn/nano-emacs")
+                  :no-byte-compile t))
 
 (use-package exec-path-from-shell
   ;; Used to get environment variables for mac

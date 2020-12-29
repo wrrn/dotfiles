@@ -336,7 +336,10 @@
   :commands lsp
   :bind (("C-<tab>"   . completion-at-point)
          ("C-?"       . lsp-find-references)
-         ))
+         )
+  :custom
+  ;; Disable the breadcrumbs in the headerline.
+  (lsp-headerline-breadcrumb-enable nil))
 
 (use-package web-mode
   :ensure t

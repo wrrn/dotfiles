@@ -262,7 +262,9 @@
   :bind (("C-c C-c" . vterm-send-C-c)
          :map wh-keymap
                ("t t" . multi-vterm-dedicated-toggle)
-               ("t n" . multi-vterm)
+               ("t c" . multi-vterm)
+               ("t n" . multi-vterm-next)
+               ("t p" . multi-vterm-prev)
         ))
 
 (use-package tramp
@@ -538,6 +540,14 @@ fixes the bug where emacs dies when you try to kill a frame"
   :config (progn
             (require 'beacon)
             (beacon-mode +1)))
+
+(use-package re-builder
+  :custom
+  (reb-re-syntax 'string))
+
+(use-package compile
+  :bind (:map wh-keymap
+              ("c" . compile)))
 
 (provide 'dot)
 ;;; dot.el ends here

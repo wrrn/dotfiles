@@ -332,6 +332,9 @@
 (use-package go-rename
   :ensure t)
 
+(use-package go-dlv
+  :ensure t)
+
 
 (use-package lsp-mode
   :ensure t

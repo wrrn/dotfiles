@@ -45,3 +45,5 @@ fi
 setopt auto_cd
 
 source $HOME/.aliases
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

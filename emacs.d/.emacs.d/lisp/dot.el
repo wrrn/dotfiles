@@ -268,6 +268,7 @@
         ))
 
 (use-package tramp
+  :ensure t
   :init   (setq tramp-default-method "ssh")
   :config (progn (add-to-list 'tramp-default-proxies-alist
                               '(nil "\\`root\\'" "/ssh:%h:"))

@@ -89,7 +89,7 @@
 
 ;;Mac Environment
 (when (memq window-system '(mac ns))
-  (setq mac-command-modifier 'control))
+  (setq mac-command-modifier 'super))
 
 (when (file-exists-p "~/.emacs.d/project-inits")
   (load-dir-one "~/.emacs.d/project-inits"))

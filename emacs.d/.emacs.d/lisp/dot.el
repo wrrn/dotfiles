@@ -436,6 +436,10 @@
   :config (setq feature-default-lanaguage "en")
   :mode "\\.feature\\'")
 
+;; jsonnet is a superset of json
+(use-package jsonnet-mode
+  :ensure t)
+
 ;; Automatically create closing parens, braces, and quotes
 (use-package elec-pair
   :ensure t

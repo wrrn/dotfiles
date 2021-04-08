@@ -4,8 +4,8 @@ format = """\
     $line_break\
     $username\
     $hostname\
-    $kubernetes\
     $directory\
+    $kubernetes\
     $git_branch\
     $git_commit\
     $git_state\
@@ -46,11 +46,26 @@ format = """\
 add_newline=false
 
 [kubernetes]
-disabled = false
+disabled = true
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
 
 [time]
 format = "[completed at](purple) [$time]($style)"
 disabled = false
+
+[git_status]
+disabled = true
+
+[golang]
+disabled = true
+
+[java]
+disabled = true
+
+[aws]
+disabled = true
 
 [cmd_duration]
 format = "[took](purple) [$duration]($style)"

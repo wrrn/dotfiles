@@ -45,11 +45,6 @@ format = """\
 
 add_newline=false
 
-[custom.vterm]
-command = "echo '%{$(vterm_prompt_end)%}'"
-when = "true"
-format = "$output"
-
 [kubernetes]
 disabled = false
 

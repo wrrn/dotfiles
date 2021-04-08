@@ -59,3 +59,5 @@ disabled = false
 
 [cmd_duration]
 format = "[took](purple) [$duration]($style)"
+show_notifications = true
+min_time_to_notify = 10_000

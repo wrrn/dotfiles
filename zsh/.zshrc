@@ -24,22 +24,23 @@ fi
 ## Autoload our zsh completions that were installed via brew.
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-    
-    autoload -Uz compinit
-    compinit
 fi
 
-if type kubectl &>/dev/null; then
-    source <(kubectl completion zsh)
+## Check that the kubectl version hasn't changed.
+if type kubectl &>/dev/null && [[ ! -f ${fpath[1]/_kubectl} ]] && ([[ ! -f ~/.kube/version ]] || [[ "$(kubectl version --short --client)" != "$(cat ~/.kube/version)" ]]); then
+    kubectl completion zsh > "${fpath[1]}/_kubectl"
+    kubectl version --short --client > ~/.kube/version
 fi
 
-if type kind &>/dev/null; then
+## Check that the kind version hasn't changed
+if type kind &>/dev/null && [[ ! -f ${fpath[1]/_kind} ]] && ([[ ! -f ~/.kube/.kind.version ]] || [[ "$(kind version)" != "$(cat ~/.kube/.kind.version)" ]]); then
+    kind version > ~/.kube/.kind.version
     kind completion zsh > "${fpath[1]}/_kind"
 fi
 
 setopt PROMPT_SUBST
 if type starship &>/dev/null; then
-    eval "$(starship init zsh)"
+   eval "$(starship init zsh)"
 fi
 
 setopt auto_cd
@@ -47,3 +48,12 @@ setopt auto_cd
 source $HOME/.aliases
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f ~/.zshrc.custom ] && source ~/.zshrc.custom
+
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
+
+autoload -Uz compinit
+compinit -d ~/.zcompdump

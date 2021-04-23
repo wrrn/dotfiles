@@ -244,12 +244,13 @@
 
 (use-package avy
   :ensure t
-  :bind (("C-c SPC" . avy-goto-char)
-         ("C-c C-SPC w" . avy-goto-word-0 )
-         ("C-c C-SPC c l" . avy-copy-line)
-         ("C-c C-SPC c r" . avy-copy-region)
-         ("C-c C-SPC k l" . avy-kill-whole-line)
-         ("C-c C-SPC k r" . avy-kill-region)))
+  :bind (:map wh-keymap
+         ("f c" . avy-goto-char)
+         ("f w" . avy-goto-word-0 )
+         ("c l" . avy-copy-line)
+         ("c r" . avy-copy-region)
+         ("k l" . avy-kill-whole-line)
+         ("k r" . avy-kill-region)))
   
 
 
@@ -291,7 +292,7 @@
           (setq magit-last-seen-setup-instructions "1.4.0")
           (setq magit-diff-refine-hunk t))
   :bind (:map wh-keymap
-              ("g g" . magit)
+              ("g s" . magit)
               ("g d" . magit-diff-range)))
   
 (use-package ggtags
@@ -378,10 +379,10 @@
 (use-package desktop
   :ensure t
   :bind (:map wh-keymap
-              ("C-d c" . desktop-clear)
-              ("C-d s" . desktop-save)
-              ("C-d r" . desktop-read)
-              ("C-d d" . desktop-remove)))
+              ("d c" . desktop-clear)
+              ("d s" . desktop-save)
+              ("d r" . desktop-read)
+              ("d d" . desktop-remove)))
 
 (use-package time
   ;; Add time to modebar
@@ -452,7 +453,7 @@
 (use-package imenu
   :ensure t
   :bind (:map wh-keymap
-              ("C-f" . imenu)))
+              ("f f" . imenu)))
 
 (use-package simple
   :straight f
@@ -490,19 +491,25 @@
 (use-package rg
   :ensure t
   :init  (progn
-           (setq-default rg-command-line-flags '("--sort path"))))
+           (setq-default rg-command-line-flags '("--sort path")))
+  :bind (:map wh-keymap
+              ;; Search
+              ("s d" . rg-dwim)
 
+              ;; Search specific
+              ("s s" . rg)))
+  
 (use-package ace-window
   :ensure t
   :custom (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   :bind (("C-x o" . ace-window)
          (:map wh-keymap
-               ("w" . ace-window))))
+               ("w j" . ace-window))))
 
 (use-package zoom-window
   :ensure t
   :bind (:map wh-keymap
-              ("C-z" . zoom-window-zoom)))
+              ("w z" . zoom-window-zoom)))
 
 ;; Show emojis in emacs
 (use-package emojify
@@ -555,7 +562,8 @@ fixes the bug where emacs dies when you try to kill a frame"
 
 (use-package compile
   :bind (:map wh-keymap
-              ("c" . compile)))
+              ("c c" . compile)))
+
 
 (provide 'dot)
 ;;; dot.el ends here

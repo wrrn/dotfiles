@@ -51,13 +51,14 @@
   (org-enforce-todo-dependencies t) ;; Force everything to DONE before marking a parent done.
   (org-hide-emphasis-markers t) ; Hide the emphasis markers for bold, strike-through, italic, underlined, verbatim, and code
   (org-todo-keywords
-        '((sequence "IN PROGRESS(p)" "In Peer Review(r)" "Waiting(w)" "HOLD(h)" "TODO(t)" "|" "DONE(d)")
+        '((sequence "TO TEST(e)" "TO DEPLOY(i)" "IN PROGRESS(p)" "In Peer Review(r)" "Waiting(w)" "HOLD(h)" "TODO(t)" "|" "DONE(d)")
           (sequence "QUESTION(q)" "|" "ANSWERED(a)")
           (sequence "|" "NOT DOING(n)")))
   (org-todo-keyword-faces
         '(("Waiting" . org-warning)
           ("HOLD" . org-warning)
           ("In Peer Review" . org-warning)
+          ("TO DEPLOY" . org-warning)
           ("IN PROGRESS" . (:foreground "#f1fa8c" :bold t :background "#373844"))))
   (org-log-done 'time) ;; Log when something was marked as done
   (org-fontify-done-headline t) ;; Allow strike throughs for DONE items

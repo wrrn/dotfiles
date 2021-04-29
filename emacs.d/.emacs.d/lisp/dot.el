@@ -29,12 +29,13 @@
   :straight (nano :type git :host github :repo "rougier/nano-emacs"
                   :fork (:host github
                                :repo "wrrn/nano-emacs")
-                  :no-byte-compile t))
+                  :build (:not compile)))
 
 (use-package exec-path-from-shell
   ;; Used to get environment variables for mac
   :ensure t
   :init (progn
+          (setq-default shell-file-name (getenv "SHELL"))
           (setq-default exec-path-from-shell-variables '("PATH" "MANPATH" "GOPATH" "HOME"))
           (setq-default default-directory (getenv "HOME"))
           (exec-path-from-shell-initialize)))

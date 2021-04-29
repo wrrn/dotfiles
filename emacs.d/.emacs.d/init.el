@@ -47,10 +47,6 @@
 (setq split-width-threshold 200)
 (setq split-height-threshold 200)
                    
-;;Get rid of tool and menu bars
-(and (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(and (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-
 ;;Spacing
 (setq-default indent-tabs-mode nil
               tab-width 4)
@@ -80,6 +76,12 @@
 
 (require 'dot)
 
+;;Get rid of tool and menu bars
+(and (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(and (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+;; Get rid of all frame decorations
+(add-to-list 'default-frame-alist '(undecorated . t))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
 (add-to-list 'default-frame-alist '(frame-title-format . nil)) ;; assuming you are using a dark theme

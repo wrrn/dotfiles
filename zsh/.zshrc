@@ -59,3 +59,7 @@ source $HOME/.aliases
 
 autoload -Uz compinit
 compinit -d ~/.zcompdump
+
+if type direnv &>/dev/null; then
+    eval "$(direnv hook zsh)"
+fi

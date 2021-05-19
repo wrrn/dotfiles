@@ -20,6 +20,9 @@
 (require 'use-package)
 
 
+;; (use-package dracula-theme
+;;     :ensure t
+;;     :config (load-theme 'dracula t))
 
 ;; (use-package color-theme-sanityinc-tomorrow
 ;;     :ensure t
@@ -268,6 +271,7 @@
                ("t c" . multi-vterm)
                ("t n" . multi-vterm-next)
                ("t p" . multi-vterm-prev)
+               ("p t" . multi-vterm-project)
         ))
 
 (use-package tramp
@@ -345,6 +349,10 @@
   :commands lsp
   :bind (("C-<tab>"   . completion-at-point)
          ("C-?"       . lsp-find-references)
+         :map wh-keymap
+         ("l f r" . lsp-find-references)
+         ("l d"   . lsp-describe-thing-at-point)
+         ("l f d" . xref-find-definitions)
          )
   :custom
   ;; Disable the breadcrumbs in the headerline.
@@ -566,6 +574,7 @@ fixes the bug where emacs dies when you try to kill a frame"
   :bind (:map wh-keymap
               ("c c" . compile)))
 
+;; (require 'java-development)
 
 (provide 'dot)
 ;;; dot.el ends here

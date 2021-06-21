@@ -46,7 +46,11 @@ format = """\
 add_newline=false
 
 [kubernetes]
-disabled = true
+disabled = false
+[kubernetes.context_aliases]
+"gke_megaphone-stage_us-central1-c_megaphone-stage" = "megaphone-stage"
+"gke_megaphone-prod_us-central1_megaphone-prod" = "megaphone-prod"
+
 
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "

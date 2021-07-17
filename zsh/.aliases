@@ -30,7 +30,9 @@ alias tn="tmux new -s"
 
 # global aliases
 alias -g G="| grep"
-alias -g B="| bat"
+alias -g b="| bat"
+alias -g by="| bat -lyaml"
+alias -g bj="| bat -ljson"
 
 # ls
 alias ls="exa"

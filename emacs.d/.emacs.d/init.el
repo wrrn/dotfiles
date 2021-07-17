@@ -24,12 +24,18 @@
 
 
 ;; Define custom keymap
+(setq wh-keymap-prefix-key "C-j")
+
+(global-unset-key (kbd wh-keymap-prefix-key))
 (define-prefix-command 'wh-keymap)
-(global-set-key (kbd "C-h") 'wh-keymap)
+(global-set-key (kbd wh-keymap-prefix-key) 'wh-keymap)
+
 
 ;; Replace
 ;; Replace a regexp with a string
 (define-key wh-keymap (kbd "r r") 'replace-regexp)
+(define-key wh-keymap (kbd "b r") 'rename-buffer)
+(global-set-key (kbd "C-c r") 'rename-buffer)
 
 ;; Fix the Mouse wheel with
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))

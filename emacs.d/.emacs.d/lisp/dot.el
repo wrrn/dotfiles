@@ -130,7 +130,9 @@
                ("C-c n b" . org-roam-switch-to-buffer)
                ("C-c n g" . org-roam-graph))
               :map org-mode-map
-              (("C-c n i" . org-roam-insert))))
+              (("C-c n i" . org-roam-insert)
+               ;; TODO: Use the variable here
+               ("C-j" . nil))))
 
 ;; Deft helps me look up org-roam files quickly. Like rg or grep but using ivy on the fly
 (use-package deft
@@ -250,22 +252,29 @@
 (use-package avy
   :ensure t
   :bind (:map wh-keymap
-         ("f c" . avy-goto-char)
-         ("f w" . avy-goto-word-0 )
-         ("c l" . avy-copy-line)
-         ("c r" . avy-copy-region)
-         ("k l" . avy-kill-whole-line)
-         ("k r" . avy-kill-region)))
+         ("c j" . avy-goto-char)
+         ("w j" . avy-goto-word-0 )
+         ("l c" . avy-copy-line)
+         ("r c" . avy-copy-region)
+         ("l k" . avy-kill-whole-line)
+         ("r k" . avy-kill-region)))
   
 
 
 (use-package vterm
+  ;; :config
+  ;; ;; Remove C-j from the vterm-keymap so that it doesn't conflict with wh-keymap.
+  ;; (customize-set-variable 'vterm-keymap-exceptions (add-to-list 'vterm-keymap-exceptions wh-keymap-prefix-key))
+  :bind (:map vterm-mode-map
+             ("C-j" . nil))
   :ensure t)
 
 (use-package multi-vterm
   :ensure t
   :requires vterm
-  :bind (("C-c C-c" . vterm-send-C-c)
+  :bind (;; ("C-c C-c" . vterm-send-C-c)
+         :map vterm-mode-map
+              ("C-c r" . multi-vterm-rename-buffer)
          :map wh-keymap
                ("t t" . multi-vterm-dedicated-toggle)
                ("t c" . multi-vterm)
@@ -347,13 +356,12 @@
 (use-package lsp-mode
   :ensure t
   :commands lsp
-  :bind (("C-<tab>"   . completion-at-point)
-         ("C-?"       . lsp-find-references)
+  :bind (("M-/"   . completion-at-point)
+         ("C-?"   . lsp-find-references)
          :map wh-keymap
-         ("l f r" . lsp-find-references)
-         ("l d"   . lsp-describe-thing-at-point)
-         ("l f d" . xref-find-definitions)
-         )
+         ("r f"   . lsp-find-references)
+         ("t d"   . lsp-describe-thing-at-point)
+         ("d f"   . xref-find-definitions))
   :custom
   ;; Disable the breadcrumbs in the headerline.
   (lsp-headerline-breadcrumb-enable nil))
@@ -532,8 +540,13 @@
 
  (use-package flyspell
    :ensure t
+   :bind (:map flyspell-mode-map
+               ("C-." . nil)
+          :map wh-keymap
+          ("w c" . flyspell-auto-correct-word))
    :hook ((text-mode . flyspell-mode)
           (prog-mode . flyspell-prog-mode)))
+
 
 ;; Ansi Color interpretation in the compilation buffer
 (use-package ansi-color
@@ -572,7 +585,10 @@ fixes the bug where emacs dies when you try to kill a frame"
 
 (use-package compile
   :bind (:map wh-keymap
-              ("c c" . compile)))
+              ("C-c C-c" . compile)))
+
+(use-package tab-bar
+  :bind ("C-x t s" . tab-bar-select-tab-by-name))
 
 ;; (require 'java-development)
 

@@ -361,7 +361,8 @@
          :map wh-keymap
          ("r f"   . lsp-find-references)
          ("t d"   . lsp-describe-thing-at-point)
-         ("d f"   . xref-find-definitions))
+         ("d f"   . xref-find-definitions)
+         ("4 d f" . xref-find-definitions-other-window))
   :custom
   ;; Disable the breadcrumbs in the headerline.
   (lsp-headerline-breadcrumb-enable nil))
@@ -590,7 +591,10 @@ fixes the bug where emacs dies when you try to kill a frame"
 (use-package tab-bar
   :bind ("C-x t s" . tab-bar-select-tab-by-name))
 
-;; (require 'java-development)
+(use-package rainbow-delimiters
+  :ensure t)
+
+(require 'java-development)
 
 (provide 'dot)
 ;;; dot.el ends here

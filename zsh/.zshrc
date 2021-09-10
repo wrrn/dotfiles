@@ -43,6 +43,11 @@ if type starship &>/dev/null; then
    eval "$(starship init zsh)"
 fi
 
+if type zoxide &>/dev/null; then
+    eval "$(zoxide init zsh)"
+fi
+   
+
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 
 setopt auto_cd

@@ -38,6 +38,9 @@ alias -g bj="| bat -ljson"
 alias ls="exa"
 alias ll="exa -l"
 
+# myip aliases
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+
 if [ -f $HOME/.aliases.custom ]; then 
    source $HOME/.aliases.custom
 fi

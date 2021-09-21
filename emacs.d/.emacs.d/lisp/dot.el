@@ -161,85 +161,110 @@
   (org-journal-file-type 'monthly)
   (org-journal-carryover-items "/!"))
 
-(use-package smex
+(use-package orderless
   :ensure t
-  :config (smex-initialize))
+  :custom (completion-styles '(orderless)))
 
-(use-package ivy
-  ;; Interactive interface completion
+(use-package selectrum
   :ensure t
-  :diminish ivy-mode
-  :init (progn
-          (setq ivy-use-virtual-buffers t)
-          (setq ivy-count-format "(%d/%d) ")
-          (setq ivy-sort-file-function 'string-lessp)
-          (setq ivy-extra-directories nil)
-          (setq magit-completing-read-function 'ivy-completing-read)
-          (setq ivy-display-style 'fancy)
-          (ivy-mode 1))
-  :bind (("C-c C-r" . ivy-resume)))
+  :requires orderless
+  :custom
+    ;; Optional performance optimization
+  ;; by highlighting only the visible candidates.
+  (orderless-skip-highlighting (lambda () selectrum-is-active))
+  (selectrum-highlight-candidates-function #'orderless-highlight-matches)
 
-(use-package counsel
+  :init
+  (selectrum-mode +1))
+
+
+(use-package consult
   :ensure t
-  :init  (progn
-           (defun counsel-env-res (res path)
-             (let ((apath (abbreviate-file-name path)))
-               (list (car res)
-                     (if (file-accessible-directory-p path)
-                         (file-name-as-directory apath)
-                       apath))))
+  :bind (;; C-c bindings (mode-specific-map)
+         ("C-c h" . consult-history)
+         ("C-c m" . consult-mode-command)
+         ("C-c b" . consult-bookmark)
+         ("C-c k" . consult-kmacro)
+         ;; C-x bindings (ctl-x-map)
+         ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+         ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+         ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
+         ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+          ;; Other custom bindings
+         ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+         ("<help> a" . consult-apropos)            ;; orig. apropos-command
+         ;; M-g bindings (goto-map)
+         ("M-g e" . consult-compile-error)
+         ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+         ("M-g g" . consult-goto-line)             ;; orig. goto-line
+         ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+         ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+         ("M-g m" . consult-mark)
+         ("M-g k" . consult-global-mark)
+         ("M-g i" . consult-imenu)
+         ("M-g I" . consult-imenu-multi)
+         ;; Isearch integration
+         ("C-s" . consult-line)
+         ("C-S" . consult-line-multi)
+         
+         :map wh-keymap
+         ("f f" . consult-imenu)
+         ("s s" . consult-ripgrep))
+  :init
+  ;; Use Consult to select xref locations with preview
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+  ;; Set the root of the project so that consult-ripgrep starts searches there.
+  (setq consult-project-root-function
+        (lambda ()
+          (when-let (project (project-current))
+            (car (project-roots project))))))
+  
+;; Enable richer annotations using the Marginalia package
+(use-package marginalia
+  ;; Either bind `marginalia-cycle` globally or only in the minibuffer
+  :bind (("M-A" . marginalia-cycle)
+         :map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
 
-           (defun counsel-env ()
-             (delq nil
-                   (mapcar
-                    (lambda (s)
-                      (let* ((res (split-string s "=" t))
-                             (path (cadr res)))
-                        (when (stringp path)
-                          (cond ((file-exists-p path)
-                                 (counsel-env-res res path))
-                                ((file-exists-p (expand-file-name path ivy--directory))
-                                 (counsel-env-res
-                                  res (expand-file-name path ivy--directory)))
-                                (t nil)))))
-                    process-environment)))
+  ;; The :init configuration is always executed (Not lazy!)
+  :init
 
-           (defun counsel-expand-env ()
-             (interactive)
-             (if (equal ivy-text "")
-                 (progn
-                   (let ((enable-recursive-minibuffers t)
-                         (history (symbol-value (ivy-state-history ivy-last)))
-                         (old-last ivy-last)
-                         (ivy-recursive-restore nil))
-                     (ivy-read "Env: " (counsel-env)
-                               :action (lambda (x)
-                                         (ivy--reset-state (setq ivy-last old-last))
-                                         (setq ivy--directory "")
-                                         (delete-minibuffer-contents)
-                                         (insert (cadr x))))))
-               (insert "$")))
-           )
-  :bind(("M-x" . counsel-M-x)
-        ("C-x C-f" . counsel-find-file)
-        ("C-x b" . counsel-switch-buffer)
-        ("C-x 4 b" . counsel-switch-buffer-other-window)
+  ;; Must be in the :init section of use-package such that the mode gets
+  ;; enabled right away. Note that this forces loading the package.
+  (marginalia-mode))
 
-        :map counsel-find-file-map
-        ("$" . counsel-expand-env)
-        
-        :map wh-keymap
-        ("h f" . counsel-describe-function)
-        ("h v" . counsel-describe-variable)
-        ("h l" . counsel-find-library)
-        ("h i" . counsel-info-lookup-symbol)
-        ("h u" . counsel-unicode-char)
-        ("y" . counsel-yank-pop)))
-
-(use-package swiper
+(use-package embark
   :ensure t
-  :bind (("C-s" . swiper-isearch)
-         ("C-r" . swiper-isearch-backward)))
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+  :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :ensure t
+  :after (embark consult)
+  :demand t ; only necessary if you have the hook below
+  ;; if you want to have consult previews as you move around an
+  ;; auto-updating embark collect buffer
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package savehist
+  :init (savehist-mode))
 
 (use-package multiple-cursors
   ;; Multiple Cursors for Emacs.
@@ -468,13 +493,6 @@
   :init
   :config (electric-pair-mode))
 
-;; IMenu
-;; Allows me to jump to functions
-(use-package imenu
-  :ensure t
-  :bind (:map wh-keymap
-              ("f f" . imenu)))
-
 (use-package simple
   :straight f
   :diminish visual-line-mode
@@ -514,10 +532,7 @@
            (setq-default rg-command-line-flags '("--sort path")))
   :bind (:map wh-keymap
               ;; Search
-              ("s d" . rg-dwim)
-
-              ;; Search specific
-              ("s s" . rg)))
+              ("s d" . rg-dwim)))
   
 (use-package ace-window
   :ensure t

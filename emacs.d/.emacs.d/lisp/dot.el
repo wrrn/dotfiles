@@ -131,8 +131,12 @@
    ;; TODO: Use the variable here
    ("C-j" . nil))))
 
-;; Deft helps me look up org-roam files quickly. Like rg or grep but using ivy on the fly
+;; Deft helps me look up org-roam files quickly. Like rg or grep but on the fly.
 (use-package deft
+  :straight (deft :type git :host github :repo "jrblevin/deft"
+                  :fork (:host github
+                               :repo "wrrn/deft")
+                  :build (:not compile))
   :ensure t
   :after org
   :bind

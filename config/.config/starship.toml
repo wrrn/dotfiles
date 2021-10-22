@@ -2,10 +2,15 @@ format = """\
     $time $cmd_duration\
     $line_break\
     $line_break\
+    $aws\
+    $line_break\
+    $gcloud\
+    $line_break\
+    $kubernetes\
+    $line_break\
     $username\
     $hostname\
     $directory\
-    $kubernetes\
     $git_branch\
     $git_commit\
     $git_state\
@@ -33,7 +38,6 @@ format = """\
     $nix_shell\
     $conda\
     $memory_usage\
-    $aws\
     $env_var\
     $crystal\
     $custom\
@@ -47,6 +51,8 @@ add_newline=false
 
 [kubernetes]
 disabled = false
+format = '[$symbol$context( \($namespace\))]($style)'
+
 [kubernetes.context_aliases]
 "gke_megaphone-stage_us-central1-c_megaphone-stage" = "megaphone-stage"
 "gke_megaphone-prod_us-central1_megaphone-prod" = "megaphone-prod"
@@ -69,7 +75,14 @@ disabled = true
 disabled = true
 
 [aws]
-disabled = true
+enabled = true
+format = '[$symbol($profile )(\($region\) )(\[$duration\])]($style)'
+symbol = "🅰 "
+
+[gcloud]
+enabled = true
+format = '[$symbol$account(@$domain)(\($project)(:$region)\)]($style)'
+symbol = "☁ "
 
 [cmd_duration]
 format = "[took](purple) [$duration]($style)"

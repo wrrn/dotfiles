@@ -205,8 +205,8 @@
          ("M-g I" . consult-imenu-multi)
          ;; Isearch integration
          ("C-s" . consult-line)
-         ("C-S" . consult-line-multi)
-         
+         ("M-s l m" . consult-line-multi)
+
          :map wh-keymap
          ("f f" . consult-imenu)
          ("s s" . consult-ripgrep))
@@ -234,34 +234,34 @@
   ;; enabled right away. Note that this forces loading the package.
   (marginalia-mode))
 
-(use-package embark
-  :ensure t
-  :bind
-  (("C-." . embark-act)         ;; pick some comfortable binding
-   ("C-;" . embark-dwim)        ;; good alternative: M-.
-   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+;; (use-package embark
+;;   :ensure t
+;;   :bind
+;;   (("C-." . embark-act)         ;; pick some comfortable binding
+;;    ("C-;" . embark-dwim)        ;; good alternative: M-.
+;;    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
-  :init
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
+  ;; :init
+  ;; ;; Optionally replace the key help with a completing-read interface
+  ;; (setq prefix-help-command #'embark-prefix-help-command)
 
-  :config
+  ;; :config
 
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
+  ;; ;; Hide the mode line of the Embark live/completions buffers
+  ;; (add-to-list 'display-buffer-alist
+  ;;              '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+  ;;                nil
+  ;;                (window-parameters (mode-line-format . none)))))
 
-;; Consult users will also want the embark-consult package.
-(use-package embark-consult
-  :ensure t
-  :after (embark consult)
-  :demand t ; only necessary if you have the hook below
-  ;; if you want to have consult previews as you move around an
-  ;; auto-updating embark collect buffer
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
+;; ;; Consult users will also want the embark-consult package.
+;; (use-package embark-consult
+;;   :ensure t
+;;   :after (embark consult)
+;;   :demand t ; only necessary if you have the hook below
+;;   ;; if you want to have consult previews as you move around an
+;;   ;; auto-updating embark collect buffer
+;;   :hook
+;;   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package savehist
   :init (savehist-mode))
@@ -563,6 +563,13 @@
           ("w c" . flyspell-auto-correct-word))
    :hook ((text-mode . flyspell-mode)
           (prog-mode . flyspell-prog-mode)))
+
+(use-package yasnippet
+  :ensure t
+  :init
+  (require 'yasnippet)
+  (yas-global-mode 1)
+)
 
 
 ;; Ansi Color interpretation in the compilation buffer

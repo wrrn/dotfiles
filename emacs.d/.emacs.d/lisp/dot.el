@@ -619,5 +619,7 @@ fixes the bug where emacs dies when you try to kill a frame"
 
 (require 'java-development)
 
+(require 'scala-development)
+
 (provide 'dot)
 ;;; dot.el ends here

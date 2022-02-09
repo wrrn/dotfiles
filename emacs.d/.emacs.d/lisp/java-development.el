@@ -19,7 +19,11 @@
                       company-ddabrev
                       company-yasnippet
                       ))
-  (company-idle-delay 0))
+  (company-idle-delay 0)
+  ;; Scala docs required this. Not sure if it will work without it.
+  ;; :config
+  ;; (setq lsp-completion-provider :capf)
+  )
 
 ;; Install projectile so that we get some project level commands
 (use-package projectile 

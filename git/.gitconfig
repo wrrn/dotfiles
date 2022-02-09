@@ -8,7 +8,7 @@
 	tool = icdiff
 	algorithm = patience
 [push]
-	default = simple
+	default = current
 [clean]
 	requireForce = false
 [alias]

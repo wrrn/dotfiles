@@ -31,3 +31,4 @@ export EDITOR=emacsclient
 if [ -f $HOME/.zprofile.custom ]; then 
    source $HOME/.zprofile.custom
 fi
+eval "$(pyenv init --path)"

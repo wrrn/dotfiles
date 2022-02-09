@@ -49,7 +49,6 @@ fi
    
 
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
-
 setopt auto_cd
 
 source $HOME/.aliases
@@ -68,3 +67,8 @@ compinit -d ~/.zcompdump
 if type direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
 fi
+
+[ -f $HOME/.rvm/scripts/rvm ] && source $HOME/.rvm/scripts/rvm
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

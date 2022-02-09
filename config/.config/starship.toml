@@ -75,12 +75,12 @@ disabled = true
 disabled = true
 
 [aws]
-enabled = true
+disabled = false
 format = '[$symbol($profile )(\($region\) )(\[$duration\])]($style)'
 symbol = "🅰 "
 
 [gcloud]
-enabled = true
+disabled = false
 format = '[$symbol$account(@$domain)(\($project)(:$region)\)]($style)'
 symbol = "☁ "
 

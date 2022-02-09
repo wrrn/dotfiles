@@ -109,6 +109,11 @@
   :ensure t
   :hook (org-mode . org-bullets-mode))
 
+(use-package org-tree-slide
+  :ensure t
+  :custom
+  (org-image-actual-width nil))
+
 (use-package ob-mermaid
   :ensure t
   :custom

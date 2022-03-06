@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: For Test
+# key: fortest
+# --
+for name, test := range tests {
+    t.Run(name, func(t *testing.T){
+		$0
+	})
+}

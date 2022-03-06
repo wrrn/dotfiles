@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: tests
+# key: tests
+# --
+tests := map[string]struct{}{
+      $0
+}
+

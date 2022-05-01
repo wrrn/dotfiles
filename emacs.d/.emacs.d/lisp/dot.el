@@ -436,6 +436,7 @@
          ("r f"   . lsp-find-references)
          ("t d"   . lsp-describe-thing-at-point)
          ("d f"   . xref-find-definitions)
+         ("i f"   . lsp-find-implementation)
          ("4 d f" . xref-find-definitions-other-window))
   :custom
   ;; Disable the breadcrumbs in the headerline.

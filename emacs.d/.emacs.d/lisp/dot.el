@@ -297,6 +297,13 @@
 (use-package savehist
   :init (savehist-mode))
 
+(use-package perspective
+  :ensure t
+  :bind (("C-x b" . persp-switch-to-buffer*)
+         ("C-x k" . persp-kill-buffer*))
+  :config
+  (persp-mode))
+
 (use-package multiple-cursors
   ;; Multiple Cursors for Emacs.
   :ensure t

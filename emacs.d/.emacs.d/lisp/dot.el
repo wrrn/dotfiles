@@ -373,6 +373,16 @@
   :bind (:map wh-keymap
               ("g s" . magit)
               ("g d" . magit-diff-range)))
+
+(use-package forge
+  :after magit
+  :config (progn
+            (add-to-list 'forge-alist
+                         '("ghe.spotify.net"
+                           "ghe.spotify.net/api/v3"
+                           "ghe.spotify.net"
+                           forge-github-repository))
+            ))
   
 (use-package ggtags
   :ensure t
@@ -654,6 +664,18 @@ fixes the bug where emacs dies when you try to kill a frame"
 
 (use-package rainbow-delimiters
   :ensure t)
+
+(use-package code-review
+  :straight t
+  :custom
+  (code-review-github-host "ghe.spotify.net/api/v3")
+  (code-review-github-graphql-host "ghe.spotify.net/api")
+  (code-review-github-base-url "ghe.spotify.net")
+  (code-review-log-raw-request-responses t)
+  (code-review-github-diffheader '(("Accept" . "application/vnd.github.v3.diff")))
+  :bind (:map forge-topic-mode-map
+              ("C-c r" . code-review-forge-pr-at-point))
+  )
 
 (require 'java-development)
 

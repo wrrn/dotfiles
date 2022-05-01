@@ -87,13 +87,16 @@
 (and (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 ;; Get rid of all frame decorations
-(add-to-list 'default-frame-alist '(undecorated . t))
+;; Commented out so that amethyst can grab the title bar
+;; (add-to-list 'default-frame-alist '(undecorated . t))
+(setq ns-auto-hide-menu-bar t)
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
 (add-to-list 'default-frame-alist '(frame-title-format . nil)) ;; assuming you are using a dark theme
 (add-to-list 'default-frame-alist '(icon-title-format . nil)) ;; assuming you are using a dark theme
 (add-to-list 'default-frame-alist '(title . " ")) ;; assuming you are using a dark theme
 (setq ns-use-proxy-icon nil)
+(setq frame-resize-pixelwise t)
 
 ;;Mac Environment
 (when (memq window-system '(mac ns))

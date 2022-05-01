@@ -20,19 +20,42 @@
 (require 'use-package)
 
 
-;; (use-package dracula-theme
-;;     :ensure t
-;;     :config (load-theme 'dracula t))
 
-;; (use-package color-theme-sanityinc-tomorrow
+;; (use-package darktooth-theme
 ;;     :ensure t
-;;     :config (load-theme 'sanityinc-tomorrow-night t))
+;;     :config (load-theme 'darktooth t))
+
+
+;; (use-package minimal-theme
+;;     :ensure t
+;;     :config (load-theme 'minimal-light t))
+
+(use-package nano-theme
+    :ensure t
+    :config (load-theme 'nano-light t))
+
+(use-package nano-modeline
+  :ensure t
+  :config (nano-modeline-mode))
+
+;; (use-package mini-frame
+;;   :ensure t
+;;   :config (mini-frame-mode))
+
+;; (use-package nano-minibuffer
+;;   :straight (nano-minibuffer :type git :host github :repo "rougier/nano-minibuffer"
+;;                              :build (:not compile)))
 
 (use-package nano
   :straight (nano :type git :host github :repo "rougier/nano-emacs"
                   :fork (:host github
                                :repo "wrrn/nano-emacs")
-                  :build (:not compile)))
+                  :build (:not compile))
+  :config (custom-set-faces
+           `(window-divider ((t (:foreground ,(face-attribute 'default :background)))))
+           '(window-divider-first-pixel  ((t (:inherit window-divider))))
+           '(window-divider-last-pixel  ((t (:inherit window-divider))))
+           '(fringe  ((t (:inherit window-divider))))))
 
 (use-package exec-path-from-shell
   ;; Used to get environment variables for mac

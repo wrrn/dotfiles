@@ -31,6 +31,9 @@ window:
   # Setting this to false will result in window without borders and title bar.
   decorations: none
   
+  # Background opacity
+  opacity: 1.0
+
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
@@ -224,9 +227,6 @@ render_timer: false
   #     args: ["Hello, World!"]
   #
   #command: None
-
-# Background opacity
-background_opacity: 1.0
 
 # Mouse bindings
 #

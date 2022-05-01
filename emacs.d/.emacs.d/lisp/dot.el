@@ -99,6 +99,9 @@
   (org-export-with-toc nil)   ;; Org to markdown conversion options
   (org-export-headline-levels 5)
   (org-agenda-files (list (concat (getenv "HOME") "/.roam")))
+  :bind (:map org-mode-map
+              ("M-p" . org-metaup)
+              ("M-n" . org-metadown))
 
   :config (progn
 

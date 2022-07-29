@@ -8,7 +8,7 @@ set -x PATH \
     /usr/local/opt/coreutils/libexec/gnubin \
     $HOME/.cargo/bin \
     $PATH
-
+set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
 set -x EDITOR emacsclient
 
 set fish_greeting

@@ -12,7 +12,6 @@ abbr -a gc git commit
 # kubernetes aliases
 abbr -a k kubectl
 abbr -a kh kubectl help
-abbr -a ks scale --replicas
 abbr -a ke exec -ti
 abbr -a kaa apply -R -f .
 abbr -a klf logs -f

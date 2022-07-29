@@ -19,20 +19,17 @@
 
 (require 'use-package)
 
-
-
-;; (use-package darktooth-theme
-;;     :ensure t
-;;     :config (load-theme 'darktooth t))
-
+(use-package darktooth-theme
+    :ensure t
+    :config (load-theme 'darktooth t))
 
 ;; (use-package minimal-theme
 ;;     :ensure t
 ;;     :config (load-theme 'minimal-light t))
 
-(use-package nano-theme
-    :ensure t
-    :config (load-theme 'nano-light t))
+;; (use-package nano-theme
+;;     :ensure t
+;;     :config (load-theme 'nano-light t))
 
 (use-package nano-modeline
   :ensure t
@@ -187,10 +184,12 @@
   (org-journal-file-header "#+TITLE: %B %Y")
   (org-journal-file-format "%Y-%m.org")
   (org-journal-dir (concat (getenv "HOME") "/.roam"))
+  
   (org-journal-date-format "%A, %F")
   (org-journal-time-format "")
   (org-journal-file-type 'monthly)
-  (org-journal-carryover-items "/!"))
+  (org-journal-carryover-items "/!")
+  (org-journal-hide-entries-p nil))
 
 (use-package orderless
   :ensure t
@@ -208,6 +207,13 @@
   :init
   (selectrum-mode +1))
 
+(use-package perspective
+  :ensure t
+  :bind (("C-x k" . persp-kill-buffer*))
+  :custom
+  (persp-mode-prefix-key (kbd "C-x M-p"))
+  :init
+  (persp-mode))
 
 (use-package consult
   :ensure t
@@ -249,7 +255,18 @@
   (setq consult-project-root-function
         (lambda ()
           (when-let (project (project-current))
-            (car (project-roots project))))))
+            (car (project-roots project)))))
+
+  :config
+  (consult-customize consult--source-buffer :hidden t :default nil)
+  (consult-customize consult--source-recent-file :hidden t :default nil)
+  (add-to-list 'consult-buffer-sources persp-consult-source)
+  (add-to-list 'consult-buffer-sources `(:name "vterminal"
+                                               :hidden f
+                                               :narrow ?v
+                                               :category buffer
+                                               :state    ,#'consult--buffer-state
+                                               :items ,(lambda() (when (boundp 'multi-vterm-buffer-list) (mapcar #'buffer-name multi-vterm-buffer-list)))) 'append))
   
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia
@@ -297,12 +314,6 @@
 (use-package savehist
   :init (savehist-mode))
 
-(use-package perspective
-  :ensure t
-  :bind (("C-x b" . persp-switch-to-buffer*)
-         ("C-x k" . persp-kill-buffer*))
-  :config
-  (persp-mode))
 
 (use-package multiple-cursors
   ;; Multiple Cursors for Emacs.
@@ -440,7 +451,9 @@
          ("4 d f" . xref-find-definitions-other-window))
   :custom
   ;; Disable the breadcrumbs in the headerline.
-  (lsp-headerline-breadcrumb-enable nil))
+  (lsp-headerline-breadcrumb-enable nil)
+  (lsp-keymap-prefix "C-c l")
+  )
 
 (use-package web-mode
   :ensure t

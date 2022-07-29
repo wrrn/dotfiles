@@ -1,82 +1,249 @@
+tap "charmbracelet/tap"
+tap "derailed/k9s"
+tap "hashicorp/tap"
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
-tap "homebrew/cask-drivers"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "instrumenta/instrumenta"
+tap "koekeishiya/formulae"
+tap "remotemobprogramming/brew"
+tap "spotify/public"
 tap "spotify/sptaps", "git@ghe.spotify.net:shared/homebrew-spotify.git"
+tap "virtuslab/git-machete"
+tap "weaveworks/tap"
+# Slice and dice log files on the command-line
 brew "angle-grinder"
-brew "python@3.9"
-brew "awscli"
-brew "bandwhich"
-brew "bat"
-brew "cmake"
-brew "cookiecutter"
+# Tool for generating GNU Standards-compliant Makefiles
+brew "automake"
+# GNU File, Shell, and Text utilities
 brew "coreutils"
-brew "go"
-brew "dep"
-brew "direnv"
-brew "dnsmasq", restart_service: true
-brew "docker-completion"
-brew "exa"
-brew "fd"
-brew "fzf"
-brew "gh"
-brew "gmailctl"
-brew "gnu-sed"
+# Generic library support script
 brew "libtool"
-brew "nghttp2"
+# YAML Parser
+brew "libyaml"
+# Extendable version manager with support for Ruby, Node.js, Erlang & more
+brew "asdf"
+# Terminal bandwidth utilization tool
+brew "bandwhich"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Core application library for C
+brew "glib"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
+# Cross-platform make
+brew "cmake"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
+# Utility that creates projects from templates
+brew "cookiecutter"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Go dependency management tool
+brew "dep"
+# Load/unload environment variables based on $PWD
+brew "direnv"
+# Lightweight DNS forwarder and DHCP server
+brew "dnsmasq"
+# Bash, Zsh and Fish completion for Docker
+brew "docker-completion"
+# Replay stored shell commands for live presentations
+brew "doitlive"
+# Modern replacement for 'ls'
+brew "exa"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# User-friendly command-line shell for UNIX-like operating systems
+brew "fish"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Toolkit for image loading and pixel buffer manipulation
+brew "gdk-pixbuf"
+# GitHub command-line tool
+brew "gh"
+# Declarative configuration for Gmail filters
+brew "gmailctl"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
+# GNU Ubiquitous Intelligent Language for Extensions
+brew "guile"
+# Validating, recursive, caching DNS resolver
 brew "unbound"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
+# Go programming environment (1.17)
+brew "go@1.17"
+# Generate introspection data for GObject libraries
+brew "gobject-introspection"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Framework for layout and rendering of i18n text
+brew "pango"
+# Library to render SVG files using Cairo
+brew "librsvg"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# GNU grep, egrep and fgrep
+brew "grep"
+# Like cURL, but for gRPC
 brew "grpcurl"
+# Kubernetes package manager
 brew "helm"
+# User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
+# International Ispell
 brew "ispell"
+# Manage your Java environment
 brew "jenv"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
+# Run local Kubernetes cluster in Docker
 brew "kind"
-brew "krb5"
+# Tool that can switch between kubectl contexts easily and create aliases
 brew "kubectx"
+# Kubernetes controller and tool for one-way encrypted Secrets
 brew "kubeseal"
+# Validate Kubernetes configuration files, supports multiple Kubernetes versions
+brew "kubeval"
+# Template-free customization of Kubernetes YAML manifests
 brew "kustomize"
+# C library SSHv1/SSHv2 client and server protocols
+brew "libssh"
+# Mac App Store command-line interface
+brew "mas"
+# Java-based project management
 brew "maven"
+# Program for MPEG audio stream validation
+brew "mp3val"
+# Check MP3 files for errors
+brew "mpck"
+# Command-line interface for New Relic
+brew "newrelic-cli"
+# HTTP/2 C Library
+brew "nghttp2"
+# Manage multiple Node.js versions
+brew "nvm"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
+# CLI for Postgres with auto-completion and syntax highlighting
+brew "pgcli"
+# Object-relational database system
 brew "postgresql"
+# Protocol buffers (Google's data interchange format)
 brew "protobuf"
+# Python version management
 brew "pyenv"
+# Pretty-print tabular data in Python
+brew "python-tabulate"
+# Persistent key-value database, with built-in net interface
 brew "redis"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Build tool for Scala projects
+brew "sbt"
+# JVM-based programming language
+brew "scala"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# Autoformat shell script source code
+brew "shfmt"
+# Cross-shell prompt for astronauts
 brew "starship"
+# Tail multiple Kubernetes pods & their containers
+brew "stern"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Send macOS User Notifications from the command-line
 brew "terminal-notifier"
+# Terminal multiplexer
 brew "tmux"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# HTTP load testing tool and library
 brew "vegeta"
+# Executes a program periodically, showing output fullscreen
 brew "watch"
+# Internet file retriever
 brew "wget"
+# Friendly and fast tool for sending HTTP requests
+brew "xh"
+# Process YAML documents from the CLI
+brew "yq"
+# General-purpose lossless data-compression library
+brew "zlib"
+# Shell extension to navigate your filesystem faster
 brew "zoxide"
+# UNIX shell (command interpreter)
 brew "zsh"
+# Additional completion definitions for zsh
 brew "zsh-completions"
+# Tasty Bubble Gum for your shell.
+brew "charmbracelet/tap/gum"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "derailed/k9s/k9s"
+# Everything you need to get started with Heroku
 brew "heroku/brew/heroku"
-brew "instrumenta/instrumenta/kubeval"
+# Simple hotkey-daemon for macOS.
+brew "koekeishiya/formulae/skhd"
+# Swift handover for remote mobs using git. mob is a CLI tool written in GO. It keeps your master branch clean and creates WIP commits on mob-session branch.
+brew "remotemobprogramming/brew/mob"
+# Scala API for Apache Beam and Google Cloud Dataflow
+brew "spotify/public/scio"
+# Hades CLI utility
+brew "spotify/sptaps/hades-cli"
 brew "spotify/sptaps/hmtools"
+brew "spotify/sptaps/kubectl-site"
+# Protoman is used to fetch protobuf schemas from our central ghe.spotify.net/shared/proto repository
 brew "spotify/sptaps/protoman"
+brew "spotify/sptaps/styx-cli"
+# Git repository organizer & rebase workflow automation tool
+brew "virtuslab/git-machete/git-machete"
+# The official CLI for Amazon EKS
+brew "weaveworks/tap/eksctl"
+# Command-line helper for the 1Password password manager
 cask "1password-cli"
+# GPU-accelerated terminal emulator
 cask "alacritty"
+# Automatic tiling window manager similar to xmonad
 cask "amethyst"
+# Menu bar status indicator
 cask "anybar"
+# Compact TeX distribution as alternative to the full TeX Live / MacTeX
+cask "basictex"
+# OpenJDK distribution from Amazon
 cask "corretto11"
+# OpenJDK distribution from Amazon
+cask "corretto8"
+# App to build and share containerized applications and microservices
 cask "docker"
+# Tool to hide status bar icons
+cask "dozer"
+# Text editor
 cask "emacs"
+# Utility for customizing which browser to start
+cask "finicky"
+# Set of tools to manage resources and applications hosted on Google Cloud
 cask "google-cloud-sdk"
+# Virtualizer for x86 hardware
+cask "virtualbox"
+# Network protocol analyzer
 cask "wireshark"
-cask "tuple"
-cask "krisp"
-cask "zsa-wally"
-mas "Endel"
-mas "HazeOver"
-mas "MeetingBar"
-mas "Amphetamine"
-mas "Monodraw"
-mas "Gestimer"
+mas "Amphetamine", id: 937984704
+mas "Endel", id: 1484348796
+mas "GarageBand", id: 682658836
+mas "Gestimer", id: 990588172
+mas "HazeOver", id: 430798174
+mas "iMovie", id: 408981434
+mas "InYourFace", id: 1476964367
+mas "Keynote", id: 409183694
+mas "MeetingBar", id: 1532419400
+mas "Monodraw", id: 920404675
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541

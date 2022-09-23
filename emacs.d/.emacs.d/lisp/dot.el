@@ -75,7 +75,7 @@
   (org-enforce-todo-dependencies t) ;; Force everything to DONE before marking a parent done.
   (org-hide-emphasis-markers t) ; Hide the emphasis markers for bold, strike-through, italic, underlined, verbatim, and code
   (org-todo-keywords
-        '((sequence "TO TEST(e)" "TO DEPLOY(i)" "IN PROGRESS(p)" "In Peer Review(r)" "Waiting(w)" "HOLD(h)" "TODO(t)" "|" "DONE(d)")
+        '((sequence "TODO(t)" "TO TEST(e)" "TO DEPLOY(i)" "IN PROGRESS(p)" "In Peer Review(r)" "Waiting(w)" "HOLD(h)" "|" "DONE(d)")
           (sequence "QUESTION(q)" "|" "ANSWERED(a)")
           (sequence "|" "NOT DOING(n)")))
   (org-todo-keyword-faces

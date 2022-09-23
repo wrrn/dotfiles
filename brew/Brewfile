@@ -46,6 +46,8 @@ brew "cookiecutter"
 brew "go"
 # Go dependency management tool
 brew "dep"
+# Diff that understands syntax
+brew "difftastic"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Lightweight DNS forwarder and DHCP server
@@ -54,6 +56,8 @@ brew "dnsmasq"
 brew "docker-completion"
 # Replay stored shell commands for live presentations
 brew "doitlive"
+# CLI tool for running SQL queries against JSON, CSV, Excel, Parquet, and more
+brew "dsq"
 # Modern replacement for 'ls'
 brew "exa"
 # Simple, fast and user-friendly alternative to find
@@ -135,7 +139,7 @@ brew "openssl@3"
 # CLI for Postgres with auto-completion and syntax highlighting
 brew "pgcli"
 # Object-relational database system
-brew "postgresql"
+brew "postgresql@14"
 # Protocol buffers (Google's data interchange format)
 brew "protobuf"
 # Python version management
@@ -184,7 +188,7 @@ brew "zoxide"
 brew "zsh"
 # Additional completion definitions for zsh
 brew "zsh-completions"
-# Tasty Bubble Gum for your shell.
+# A tool for glamorous shell scripts
 brew "charmbracelet/tap/gum"
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "derailed/k9s/k9s"
@@ -236,6 +240,8 @@ cask "virtualbox"
 # Network protocol analyzer
 cask "wireshark"
 mas "Amphetamine", id: 937984704
+mas "Booklet", id: 1375737884
+mas "Clocker", id: 1056643111
 mas "Endel", id: 1484348796
 mas "GarageBand", id: 682658836
 mas "Gestimer", id: 990588172
@@ -244,6 +250,8 @@ mas "iMovie", id: 408981434
 mas "InYourFace", id: 1476964367
 mas "Keynote", id: 409183694
 mas "MeetingBar", id: 1532419400
+mas "Micro Snitch", id: 972028355
+mas "Mob Timer", id: 1594924856
 mas "Monodraw", id: 920404675
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541

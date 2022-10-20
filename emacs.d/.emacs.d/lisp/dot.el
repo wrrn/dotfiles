@@ -19,6 +19,7 @@
 
 (require 'use-package)
 
+(require 'gcloud)
 (use-package darktooth-theme
     :ensure t
     :config (load-theme 'darktooth t))

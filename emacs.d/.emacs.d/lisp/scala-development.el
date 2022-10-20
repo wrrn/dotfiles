@@ -7,9 +7,7 @@
   :mode "\\.sc\\'"
   :interpreter
   ("scala" . scala-mode)
-  :hook (scala-mode . lsp)
-  (scala-mode . lsp-lens-mode)
-  (scala-mode . company-mode))
+  :hook (scala-mode . eglot-ensure))
 
 
 
@@ -42,11 +40,11 @@
   :ensure t)
 
 ;; DAP is used for debugging code
-(use-package dap-mode
-  :ensure t
-  :hook
-  (lsp-mode . dap-mode)
-  (lsp-mode . dap-ui-mode)
-  )
+;; (use-package dap-mode
+;;   :ensure t
+;;   :hook
+;;   (lsp-mode . dap-mode)
+;;   (lsp-mode . dap-ui-mode)
+;;   )
 
 (provide 'scala-development)

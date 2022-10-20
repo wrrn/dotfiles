@@ -8,22 +8,22 @@
   :ensure t
   :config (add-hook 'java-mode-hook 'lsp))
 
-(use-package company :ensure t
-  :init (company-mode -1)
-  :bind ("C-c ." . company-yasnippet)
-  :custom
-  (company-backends '(company-semantic
-                      company-capf
-                      company-files
-                      (company-dabbrev-code company-gtags company-etags company-keywords)
-                      company-ddabrev
-                      company-yasnippet
-                      ))
-  (company-idle-delay 0)
-  ;; Scala docs required this. Not sure if it will work without it.
-  ;; :config
-  ;; (setq lsp-completion-provider :capf)
-  )
+;; (use-package company :ensure t
+;;   :init (company-mode -1)
+;;   :bind ("C-c ." . company-yasnippet)
+;;   :custom
+;;   (company-backends '(company-semantic
+;;                       company-capf
+;;                       company-files
+;;                       (company-dabbrev-code company-gtags company-etags company-keywords)
+;;                       company-ddabrev
+;;                       company-yasnippet
+;;                       ))
+;;   (company-idle-delay 0)
+;;   ;; Scala docs required this. Not sure if it will work without it.
+;;   ;; :config
+;;   ;; (setq lsp-completion-provider :capf)
+;;   )
 
 ;; Install projectile so that we get some project level commands
 (use-package projectile 
@@ -40,11 +40,10 @@
                                   :test-dir "main/test/")))
 
 
-(add-hook 'java-mode-hook #'lsp)
+(add-hook 'java-mode-hook #'eglot-ensure)
 (add-hook 'java-mode-hook
           (lambda ()
             (projectile-mode 1)
-            (company-mode 1)
             (google-set-c-style)
             (setq c-basic-offset 2
                   tab-width      2)
@@ -57,4 +56,4 @@
 ;;   :function dap-hydra/nil
 ;;   :config)
 (provide 'java-development)
-;; lsp-ivy
+

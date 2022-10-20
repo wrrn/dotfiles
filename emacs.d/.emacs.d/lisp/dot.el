@@ -720,6 +720,11 @@ fixes the bug where emacs dies when you try to kill a frame"
   )
 
 (require 'java-development)
+(use-package git-link
+  :ensure t
+  :config (progn
+          (add-to-list 'git-link-remote-alist '("ghe.spotify.net" git-link-github)))
+  :bind ("C-c g l" . git-link))
 
 (require 'scala-development)
 

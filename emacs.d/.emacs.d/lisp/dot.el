@@ -192,21 +192,20 @@
   (org-journal-carryover-items "/!")
   (org-journal-hide-entries-p nil))
 
-(use-package orderless
-  :ensure t
-  :custom (completion-styles '(orderless)))
 
-(use-package selectrum
-  :ensure t
-  :requires orderless
-  :custom
-    ;; Optional performance optimization
-  ;; by highlighting only the visible candidates.
-  (orderless-skip-highlighting (lambda () selectrum-is-active))
-  (selectrum-highlight-candidates-function #'orderless-highlight-matches)
-
+(use-package vertico
   :init
-  (selectrum-mode +1))
+  (vertico-mode))
+
+
+(use-package orderless
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package perspective
   :ensure t

@@ -35,13 +35,13 @@
   :ensure t
   :config (nano-modeline-mode))
 
-;; (use-package mini-frame
-;;   :ensure t
-;;   :config (mini-frame-mode))
+(use-package mini-frame
+  :ensure t
+  :config (mini-frame-mode))
 
-;; (use-package nano-minibuffer
-;;   :straight (nano-minibuffer :type git :host github :repo "rougier/nano-minibuffer"
-;;                              :build (:not compile)))
+(use-package nano-minibuffer
+  :straight (nano-minibuffer :type git :host github :repo "rougier/nano-minibuffer"
+                             :build (:not compile)))
 
 (use-package nano
   :straight (nano :type git :host github :repo "rougier/nano-emacs"

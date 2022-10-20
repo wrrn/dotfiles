@@ -403,12 +403,6 @@
   ;; GO Mode for editing go programs
   :ensure t
   :mode "\\.go\\'"
-  :bind (
-         :map go-mode-map
-              ;; Explicitly call lsp-find-references until 
-              ("M-?"       . lsp-find-references)
-              ("C-c C-d"   . lsp-describe-thing-at-point)
-          )
   :config (let (( gopath (getenv "GOPATH")))
             (require 'go-mode)
             (setq gofmt-command "goimports")
@@ -427,7 +421,7 @@
               :init
               (append org-babel-load-languages '((go . t))))
 
-            (add-hook 'go-mode-hook #'lsp)
+            (add-hook 'go-mode-hook #'eglot-ensure)
 
             ))
 
@@ -437,23 +431,57 @@
 (use-package go-dlv
   :ensure t)
 
+;; completion-at-point improvements
+(use-package corfu
+  ;; Optional customizations
+  :custom
+  (corfu-auto t)                 ;; Enable auto completion
+  (corfu-separator ?\s)          ;; Orderless field separator
+  ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+  ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
+  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
-(use-package lsp-mode
+  ;; Enable Corfu only for certain modes.
+  ;; :hook ((prog-mode . corfu-mode)
+  ;;        (shell-mode . corfu-mode)
+  ;;        (eshell-mode . corfu-mode))
+
+  ;; Recommended: Enable Corfu globally.
+  ;; This is recommended since Dabbrev can be used globally (M-/).
+  ;; See also `corfu-excluded-modes'.
+  :init
+  (global-corfu-mode))
+
+;; A few more useful configurations...
+(use-package emacs
+  :init
+  ;; TAB cycle if there are only few candidates
+  (setq completion-cycle-threshold 3)
+
+  ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
+  ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
+  ;; (setq read-extended-command-predicate
+  ;;       #'command-completion-default-include-p)
+
+  ;; Enable indentation+completion using the TAB key.
+  ;; `completion-at-point' is often bound to M-TAB.
+  (setq tab-always-indent 'complete))
+
+;; Language server
+(use-package eglot
   :ensure t
-  :commands lsp
-  :bind (("M-/"   . completion-at-point)
-         ("C-?"   . lsp-find-references)
+  :bind (
          :map wh-keymap
-         ("r f"   . lsp-find-references)
+         ("r f"   . xref-find-references)
          ("t d"   . lsp-describe-thing-at-point)
          ("d f"   . xref-find-definitions)
-         ("i f"   . lsp-find-implementation)
-         ("4 d f" . xref-find-definitions-other-window))
-  :custom
-  ;; Disable the breadcrumbs in the headerline.
-  (lsp-headerline-breadcrumb-enable nil)
-  (lsp-keymap-prefix "C-c l")
-  )
+         ("i f"   . eglot-find-implementation)
+         ("4 d f" . xref-find-definitions-other-window)))
 
 (use-package web-mode
   :ensure t

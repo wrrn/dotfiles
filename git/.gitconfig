@@ -7,6 +7,7 @@
 [diff]
 	tool = icdiff
 	algorithm = patience
+	external = difft
 [push]
 	default = current
 [clean]

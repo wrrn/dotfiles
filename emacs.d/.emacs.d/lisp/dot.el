@@ -725,6 +725,15 @@ fixes the bug where emacs dies when you try to kill a frame"
           (add-to-list 'git-link-remote-alist '("ghe.spotify.net" git-link-github)))
   :bind ("C-c g l" . git-link))
 
+(use-package project
+  :ensure t
+  :bind (:map wh-keymap
+              ("p f" . project-find-file)
+))
+
+(require 'meow)
+(require 'comments)
+(require 'typescript)
 (require 'java-development)
 (require 'scala-development)
 

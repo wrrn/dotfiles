@@ -65,9 +65,16 @@
           (setq-default default-directory (getenv "HOME"))
           (exec-path-from-shell-initialize)))
 
-(use-package diminish
+(use-package asdf
   :ensure t
-  )
+  :straight (asdf :type git :host github :repo "tabfugnic/asdf.el")
+  :custom
+  (asdf-binary "/usr/local/opt/asdf/libexec/bin/asdf")
+  :config
+  (asdf-enable))
+
+(use-package diminish
+  :ensure t)
 
 (use-package org
   :custom

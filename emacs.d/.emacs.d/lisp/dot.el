@@ -20,17 +20,18 @@
 (require 'use-package)
 
 (require 'gcloud)
-(use-package darktooth-theme
+
+(use-package minimal-theme
     :ensure t
-    :config (load-theme 'darktooth t))
-
-;; (use-package minimal-theme
-;;     :ensure t
-;;     :config (load-theme 'minimal-light t))
-
-;; (use-package nano-theme
-;;     :ensure t
-;;     :config (load-theme 'nano-light t))
+    :config (load-theme 'minimal-light t))
+(use-package darktooth-theme
+    :ensure t)
+(use-package flatland-theme
+    :ensure t)
+(use-package goose-theme
+  :ensure t)
+(use-package nano-theme
+    :ensure t)
 
 (use-package nano-modeline
   :ensure t

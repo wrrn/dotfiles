@@ -485,11 +485,32 @@
   :ensure t
   :bind (
          :map wh-keymap
-         ("r f"   . xref-find-references)
-         ("t d"   . lsp-describe-thing-at-point)
-         ("d f"   . xref-find-definitions)
-         ("i f"   . eglot-find-implementation)
-         ("4 d f" . xref-find-definitions-other-window)))
+              ("r f"   . xref-find-references)
+              ("c f"   . eglot-code-actions)
+              ("t d"   . display-local-help)
+              ("d f"   . xref-find-definitions)
+              ("i f"   . eglot-find-implementation)
+              ("v r"   . eglot-rename)
+              ("4 d f" . xref-find-definitions-other-window)
+              ("s f"   . xref-find-apropos)))
+
+(use-package tree-sitter
+  :ensure t
+  :config
+  (global-tree-sitter-mode)
+  ;; Enable tree sitter highlighting
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
+(use-package tree-sitter-langs
+  :ensure t
+  :after tree-sitter)
+
+;; auto-format different source code files extremely intelligently
+;; https://github.com/radian-software/apheleia
+(use-package apheleia
+  :ensure t
+  :config
+  (apheleia-global-mode +1))
 
 (use-package web-mode
   :ensure t

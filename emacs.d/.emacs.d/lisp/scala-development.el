@@ -29,11 +29,11 @@
   (sbt:program-name "/usr/local/bin/sbt")
 )
 
-;; Add metals backend for lsp-mode
-(use-package lsp-metals
-  :ensure t
-  :custom
-  (lsp-metals-server-args '("-Dmetals.sbt-script=/usr/local/bin/sbt")))
+;; ;; Add metals backend for lsp-mode
+;; (use-package lsp-metals
+;;   :ensure t
+;;   :custom
+;;   (lsp-metals-server-args '("-Dmetals.sbt-script=/usr/local/bin/sbt")))
 
 ;; Posframe is a pop-up tool that must be manually installed for dap-mode
 (use-package posframe

@@ -4,9 +4,9 @@
 (use-package google-c-style
   :straight (google-c-style :type git :host github :repo "google/styleguide"))
 
-(use-package lsp-java 
-  :ensure t
-  :config (add-hook 'java-mode-hook 'lsp))
+;; (use-package lsp-java 
+;;   :ensure t
+;;   :config (add-hook 'java-mode-hook 'lsp))
 
 ;; (use-package company :ensure t
 ;;   :init (company-mode -1)
@@ -39,6 +39,8 @@
                                   :src-dir "main/src/"
                                   :test-dir "main/test/")))
 
+(use-package eglot-java
+  :hook (java-mode))
 
 (add-hook 'java-mode-hook #'eglot-ensure)
 (add-hook 'java-mode-hook

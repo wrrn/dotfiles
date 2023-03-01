@@ -8,6 +8,9 @@ abbr -a gco git checkout
 abbr -a gr git rebase
 abbr -a ga git add
 abbr -a gc git commit
+abbr -a gd git diff
+abbr -a gf git fetch
+abbr -a gwip git wip
 
 # kubernetes aliases
 abbr -a k kubectl
@@ -27,8 +30,10 @@ abbr -a tn tmux new -s
 # global aliases
 abbr -a g grep
 abbr -a b bat
-abbr -a by bat -lyaml
-abbr -a bj bat -ljson
+abbr -a yaml bat -lyaml
+abbr -a json bat -ljson
+abbr -a cat bat
+abbr -a dog bat
 
 # ls
 abbr -a ls exa
@@ -36,5 +41,3 @@ abbr -a ll exa -l
 
 # myip aliases
 abbr -a myip dig +short myip.opendns.com @resolver1.opendns.com
-
-

@@ -6,6 +6,7 @@ set -x PATH \
     /usr/local/bin \
     /usr/local/opt/gnu-sed/libexec/gnubin \
     /usr/local/opt/coreutils/libexec/gnubin \
+    /usr/local/opt/gnu-tar/libexec/gnubin \
     $HOME/.cargo/bin \
     $PATH
 set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
@@ -24,11 +25,8 @@ if status is-interactive
         direnv hook fish | source
     end
 
-    if type kind &>/dev/null && \
-        [ ! -f ~/.config/fish/completions/kind.fish ] || \
-        [ ! -f ~/.kube/.kind.version ] || \
-        [ (kind version) != (cat ~/.kube/.kind.version) ]
-             kind completion fish > ~/.config/fish/completions/kind.fish
+    if type kind &>/dev/null && [ ! -f ~/.config/fish/completions/kind.fish ] || [ ! -f ~/.kube/.kind.version ] || [ (kind version) != (cat ~/.kube/.kind.version) ]
+        kind completion fish >~/.config/fish/completions/kind.fish
     end
 
     source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
@@ -37,10 +35,12 @@ if status is-interactive
     source (brew --prefix asdf)/libexec/asdf.fish
     . ~/.asdf/plugins/java/set-java-home.fish
 
-    if [ "$INSIDE_EMACS" = 'vterm' ]
+    if [ "$INSIDE_EMACS" = vterm ]
         set -x EDITOR emacsclient
     end
     ## Notes
     # kubectl completions come from the fisher plugin
     # fzf comes from fisher plugin
 end
+
+source /nix/var/nix/profiles/default/etc/profile.d/nix.fish

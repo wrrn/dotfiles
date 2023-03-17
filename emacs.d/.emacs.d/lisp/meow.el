@@ -3,6 +3,8 @@
 
 ;; TODO
 ;; 1. Enable meow mode in the minibuffer
+;; 2. Use sexp instead of meow-modes weird character implementation
+;; 3. Add a meow-comment command to motion mode.
 
 (defun meow--vterm-execute-kbd-macro (kbd-macro)
   ;; The reason we need this is because vterm--self-insert pulls the
@@ -107,6 +109,7 @@
                '("r" . meow-replace)
                '("R" . meow-swap-grab)
                '("s" . meow-kill)
+               '("S" . meow-kill-whole-line)
                '("t" . meow-till)
                '("u" . meow-undo)
                '("U" . meow-undo-in-selection)

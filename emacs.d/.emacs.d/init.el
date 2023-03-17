@@ -35,7 +35,6 @@
 ;; Replace a regexp with a string
 (define-key wh-keymap (kbd "r r") 'replace-regexp)
 (define-key wh-keymap (kbd "b r") 'rename-buffer)
-(global-set-key (kbd "C-c r") 'rename-buffer)
 
 ;; Fix the Mouse wheel with
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
@@ -102,8 +101,8 @@
 (when (memq window-system '(mac ns))
   (setq mac-command-modifier 'super))
 
-(when (file-exists-p "~/.emacs.d/project-inits")
-  (load-dir-one "~/.emacs.d/project-inits"))
+;; (when (file-exists-p "~/.emacs.d/project-inits")
+;;   (load-dir-one "~/.emacs.d/project-inits"))
 
 (server-start)
 ;;; init.el ends here

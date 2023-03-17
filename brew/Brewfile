@@ -1,4 +1,5 @@
 tap "charmbracelet/tap"
+tap "coursier/formulas"
 tap "derailed/k9s"
 tap "hashicorp/tap"
 tap "heroku/brew"
@@ -14,8 +15,15 @@ tap "spotify/public"
 tap "spotify/sptaps", "git@ghe.spotify.net:shared/homebrew-spotify.git"
 tap "virtuslab/git-machete"
 tap "weaveworks/tap"
+tap "ykursadkaya/openlens"
 # Slice and dice log files on the command-line
 brew "angle-grinder"
+# Image format providing lossless and lossy compression for web images
+brew "webp"
+# New file format for still image compression
+brew "jpeg-xl"
+# Codec library for encoding and decoding AV1 video streams
+brew "aom"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # GNU File, Shell, and Text utilities
@@ -44,8 +52,6 @@ brew "python@3.10"
 brew "cookiecutter"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Go dependency management tool
-brew "dep"
 # Diff that understands syntax
 brew "difftastic"
 # Load/unload environment variables based on $PWD
@@ -66,26 +72,40 @@ brew "fd"
 brew "fish"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# Library for encoding and decoding .avif files
+brew "libavif"
+# Graphics library to dynamically manipulate images
+brew "gd"
 # Toolkit for image loading and pixel buffer manipulation
 brew "gdk-pixbuf"
 # GitHub command-line tool
 brew "gh"
+# Distributed revision control system
+brew "git"
+# Git repository organizer & rebase workflow automation tool
+brew "git-machete"
 # Declarative configuration for Gmail filters
 brew "gmailctl"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
-# GNU Ubiquitous Intelligent Language for Extensions
-brew "guile"
+# GNU version of the tar archiving utility
+brew "gnu-tar"
+# International domain name library (IDNA2008, Punycode and TR46)
+brew "libidn2"
 # Validating, recursive, caching DNS resolver
 brew "unbound"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
+# GNU Ubiquitous Intelligent Language for Extensions
+brew "guile"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # Go programming environment (1.17)
 brew "go@1.17"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
+# Image manipulation
+brew "netpbm"
 # OpenType text shaping engine
 brew "harfbuzz"
 # Framework for layout and rendering of i18n text
@@ -102,6 +122,8 @@ brew "grpcurl"
 brew "helm"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
+# Modern alternative to the watch command
+brew "hwatch"
 # International Ispell
 brew "ispell"
 # Manage your Java environment
@@ -134,8 +156,8 @@ brew "newrelic-cli"
 brew "nghttp2"
 # Manage multiple Node.js versions
 brew "nvm"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
+# Pretty-print tabular data in Python
+brew "python-tabulate"
 # CLI for Postgres with auto-completion and syntax highlighting
 brew "pgcli"
 # Object-relational database system
@@ -144,8 +166,6 @@ brew "postgresql@14"
 brew "protobuf"
 # Python version management
 brew "pyenv"
-# Pretty-print tabular data in Python
-brew "python-tabulate"
 # Persistent key-value database, with built-in net interface
 brew "redis"
 # Search tool like grep and The Silver Searcher
@@ -178,18 +198,16 @@ brew "watch"
 brew "wget"
 # Friendly and fast tool for sending HTTP requests
 brew "xh"
-# Process YAML documents from the CLI
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
 # General-purpose lossless data-compression library
 brew "zlib"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# UNIX shell (command interpreter)
-brew "zsh"
-# Additional completion definitions for zsh
-brew "zsh-completions"
 # A tool for glamorous shell scripts
 brew "charmbracelet/tap/gum"
+# Launcher for Coursier
+brew "coursier/formulas/coursier"
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "derailed/k9s/k9s"
 # Everything you need to get started with Heroku
@@ -207,8 +225,6 @@ brew "spotify/sptaps/kubectl-site"
 # Protoman is used to fetch protobuf schemas from our central ghe.spotify.net/shared/proto repository
 brew "spotify/sptaps/protoman"
 brew "spotify/sptaps/styx-cli"
-# Git repository organizer & rebase workflow automation tool
-brew "virtuslab/git-machete/git-machete"
 # The official CLI for Amazon EKS
 brew "weaveworks/tap/eksctl"
 # Command-line helper for the 1Password password manager
@@ -235,6 +251,14 @@ cask "emacs"
 cask "finicky"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "google-cloud-sdk"
+# Menu bar calendar
+cask "itsycal"
+# Open source build of Lens Kubernetes IDE
+cask "openlens"
+# App that enables mouse-free UI interaction
+cask "shortcat"
+# Daily planner and calendar
+cask "sunsama"
 # Virtualizer for x86 hardware
 cask "virtualbox"
 # Network protocol analyzer
@@ -247,6 +271,7 @@ mas "GarageBand", id: 682658836
 mas "Gestimer", id: 990588172
 mas "HazeOver", id: 430798174
 mas "iMovie", id: 408981434
+mas "Instapaper", id: 288545208
 mas "InYourFace", id: 1476964367
 mas "Keynote", id: 409183694
 mas "MeetingBar", id: 1532419400

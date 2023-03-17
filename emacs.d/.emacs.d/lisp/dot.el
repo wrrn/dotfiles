@@ -23,7 +23,8 @@
 
 (use-package minimal-theme
     :ensure t
-    :config (load-theme 'minimal-light t))
+    ;; :config (load-theme 'minimal-light t)
+    )
 (use-package darktooth-theme
     :ensure t)
 (use-package flatland-theme
@@ -31,7 +32,12 @@
 (use-package goose-theme
   :ensure t)
 (use-package nano-theme
-    :ensure t)
+  :ensure t)
+
+(use-package kanagawa-theme
+  :straight (kanagawa-theme :type git :host github :repo  "jasonm23/emacs-theme-kanagawa")
+  :requires autothemer
+  :config (load-theme 'kanagawa))
 
 (use-package nano-modeline
   :ensure t
@@ -728,7 +734,7 @@ fixes the bug where emacs dies when you try to kill a frame"
 
 (use-package compile
   :bind (:map wh-keymap
-              ("C-c C-c" . compile)))
+              ("c c" . compile)))
 
 (use-package tab-bar
   :bind ("C-x t s" . tab-bar-select-tab-by-name))

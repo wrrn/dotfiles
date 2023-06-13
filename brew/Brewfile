@@ -5,11 +5,15 @@ tap "hashicorp/tap"
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "instrumenta/instrumenta"
 tap "koekeishiya/formulae"
+tap "osx-cross/arm"
+tap "osx-cross/avr"
+tap "qmk/qmk"
 tap "remotemobprogramming/brew"
 tap "spotify/public"
 tap "spotify/sptaps", "git@ghe.spotify.net:shared/homebrew-spotify.git"
@@ -42,24 +46,20 @@ brew "bash"
 brew "bat"
 # Core application library for C
 brew "glib"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # Cross-platform make
 brew "cmake"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
 # Utility that creates projects from templates
 brew "cookiecutter"
-# Open source programming language to build simple/reliable/efficient software
-brew "go"
 # Diff that understands syntax
 brew "difftastic"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Lightweight DNS forwarder and DHCP server
 brew "dnsmasq"
+# Pack, ship and run any application as a lightweight container
+brew "docker", link: false
 # Bash, Zsh and Fish completion for Docker
-brew "docker-completion"
+brew "docker-completion", link: false
 # Replay stored shell commands for live presentations
 brew "doitlive"
 # CLI tool for running SQL queries against JSON, CSV, Excel, Parquet, and more
@@ -96,14 +96,16 @@ brew "libidn2"
 brew "unbound"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# GNU Ubiquitous Intelligent Language for Extensions
-brew "guile"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
 # Go programming environment (1.17)
 brew "go@1.17"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
+# Database migrations CLI tool
+brew "golang-migrate"
 # Image manipulation
 brew "netpbm"
 # OpenType text shaping engine
@@ -118,8 +120,12 @@ brew "graphviz"
 brew "grep"
 # Like cURL, but for gRPC
 brew "grpcurl"
+# GNU Ubiquitous Intelligent Language for Extensions
+brew "guile"
 # Kubernetes package manager
 brew "helm"
+# Automatically generate simple man pages
+brew "help2man"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Modern alternative to the watch command
@@ -130,6 +136,8 @@ brew "ispell"
 brew "jenv"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Selection-based modal text editor
+brew "kakoune"
 # Run local Kubernetes cluster in Docker
 brew "kind"
 # Tool that can switch between kubectl contexts easily and create aliases
@@ -142,8 +150,12 @@ brew "kubeval"
 brew "kustomize"
 # C library SSHv1/SSHv2 client and server protocols
 brew "libssh"
+# Reference implementation of the ZIM specification
+brew "libzim"
 # Mac App Store command-line interface
 brew "mas"
+# Development kit for the Java programming language
+brew "openjdk"
 # Java-based project management
 brew "maven"
 # Program for MPEG audio stream validation
@@ -156,6 +168,10 @@ brew "newrelic-cli"
 brew "nghttp2"
 # Manage multiple Node.js versions
 brew "nvm"
+# Development kit for the Java programming language
+brew "openjdk@11"
+# Generate clients, server & docs from an OpenAPI spec (v2, v3)
+brew "openapi-generator"
 # Pretty-print tabular data in Python
 brew "python-tabulate"
 # CLI for Postgres with auto-completion and syntax highlighting
@@ -166,6 +182,12 @@ brew "postgresql@14"
 brew "protobuf"
 # Python version management
 brew "pyenv"
+# Python interface to Tcl/Tk
+brew "python-tk@3.11"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Persistent key-value database, with built-in net interface
 brew "redis"
 # Search tool like grep and The Silver Searcher
@@ -184,6 +206,8 @@ brew "starship"
 brew "stern"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# User interface to the TELNET protocol
+brew "telnet"
 # Send macOS User Notifications from the command-line
 brew "terminal-notifier"
 # Terminal multiplexer
@@ -200,6 +224,8 @@ brew "wget"
 brew "xh"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
+# Fork of youtube-dl with additional features and fixes
+brew "yt-dlp"
 # General-purpose lossless data-compression library
 brew "zlib"
 # Shell extension to navigate your filesystem faster
@@ -212,8 +238,8 @@ brew "coursier/formulas/coursier"
 brew "derailed/k9s/k9s"
 # Everything you need to get started with Heroku
 brew "heroku/brew/heroku"
-# Simple hotkey-daemon for macOS.
-brew "koekeishiya/formulae/skhd"
+# Quantum Mechanical Keyboard (QMK) Firmware
+brew "qmk/qmk/qmk"
 # Swift handover for remote mobs using git. mob is a CLI tool written in GO. It keeps your master branch clean and creates WIP commits on mob-session branch.
 brew "remotemobprogramming/brew/mob"
 # Scala API for Apache Beam and Google Cloud Dataflow
@@ -237,6 +263,8 @@ cask "amethyst"
 cask "anybar"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
+# Graphical configurator for Kaleidoscope-powered keyboards
+cask "chrysalis"
 # OpenJDK distribution from Amazon
 cask "corretto11"
 # OpenJDK distribution from Amazon
@@ -249,34 +277,41 @@ cask "dozer"
 cask "emacs"
 # Utility for customizing which browser to start
 cask "finicky"
+# Free monospaced font with programming ligatures
+cask "font-fira-code"
+# Monospaced typeface designed for programming in Julia
+cask "font-juliamono"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "google-cloud-sdk"
 # Menu bar calendar
 cask "itsycal"
+# Open-source keystroke visualizer
+cask "keycastr"
 # Open source build of Lens Kubernetes IDE
 cask "openlens"
 # App that enables mouse-free UI interaction
 cask "shortcat"
+# Music streaming service
+cask "spotify"
 # Daily planner and calendar
 cask "sunsama"
-# Virtualizer for x86 hardware
-cask "virtualbox"
 # Network protocol analyzer
 cask "wireshark"
 mas "Amphetamine", id: 937984704
-mas "Booklet", id: 1375737884
 mas "Clocker", id: 1056643111
+mas "Create Booklet 2", id: 1350225911
 mas "Endel", id: 1484348796
-mas "GarageBand", id: 682658836
 mas "Gestimer", id: 990588172
 mas "HazeOver", id: 430798174
-mas "iMovie", id: 408981434
+mas "In Your Face", id: 1476964367
 mas "Instapaper", id: 288545208
-mas "InYourFace", id: 1476964367
-mas "Keynote", id: 409183694
+mas "Kiwix", id: 997079563
 mas "MeetingBar", id: 1532419400
 mas "Micro Snitch", id: 972028355
 mas "Mob Timer", id: 1594924856
 mas "Monodraw", id: 920404675
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
+mas "Mute", id: 1041639112
+mas "MuteKey", id: 1509590766
+# Alfred
+# BarTender
+# BetterTouchTool

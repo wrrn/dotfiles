@@ -3,6 +3,14 @@
 ;; Set the initial directory to start from
 (setq default-directory "~/")
 
+(setq default-frame-alist '((horizontal-scroll-bars . nil)
+                            (vertical-scroll-bars . nil)
+                            (menu-bar-lines . 0)
+                            (tool-bar-lines . 0) ;; <----- here
+                            (internal-border-width . 0)
+                            (height . 50)
+                            (width . 95)))
+
 ;; custom-set-variables that were added by Custom
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
@@ -44,6 +52,9 @@
 (show-paren-mode 1)
 (column-number-mode 1)
 (set-scroll-bar-mode nil)
+(set-face-attribute 'default nil :font "JuliaMono" :height 140)
+(set-frame-font "JuliaMono" nil t)
+
 ;; (set-face-attribute 'default nil :height 130)
 ;; (set-face-attribute 'default nil :font "Input Mono")
 (set-language-environment "UTF-8")
@@ -93,7 +104,7 @@
 (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
 (add-to-list 'default-frame-alist '(frame-title-format . nil)) ;; assuming you are using a dark theme
 (add-to-list 'default-frame-alist '(icon-title-format . nil)) ;; assuming you are using a dark theme
-(add-to-list 'default-frame-alist '(title . " ")) ;; assuming you are using a dark theme
+(add-to-list 'default-frame-alist '(title . nil)) ;; assuming you are using a dark theme
 (setq ns-use-proxy-icon nil)
 (setq frame-resize-pixelwise t)
 

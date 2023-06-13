@@ -1,5 +1,5 @@
 module.exports = {
-    defaultBrowser: "Firefox",
+    defaultBrowser: "Firefox Developer Edition",
     options: {
         // Hide the icon in the top bar.
         hideIcon: true

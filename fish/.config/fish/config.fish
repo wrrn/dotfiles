@@ -3,10 +3,11 @@ set -x PATH \
     $HOME/.local/bin \
     $HOME/bin \
     $GOPATH/bin \
+    $BREW_PREFIX/bin \
     /usr/local/bin \
-    /usr/local/opt/gnu-sed/libexec/gnubin \
-    /usr/local/opt/coreutils/libexec/gnubin \
-    /usr/local/opt/gnu-tar/libexec/gnubin \
+    $BREW_PREFIX/opt/gnu-sed/libexec/gnubin \
+    $BREW_PREFIX/opt/coreutils/libexec/gnubin \
+    $BREW_PREFIX/opt/gnu-tar/libexec/gnubin \
     $HOME/.cargo/bin \
     $PATH
 set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
@@ -25,12 +26,11 @@ if status is-interactive
         direnv hook fish | source
     end
 
+    source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
+
     if type kind &>/dev/null && [ ! -f ~/.config/fish/completions/kind.fish ] || [ ! -f ~/.kube/.kind.version ] || [ (kind version) != (cat ~/.kube/.kind.version) ]
         kind completion fish >~/.config/fish/completions/kind.fish
     end
-
-    source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
-    bass source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
 
     source (brew --prefix asdf)/libexec/asdf.fish
     . ~/.asdf/plugins/java/set-java-home.fish
@@ -43,4 +43,4 @@ if status is-interactive
     # fzf comes from fisher plugin
 end
 
-source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+# source /nix/var/nix/profiles/default/etc/profile.d/nix.fish

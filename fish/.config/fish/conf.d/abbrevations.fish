@@ -1,15 +1,20 @@
 # docker aliases
-abbr -a drma docker rm -f (docker container ls -q -a)
+abbr -a drma docker rm -f '(docker container ls -q -a)'
 
 # git aliases
 abbr -a g git
 abbr -a gs git status
 abbr -a gco git checkout
-abbr -a gr git rebase
+abbr -a gr git restore
+abbr -a grs git restore --staged
 abbr -a ga git add
 abbr -a gc git commit
+abbr -a gcm git commit -m
 abbr -a gd git diff
+abbr -a gds git diff --staged
 abbr -a gf git fetch
+abbr -a gp git push
+abbr -a gpl git pull
 abbr -a gwip git wip
 
 # kubernetes aliases

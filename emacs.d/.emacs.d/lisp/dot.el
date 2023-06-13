@@ -21,23 +21,49 @@
 
 (require 'gcloud)
 
-(use-package minimal-theme
-    :ensure t
-    ;; :config (load-theme 'minimal-light t)
-    )
-(use-package darktooth-theme
-    :ensure t)
-(use-package flatland-theme
-    :ensure t)
-(use-package goose-theme
-  :ensure t)
-(use-package nano-theme
+(require 'org-config)
+
+(use-package autothemer
   :ensure t)
 
-(use-package kanagawa-theme
-  :straight (kanagawa-theme :type git :host github :repo  "jasonm23/emacs-theme-kanagawa")
-  :requires autothemer
-  :config (load-theme 'kanagawa))
+(use-package minimal-theme
+    :ensure t
+    :config (load-theme 'minimal-light t))
+
+;; (use-package subatomic-theme
+;;   :ensure t
+;;   :config (load-theme 'subatomic))
+
+;; (use-package rose-pine-emacs
+;;   :ensure t
+;;   :straight (rose-pine-emacs :type git :host github :repo "thongpv87/rose-pine-emacs")
+;;   :requires autothemer
+;;   :config (load-theme 'rose-pine-moon))
+;; (load-theme 'rose-pine-moon)
+
+;; (use-package darktooth-theme
+;;   :ensure t
+;;   :config (load-theme 'darktooth))
+
+;; (use-package soothe-theme
+;;   :ensure t
+;;   :config (load-theme 'soothe))
+
+;; (use-package jazz-theme
+;;   :ensure t
+;;   :config (load-theme 'jazz))
+
+;; (use-package flatland-theme
+    ;; :ensure t)
+;; (use-package goose-theme
+  ;; :ensure t)
+;; (use-package nano-theme
+  ;; :ensure t)
+
+;; (use-package kanagawa-theme
+;;   :straight (kanagawa-theme :type git :host github :repo  "jasonm23/emacs-theme-kanagawa")
+;;   :requires autothemer
+;;   :config (load-theme 'kanagawa))
 
 (use-package nano-modeline
   :ensure t
@@ -47,9 +73,10 @@
 ;;   :ensure t
 ;;   :config (mini-frame-mode))
 
-;; (use-package nano-minibuffer
-;;   :straight (nano-minibuffer :type git :host github :repo "rougier/nano-minibuffer"
-;;                              :build (:not compile)))
+(use-package nano-minibuffer
+  :ensure t
+  :straight (nano-minibuffer :type git :host github :repo "rougier/nano-minibuffer"
+                             :build (:not compile)))
 
 (use-package nano
   :straight (nano :type git :host github :repo "rougier/nano-emacs"
@@ -82,135 +109,9 @@
 (use-package diminish
   :ensure t)
 
-(use-package org
-  :custom
-  (org-startup-indented t) ; cleaner looking org-mode
-  (org-tags-column 80) ; calling org-align-all-tags puts all the tags on line 80
-  (org-startup-with-inline-images t) ; Show images inline any time there is a link to an image
-  (org-enforce-todo-dependencies t) ;; Force everything to DONE before marking a parent done.
-  (org-hide-emphasis-markers t) ; Hide the emphasis markers for bold, strike-through, italic, underlined, verbatim, and code
-  (org-todo-keywords
-        '((sequence "TODO(t)" "TO TEST(e)" "TO DEPLOY(i)" "IN PROGRESS(p)" "In Peer Review(r)" "Waiting(w)" "HOLD(h)" "|" "DONE(d)")
-          (sequence "QUESTION(q)" "|" "ANSWERED(a)")
-          (sequence "|" "NOT DOING(n)")))
-  (org-todo-keyword-faces
-        '(("Waiting" . org-warning)
-          ("HOLD" . org-warning)
-          ("In Peer Review" . org-warning)
-          ("TO DEPLOY" . org-warning)
-          ("IN PROGRESS" . (:foreground "#f1fa8c" :bold t :background "#373844"))))
-  (org-log-done 'time) ;; Log when something was marked as done
-  (org-fontify-done-headline t) ;; Allow strike throughs for DONE items
-  (org-enforce-todo-checkbox-dependencies t) ;; Force checkboxes to be a dependency before moving TODO's to DONE
-  (org-hierarchical-todo-statistics nil) ;; Recursive count of todos
-  (org-checkbox-hierarchical-statistics nil) ;; Recursive count of todos
-  (org-src-fontify-natively t) ;; Syntax highlighting in code blocks
-  (appt-display-format 'window)   ;; Opens appointment reminders in current window
-  (appt-display-duration 30) ;; Display the appointment reminder for 30 seconds
-
-  (org-export-with-toc nil)   ;; Org to markdown conversion options
-  (org-export-headline-levels 5)
-  (org-agenda-files (list (concat (getenv "HOME") "/.roam")))
-  :bind (:map org-mode-map
-              ("M-p" . org-metaup)
-              ("M-n" . org-metadown))
-
-  :config (progn
-
-            ;; Strike through DONE
-            (set-face-attribute 'org-done nil :strike-through t)
-            (set-face-attribute 'org-headline-done nil
-                                :strike-through t)
-
-            ;; Add languages to code blocks
-            (org-babel-do-load-languages
-             'org-babel-load-languages
-             '((emacs-lisp . t)
-               (js . t)
-               (org . t)
-               (python . t)
-               (shell . t)
-               (sql . t)))
-            (add-hook 'org-after-todo-statistics-hook (lambda(n-done n-not-done)
-                                                        "Switch entry to DONE when all subentries are done, to TODO otherwise"
-                                                        (let (org-log-done org-log-status)
-                                                          (org-todo (if (= n-not-done 0)
-                                                                        "DONE"
-                                                                      (org-get-todo-sequence-head (org-get-todo-state)))))))
-            ;; Export org files to github markdown
-            (use-package ox-gfm
-              :ensure t)
-
-            (setq org-export-backends (quote (ascii html icalendar latex md gfm)))))
-
-(use-package org-bullets
-  :ensure t
-  :hook (org-mode . org-bullets-mode))
-
-(use-package org-tree-slide
-  :ensure t
-  :custom
-  (org-image-actual-width nil))
-
-(use-package ob-mermaid
-  :ensure t
-  :custom
-  (ob-mermaid-cli-path (concat (getenv "HOME") "/node_modules/.bin/mmdc"))
-  :init
-  (append org-babel-load-languages '((go . t))))
-
-(use-package org-roam
-  :ensure t
-  :custom
-  (org-roam-directory (concat (getenv "HOME") "/.roam"))
-  (org-roam-completion-system 'ivy)
-  (org-roam-v2-ack t)
-  
-  :bind  (("C-c n f" . org-roam-node-find)
-          ("C-c n b" . org-roam-switch-to-buffer)
-          ("C-c n g" . org-roam-graph)
-  :map org-mode-map
-  (("C-c n i" . org-roam-node-insert)
-   ;; TODO: Use the variable here
-   ("C-j" . nil))))
-
-;; Deft helps me look up org-roam files quickly. Like rg or grep but on the fly.
-(use-package deft
-  :straight (deft :type git :host github :repo "jrblevin/deft"
-                  :fork (:host github
-                               :repo "wrrn/deft")
-                  :build (:not compile))
-  :ensure t
-  :after org
-  :bind
-  ("C-c n d" . deft)
-  :custom
-  (deft-recursive t)
-  (deft-use-filter-string-for-filename t)
-  (deft-default-extension "org")
-  (deft-directory (concat (getenv "HOME") "/.roam")))
-
-(use-package org-journal
-  :ensure t
-  :bind (:map wh-keymap
-              ("j o" . org-journal-open-current-journal-file)
-              ("j e" . org-journal-new-entry))
-  :custom
-  (org-journal-file-header "#+TITLE: %B %Y")
-  (org-journal-file-format "%Y-%m.org")
-  (org-journal-dir (concat (getenv "HOME") "/.roam"))
-  
-  (org-journal-date-format "%A, %F")
-  (org-journal-time-format "")
-  (org-journal-file-type 'monthly)
-  (org-journal-carryover-items "/!")
-  (org-journal-hide-entries-p nil))
-
-
 (use-package vertico
   :init
   (vertico-mode))
-
 
 (use-package orderless
   :init
@@ -348,8 +249,6 @@
          ("l k" . avy-kill-whole-line)
          ("r k" . avy-kill-region)))
   
-
-
 (use-package vterm
   ;; :config
   ;; ;; Remove C-j from the vterm-keymap so that it doesn't conflict with wh-keymap.
@@ -362,6 +261,7 @@
   :ensure t
   :requires vterm
   :bind (;; ("C-c C-c" . vterm-send-C-c)
+         ("C-x p t"   . multi-vterm-project)
          :map vterm-mode-map
               ("C-c r" . multi-vterm-rename-buffer)
          :map wh-keymap
@@ -638,9 +538,6 @@
 (use-package dockerfile-mode
   :ensure t
   :mode "Dockerfile.*\\'")
-
-(use-package docker-tramp
-  :ensure t)
 
 (use-package load-dir
   :ensure t)

@@ -59,5 +59,16 @@
 	attributesfile = /Users/warren.harper/.gitattributes
 [init]
 	defaultBranch = main
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[url "ssh://git@ghe.spotify.net/"]
+	insteadOf = https://ghe.spotify.net/
+
 [pull]
 	rebase = true
+[credential "https://source.developers.google.com"]
+	helper = gcloud.sh
+[github "ghe.spotify.net/api"]
+	user = warrenh
+[github "ghe.spotify.net/api/v3"]
+	user = warrenh

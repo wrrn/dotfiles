@@ -30,9 +30,6 @@ mod2:
 # Move in increments of 5px when resizing windows
 window-resize-step: 5;
 
-# Add 15px margin between windows
-window-margins: true
-window-margin-size: 15
 
 # When enabled margins will not be applied to fullscreen layout or when there is only on window
 smart-window-margins: false
@@ -40,7 +37,7 @@ smart-window-margins: false
 window-minimum-height: 0
 window-minimum-width: 0
 
-ignore-menu-bar: false
+ignore-menu-bar: true
 
 float-small-windows: true
 
@@ -56,11 +53,15 @@ enables-layout-hud-on-space-change: true
 new-windows-to-main: false
 follow-space-thrown-windows: true
 
-screen-padding-left: 30
-screen-padding-right: 30
-screen-padding-top: 30
-screen-padding-bottom: 30
+# Add 15px margin between windows
+window-margins: true
+window-margin-size: 27.8
 
+screen-padding-left: 72.811
+screen-padding-right: 72.811
+screen-padding-top: 45
+screen-padding-bottom: 45
+  
 # Modify the amethyst relaunch to use x and not z
 relaunch-amethyst:
   mod: mod2
@@ -85,10 +86,10 @@ decrease-main:
   key: "-"
 focus-ccw:
   mod: mod1
-  key: j
+  key: k
 focus-cw:
   mod: mod1
-  key: k
+  key: j
 focus-main:
   mod: mod1
   key: m
@@ -106,10 +107,10 @@ swap-screen-cw:
   key: n
 swap-ccw:
   mod: mod2
-  key: j
+  key: k
 swap-cw:
   mod: mod2
-  key: k
+  key: j
 swap-main:
   mod: mod2
   key: enter

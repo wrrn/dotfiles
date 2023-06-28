@@ -16,6 +16,8 @@ abbr -a gf git fetch
 abbr -a gp git push
 abbr -a gpl git pull
 abbr -a gwip git wip
+abbr -a grb git rebase
+abbr -a grbc git rebase --continue
 
 # kubernetes aliases
 abbr -a k kubectl

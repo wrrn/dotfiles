@@ -11,7 +11,7 @@ set -x PATH \
     $HOME/.cargo/bin \
     $PATH
 set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
-set -x EDITOR emacsclient -nw
+set -x EDITOR emacsclient
 
 set fish_greeting
 
@@ -33,7 +33,6 @@ if status is-interactive
     end
 
     source (brew --prefix asdf)/libexec/asdf.fish
-    . ~/.asdf/plugins/java/set-java-home.fish
 
     if [ "$INSIDE_EMACS" = vterm ]
         set -x EDITOR emacsclient

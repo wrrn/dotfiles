@@ -1,15 +1,15 @@
 ;;; dot.el --- load all of my custom packages
 ;;; Commentary:
 ;;; Code:
-(defvar straight-use-package-by-default t)
 (defvar bootstrap-version)
+(defvar straight-use-package-by-default t)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
+      (bootstrap-version 6))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
          'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
@@ -58,7 +58,8 @@
 ;; (use-package goose-theme
   ;; :ensure t)
 ;; (use-package nano-theme
-  ;; :ensure t)
+;;   :ensure t
+;;   :config (load-theme 'nano-light))
 
 ;; (use-package kanagawa-theme
 ;;   :straight (kanagawa-theme :type git :host github :repo  "jasonm23/emacs-theme-kanagawa")
@@ -67,16 +68,45 @@
 
 (use-package nano-modeline
   :ensure t
-  :config (nano-modeline-mode))
+  :hook
+  (prog-mode            . nano-modeline-prog-mode)
+  (text-mode            . nano-modeline-text-mode)
+  (org-mode             . nano-modeline-org-mode)
+  (pdf-view-mode        . nano-modeline-pdf-mode)
+  (mu4e-headers-mode    . nano-modeline-mu4e-headers-mode)
+  (mu4e-view-mode       . nano-modeline-mu4e-message-mode)
+  (mu4e-compose-mode    . nano-modeline-mu4e-compose-mode)
+  (elfeed-show-mode     . nano-modeline-elfeed-entry-mode)
+  (elfeed-search-mode   . nano-modeline-elfeed-search-mode)
+  (elpher-mode          . nano-modeline-elpher-mode)
+  (term-mode            . nano-modeline-term-mode)
+  (eat-mode             . nano-modeline-eat-mode)
+  (xwidget-webkit-mode  . nano-modeline-xwidget-mode)
+  (messages-buffer-mode . nano-modeline-message-mode)
+  (org-capture-mode     . nano-modeline-org-capture-mode)
+  (org-agenda-mode      . nano-modeline-org-agenda-mode)
+  :config (progn (set-face-attribute 'mode-line nil
+                    :foreground (face-foreground 'nano-face-subtle)
+                    :background (face-foreground 'nano-face-subtle)
+                    :inherit nil
+                    :box nil)
+                 (set-face-attribute 'mode-line-inactive nil
+                    :foreground (face-foreground 'nano-face-subtle)
+                    :background (face-foreground 'nano-face-subtle)
+                    :inherit nil
+                    :box nil)))
+  
 
-;; (use-package mini-frame
-;;   :ensure t
-;;   :config (mini-frame-mode))
 
-(use-package nano-minibuffer
+(use-package mini-frame
   :ensure t
-  :straight (nano-minibuffer :type git :host github :repo "rougier/nano-minibuffer"
-                             :build (:not compile)))
+  :config (mini-frame-mode))
+
+;; (use-package nano-minibuffer
+;;   :ensure t
+;;   :straight (nano-minibuffer :type git :host github :repo "rougier/nano-minibuffer"
+;;                              :build (:not compile))
+;;   :custom nano-minibuffer-position 'bottom)
 
 (use-package nano
   :straight (nano :type git :host github :repo "rougier/nano-emacs"

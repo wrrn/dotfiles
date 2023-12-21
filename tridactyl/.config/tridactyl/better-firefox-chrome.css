@@ -1,0 +1,49 @@
+/* Element | chrome://browser/content/browser.xhtml */
+:root #nav-bar {
+  height: 50px !important;
+}
+
+/* Element | chrome://browser/content/browser.xhtml */
+:root .urlbarView {
+  display: none !important;
+}
+
+/* Element | chrome://browser/content/browser.xhtml */
+:root #urlbar-background {
+  display: none !important;
+}
+
+/* Element | chrome://browser/content/browser.xhtml */
+:root #urlbar-input-container {
+  height: 0px !important;
+  border: 0px !important;
+  padding: 0px !important;
+}
+
+/* browser-shared.css | chrome://browser/skin/browser-shared.css */
+:root .browser-toolbar {
+  &:not(.titlebar-color) {
+    /* background-color: var(--toolbar-bgcolor); */
+    /* color: var(--toolbar-color); */
+    /* border-style: none; */
+  }
+}
+
+:root &:-moz-window-inactive {
+  /* background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color)); */
+}
+
+#navigator-toolbox {
+  /* appearance: none; */
+}
+
+/* Element | chrome://browser/content/browser.xhtml */
+
+#navigator-toolbox {
+  opacity: 50 !important;
+}
+
+/* #navigator-toolbox { */
+/*   background: aliceblue !important; */
+/*   border-bottom: 1px !important; */
+/* } */

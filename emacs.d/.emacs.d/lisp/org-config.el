@@ -61,34 +61,23 @@
 
             (setq org-export-backends (quote (ascii html icalendar latex md gfm)))))
 
-(use-package org-bullets
-  :ensure t
-  :hook (org-mode . org-bullets-mode))
-
-(use-package org-tree-slide
-  :ensure t
-  :custom
-  (org-image-actual-width nil))
-
-(use-package ob-mermaid
-  :ensure t
-  :custom
-  (ob-mermaid-cli-path (concat (getenv "HOME") "/node_modules/.bin/mmdc"))
-  :init
-  (append org-babel-load-languages '((go . t))))
-
 (use-package org-roam
   :ensure t
   :custom
   (org-roam-directory (concat (getenv "HOME") "/.roam"))
-  (org-roam-completion-system 'ivy)
   (org-roam-v2-ack t)
+  (org-roam-db-update-on-save t)
+  (org-roam-database-connector 'sqlite-builtin)
   
   :bind  (("C-c n f" . org-roam-node-find)
           ("C-c n b" . org-roam-switch-to-buffer)
           ("C-c n g" . org-roam-graph)
+          ("C-o" . nil)
+          ("C-o r f" . org-roam-node-find)
+          ("C-o r g" . org-roam-graph)
   :map org-mode-map
   (("C-c n i" . org-roam-node-insert)
+   ("C-o r n i")
    ;; TODO: Use the variable here
    ("C-j" . nil))))
 
@@ -108,11 +97,18 @@
   (deft-default-extension "org")
   (deft-directory (concat (getenv "HOME") "/.roam")))
 
+(defun org-journal-new-note ()
+  "Insert todays date a drawer at point"
+  (interactive)
+  (org-insert-drawer nil (format-time-string "%Y-%m-%d"))
+  )
+
 (use-package org-journal
   :ensure t
   :bind (:map wh-keymap
               ("j o" . org-journal-open-current-journal-file)
-              ("j e" . org-journal-new-entry))
+              ("j e" . org-journal-new-entry)
+              ("j n" . org-journal-new-note))
   :custom
   (org-journal-file-header "#+TITLE: %B %Y")
   (org-journal-file-format "%Y-%m.org")
@@ -123,6 +119,29 @@
   (org-journal-file-type 'monthly)
   (org-journal-carryover-items "/!")
   (org-journal-hide-entries-p nil))
+
+
+;; (use-package org-bullets
+;;   :ensure t
+;;   :hook (org-mode . org-bullets-mode))
+
+(use-package org-tree-slide
+  :ensure t
+  :custom
+  (org-image-actual-width nil))
+
+(use-package ob-mermaid
+  :ensure t
+  :custom
+  (ob-mermaid-cli-path (concat (getenv "HOME") "/node_modules/.bin/mmdc"))
+  :init
+  (append org-babel-load-languages '((go . t))))
+
+(use-package org-modern
+  :ensure t
+  :after (org)
+  :config (global-org-modern-mode)
+  )
 
 (provide 'org-config)
 ;; org-config.el ends here

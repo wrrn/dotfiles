@@ -16,7 +16,6 @@ tap "osx-cross/avr"
 tap "qmk/qmk"
 tap "remotemobprogramming/brew"
 tap "spotify/public"
-tap "spotify/sptaps", "git@ghe.spotify.net:shared/homebrew-spotify.git"
 tap "virtuslab/git-machete"
 tap "weaveworks/tap"
 tap "ykursadkaya/openlens"
@@ -132,8 +131,6 @@ brew "httpie"
 brew "hwatch"
 # International Ispell
 brew "ispell"
-# Manage your Java environment
-brew "jenv"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Selection-based modal text editor
@@ -244,13 +241,6 @@ brew "qmk/qmk/qmk"
 brew "remotemobprogramming/brew/mob"
 # Scala API for Apache Beam and Google Cloud Dataflow
 brew "spotify/public/scio"
-# Hades CLI utility
-brew "spotify/sptaps/hades-cli"
-brew "spotify/sptaps/hmtools"
-brew "spotify/sptaps/kubectl-site"
-# Protoman is used to fetch protobuf schemas from our central ghe.spotify.net/shared/proto repository
-brew "spotify/sptaps/protoman"
-brew "spotify/sptaps/styx-cli"
 # The official CLI for Amazon EKS
 brew "weaveworks/tap/eksctl"
 # Command-line helper for the 1Password password manager
@@ -291,8 +281,6 @@ cask "keycastr"
 cask "openlens"
 # App that enables mouse-free UI interaction
 cask "shortcat"
-# Music streaming service
-cask "spotify"
 # Daily planner and calendar
 cask "sunsama"
 # Network protocol analyzer
@@ -304,7 +292,6 @@ mas "Endel", id: 1484348796
 mas "Gestimer", id: 990588172
 mas "HazeOver", id: 430798174
 mas "In Your Face", id: 1476964367
-mas "Instapaper", id: 288545208
 mas "Kiwix", id: 997079563
 mas "MeetingBar", id: 1532419400
 mas "Micro Snitch", id: 972028355

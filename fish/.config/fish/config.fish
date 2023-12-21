@@ -1,4 +1,4 @@
-set -x GOPATH $HOME/work/go
+set -x GOPATH $HOME/shed/go
 set -x PATH \
     $HOME/.local/bin \
     $HOME/bin \
@@ -36,7 +36,12 @@ if status is-interactive
 
     if [ "$INSIDE_EMACS" = vterm ]
         set -x EDITOR emacsclient
+    else
+        set -x EDITOR 'emacsclient -nw'
     end
+
+    source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
+
     ## Notes
     # kubectl completions come from the fisher plugin
     # fzf comes from fisher plugin

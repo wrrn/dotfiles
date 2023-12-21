@@ -1,0 +1,10 @@
+function dev-box
+    switch $argv[1]
+        case start up
+            gcloud compute instances start warren-dev
+            sed -i '/Host warren-dev/,/Host .*|\$/{ /HostName/{s/HostName .*/HostName '(gcloud compute instances describe warren-dev | yq .networkInterfaces[0].accessConfigs[0].natIP)'/; };}' ~/.ssh/config
+
+        case stop down
+            gcloud compute instances stop warren-dev
+    end
+end

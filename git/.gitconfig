@@ -72,3 +72,5 @@
 	user = warrenh
 [github "ghe.spotify.net/api/v3"]
 	user = warrenh
+[rebase]
+	autosquash = true

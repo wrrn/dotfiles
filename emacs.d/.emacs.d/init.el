@@ -59,7 +59,7 @@
 ;; (set-face-attribute 'default nil :font "Input Mono")
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
-(setq-default line-spacing 3)
+(setq-default line-spacing 1)
 (setq split-width-threshold 200)
 (setq split-height-threshold 200)
                    
@@ -99,6 +99,7 @@
 ;; Get rid of all frame decorations
 ;; Commented out so that amethyst can grab the title bar
 ;; (add-to-list 'default-frame-alist '(undecorated . t))
+(add-to-list 'default-frame-alist '(undecorated-round . t))
 (setq ns-auto-hide-menu-bar t)
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme

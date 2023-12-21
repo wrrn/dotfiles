@@ -61,6 +61,10 @@ screen-padding-left: 72.811
 screen-padding-right: 72.811
 screen-padding-top: 45
 screen-padding-bottom: 45
+# screen-padding-left: 15
+# screen-padding-right: 15
+# screen-padding-top: 9.31
+# screen-padding-bottom: 9.31
   
 # Modify the amethyst relaunch to use x and not z
 relaunch-amethyst:

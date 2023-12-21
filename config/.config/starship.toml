@@ -1,8 +1,6 @@
 format = """\
-    $time $cmd_duration\
+    $cmd_duration\
     $line_break\
-    $line_break\
-    $aws\
     $line_break\
     $gcloud\
     $line_break\
@@ -54,15 +52,14 @@ disabled = false
 format = '[$symbol$context( \($namespace\))]($style)'
 
 [kubernetes.context_aliases]
-"gke_megaphone-stage_us-central1-c_megaphone-stage" = "megaphone-stage"
-"gke_megaphone-prod_us-central1_megaphone-prod" = "megaphone-prod"
+"gke_pryon-mainline-e2e-1_us-central1_api-deployment-warrenharper-k8s" = "mainline-warrenharper-k8s"
 
 
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "
 
 [time]
-format = "[completed at](purple) [$time]($style)"
+format = "(purple)[$time]($style)"
 disabled = false
 
 [git_status]
@@ -75,7 +72,7 @@ disabled = true
 disabled = true
 
 [aws]
-disabled = false
+disabled = true
 format = '[$symbol($profile )(\($region\) )(\[$duration\])]($style)'
 symbol = "🅰 "
 
@@ -86,5 +83,10 @@ symbol = "☁ "
 
 [cmd_duration]
 format = "[took](purple) [$duration]($style)"
-show_notifications = true
+min_time = 1
+show_notifications = false
 min_time_to_notify = 10_000
+
+[character]
+success_symbol = '[❯](bold green)'
+error_symbol = '[✗](bold red)'

@@ -34,37 +34,61 @@ window:
   # Background opacity
   opacity: 1.0
 
+  option_as_alt: Both
+
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
 
 # Font configuration (changes require restart)
 font:
-  # The normal (roman) font face to use.
+  # # The normal (roman) font face to use.
+  # normal:
+  #   family: iMWritingMono Nerd Font
+  #   # Style can be specified to pick a specific face.
+  #   style: Regular
+
+  # # The bold font face
+  # bold:
+  #   family: iMWritingMono Nerd Font
+  #   # Style can be specified to pick a specific face.
+  #   style: Bold
+
+  # # The italic font face
+  # italic:
+  #   family: iMWritingMono Nerd Font
+  #   # Style can be specified to pick a specific face.
+  #   style: Italic
+
+  # # Point size of the font
+  # size: 15
+# The normal (roman) font face to use.
   normal:
-    family: Comic Mono
+    family: Ellograph CF
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: Comic Mono
+    family: Ellograph CF
     # Style can be specified to pick a specific face.
     style: Bold
 
   # The italic font face
   italic:
-    family: Comic Mono
+    family: Ellograph CF
     # Style can be specified to pick a specific face.
     style: Italic
 
   # Point size of the font
   size: 15
 
+  
+
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 0
+    x: 1
     y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
@@ -73,9 +97,6 @@ font:
   glyph_offset:
     x: 0
     y: 0
-
-# Should display the render timer
-render_timer: false
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }

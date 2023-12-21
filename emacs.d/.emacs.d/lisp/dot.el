@@ -19,16 +19,30 @@
 
 (require 'use-package)
 
+(require 'no-littering)
 (require 'gcloud)
-
 (require 'org-config)
 
 (use-package autothemer
   :ensure t)
 
-(use-package minimal-theme
-    :ensure t
-    :config (load-theme 'minimal-light t))
+;; (use-package minimal-theme
+;;     :ensure t
+;;     :config (load-theme 'minimal-light t))
+
+;; (use-package almost-mono-themes
+;;   :config
+;;   ;; (load-theme 'almost-mono-black t)
+;;   ;; (load-theme 'almost-mono-gray t)
+;;   ;; (load-theme 'almost-mono-cream t)
+;;   (load-theme 'almost-mono-white t))
+
+(use-package sketch-themes
+  :config
+  ;; Load black version
+  ;;(load-theme 'sketch-black t)
+  ;; Load white version
+  (load-theme 'sketch-white t))
 
 ;; (use-package subatomic-theme
 ;;   :ensure t
@@ -66,41 +80,46 @@
 ;;   :requires autothemer
 ;;   :config (load-theme 'kanagawa))
 
-(use-package nano-modeline
-  :ensure t
-  :hook
-  (prog-mode            . nano-modeline-prog-mode)
-  (text-mode            . nano-modeline-text-mode)
-  (org-mode             . nano-modeline-org-mode)
-  (pdf-view-mode        . nano-modeline-pdf-mode)
-  (mu4e-headers-mode    . nano-modeline-mu4e-headers-mode)
-  (mu4e-view-mode       . nano-modeline-mu4e-message-mode)
-  (mu4e-compose-mode    . nano-modeline-mu4e-compose-mode)
-  (elfeed-show-mode     . nano-modeline-elfeed-entry-mode)
-  (elfeed-search-mode   . nano-modeline-elfeed-search-mode)
-  (elpher-mode          . nano-modeline-elpher-mode)
-  (term-mode            . nano-modeline-term-mode)
-  (eat-mode             . nano-modeline-eat-mode)
-  (xwidget-webkit-mode  . nano-modeline-xwidget-mode)
-  (messages-buffer-mode . nano-modeline-message-mode)
-  (org-capture-mode     . nano-modeline-org-capture-mode)
-  (org-agenda-mode      . nano-modeline-org-agenda-mode)
-  :config (progn (set-face-attribute 'mode-line nil
-                    :foreground (face-foreground 'nano-face-subtle)
-                    :background (face-foreground 'nano-face-subtle)
-                    :inherit nil
-                    :box nil)
-                 (set-face-attribute 'mode-line-inactive nil
-                    :foreground (face-foreground 'nano-face-subtle)
-                    :background (face-foreground 'nano-face-subtle)
-                    :inherit nil
-                    :box nil)))
+;; (use-package nano-modeline
+;;   :ensure t
+;;   :hook
+;;   (prog-mode            . nano-modeline-prog-mode)
+;;   (text-mode            . nano-modeline-text-mode)
+;;   (org-mode             . nano-modeline-org-mode)
+;;   (pdf-view-mode        . nano-modeline-pdf-mode)
+;;   (mu4e-headers-mode    . nano-modeline-mu4e-headers-mode)
+;;   (mu4e-view-mode       . nano-modeline-mu4e-message-mode)
+;;   (mu4e-compose-mode    . nano-modeline-mu4e-compose-mode)
+;;   (elfeed-show-mode     . nano-modeline-elfeed-entry-mode)
+;;   (elfeed-search-mode   . nano-modeline-elfeed-search-mode)
+;;   (elpher-mode          . nano-modeline-elpher-mode)
+;;   (term-mode            . nano-modeline-term-mode)
+;;   (eat-mode             . nano-modeline-eat-mode)
+;;   (xwidget-webkit-mode  . nano-modeline-xwidget-mode)
+;;   (messages-buffer-mode . nano-modeline-message-mode)
+;;   (org-capture-mode     . nano-modeline-org-capture-mode)
+;;   (org-agenda-mode      . nano-modeline-org-agenda-mode)
+;;   :config (progn (set-face-attribute 'mode-line nil
+;;                     :foreground (face-foreground 'nano-face-subtle)
+;;                     :background (face-foreground 'nano-face-subtle)
+;;                     :inherit nil
+;;                     :box nil)
+;;                  (set-face-attribute 'mode-line-inactive nil
+;;                     :foreground (face-foreground 'nano-face-subtle)
+;;                     :background (face-foreground 'nano-face-subtle)
+;;                     :inherit nil
+;;                     :box nil)))
   
 
 
-(use-package mini-frame
-  :ensure t
-  :config (mini-frame-mode))
+;; (use-package mini-frame
+;;   :ensure t
+;;   :config (mini-frame-mode)
+;;   ;; :custom
+  ;; (mini-frame-show-parameters '((top . 10)
+  ;;                               (width . 0.7)
+  ;;                               (left . 0.5)))
+  ;; )
 
 ;; (use-package nano-minibuffer
 ;;   :ensure t
@@ -113,11 +132,23 @@
                   :fork (:host github
                                :repo "wrrn/nano-emacs")
                   :build (:not compile))
-  :config (custom-set-faces
-           `(window-divider ((t (:foreground ,(face-attribute 'default :background)))))
-           '(window-divider-first-pixel  ((t (:inherit window-divider))))
-           '(window-divider-last-pixel  ((t (:inherit window-divider))))
-           '(fringe  ((t (:inherit window-divider))))))
+  :config (progn
+            (set-frame-parameter nil 'internal-border-width 15)
+            (custom-set-faces
+             `(window-divider ((t (:foreground ,(face-attribute 'default :background)))))
+             '(window-divider-first-pixel  ((t (:inherit window-divider))))
+             '(window-divider-last-pixel  ((t (:inherit window-divider))))
+             '(fringe  ((t (:inherit window-divider)))))
+            (set-face-attribute 'mode-line nil
+                                :foreground (face-foreground 'nano-face-subtle)
+                                :background (face-foreground 'nano-face-subtle)
+                                :inherit nil
+                                :box nil)
+            (set-face-attribute 'mode-line-inactive nil
+                                :foreground (face-foreground 'nano-face-subtle)
+                                :background (face-foreground 'nano-face-subtle)
+                                :inherit nil
+                                :box nil)))
 
 (use-package exec-path-from-shell
   ;; Used to get environment variables for mac
@@ -301,24 +332,6 @@
                ("t p" . multi-vterm-prev)
                ("p t" . multi-vterm-project)
         ))
-
-(use-package tramp
-  :ensure t
-  :init   (setq tramp-default-method "ssh")
-  :config (progn (add-to-list 'tramp-default-proxies-alist
-                              '(nil "\\`root\\'" "/ssh:%h:"))
-                 (add-to-list 'tramp-default-proxies-alist
-                              '((regexp-quote (system-name)) nil nil))))
-
-(use-package tramp-term
-  ;; Tramp Terminal
-  :ensure t
-  :init (progn
-          (setq auto-revert-remote-files t)
-          (require 'tramp-term))
-
-  :config (defalias 'ssh 'tramp-term)
-  :commands tramp-term)
 
 (use-package magit
   :ensure t
@@ -588,7 +601,8 @@
   
 (use-package ace-window
   :ensure t
-  :custom (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  :custom
+  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   :bind (("C-x o" . ace-window)
          (:map wh-keymap
                ("w j" . ace-window))))
@@ -599,9 +613,9 @@
               ("w z" . zoom-window-zoom)))
 
 ;; Show emojis in emacs
-(use-package emojify
-  :ensure t
-  :hook (after-init . global-emojify-mode))
+;; (use-package emojify
+;;   :ensure t
+;;   :hook (after-init . global-emojify-mode))
 
 (use-package linum-off
   :ensure t
@@ -698,6 +712,7 @@ fixes the bug where emacs dies when you try to kill a frame"
 (require 'typescript)
 (require 'java-development)
 (require 'scala-development)
+(require 'writeroom-config)
 
 (provide 'dot)
 ;;; dot.el ends here

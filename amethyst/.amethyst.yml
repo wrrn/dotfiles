@@ -30,7 +30,6 @@ mod2:
 # Move in increments of 5px when resizing windows
 window-resize-step: 5;
 
-
 # When enabled margins will not be applied to fullscreen layout or when there is only on window
 smart-window-margins: false
 
@@ -55,17 +54,19 @@ follow-space-thrown-windows: true
 
 # Add 15px margin between windows
 window-margins: true
-window-margin-size: 27.8
 
-screen-padding-left: 72.811
-screen-padding-right: 72.811
-screen-padding-top: 45
-screen-padding-bottom: 45
-# screen-padding-left: 15
-# screen-padding-right: 15
-# screen-padding-top: 9.31
-# screen-padding-bottom: 9.31
-  
+# window-margin-size: 72.811
+# screen-padding-left: 72.811
+# screen-padding-right: 72.811
+# screen-padding-top: 45
+# screen-padding-bottom: 45
+
+window-margin-size: 10.69
+screen-padding-left: 10.69
+screen-padding-right: 10.69
+screen-padding-top: 28
+screen-padding-bottom: 28
+
 # Modify the amethyst relaunch to use x and not z
 relaunch-amethyst:
   mod: mod2

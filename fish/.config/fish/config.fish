@@ -1,15 +1,15 @@
 set -x GOPATH $HOME/shed/go
-set -x PATH \
+fish_add_path --prepend \
     $HOME/.local/bin \
     $HOME/bin \
     $GOPATH/bin \
     $BREW_PREFIX/bin \
-    /usr/local/bin \
     $BREW_PREFIX/opt/gnu-sed/libexec/gnubin \
     $BREW_PREFIX/opt/coreutils/libexec/gnubin \
     $BREW_PREFIX/opt/gnu-tar/libexec/gnubin \
     $HOME/.cargo/bin \
-    $PATH
+    /usr/local/bin
+
 set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
 set -x EDITOR emacsclient
 
@@ -27,12 +27,28 @@ if status is-interactive
     end
 
     source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
+    source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
 
     if type kind &>/dev/null && [ ! -f ~/.config/fish/completions/kind.fish ] || [ ! -f ~/.kube/.kind.version ] || [ (kind version) != (cat ~/.kube/.kind.version) ]
         kind completion fish >~/.config/fish/completions/kind.fish
     end
 
+
+    # Add
     source (brew --prefix asdf)/libexec/asdf.fish
+    set -l _asdf_bin "$ASDF_DIR/bin"
+    if test -z $ASDF_DATA_DIR
+        set _asdf_shims "$HOME/.asdf/shims"
+    else
+        set _asdf_shims "$ASDF_DATA_DIR/shims"
+    end
+    fish_add_path --prepend \
+        $_asdf_bin \
+        $_asdf_shims
+    set --erase _asdf_bin
+    set --erase _asdf_shims
+
+
 
     if [ "$INSIDE_EMACS" = vterm ]
         set -x EDITOR emacsclient
@@ -40,11 +56,11 @@ if status is-interactive
         set -x EDITOR 'emacsclient -nw'
     end
 
-    source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
+
 
     ## Notes
     # kubectl completions come from the fisher plugin
     # fzf comes from fisher plugin
 end
 
-# source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+source /nix/var/nix/profiles/default/etc/profile.d/nix.fish

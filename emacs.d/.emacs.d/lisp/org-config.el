@@ -1,5 +1,49 @@
 ;; org-config.el --- Org-mode configurations
 ;; Code:
+
+(defun wrrn-org-buffer-prop-get (name)
+  "Get a buffer property called NAME as a string."
+  (or
+   (org-entry-get 1 name t)
+   (org-with-point-at 1
+     (when (re-search-forward (concat "^#\\+" name ": \\(.*\\)")
+                              (point-max) t)
+       (buffer-substring-no-properties
+        (match-beginning 1)
+        (match-end 1))))))
+
+(defun org-roam-agenda-category ()
+    "Get category of item at point for agenda.
+
+Category is defined by one of the following items:
+- CATEGORY property
+- TITLE keyword
+- TITLE property
+- filename without directory and extension
+
+Usage example:
+	(setq org-agenda-prefix-format
+		'((agenda . \" %(org-roam-agenda-category) %?-12t %12s\")))
+Refer to `org-agenda-prefix-format' for more information
+
+Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.html"
+  (let* ((file-name (when buffer-file-name
+                      (file-name-sans-extension (file-name-nondirectory buffer-file-name))))
+         (title (wrrn-org-buffer-prop-get "title"))
+         (category (org-get-category)))
+    (or title
+        category
+        file-name)))
+
+(defun org-journal-find-location ()
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  ;; Source: https://github.com/bastibe/org-journal/blob/master/README.org#journal-capture-template
+  (org-journal-new-entry t)
+  (unless (eq org-journal-file-type 'daily)
+    (org-narrow-to-subtree))
+  (goto-char (point-max)))
+
 (use-package org
   :custom
   (org-startup-indented t) ; cleaner looking org-mode
@@ -27,8 +71,39 @@
   (appt-display-duration 30) ;; Display the appointment reminder for 30 seconds
   (org-export-with-toc nil)   ;; Org to markdown conversion options
   (org-export-headline-levels 5)
+
+
+  ;; Org agenda configs
   (org-agenda-files (list (concat (getenv "HOME") "/.roam")))
+  (org-agenda-prefix-format
+   '((agenda . " %i %-50 (org-roam-agenda-category)%?-12t% s")
+     (todo   . "%i %-50 (org-roam-agenda-category) ")
+     (tags   . "%i %-50 (org-roam-agenda-category) ")
+     (search . "%i %-50 (org-roam-agenda-category) ")))
+
+  ;; Org Capture
+  (org-capture-templates
+   '(("j" "Journal entry" plain (function org-journal-find-location)
+      "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
+
+  ;; Specify how org-refile suggests files. Source: https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
+  ;;;; Tell org to list this files when given the opportunity to refile.
+  (org-refile-targets '((org-agenda-files :maxlevel . 3)))
+  ;;;; Tell org to include the files so that we can add thing to the toplevel
+  (org-refile-use-outline-path 'file)
+  ;;;; List everything at once
+  (org-outline-path-complete-in-steps nil)
+  ;;;; Allow the creation of new parent nodes
+  (org-refile-allow-creating-parent-nodes 'confirm)
+
+
+
+
+
+  
   :bind (("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
          :map org-mode-map
          ("M-p" . org-metaup)
          ("M-n" . org-metadown))
@@ -78,6 +153,7 @@
   :map org-mode-map
   (("C-c n i" . org-roam-node-insert)
    ("C-o r n i")
+   ("C-o r r" . org-roam-refile)
    ;; TODO: Use the variable here
    ("C-j" . nil))))
 
@@ -100,8 +176,7 @@
 (defun org-journal-new-note ()
   "Insert todays date a drawer at point"
   (interactive)
-  (org-insert-drawer nil (format-time-string "%Y-%m-%d"))
-  )
+  (org-insert-drawer nil (format-time-string "%Y-%m-%d")))
 
 (use-package org-journal
   :ensure t
@@ -115,10 +190,9 @@
   (org-journal-dir (concat (getenv "HOME") "/.roam"))
   
   (org-journal-date-format "%A, %F")
-  (org-journal-time-format "")
   (org-journal-file-type 'monthly)
   (org-journal-carryover-items "/!")
-  (org-journal-hide-entries-p nil))
+  (org-journal-hide-entries-p t))
 
 
 ;; (use-package org-bullets
@@ -142,6 +216,9 @@
   :after (org)
   :config (global-org-modern-mode)
   )
+
+(use-package org-timeblock
+  :ensure t)
 
 (provide 'org-config)
 ;; org-config.el ends here

@@ -34,19 +34,33 @@
 ;;   :config
 ;;   ;; (load-theme 'almost-mono-black t)
 ;;   ;; (load-theme 'almost-mono-gray t)
-;;   ;; (load-theme 'almost-mono-cream t)
-;;   (load-theme 'almost-mono-white t))
+;;   (load-theme 'almost-mono-cream t)
+;;   ;; (load-theme 'almost-mono-white t)
+;;   )
 
-(use-package sketch-themes
+;; (use-package catppuccin-theme
+;;   :init
+;;   (load-theme 'catppuccin :no-confirm)
+;;   (setq catppuccin-flavor 'mocha) ;; or 'frappe, 'latte, 'macchiato, or 'mocha
+;;   (catppuccin-reload)
+;;   )
+
+(use-package kaolin-themes
+  :ensure t
   :config
-  ;; Load black version
-  ;;(load-theme 'sketch-black t)
-  ;; Load white version
-  (load-theme 'sketch-white t))
+  (load-theme 'kaolin-valley-light :no-confirm)
+  (kaolin-treemacs-theme))
+
+;; (use-package sketch-themes
+;;   :config
+;;   ;; Load black version
+;;   ;; (load-theme 'sketch-black t)
+;;   ;; Load white version
+;;   (load-theme 'sketch-white t))
 
 ;; (use-package subatomic-theme
-;;   :ensure t
-;;   :config (load-theme 'subatomic))
+  ;; :ensure t
+  ;; :config (load-theme 'subatomic))
 
 ;; (use-package rose-pine-emacs
 ;;   :ensure t
@@ -242,7 +256,11 @@
                                                :narrow ?v
                                                :category buffer
                                                :state    ,#'consult--buffer-state
-                                               :items ,(lambda() (when (boundp 'multi-vterm-buffer-list) (mapcar #'buffer-name multi-vterm-buffer-list)))) 'append))
+                                               :items ,(lambda()
+                                                         (mapcar #'buffer-name
+                                                                 (persp-buffer-list-filter
+                                                                  (match-buffers multi-vterm-buffer-name)))))
+               'append))
   
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia
@@ -715,4 +733,4 @@ fixes the bug where emacs dies when you try to kill a frame"
 (require 'writeroom-config)
 
 (provide 'dot)
-;;; dot.el ends here
+;; ;;; dot.el ends here

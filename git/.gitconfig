@@ -2,14 +2,19 @@
 	name = Warren Harper
 	email = warren@wjh.io
 [merge]
-	tool = meld
+	tool = delta
     conflictstyle = diff3
 [diff]
-	tool = icdiff
-	algorithm = patience
+	tool = difft
+	algorithm = histogram
 	external = difft
+    colorMoved = default
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    
 [push]
 	default = current
+    autoSetupRemote = true
 [clean]
 	requireForce = false
 [alias]
@@ -57,12 +62,16 @@
 # 	insteadOf = https://github.com/
 [core]
 	attributesfile = /Users/warren.harper/.gitattributes
+    pager = delta
 [init]
 	defaultBranch = main
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [url "ssh://git@ghe.spotify.net/"]
 	insteadOf = https://ghe.spotify.net/
+[url "ssh://git@bitbucket.org/"]
+	insteadOf = https://bitbucket.org/
+
 
 [pull]
 	rebase = true
@@ -74,3 +83,8 @@
 	user = warrenh
 [rebase]
 	autosquash = true
+
+# Enable git to record rebase resolutions so that when I rebase again I won't
+# see the same issues
+[rerere]
+	enabled = true

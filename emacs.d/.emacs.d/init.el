@@ -65,7 +65,7 @@
                    
 ;;Spacing
 (setq-default indent-tabs-mode nil
-              tab-width 4)
+              tab-width 2)
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
 

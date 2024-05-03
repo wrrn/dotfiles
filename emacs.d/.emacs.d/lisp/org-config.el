@@ -90,8 +90,8 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
 
                            ("t"
                             "TODO"
-                            entry (function org-journal-find-location)
-                            "** TODO %i %^g")
+                            plain (function org-journal-find-location)
+                            "** TODO %^{Title} %^g\n%i%?")
                            ))
 
   ;; Specify how org-refile suggests files. Source: https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html

@@ -23,23 +23,26 @@
     (setq last-command-event (read-event))))
 
 (defun meow--selection-thing (fn)
+  "meow--selection-thing calls the selection function and returns
+ meow back to a normal state so that we can create a new
+ selection state and retain the existing behavior"
      (interactive)
      (meow-normal-mode)
      (call-interactively fn))
 
-(defun meow--selection-thing-inner ()
+(defun meow--selection-state-inner-of-thing ()
   (interactive)
   (meow--selection-thing 'meow-inner-of-thing))
 
-(defun meow--selection-thing-bounds ()
+(defun meow--selection-state-bounds-of-thing ()
   (interactive)
   (meow--selection-thing 'meow-bounds-of-thing))
 
-(defun meow--selection-thing-beginning ()
+(defun meow--selection-state-beginning-of-thing ()
   (interactive)
   (meow--selection-thing 'meow-beginning-of-thing))
 
-(defun meow--selection-thing-end ()
+(defun meow--selection-state-end-of-thing ()
   (interactive)
   (meow--selection-thing 'meow-end-of-thing))
 
@@ -52,10 +55,11 @@
   (setq meow-cursor-type-paren 'hollow)
   (meow-define-keys 'selection
     '("<escape>" . meow-normal-mode)
-    '("i" . meow--selection-thing-inner)
-    '("o" . meow--selection-thing-bounds)
-    '("b" . meow--selection-thing-beginning)
-    '("e" . meow--selection-thing-end)))
+    '("g" . meow-normal-mode)
+    '("i" . meow--selection-state-inner-of-thing)
+    '("o" . meow--selection-state-bounds-of-thing)
+    '("b" . meow--selection-state-beginning-of-thing)
+    '("e" . meow--selection-state-end-of-thing)))
 
 (use-package meow
   :ensure t
@@ -156,10 +160,7 @@
              '("1" . meow-expand-1)
              '("-" . negative-argument)
              '(";" . meow-reverse)
-             '("," . meow-inner-of-thing)
-             '("." . meow-bounds-of-thing)
-             '("[" . meow-selection-mode)
-             '("]" . meow-end-of-thing)
+             '("," . meow-selection-mode)
              '("a" . meow-append)
              '("A" . meow-open-below)
              '("b" . meow-back-word)
@@ -210,7 +211,6 @@
           (meow-global-mode 1)
           ;; Unbind the C-x C-p (default mark-page) so that we can use meow-command pallete with project specific commands
           (unbind-key "C-x C-p"))
-
   :bind (("C-x C-o" . ace-window)
          ("C-x C-b" . consult-buffer)
          ("C-x C-p f" . project-find-file)

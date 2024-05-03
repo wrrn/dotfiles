@@ -22,6 +22,41 @@
     (setq unread-command-events (listify-key-sequence (kbd kbd-macro)))
     (setq last-command-event (read-event))))
 
+(defun meow--selection-thing (fn)
+     (interactive)
+     (meow-normal-mode)
+     (call-interactively fn))
+
+(defun meow--selection-thing-inner ()
+  (interactive)
+  (meow--selection-thing 'meow-inner-of-thing))
+
+(defun meow--selection-thing-bounds ()
+  (interactive)
+  (meow--selection-thing 'meow-bounds-of-thing))
+
+(defun meow--selection-thing-beginning ()
+  (interactive)
+  (meow--selection-thing 'meow-beginning-of-thing))
+
+(defun meow--selection-thing-end ()
+  (interactive)
+  (meow--selection-thing 'meow-end-of-thing))
+
+(defun meow--selection-state-setup ()
+  (setq meow-selection-keymap (make-keymap))
+  (meow-define-state selection
+    "meow state for selecting things within normal mode"
+    :lighter " [S]"
+    :keymap meow-selection-keymap)
+  (setq meow-cursor-type-paren 'hollow)
+  (meow-define-keys 'selection
+    '("<escape>" . meow-normal-mode)
+    '("i" . meow--selection-thing-inner)
+    '("o" . meow--selection-thing-bounds)
+    '("b" . meow--selection-thing-beginning)
+    '("e" . meow--selection-thing-end)))
+
 (use-package meow
   :ensure t
   :custom
@@ -61,6 +96,21 @@
      (vterm-mode . insert)
      (magit-mode . insert)
      (Custom-mode . normal)))
+  (meow-char-thing-table
+   '((?\( . round)
+     (?\) . round)
+     (?\[ . square)
+     (?\] . square)
+     (?\" . string)
+     (?\' . string)
+     (?e . symbol)
+     (?w . window)
+     (?b . buffer)
+     (?p . paragraph)
+     (?l . line)
+     (?v . visual-line)
+     (?d . defun)
+     (?. . sentence)))
 
   :hook (vterm-mode . (lambda ()
                         (interactive)
@@ -69,7 +119,7 @@
   :init (progn
           (require 'meow)
           (defun meow-setup ()
-            
+            (meow--selection-state-setup)
             (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
             (add-to-list 'meow-expand-exclude-mode-list 'magit-mode)
             (meow-motion-overwrite-define-key
@@ -108,7 +158,7 @@
              '(";" . meow-reverse)
              '("," . meow-inner-of-thing)
              '("." . meow-bounds-of-thing)
-             '("[" . meow-beginning-of-thing)
+             '("[" . meow-selection-mode)
              '("]" . meow-end-of-thing)
              '("a" . meow-append)
              '("A" . meow-open-below)

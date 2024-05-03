@@ -45,11 +45,11 @@
 ;;   (catppuccin-reload)
 ;;   )
 
-(use-package kaolin-themes
-  :ensure t
-  :config
-  (load-theme 'kaolin-valley-light :no-confirm)
-  (kaolin-treemacs-theme))
+;; (use-package kaolin-themes
+;;   :ensure t
+;;   :config
+;;   (load-theme 'kaolin-valley-light :no-confirm)
+;;   (kaolin-treemacs-theme))
 
 ;; (use-package sketch-themes
 ;;   :config
@@ -93,6 +93,10 @@
 ;;   :straight (kanagawa-theme :type git :host github :repo  "jasonm23/emacs-theme-kanagawa")
 ;;   :requires autothemer
 ;;   :config (load-theme 'kanagawa))
+
+(use-package modus-themes
+  :ensure t
+  :config (load-theme 'modus-vivendi-tinted))
 
 ;; (use-package nano-modeline
 ;;   :ensure t
@@ -724,7 +728,10 @@ fixes the bug where emacs dies when you try to kill a frame"
   :ensure t
   :bind (:map wh-keymap
               ("p f" . project-find-file)
-))
+              ))
+
+(use-package smartparens
+  :ensure t)
 
 (require 'meow)
 (require 'comments)

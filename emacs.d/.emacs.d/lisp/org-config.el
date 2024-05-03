@@ -82,9 +82,17 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
      (search . "%i %-50 (org-roam-agenda-category) ")))
 
   ;; Org Capture
-  (org-capture-templates
-   '(("j" "Journal entry" plain (function org-journal-find-location)
-      "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
+  (org-capture-templates '(
+                           ("j"
+                            "Journal entry"
+                            plain (function org-journal-find-location)
+                            "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
+
+                           ("t"
+                            "TODO"
+                            entry (function org-journal-find-location)
+                            "** TODO %i %^g")
+                           ))
 
   ;; Specify how org-refile suggests files. Source: https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
   ;;;; Tell org to list this files when given the opportunity to refile.

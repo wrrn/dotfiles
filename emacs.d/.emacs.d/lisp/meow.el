@@ -22,44 +22,64 @@
     (setq unread-command-events (listify-key-sequence (kbd kbd-macro)))
     (setq last-command-event (read-event))))
 
-(defun meow--selection-thing (fn)
-  "meow--selection-thing calls the selection function and returns
- meow back to a normal state so that we can create a new
- selection state and retain the existing behavior"
-     (interactive)
-     (meow-normal-mode)
-     (call-interactively fn))
+(defcustom meow-selection-char-bounds-table
+  '((?i . inner)
+    (?o . outer)
+    (?b . beginning)
+    (?e . end))
+  "Mapping from char to bounds."
+  :group 'meow
+  :type '(alist :key-type (character :tag "Char")
+                :key-value (symbol :tag "Thing")))
 
-(defun meow--selection-state-inner-of-thing ()
-  (interactive)
-  (meow--selection-thing 'meow-inner-of-thing))
+(defvar meow--bounds-registry
+  '((inner . meow-inner-of-thing)
+    (outer . meow-bounds-of-thing)
+    (beginning . meow-beginning-of-thing)
+    (end . meow-end-of-thing))
+  "Mapping from bounds to function")
 
-(defun meow--selection-state-bounds-of-thing ()
-  (interactive)
-  (meow--selection-thing 'meow-bounds-of-thing))
+(defun meow--selection-render-char-bounds-table ()
+    (let* ((ww (frame-width))
+         (w 25)
+         (col (min 5 (/ ww w))))
+    (thread-last
+      meow-selection-char-bounds-table
+      (seq-group-by #'cdr)
+      (seq-sort-by #'car #'string-lessp)
+      (seq-map-indexed
+       (lambda (th-pairs idx)
+         (let* ((th (car th-pairs))
+                (pairs (cdr th-pairs))
+                (pre (thread-last
+                       pairs
+                       (mapcar (lambda (it) (char-to-string (car it))))
+                       (meow--string-join " "))))
+           (format "%s%s%s%s"
+                   (propertize
+                    (meow--string-pad pre 8 32 t)
+                     'face 'font-lock-constant-face)
+                   (propertize " → " 'face 'font-lock-comment-face)
+                   (propertize
+                    (meow--string-pad (symbol-name th) 13 32 t)
+                     'face 'font-lock-function-name-face)
+                   (if (= (1- col) (mod idx col))
+                       "\n"
+                     " ")))))
+      (string-join)
+      (string-trim-right))))
 
-(defun meow--selection-state-beginning-of-thing ()
-  (interactive)
-  (meow--selection-thing 'meow-beginning-of-thing))
 
-(defun meow--selection-state-end-of-thing ()
-  (interactive)
-  (meow--selection-thing 'meow-end-of-thing))
+(defun meow--selection-prompt ()
+  (read-char
+   (concat (meow--selection-render-char-bounds-table) "\n" "Bounds:")))
 
-(defun meow--selection-state-setup ()
-  (setq meow-selection-keymap (make-keymap))
-  (meow-define-state selection
-    "meow state for selecting things within normal mode"
-    :lighter " [S]"
-    :keymap meow-selection-keymap)
-  (setq meow-cursor-type-paren 'hollow)
-  (meow-define-keys 'selection
-    '("<escape>" . meow-normal-mode)
-    '("g" . meow-normal-mode)
-    '("i" . meow--selection-state-inner-of-thing)
-    '("o" . meow--selection-state-bounds-of-thing)
-    '("b" . meow--selection-state-beginning-of-thing)
-    '("e" . meow--selection-state-end-of-thing)))
+(defun meow-selection (bounds)
+  "Start the selection of a THING by selecting it BOUNDS"
+  (interactive (list (meow--selection-prompt)))
+  (when-let* ((bounds-type (assoc bounds meow-selection-char-bounds-table))
+              (bounds-fn (assoc (cdr bounds-type) meow--bounds-registry)))
+    (call-interactively (cdr bounds-fn))))
 
 (use-package meow
   :ensure t
@@ -123,7 +143,6 @@
   :init (progn
           (require 'meow)
           (defun meow-setup ()
-            (meow--selection-state-setup)
             (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
             (add-to-list 'meow-expand-exclude-mode-list 'magit-mode)
             (meow-motion-overwrite-define-key
@@ -160,7 +179,7 @@
              '("1" . meow-expand-1)
              '("-" . negative-argument)
              '(";" . meow-reverse)
-             '("," . meow-selection-mode)
+             '("," . meow-selection)
              '("a" . meow-append)
              '("A" . meow-open-below)
              '("b" . meow-back-word)

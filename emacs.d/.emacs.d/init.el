@@ -2,14 +2,10 @@
 
 ;; Set the initial directory to start from
 (setq default-directory "~/")
+(require 'recentf)
+(recentf-mode t)
+(setq recentf-max-saved-items 50)
 
-(setq default-frame-alist '((horizontal-scroll-bars . nil)
-                            (vertical-scroll-bars . nil)
-                            (menu-bar-lines . 0)
-                            (tool-bar-lines . 0) ;; <----- here
-                            (internal-border-width . 0)
-                            (height . 50)
-                            (width . 95)))
 
 ;; custom-set-variables that were added by Custom
 (setq custom-file "~/.emacs.d/custom.el")
@@ -20,15 +16,10 @@
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
 
-;; Start up into scratch
-(setq inhibit-startup-screen t
-      backup-inhibited t)
 
 ;; Revert files automatically when they are changed on disk
 (global-auto-revert-mode t)
 
-;; Disable bell ringing
-(setq ring-bell-function 'ignore)
 
 
 ;; Define custom keymap
@@ -62,7 +53,7 @@
 (setq-default line-spacing 1)
 (setq split-width-threshold 200)
 (setq split-height-threshold 200)
-                   
+
 ;;Spacing
 (setq-default indent-tabs-mode nil
               tab-width 2)
@@ -98,16 +89,6 @@
 
 ;; Get rid of all frame decorations
 ;; Commented out so that amethyst can grab the title bar
-(add-to-list 'default-frame-alist '(undecorated . t))
-;; (add-to-list 'default-frame-alist '(undecorated-round . t))
-(setq ns-auto-hide-menu-bar t)
-(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
-(add-to-list 'default-frame-alist '(frame-title-format . nil)) ;; assuming you are using a dark theme
-(add-to-list 'default-frame-alist '(icon-title-format . nil)) ;; assuming you are using a dark theme
-(add-to-list 'default-frame-alist '(title . nil)) ;; assuming you are using a dark theme
-(setq ns-use-proxy-icon nil)
-(setq frame-resize-pixelwise t)
 
 ;;Mac Environment
 (when (memq window-system '(mac ns))

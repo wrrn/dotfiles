@@ -191,7 +191,10 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
   :bind (:map wh-keymap
               ("j o" . org-journal-open-current-journal-file)
               ("j e" . org-journal-new-entry)
-              ("j n" . org-journal-new-note))
+              ("j n" . org-journal-new-note)
+
+          :map org-journal-mode-map
+              (("C-j" . nil)))
   :custom
   (org-journal-file-header "#+TITLE: %B %Y")
   (org-journal-file-format "%Y-%m.org")

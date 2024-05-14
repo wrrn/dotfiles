@@ -88,7 +88,8 @@
    '((?c . ?c)
      (?h . ?h)
      (?x . ?x)
-     (?j . ?j)))
+     (?j . ?j)
+     (?l . ?l)))
   (meow-mode-state-list
    '((authinfo-mode . normal)
      (beancount-mode . normal)
@@ -123,6 +124,8 @@
   (meow-char-thing-table
    '((?\( . round)
      (?\) . round)
+     (?\{ . curly)
+     (?\} . curly)
      (?\[ . square)
      (?\] . square)
      (?\" . string)

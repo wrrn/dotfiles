@@ -18,155 +18,10 @@
 (straight-use-package 'use-package)
 
 (require 'use-package)
-
 (require 'no-littering)
 (require 'gcloud)
 (require 'org-config)
-
-(use-package autothemer
-  :ensure t)
-
-;; (use-package minimal-theme
-;;     :ensure t
-;;     :config (load-theme 'minimal-light t))
-
-;; (use-package almost-mono-themes
-;;   :config
-;;   ;; (load-theme 'almost-mono-black t)
-;;   ;; (load-theme 'almost-mono-gray t)
-;;   (load-theme 'almost-mono-cream t)
-;;   ;; (load-theme 'almost-mono-white t)
-;;   )
-
-;; (use-package catppuccin-theme
-;;   :init
-;;   (load-theme 'catppuccin :no-confirm)
-;;   (setq catppuccin-flavor 'mocha) ;; or 'frappe, 'latte, 'macchiato, or 'mocha
-;;   (catppuccin-reload)
-;;   )
-
-;; (use-package kaolin-themes
-;;   :ensure t
-;;   :config
-;;   (load-theme 'kaolin-valley-light :no-confirm)
-;;   (kaolin-treemacs-theme))
-
-;; (use-package sketch-themes
-;;   :config
-;;   ;; Load black version
-;;   ;; (load-theme 'sketch-black t)
-;;   ;; Load white version
-;;   (load-theme 'sketch-white t))
-
-;; (use-package subatomic-theme
-  ;; :ensure t
-  ;; :config (load-theme 'subatomic))
-
-;; (use-package rose-pine-emacs
-;;   :ensure t
-;;   :straight (rose-pine-emacs :type git :host github :repo "thongpv87/rose-pine-emacs")
-;;   :requires autothemer
-;;   :config (load-theme 'rose-pine-moon))
-;; (load-theme 'rose-pine-moon)
-
-;; (use-package darktooth-theme
-;;   :ensure t
-;;   :config (load-theme 'darktooth))
-
-;; (use-package soothe-theme
-;;   :ensure t
-;;   :config (load-theme 'soothe))
-
-;; (use-package jazz-theme
-;;   :ensure t
-;;   :config (load-theme 'jazz))
-
-;; (use-package flatland-theme
-    ;; :ensure t)
-;; (use-package goose-theme
-  ;; :ensure t)
-;; (use-package nano-theme
-;;   :ensure t
-;;   :config (load-theme 'nano-light))
-
-;; (use-package kanagawa-theme
-;;   :straight (kanagawa-theme :type git :host github :repo  "jasonm23/emacs-theme-kanagawa")
-;;   :requires autothemer
-;;   :config (load-theme 'kanagawa))
-
-(use-package modus-themes
-  :ensure t
-  :config (load-theme 'modus-vivendi-tinted))
-
-;; (use-package nano-modeline
-;;   :ensure t
-;;   :hook
-;;   (prog-mode            . nano-modeline-prog-mode)
-;;   (text-mode            . nano-modeline-text-mode)
-;;   (org-mode             . nano-modeline-org-mode)
-;;   (pdf-view-mode        . nano-modeline-pdf-mode)
-;;   (mu4e-headers-mode    . nano-modeline-mu4e-headers-mode)
-;;   (mu4e-view-mode       . nano-modeline-mu4e-message-mode)
-;;   (mu4e-compose-mode    . nano-modeline-mu4e-compose-mode)
-;;   (elfeed-show-mode     . nano-modeline-elfeed-entry-mode)
-;;   (elfeed-search-mode   . nano-modeline-elfeed-search-mode)
-;;   (elpher-mode          . nano-modeline-elpher-mode)
-;;   (term-mode            . nano-modeline-term-mode)
-;;   (eat-mode             . nano-modeline-eat-mode)
-;;   (xwidget-webkit-mode  . nano-modeline-xwidget-mode)
-;;   (messages-buffer-mode . nano-modeline-message-mode)
-;;   (org-capture-mode     . nano-modeline-org-capture-mode)
-;;   (org-agenda-mode      . nano-modeline-org-agenda-mode)
-;;   :config (progn (set-face-attribute 'mode-line nil
-;;                     :foreground (face-foreground 'nano-face-subtle)
-;;                     :background (face-foreground 'nano-face-subtle)
-;;                     :inherit nil
-;;                     :box nil)
-;;                  (set-face-attribute 'mode-line-inactive nil
-;;                     :foreground (face-foreground 'nano-face-subtle)
-;;                     :background (face-foreground 'nano-face-subtle)
-;;                     :inherit nil
-;;                     :box nil)))
-  
-
-
-;; (use-package mini-frame
-;;   :ensure t
-;;   :config (mini-frame-mode)
-;;   ;; :custom
-  ;; (mini-frame-show-parameters '((top . 10)
-  ;;                               (width . 0.7)
-  ;;                               (left . 0.5)))
-  ;; )
-
-;; (use-package nano-minibuffer
-;;   :ensure t
-;;   :straight (nano-minibuffer :type git :host github :repo "rougier/nano-minibuffer"
-;;                              :build (:not compile))
-;;   :custom nano-minibuffer-position 'bottom)
-
-(use-package nano
-  :straight (nano :type git :host github :repo "rougier/nano-emacs"
-                  :fork (:host github
-                               :repo "wrrn/nano-emacs")
-                  :build (:not compile))
-  :config (progn
-            (set-frame-parameter nil 'internal-border-width 15)
-            (custom-set-faces
-             `(window-divider ((t (:foreground ,(face-attribute 'default :background)))))
-             '(window-divider-first-pixel  ((t (:inherit window-divider))))
-             '(window-divider-last-pixel  ((t (:inherit window-divider))))
-             '(fringe  ((t (:inherit window-divider)))))
-            (set-face-attribute 'mode-line nil
-                                :foreground (face-foreground 'nano-face-subtle)
-                                :background (face-foreground 'nano-face-subtle)
-                                :inherit nil
-                                :box nil)
-            (set-face-attribute 'mode-line-inactive nil
-                                :foreground (face-foreground 'nano-face-subtle)
-                                :background (face-foreground 'nano-face-subtle)
-                                :inherit nil
-                                :box nil)))
+(require 'ui-config)
 
 (use-package exec-path-from-shell
   ;; Used to get environment variables for mac
@@ -221,7 +76,7 @@
          ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
          ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
          ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
-          ;; Other custom bindings
+         ;; Other custom bindings
          ("M-y" . consult-yank-pop)                ;; orig. yank-pop
          ("<help> a" . consult-apropos)            ;; orig. apropos-command
          ;; M-g bindings (goto-map)
@@ -262,11 +117,11 @@
                                                :state    ,#'consult--buffer-state
                                                :items ,(lambda()
                                                          (when (boundp 'multi-vterm-buffer-name)
-                                                         (mapcar #'buffer-name
-                                                                 (persp-buffer-list-filter
-                                                                  (match-buffers multi-vterm-buffer-name))))))
+                                                           (mapcar #'buffer-name
+                                                                   (persp-buffer-list-filter
+                                                                    (match-buffers multi-vterm-buffer-name))))))
                'append))
-  
+
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia
   ;; Either bind `marginalia-cycle` globally or only in the minibuffer
@@ -281,38 +136,49 @@
   ;; enabled right away. Note that this forces loading the package.
   (marginalia-mode))
 
-;; (use-package embark
-;;   :ensure t
-;;   :bind
-;;   (("C-." . embark-act)         ;; pick some comfortable binding
-;;    ("C-;" . embark-dwim)        ;; good alternative: M-.
-;;    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+(use-package embark
+  :ensure t
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
-  ;; :init
-  ;; ;; Optionally replace the key help with a completing-read interface
-  ;; (setq prefix-help-command #'embark-prefix-help-command)
+  :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
 
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :ensure t
+  :after (embark consult)
+  :demand t ; only necessary if you have the hook below
+  ;; if you want to have consult previews as you move around an
+  ;; auto-updating embark collect buffer
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package affe
+  :ensure t
   ;; :config
+  ;; Manual preview key for `affe-grep'
+  ;; (consult-customize affe-grep :preview-key "M-."))
+  :init
+  (defun affe-orderless-regexp-compiler (input _type _ignorecase)
+    (setq input (cdr (orderless-compile input)))
+    (cons input (apply-partially #'orderless--highlight input t)))
+  (setq affe-regexp-compiler #'affe-orderless-regexp-compiler))
 
-  ;; ;; Hide the mode line of the Embark live/completions buffers
-  ;; (add-to-list 'display-buffer-alist
-  ;;              '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-  ;;                nil
-  ;;                (window-parameters (mode-line-format . none)))))
-
-;; ;; Consult users will also want the embark-consult package.
-;; (use-package embark-consult
-;;   :ensure t
-;;   :after (embark consult)
-;;   :demand t ; only necessary if you have the hook below
-;;   ;; if you want to have consult previews as you move around an
-;;   ;; auto-updating embark collect buffer
-;;   :hook
-;;   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package savehist
   :init (savehist-mode))
-
 
 (use-package multiple-cursors
   ;; Multiple Cursors for Emacs.
@@ -326,20 +192,24 @@
 (use-package avy
   :ensure t
   :bind (:map wh-keymap
-         ("c j" . avy-goto-char)
-         ("w j" . avy-goto-word-0 )
-         ("l c" . avy-copy-line)
-         ("r c" . avy-copy-region)
-         ("l k" . avy-kill-whole-line)
-         ("r k" . avy-kill-region)))
-  
+              ("c j" . avy-goto-char)
+              ("w j" . avy-goto-word-0 )
+              ("l c" . avy-copy-line)
+              ("r c" . avy-copy-region)
+              ("l k" . avy-kill-whole-line)
+              ("r k" . avy-kill-region)))
+
 (use-package vterm
   ;; :config
   ;; ;; Remove C-j from the vterm-keymap so that it doesn't conflict with wh-keymap.
   ;; (customize-set-variable 'vterm-keymap-exceptions (add-to-list 'vterm-keymap-exceptions wh-keymap-prefix-key))
   :bind (:map vterm-mode-map
-             ("C-j" . nil))
+              ("C-j" . nil))
   :ensure t)
+
+(use-package view
+  :bind (:map view-mode-map
+              ("C-j" . nil)))
 
 (use-package multi-vterm
   :ensure t
@@ -347,14 +217,14 @@
   :bind (;; ("C-c C-c" . vterm-send-C-c)
          ("C-x p t"   . multi-vterm-project)
          :map vterm-mode-map
-              ("C-c r" . multi-vterm-rename-buffer)
+         ("C-c r" . multi-vterm-rename-buffer)
          :map wh-keymap
-               ("t t" . multi-vterm-dedicated-toggle)
-               ("t c" . multi-vterm)
-               ("t n" . multi-vterm-next)
-               ("t p" . multi-vterm-prev)
-               ("p t" . multi-vterm-project)
-        ))
+         ("t t" . multi-vterm-dedicated-toggle)
+         ("t c" . multi-vterm)
+         ("t n" . multi-vterm-next)
+         ("t p" . multi-vterm-prev)
+         ("p t" . multi-vterm-project)
+         ))
 
 (use-package magit
   :ensure t
@@ -374,42 +244,11 @@
                            "ghe.spotify.net"
                            forge-github-repository))
             ))
-  
+
 (use-package ggtags
   :ensure t
   )
 
-(use-package go-mode
-  ;; GO Mode for editing go programs
-  :ensure t
-  :mode "\\.go\\'"
-  :config (let (( gopath (getenv "GOPATH")))
-            (require 'go-mode)
-            (setq gofmt-command "goimports")
-            (add-hook 'before-save-hook #'gofmt-before-save)
-            ;; auto-fill comments only
-            (add-hook 'go-mode-hook (lambda () (set (make-local-variable 'comment-auto-fill-only-comments) t)))
-            (add-hook 'go-mode-hook (lambda ()
-                                      (set (make-local-variable 'compile-command)
-                                           (if (string-suffix-p "_test.go" (buffer-file-name))
-                                               "go test"
-                                             "go build"))
-                                      (subword-mode t)))
-                      
-            (use-package ob-go
-              :ensure t
-              :init
-              (append org-babel-load-languages '((go . t))))
-
-            (add-hook 'go-mode-hook #'eglot-ensure)
-
-            ))
-
-(use-package go-rename
-  :ensure t)
-
-(use-package go-dlv
-  :ensure t)
 
 ;; completion-at-point improvements
 (use-package corfu
@@ -451,20 +290,6 @@
   ;; Enable indentation+completion using the TAB key.
   ;; `completion-at-point' is often bound to M-TAB.
   (setq tab-always-indent 'complete))
-
-;; Language server
-(use-package eglot
-  :ensure t
-  :bind (
-         :map wh-keymap
-              ("r f"   . xref-find-references)
-              ("c f"   . eglot-code-actions)
-              ("t d"   . display-local-help)
-              ("d f"   . xref-find-definitions)
-              ("i f"   . eglot-find-implementation)
-              ("v r"   . eglot-rename)
-              ("4 d f" . xref-find-definitions-other-window)
-              ("s f"   . xref-find-apropos)))
 
 (use-package tree-sitter
   :ensure t
@@ -621,7 +446,7 @@
   :bind (:map wh-keymap
               ;; Search
               ("s d" . rg-dwim)))
-  
+
 (use-package ace-window
   :ensure t
   :custom
@@ -644,21 +469,21 @@
   :ensure t
   :init (defvar linum-disabled-modes-list '(eshell-mode term-mode ivy-mode compilation-mode org-mode text-mode dired-mode pdf-view-mode)))
 
- (use-package flyspell
-   :ensure t
-   :bind (:map flyspell-mode-map
-               ("C-." . nil)
-          :map wh-keymap
-          ("w c" . flyspell-auto-correct-word))
-   :hook ((text-mode . flyspell-mode)
-          (prog-mode . flyspell-prog-mode)))
+(use-package flyspell
+  :ensure t
+  :bind (:map flyspell-mode-map
+              ("C-." . nil)
+              :map wh-keymap
+              ("w c" . flyspell-auto-correct-word))
+  :hook ((text-mode . flyspell-mode)
+         (prog-mode . flyspell-prog-mode)))
 
 (use-package yasnippet
   :ensure t
   :init
   (require 'yasnippet)
   (yas-global-mode 1)
-)
+  )
 
 
 ;; Ansi Color interpretation in the compilation buffer
@@ -721,7 +546,7 @@ fixes the bug where emacs dies when you try to kill a frame"
 (use-package git-link
   :ensure t
   :config (progn
-          (add-to-list 'git-link-remote-alist '("ghe.spotify.net" git-link-github)))
+            (add-to-list 'git-link-remote-alist '("ghe.spotify.net" git-link-github)))
   :bind ("C-c g l" . git-link))
 
 (use-package project
@@ -733,12 +558,21 @@ fixes the bug where emacs dies when you try to kill a frame"
 (use-package smartparens
   :ensure t)
 
+
+(use-package which-key
+  :config
+  (which-key-mode))
+
+(require 'lsp-config)
+(require 'dap-config)
 (require 'meow)
 (require 'comments)
 (require 'typescript)
-(require 'java-development)
-(require 'scala-development)
+(require 'go-config)
+;; (require 'java-development)
+;; (require 'scala-development)
 (require 'writeroom-config)
+
 
 (provide 'dot)
 ;; ;;; dot.el ends here

@@ -3,5 +3,5 @@
 # key: wrap
 # --
 if err != nil {
-	return errors.Wrap(err, "$0")
+	return fmt.Errorf("$0: %w", err)
 }

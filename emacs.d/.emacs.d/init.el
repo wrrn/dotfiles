@@ -28,6 +28,7 @@
 (global-unset-key (kbd wh-keymap-prefix-key))
 (define-prefix-command 'wh-keymap)
 (global-set-key (kbd wh-keymap-prefix-key) 'wh-keymap)
+;; (global-set-key (kbd "C-l") 'wh-keymap)
 
 
 ;; Replace

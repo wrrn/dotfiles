@@ -40,7 +40,7 @@
   "Mapping from bounds to function")
 
 (defun meow--selection-render-char-bounds-table ()
-    (let* ((ww (frame-width))
+  (let* ((ww (frame-width))
          (w 25)
          (col (min 5 (/ ww w))))
     (thread-last
@@ -58,11 +58,11 @@
            (format "%s%s%s%s"
                    (propertize
                     (meow--string-pad pre 8 32 t)
-                     'face 'font-lock-constant-face)
+                    'face 'font-lock-constant-face)
                    (propertize " → " 'face 'font-lock-comment-face)
                    (propertize
                     (meow--string-pad (symbol-name th) 13 32 t)
-                     'face 'font-lock-function-name-face)
+                    'face 'font-lock-function-name-face)
                    (if (= (1- col) (mod idx col))
                        "\n"
                      " ")))))
@@ -139,9 +139,20 @@
      (?d . defun)
      (?. . sentence)))
 
-  :hook (vterm-mode . (lambda ()
-                        (interactive)
-                        (advice-add 'meow--execute-kbd-macro :before #'meow--vterm-execute-kbd-macro)))
+  ;; :custom-face
+  ;; (meow-normal-indicator ((t (:inherit nano-modeline-status))))
+  ;; (meow-motion-indicator ((t (:inherit nano-modeline-status))))
+  ;; (meow-keypad-indicator ((t (:inherit nano-modeline-status))))
+  ;; (meow-insert-indicator ((t (:inherit nano-modeline-status))))
+  ;; (meow-beacon-indicator ((t (:inherit nano-modeline-status))))
+
+
+
+  :hook
+  (vterm-mode . (lambda ()
+                  (interactive)
+                  (advice-add 'meow--execute-kbd-macro :before #'meow--vterm-execute-kbd-macro)))
+  (vterm-copy-mode . meow-insert-exit)
 
   :init (progn
           (require 'meow)

@@ -50,8 +50,8 @@
 ;;   :config (load-theme 'darktooth))
 
 ;; (use-package soothe-theme
-;;   :ensure t
-;;   :config (load-theme 'soothe))
+;; :ensure t
+;; :config (load-theme 'soothe))
 
 ;; (use-package jazz-theme
 ;;   :ensure t
@@ -74,6 +74,22 @@
   :ensure t
   :config (load-theme 'modus-vivendi-tinted))
 
+(defun nano-modeline-vterm-shell-mode ()
+  "Show COPY if vterm is in copy mode"
+  (propertize (if vterm-copy-mode
+                  "(copy mode)"
+                "")
+              'face (nano-modeline-face 'primary)))
+
+(defun nano-modeline-vterm-mode ()
+  "Nano line for vterm-mode"
+  (funcall nano-modeline-position
+           '((nano-modeline-buffer-status ">_") " "
+             (nano-modeline-term-shell-name) " "
+             (nano-modeline-vterm-shell-mode))
+           '((nano-modeline-default-directory) " "
+             (nano-modeline-window-dedicated))))
+
 (use-package nano-modeline
   :ensure t
   :config (setq-default mode-line-format nil)
@@ -89,11 +105,71 @@
   (elfeed-search-mode   . nano-modeline-elfeed-search-mode)
   (elpher-mode          . nano-modeline-elpher-mode)
   (term-mode            . nano-modeline-term-mode)
+  (vterm-mode           . nano-modeline-vterm-mode)
   (eat-mode             . nano-modeline-eat-mode)
   (xwidget-webkit-mode  . nano-modeline-xwidget-mode)
   (messages-buffer-mode . nano-modeline-message-mode)
   (org-capture-mode     . nano-modeline-org-capture-mode)
   (org-agenda-mode      . nano-modeline-org-agenda-mode))
+
+(use-package simple
+  :straight f
+  :diminish visual-line-mode
+  ;; Nice Line Wrapping
+  :init (setq visual-line-mode 80)
+  :config (global-visual-line-mode))
+
+;; Make a small center margin
+(use-package fringe
+  :straight f
+  :init (fringe-mode 1))
+
+;; Set the font
+(defvar ui-config-fonts
+  '(("MonoLisa"         . 181)
+    ("Berkeley Mono"    . 191)
+    ("iA Writer Mono S" . 151)
+    ))
+
+(defun ui-config-set-font (font)
+  "Set the font for an alist value"
+  (let ((font-name (car font))
+        (font-size (cdr font)))
+    (set-face-attribute 'default nil :height font-size :font font-name)))
+
+(ui-config-set-font (assoc "MonoLisa" ui-config-fonts))
+
+(use-package ligature
+  :ensure t
+  :config
+  ;; Enable the "www" ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+  ;; Enable traditional ligature support in eww-mode, if the
+  ;; `variable-pitch' face supports it
+  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+  ;; Enable all Cascadia Code ligatures in programming modes
+  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                       "\\\\" "://"))
+  ;; Enables ligature checks globally in all buffers. You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
+
+
+
+
+
+
 
 ;; (use-package mini-frame
 ;;   :ensure t
@@ -135,41 +211,45 @@
 ;;                               :inherit nil
 ;;                               :box nil)))
 
-(defun font-existsp (font)
-  "Check to see if the named FONT is available."
-  (if (null (x-list-fonts font))
-      nil t))
-
 ;; Set default font. First one found is selected.
-(cond
- ((eq window-system nil) nil)
- ;; ((font-existsp "iA Writer Mono S")
- ;; (set-face-attribute 'default nil :height 151 :font "iA Writer Mono S"))
- ((font-existsp "Ellograph CF")
-  (set-face-attribute 'default nil :height 151 :font "Ellograph CF"))
- ((font-existsp "Comic Code")
-  (set-face-attribute 'default nil :height 131 :font "Comic Code"))
- ((font-existsp "Comic Mono")
-  (set-face-attribute 'default nil :height 151 :font "Comic Mono"))
- ((font-existsp "Jetbrains Mono")
-  (set-face-attribute 'default nil :height 151 :font "Jetbrains Mono"))
- ((font-existsp "Roboto Mono")
-  (set-face-attribute 'default nil :height 131 :font "Roboto Mono"))
- ((font-existsp "Input Mono Compressed")
-  (set-face-attribute 'default nil :height 131 :font "Input Mono Compressed"))
- ((font-existsp "PragmataPro")
-  (set-face-attribute 'default nil :height 131 :font "PragmataPro"))
- ((font-existsp "Source Code Pro")
-  (set-face-attribute 'default nil :height 121 :font "Source Code Pro"))
- ((font-existsp "Menlo")
-  (set-face-attribute 'default nil :height 121 :font "Menlo"))
- ((font-existsp "Consolas")
-  (set-face-attribute 'default nil :height 121 :font "Consolas"))
- ((font-existsp "Inconsolata")
-  (set-face-attribute 'default nil :height 121 :font "Inconsolata"))
- ((font-existsp "Envy Code R")
-  (set-face-attribute 'default nil :height 121 :font "Envy Code R"))
- )
+;; (defun font-existsp (font)
+;;   "Check to see if the named FONT is available."
+;;   (if (null (x-list-fonts font))
+;;       nil t))
+;; (cond
+;;  ((eq window-system nil) nil)
+;;  ((font-existsp "MonoLisa")
+;;   (set-face-attribute 'default nil :height 181 :font "MonoLisa"))
+;;  ((font-existsp "Hurmit Nerd Font Mono")
+;;   (set-face-attribute 'default nil :height 181 :font "Hurmit Nerd Font Mono"))
+;;  ((font-existsp "Berkeley Mono")
+;;   (set-face-attribute 'default nil :height 191 :font "Berkeley Mono"))
+;;  ((font-existsp "iA Writer Mono S")
+;;   (set-face-attribute 'default nil :height 151 :font "iA Writer Mono S"))
+;;  ((font-existsp "Comic Code")
+;;   (set-face-attribute 'default nil :height 131 :font "Comic Code"))
+;;  ((font-existsp "Comic Mono")
+;;   (set-face-attribute 'default nil :height 151 :font "Comic Mono"))
+;;  ((font-existsp "Jetbrains Mono")
+;;   (set-face-attribute 'default nil :height 151 :font "Jetbrains Mono"))
+;;  ((font-existsp "Roboto Mono")
+;;   (set-face-attribute 'default nil :height 131 :font "Roboto Mono"))
+;;  ((font-existsp "Input Mono Compressed")
+;;   (set-face-attribute 'default nil :height 131 :font "Input Mono Compressed"))
+;;  ((font-existsp "PragmataPro")
+;;   (set-face-attribute 'default nil :height 131 :font "PragmataPro"))
+;;  ((font-existsp "Source Code Pro")
+;;   (set-face-attribute 'default nil :height 121 :font "Source Code Pro"))
+;;  ((font-existsp "Menlo")
+;;   (set-face-attribute 'default nil :height 121 :font "Menlo"))
+;;  ((font-existsp "Consolas")
+;;   (set-face-attribute 'default nil :height 121 :font "Consolas"))
+;;  ((font-existsp "Inconsolata")
+;;   (set-face-attribute 'default nil :height 121 :font "Inconsolata"))
+;;  ((font-existsp "Envy Code R")
+;;   (set-face-attribute 'default nil :height 121 :font "Envy Code R"))
+;;  )
 
+;; This assumes you've installed the package via MELPA.
 
 (provide 'ui-config)

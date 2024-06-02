@@ -13,7 +13,7 @@
         (match-end 1))))))
 
 (defun org-roam-agenda-category ()
-    "Get category of item at point for agenda.
+  "Get category of item at point for agenda.
 
 Category is defined by one of the following items:
 - CATEGORY property
@@ -52,15 +52,15 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
   (org-enforce-todo-dependencies t) ;; Force everything to DONE before marking a parent done.
   (org-hide-emphasis-markers t) ; Hide the emphasis markers for bold, strike-through, italic, underlined, verbatim, and code
   (org-todo-keywords
-        '((sequence "TODO(t)" "TO TEST(e)" "TO DEPLOY(i)" "IN PROGRESS(p)" "In Peer Review(r)" "Waiting(w)" "HOLD(h)" "|" "DONE(d)")
-          (sequence "QUESTION(q)" "|" "ANSWERED(a)")
-          (sequence "|" "NOT DOING(n)")))
+   '((sequence "TODO(t)" "TO TEST(e)" "TO DEPLOY(i)" "IN PROGRESS(p)" "In Peer Review(r)" "Waiting(w)" "HOLD(h)" "|" "DONE(d)")
+     (sequence "QUESTION(q)" "|" "ANSWERED(a)")
+     (sequence "|" "NOT DOING(n)")))
   (org-todo-keyword-faces
-        '(("Waiting" . org-warning)
-          ("HOLD" . org-warning)
-          ("In Peer Review" . org-warning)
-          ("TO DEPLOY" . org-warning)
-          ("IN PROGRESS" . (:foreground "#f1fa8c" :bold t :background "#373844"))))
+   '(("Waiting" . org-warning)
+     ("HOLD" . org-warning)
+     ("In Peer Review" . org-warning)
+     ("TO DEPLOY" . org-warning)
+     ("IN PROGRESS" . (:foreground "#f1fa8c" :bold t :background "#373844"))))
   (org-log-done 'note) ;; Log when something was marked as done
   (org-fontify-done-headline t) ;; Allow strike throughs for DONE items
   (org-enforce-todo-checkbox-dependencies t) ;; Force checkboxes to be a dependency before moving TODO's to DONE
@@ -158,12 +158,12 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
           ("C-o" . nil)
           ("C-o r f" . org-roam-node-find)
           ("C-o r g" . org-roam-graph)
-  :map org-mode-map
-  (("C-c n i" . org-roam-node-insert)
-   ("C-o r n i")
-   ("C-o r r" . org-roam-refile)
-   ;; TODO: Use the variable here
-   ("C-j" . nil))))
+          :map org-mode-map
+          (("C-c n i" . org-roam-node-insert)
+           ("C-o r n i")
+           ("C-o r r" . org-roam-refile)
+           ;; TODO: Use the variable here
+           ("C-j" . nil))))
 
 ;; Deft helps me look up org-roam files quickly. Like rg or grep but on the fly.
 (use-package deft
@@ -193,7 +193,7 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
               ("j e" . org-journal-new-entry)
               ("j n" . org-journal-new-note)
 
-          :map org-journal-mode-map
+              :map org-journal-mode-map
               (("C-j" . nil)))
   :custom
   (org-journal-file-header "#+TITLE: %B %Y")
@@ -206,9 +206,9 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
   (org-journal-hide-entries-p t))
 
 
-;; (use-package org-bullets
-;;   :ensure t
-;;   :hook (org-mode . org-bullets-mode))
+(use-package org-bullets
+  :ensure t
+  :hook (org-mode . org-bullets-mode))
 
 (use-package org-tree-slide
   :ensure t

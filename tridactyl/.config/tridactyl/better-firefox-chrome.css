@@ -1,49 +1,80 @@
+:root {
+    --wrrn-background: #3b3f52;
+    --chrome-content-separator-color: #3b3f52;
+}
+
 /* Element | chrome://browser/content/browser.xhtml */
 :root #nav-bar {
-  height: 50px !important;
+    height: 30px !important;
+}
+
+.browser-toolbar {
+    padding-top: 10px;
 }
 
 /* Element | chrome://browser/content/browser.xhtml */
 :root .urlbarView {
-  display: none !important;
+    display: none !important;
 }
 
 /* Element | chrome://browser/content/browser.xhtml */
 :root #urlbar-background {
-  display: none !important;
-}
-
-/* Element | chrome://browser/content/browser.xhtml */
-:root #urlbar-input-container {
-  height: 0px !important;
-  border: 0px !important;
-  padding: 0px !important;
-}
-
-/* browser-shared.css | chrome://browser/skin/browser-shared.css */
-:root .browser-toolbar {
-  &:not(.titlebar-color) {
-    /* background-color: var(--toolbar-bgcolor); */
-    /* color: var(--toolbar-color); */
-    /* border-style: none; */
-  }
-}
-
-:root &:-moz-window-inactive {
-  /* background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color)); */
+    display: none !important;
 }
 
 #navigator-toolbox {
-  /* appearance: none; */
+    opacity: 50 !important;
 }
 
-/* Element | chrome://browser/content/browser.xhtml */
-
-#navigator-toolbox {
-  opacity: 50 !important;
+#appcontent
+    > #tabbrowser-tabbox
+    > #tabbrowser-tabpanels
+    > .deck-selected
+    > .browserContainer
+    > .browserStack
+    > browser {
+    border-radius: 10px !important;
+    margin: 10px !important;
 }
 
-/* #navigator-toolbox { */
-/*   background: aliceblue !important; */
-/*   border-bottom: 1px !important; */
-/* } */
+.browserStack {
+    background: var(--wrrn-background);
+}
+
+#PersonalToolbar {
+    display: none;
+}
+
+#titlebar {
+    display: none !important;
+}
+
+.titlebar-buttonbox-container {
+    display: none !important;
+}
+
+#forward-button,
+#back-button,
+#reload-button {
+    display: none !important;
+}
+
+#identity-icon-box {
+    display: none !important;
+}
+
+#tracking-protection-icon-container {
+    display: none !important;
+}
+
+#urlbar-background {
+    background-color: var(--wrrn-background) !important;
+}
+
+#urlbar-go-button {
+    display: none;
+}
+
+#page-action-buttons {
+    display: none;
+}

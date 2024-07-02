@@ -65,7 +65,7 @@ guiset_quiet tabs none
 guiset_quiet statuspanel left
 
 " Set colorscheme
-colors shydactyl
+colors midday
 
 " Add custom search engines
 set searchurls.pulls https://bitbucket.org/pryoninc/%s/pull-requests/

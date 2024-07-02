@@ -1,0 +1,154 @@
+:root.TridactylOwnNamespace a {
+    color: #ffffff;
+}
+
+:root.TridactylOwnNamespace code {
+    background-color: #2a333c;
+    padding: 3px 7px;
+}
+
+:root {
+    --md-sys-color-primary: "#006874";
+    --md-sys-color-on-primary: "#ffffff";
+    --md-sys-color-surface: "#f5fafb";
+    --md-sys-color-surface-tint: rgba(0 104 116);
+    --md-sys-color-surface-container: rgb(233 239 240);
+    --md-sys-color-surface-container-high: rgb(227 233 234);
+    --md-sys-color-on-surface: rgb(23 29 30);
+    --md-sys-color-surface-variant: rgb(219 228 230);
+    --md-sys-color-on-surface-variant: rgb(63 72 74);
+
+    --md-inverse-surface: "#2b3133";
+    --md-inverse-on-surface: "#ecf2f3";
+    --md-sys-color-tertiary: rgb(83 94 125);
+    --md-sys-color-on-tertiary: rgb(255 255 255);
+    --md-sys-color-tertiary-container: rgb(218 226 255);
+    --md-sys-color-on-tertiary-container: rgb(15 26 55);
+
+    --md-sys-color-secondary: rgb(74 98 103);
+    --md-sys-color-on-secondary: rgb(255 255 255);
+
+    --md-sys-shape-corner-small-family: 1px;
+    --md-sys-shape-corner-full-family: 3px;
+
+    --md-sys-elevation-level3: 6px;
+
+    --tridactyl-header-font-size: 16px;
+    --tridactyl-border-radius: 36px;
+
+    --tridactyl-bg: var(--md-sys-color-surface-container-high);
+    --tridactyl-fg: var(--md-sys-color-on-surface);
+
+    --tridactyl-of-fg: var(--md-sys-color-on-surface);
+    --tridactyl-of-bg: var(--md-sys-color-secondary);
+
+    --tridactyl-hintspan-fg: var(--md-sys-color-on-primary);
+    --tridactyl-hintspan-bg: var(--md-sys-color-primary);
+
+    --tridactyl-hint-active-fg: #333;
+    --tridactyl-hint-active-bg: #006e51;
+    --tridactyl-hint-active-outline: 1px solid #000;
+
+    --tridactyl-hint-bg: rgba(13, 31, 54, 0.25);
+    --tridactyl-hint-outline: 1px solid var(--tridactyl-hintspan-bg);
+
+    --tridactyl-url-fg: #525e7d;
+
+    --tridactyl-cmdl-font-family: "Ellograph CF", monospace;
+    --tridactyl-cmdl-font-size: 1.5rem;
+    --tridactyl-cmplt-fg: --tridactyl-cmplt-option-height: 1.9em;
+}
+
+:root.TridactylOwnNamespace {
+    scrollbar-width: thin;
+}
+
+:root #command-line-holder {
+    order: 1;
+}
+
+:root #command-line-holder,
+:root #tridactyl-input {
+    border-radius: var(--tridactyl-border-radius) !important;
+}
+
+:root #tridactyl-colon::before {
+    content: "";
+}
+
+:root #tridactyl-input {
+    width: 94%;
+    padding: 1rem 1rem 1rem 2rem;
+}
+
+:root #completions table {
+    font-weight: 200;
+    table-layout: fixed;
+    padding: 1rem;
+    padding-top: 0;
+}
+
+:root #completions > div {
+    max-height: calc(20 * var(--tridactyl-cmplt-option-height));
+    min-height: calc(10 * var(--tridactyl-cmplt-option-height));
+}
+
+:root #completions {
+    border: none !important;
+    font-family: var(--tridactyl-font-family);
+    order: 2;
+    margin-top: 10px;
+    border-radius: var(--tridactyl-border-radius);
+}
+
+:root #completions .HistoryCompletionSource table {
+    width: 100%;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+:root #completions .BufferCompletionSource table {
+    width: unset;
+    font-size: unset;
+    border-spacing: unset;
+    table-layout: unset;
+}
+
+:root #completions table tr .title {
+    width: 50%;
+}
+
+:root #completions tr .documentation {
+    white-space: nowrap;
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+
+:root #completions .sectionHeader {
+    background: transparent;
+    padding: 1rem 1rem 0.4rem !important;
+}
+
+:root #cmdline_iframe {
+    position: fixed !important;
+    bottom: unset;
+    top: 25% !important;
+    left: 10% !important;
+    z-index: 2147483647 !important;
+    width: 80% !important;
+    filter: drop-shadow(
+        0px 0px var(--md-sys-elevation-level3) #000000
+    ) !important;
+    color-scheme: only light; /* Prevent Firefox from adding a white background on dark-mode sites */
+}
+
+:root .TridactylStatusIndicator {
+    position: fixed !important;
+    bottom: 10px !important;
+    right: 10px !important;
+    font-weight: 200 !important;
+    padding: 5px !important;
+    --tridactyl-status-fg: var(--md-sys-color-on-tertiary) !important;
+    --tridactyl-status-bg: var(--md-sys-color-tertiary) !important;
+    --tridactyl-status-border-radius: var(--tridactyl-border-radius) !important;
+}

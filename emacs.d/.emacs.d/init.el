@@ -24,11 +24,14 @@
 
 ;; Define custom keymap
 (setq wh-keymap-prefix-key "C-j")
-
+(keymap-unset lisp-interaction-mode-map "C-j" t)
 (global-unset-key (kbd wh-keymap-prefix-key))
 (define-prefix-command 'wh-keymap)
 (global-set-key (kbd wh-keymap-prefix-key) 'wh-keymap)
-;; (global-set-key (kbd "C-l") 'wh-keymap)
+
+(global-unset-key (kbd "C-l"))
+(global-set-key (kbd "C-l") 'wh-keymap)
+
 
 
 ;; Replace
@@ -47,13 +50,11 @@
 (set-face-attribute 'default nil :font "JuliaMono" :height 140)
 (set-frame-font "JuliaMono" nil t)
 
-;; (set-face-attribute 'default nil :height 130)
-;; (set-face-attribute 'default nil :font "Input Mono")
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (setq-default line-spacing 1)
-(setq split-width-threshold 200)
-(setq split-height-threshold 200)
+(setq split-width-threshold 100)
+(setq split-height-threshold 10000)
 
 ;;Spacing
 (setq-default indent-tabs-mode nil
@@ -83,13 +84,6 @@
 (package-initialize)
 
 (require 'dot)
-
-;;Get rid of tool and menu bars
-;; (and (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-;; (and (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-
-;; Get rid of all frame decorations
-;; Commented out so that amethyst can grab the title bar
 
 ;;Mac Environment
 (when (memq window-system '(mac ns))

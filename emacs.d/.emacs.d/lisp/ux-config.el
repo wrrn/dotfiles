@@ -150,8 +150,9 @@
 (use-package zoxide
   :ensure t
   :bind
-  (:map wh-keymap
-        ("c d" . zoxide-cd)))
+  (("C-x c d" . zoxide-cd)
+   :map wh-keymap
+   ("c d" . zoxide-cd)))
 
 ;; A few more useful configurations...
 (use-package emacs

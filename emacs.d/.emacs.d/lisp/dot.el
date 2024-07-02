@@ -35,6 +35,9 @@
 (require 'ui-config)
 
 
+(use-package direnv
+  :ensure t
+  :config (direnv-mode))
 
 (use-package exec-path-from-shell
   ;; Used to get environment variables for mac

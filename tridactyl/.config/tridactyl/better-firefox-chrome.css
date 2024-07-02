@@ -1,15 +1,25 @@
 :root {
-    --wrrn-background: #3b3f52;
-    --chrome-content-separator-color: #3b3f52;
+    --md-sys-color-surface-container: rgb(233 239 240);
+    --wrrn-background: var(--md-sys-color-surface-container);
+    --chrome-content-separator-color: var(--wrrn-background) !important;
+    --tabpanel-background-color: var(--wrrn-background) !important;
+    --wrrn-padding: 16px;
+    --wrrn-border-radius: 12px;
+    --wrrn-margin: 8px;
 }
 
-/* Element | chrome://browser/content/browser.xhtml */
-:root #nav-bar {
-    height: 30px !important;
-}
+/* :root { */
+/*     --wrrn-background: #3b3f52; */
+/*     --chrome-content-separator-color: #3b3f52 !important; */
+/*     --tabpanel-background-color: #3b3f52 !important; */
+/*     --wrrn-padding: 10px; */
+/*     --wrrn-border-radius: 10px; */
+/*     --wrrn-margin: 10px; */
+/* } */
 
 .browser-toolbar {
-    padding-top: 10px;
+    padding-top: calc(var(--wrrn-padding) / 1.618 / 1.618) !important;
+    background-color: var(--wrrn-background) !important;
 }
 
 /* Element | chrome://browser/content/browser.xhtml */
@@ -33,8 +43,12 @@
     > .browserContainer
     > .browserStack
     > browser {
-    border-radius: 10px !important;
-    margin: 10px !important;
+    border-radius: var(--wrrn-border-radius) !important;
+    margin: var(--wrrn-margin) !important;
+}
+
+#tabbrowser-tabpanels {
+    background-color: var(--wrrn-background) !important;
 }
 
 .browserStack {
@@ -77,4 +91,14 @@
 
 #page-action-buttons {
     display: none;
+}
+
+/* dev tools configuration */
+.devtools-horizontal-splitter {
+    background: var(--wrrn-background) !important;
+}
+
+.devtools-toolbox-bottom-iframe {
+    border-radius: var(--wrrn-border-radius) !important;
+    margin: var(--wrrn-margin) !important;
 }

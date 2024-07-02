@@ -81,6 +81,15 @@
               (bounds-fn (assoc (cdr bounds-type) meow--bounds-registry)))
     (call-interactively (cdr bounds-fn))))
 
+(defun meow-normal-self-insert ()
+  "Insert a character in Meow's normal mode."
+  (interactive)
+  (let ((current-state (meow--current-state)))
+    (meow-insert-mode 1)
+    (call-interactively 'self-insert-command)
+    (meow--switch-state current-state)
+    ))
+
 (use-package meow
   :ensure t
   :custom
@@ -149,9 +158,9 @@
 
 
   :hook
-  (vterm-mode . (lambda ()
-                  (interactive)
-                  (advice-add 'meow--execute-kbd-macro :before #'meow--vterm-execute-kbd-macro)))
+  ;; (vterm-mode . (lambda ()
+  ;;                 (interactive)
+  ;;                 (advice-add 'meow--execute-kbd-macro :before #'meow--vterm-execute-kbd-macro)))
   (vterm-copy-mode . meow-insert-exit)
 
   :init (progn
@@ -239,6 +248,13 @@
              '("Y" . meow-sync-grab)
              '("z" . meow-pop-selection)
              '("'" . repeat)
+             '("\"" . meow-normal-self-insert)
+             '("["  . meow-normal-self-insert)
+             '("]"  . meow-normal-self-insert)
+             '("{"  . meow-normal-self-insert)
+             '("}"  . meow-normal-self-insert)
+             '("("  . meow-normal-self-insert)
+             '(")"  . meow-normal-self-insert)
              '("<escape>" . ignore)))
           (meow-setup)
           (meow-global-mode 1)

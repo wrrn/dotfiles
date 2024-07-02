@@ -1,4 +1,4 @@
-set -x GOPATH $HOME/shed/go
+set -x GOPATH $HOME/.go
 fish_add_path --prepend \
     $HOME/.local/bin \
     $HOME/bin \
@@ -9,6 +9,21 @@ fish_add_path --prepend \
     $BREW_PREFIX/opt/gnu-tar/libexec/gnubin \
     $HOME/.cargo/bin \
     /usr/local/bin
+
+# Add
+source (brew --prefix asdf)/libexec/asdf.fish
+set -l _asdf_bin "$ASDF_DIR/bin"
+if test -z $ASDF_DATA_DIR
+    set _asdf_shims "$HOME/.asdf/shims"
+else
+    set _asdf_shims "$ASDF_DATA_DIR/shims"
+end
+fish_add_path --prepend \
+    $_asdf_bin \
+    $_asdf_shims
+set --erase _asdf_bin
+set --erase _asdf_shims
+
 
 set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
 set -x EDITOR emacsclient
@@ -33,23 +48,6 @@ if status is-interactive
         kind completion fish >~/.config/fish/completions/kind.fish
     end
 
-
-    # Add
-    source (brew --prefix asdf)/libexec/asdf.fish
-    set -l _asdf_bin "$ASDF_DIR/bin"
-    if test -z $ASDF_DATA_DIR
-        set _asdf_shims "$HOME/.asdf/shims"
-    else
-        set _asdf_shims "$ASDF_DATA_DIR/shims"
-    end
-    fish_add_path --prepend \
-        $_asdf_bin \
-        $_asdf_shims
-    set --erase _asdf_bin
-    set --erase _asdf_shims
-
-
-
     if [ "$INSIDE_EMACS" = vterm ]
         set -x EDITOR emacsclient
     else
@@ -63,4 +61,4 @@ if status is-interactive
     # fzf comes from fisher plugin
 end
 
-source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+# source /nix/var/nix/profiles/default/etc/profile.d/nix.fish

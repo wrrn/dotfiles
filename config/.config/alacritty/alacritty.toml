@@ -1,4 +1,4 @@
-import = ["/Users/warrenharper/.config/alacritty/themes/themes/ayu_light.toml"]
+import = ["/Users/warrenharper/.config/alacritty/themes/themes/pencil_light.yaml"]
 live_config_reload = true
 
 [colors]
@@ -11,7 +11,7 @@ TERM = "xterm-256color"
 size = 15
 
 [font.bold]
-family = "Ellograph CF"
+family = "iMWritingMono Nerd Font"
 style = "Bold"
 
 [font.glyph_offset]

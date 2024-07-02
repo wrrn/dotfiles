@@ -18,6 +18,7 @@ abbr -a gpl git pull
 abbr -a gwip git wip
 abbr -a grb git rebase
 abbr -a grbc git rebase --continue
+abbr -a gwrta git worktree add
 
 # kubernetes aliases
 abbr -a k kubectl
@@ -52,3 +53,13 @@ abbr -a myip dig +short myip.opendns.com @resolver1.opendns.com
 # gcloud
 abbr -a g gcloud
 abbr -a gcloud-update-ssh-config "sed -i '/Host warren-dev/,/Host .*|\$/{ /HostName/{s/HostName .*/HostName '(gcloud compute instances describe warren-dev | yq .networkInterfaces[0].accessConfigs[0].natIP)'/; };}' ~/.ssh/config"
+
+# worktree abbreviations
+abbr -a ws --set-cursor "worktree switch % | source"
+
+# directory generation
+function workbench_dir
+    set dir (string replace -r '^wb/' '' -- $argv)
+    echo ~/shed/workbench/$dir
+end
+abbr --add workbench_dir_abbr --position anywhere --regex "wb/.*" --function workbench_dir

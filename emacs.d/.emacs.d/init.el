@@ -47,12 +47,15 @@
 (show-paren-mode 1)
 (column-number-mode 1)
 (set-scroll-bar-mode nil)
-(set-face-attribute 'default nil :font "JuliaMono" :height 140)
-(set-frame-font "JuliaMono" nil t)
+;; (set-face-attribute 'default nil :font "JuliaMono" :height 140)
+;; (set-frame-font "JuliaMono" nil t)
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
-(setq-default line-spacing 1)
+(setq default-buffer-file-coding-system 'utf-8)
+(setq coding-system-for-read 'utf-8)
+(setq coding-system-for-write 'utf-8)
+;; (setq-default line-spacing 1)
 (setq split-width-threshold 100)
 (setq split-height-threshold 10000)
 

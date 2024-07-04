@@ -90,6 +90,14 @@
     (meow--switch-state current-state)
     ))
 
+(defvar meow--kbd-mark-sexp "C-M-SPC"
+  "Marking that sexp")
+
+(defun meow-mark-sexp ()
+  "Mark Sexp"
+  (interactive)
+  (meow--execute-kbd-macro meow--kbd-mark-sexp))
+
 (use-package meow
   :ensure t
   :custom
@@ -98,7 +106,8 @@
      (?h . ?h)
      (?x . ?x)
      (?j . ?j)
-     (?l . ?l)))
+     (?l . ?l)
+     (?u . ?u)))
   (meow-mode-state-list
    '((authinfo-mode . normal)
      (beancount-mode . normal)
@@ -225,7 +234,7 @@
              '("K" . meow-prev-expand)
              '("l" . meow-right)
              '("L" . meow-right-expand)
-             '("m" . meow-join)
+             '("m" . meow-mark-sexp)
              '("n" . meow-search)
              '("o" . meow-block)
              '("O" . meow-to-block)

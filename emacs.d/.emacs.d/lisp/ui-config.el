@@ -135,9 +135,11 @@
 
 ;; Set the font
 (defvar ui-config-fonts
-  '(("MonoLisa"         . 161)
-    ("Berkeley Mono"    . 191)
-    ("iA Writer Mono S" . 151)
+  '(("Ellograph CF"          . 170)
+    ("EllographCF Nerd Font" . 165)
+    ("MonoLisa"              . 161)
+    ("Berkeley Mono"         . 191)
+    ("iA Writer Mono S"      . 151)
     ))
 
 (defun ui-config-set-font (font)
@@ -146,7 +148,7 @@
         (font-size (cdr font)))
     (set-face-attribute 'default nil :height font-size :font font-name)))
 
-(ui-config-set-font (assoc "MonoLisa" ui-config-fonts))
+(ui-config-set-font (assoc "EllographCF Nerd Font" ui-config-fonts))
 
 (use-package ligature
   :ensure t

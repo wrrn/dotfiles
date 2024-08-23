@@ -8,6 +8,7 @@
   :custom
   (writeroom-maximize-window t)
   (writeroom-fullscreen-effect "maximized")
+  (writeroom-major-modes '(prog-mode vterm-mode text-mode))
   :hook
   (writeroom-mode . centered-cursor-mode)
   (writeroom-disable . centered-cursor-mode))

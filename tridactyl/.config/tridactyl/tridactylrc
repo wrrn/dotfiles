@@ -36,6 +36,7 @@ unbind t
 
 " Use kakoune-esque tab mangement
 bind to fillcmdline tabopen
+bind tb fillcmdcline bmarks -t
 bind ts fillcmdline tab
 bind tr fillcmdline tabrename %
 bind tp tabprev
@@ -43,6 +44,7 @@ bind tn tabnext
 bind tl tab #
 bind tc tabclose
 bind cpto fillcmdline tabopen -c personal
+bind cmto fillcmdline tabopen -c meta
 bind --mode=normal <M-t> fillcmdline tabopen
 
 bind tgs fillcmdline tgroupswitch

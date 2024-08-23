@@ -1,33 +1,50 @@
-format = """
-([](#FCA17D)[$cmd_duration](fg:#DA627D bg:#FCA17D)[](#FCA17D))
-
-[](#DA627D)$directory[](fg:#DA627D bg:#FCA17D)\
-$git_branch$git_status[](fg:#FCA17D)\
-(\n[](fg:#33658A)$direnv[](fg:#33658A))\
-\n$character\
+format = """\
+    $cmd_duration\
+    $line_break\
+    $line_break\
+    ($gcloud\n)\
+    ($kubernetes\n)\
+    ($direnv\n)\
+    ($git_branch ($git_commit )$git_status( $git_state)\n)\
+    $username\
+    $hostname\
+    $directory\
+    $docker_context\
+    $package\
+    $golang\
+    $nodejs\
+    $python\
+    $rust\
+    $terraform\
+    $zig\
+    $nix_shell\
+    $memory_usage\
+    $env_var\
+    $custom\
+    $line_break\
+    $jobs\
+    $battery\
+    $character\
 """
-
 # Disable the blank line at the start of the prompt
 add_newline = false
 
 [character]
-success_symbol = '[ ❯](bold green)'
-error_symbol = '[ ✗](bold red)'
+success_symbol = '[❯](bold green)'
+error_symbol = '[✗](bold red)'
 
 [cmd_duration]
 format = 'took [$duration]($style)'
-style = "bg:#FCA17D"
+style = "bg:purple fg:white"
 
 [directory]
-style = "bg:#DA627D"
-format = "[$path ]($style)"
+format = "[$path]($style)[$read_only]($read_only_style) "
 truncation_length = 3
 truncation_symbol = "…/"
 
 [direnv]
 disabled = false
 symbol = "\ue5fc "
-style = "bg:#33658A"
 format = '[$symbol$loaded/$allowed]($style)'
 
 [gcloud]
@@ -37,12 +54,13 @@ symbol = "☁ "
 
 [git_branch]
 symbol = ""
-style = "bg:#FCA17D"
-format = '[ $symbol $branch ]($style)'
+format = '[$symbol $branch]($style)'
+
+[git_commit]
+commit_hash_length = 4
 
 [git_status]
-style = "bg:#FCA17D"
-format = '[$all_status$ahead_behind ]($style)'
+format = '[$all_status$ahead_behind]($style)'
 
 [kubernetes]
 disabled = false
@@ -53,5 +71,4 @@ format = '[$symbol$context( \($namespace\))]($style)'
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:#9A348E"
-format = '[](#9A348E)[started at $time]($style)[](#9A348E)'
+format = '[started at $time]($style)'

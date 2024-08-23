@@ -17,23 +17,9 @@
 
 (straight-use-package 'use-package)
 
-(require 'use-package)
-(require 'no-littering)
-(require 'gcloud)
-(require 'org-config)
-(require 'lsp-config)
-(require 'dap-config)
-(require 'comments)
-(require 'typescript)
-(require 'go-config)
-;; (require 'java-development)
-;; (require 'scala-development)
-(require 'writeroom-config)
-(require 'term-config)
-(require 'ux-config)
-(require 'meow)
-(require 'ui-config)
 
+
+(require 'use-package)
 
 (use-package direnv
   :ensure t
@@ -56,6 +42,22 @@
   :config
   (asdf-enable))
 
+
+(require 'no-littering)
+(require 'gcloud)
+(require 'org-config)
+(require 'lsp-config)
+(require 'dap-config)
+(require 'comments)
+(require 'typescript)
+(require 'go-config)
+;; (require 'java-development)
+;; (require 'scala-development)
+(require 'writeroom-config)
+(require 'term-config)
+(require 'ux-config)
+(require 'meow)
+(require 'ui-config)
 
 
 (use-package magit

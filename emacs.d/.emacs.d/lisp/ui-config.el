@@ -94,14 +94,23 @@
   "Nano line for vterm-mode"
   (funcall nano-modeline-position
            '((nano-modeline-buffer-status ">_") " "
-             (nano-modeline-term-shell-name) " "
+             (nano-modeline-buffer-name) " "
              (nano-modeline-vterm-shell-mode))
            '((nano-modeline-default-directory) " "
              (nano-modeline-window-dedicated))))
 
 (use-package nano-modeline
   :ensure t
-  :config (setq-default mode-line-format nil)
+  :config
+  (setq-default mode-line-format nil)
+  (nano-modeline-text-mode t)
+  :custom
+  (nano-modeline-padding  '(0.0 . 0.0))
+  :custom-face
+  (nano-modeline-active ((t ( :background nil
+                              :underline (:position 10)))))
+  (nano-modeline-status ((t ( :underline (:position 10)
+                              :foreground ,(face-foreground 'default)))))
   :hook
   (prog-mode            . nano-modeline-prog-mode)
   (text-mode            . nano-modeline-text-mode)
@@ -121,6 +130,7 @@
   (org-capture-mode     . nano-modeline-org-capture-mode)
   (org-agenda-mode      . nano-modeline-org-agenda-mode))
 
+
 (use-package simple
   :straight f
   :diminish visual-line-mode
@@ -129,13 +139,13 @@
   :config (global-visual-line-mode))
 
 ;; Make a small center margin
-(use-package fringe
-  :straight f
-  :init (fringe-mode 8))
+;; (use-package fringe
+;;   :straight f
+;;   :init (fringe-mode 8))
 
 ;; Set the font
 (defvar ui-config-fonts
-  '(("Ellograph CF"          . 170)
+  '(("Ellograph CF"          . 150)
     ("EllographCF Nerd Font" . 165)
     ("MonoLisa"              . 161)
     ("Berkeley Mono"         . 191)
@@ -183,6 +193,14 @@
                     :strike-through (face-background 'nano-modeline-active)
                     :underline (face-background 'nano-modeline-active)
                     :overline (face-background 'nano-modeline-active))
+
+;; Enable the window divider
+(setq window-divider-default-places t)
+(setq window-divider-default-right-width 10)
+(setq window-divider-default-bottom-width 3)
+(set-face-attribute 'window-divider nil
+                    :foreground (face-background 'default))
+(window-divider-mode 1)
 ;; ;; (use-package mini-frame
 ;;   :ensure t
 ;;   :config (mini-frame-mode)

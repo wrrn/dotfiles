@@ -206,9 +206,9 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
   (org-journal-hide-entries-p t))
 
 
-(use-package org-bullets
-  :ensure t
-  :hook (org-mode . org-bullets-mode))
+;; (use-package org-bullets
+;;   :ensure t
+;;   :hook (org-mode . org-bullets-mode))
 
 (use-package org-tree-slide
   :ensure t
@@ -220,7 +220,7 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
   :custom
   (ob-mermaid-cli-path (concat (getenv "HOME") "/node_modules/.bin/mmdc"))
   :init
-  (append org-babel-load-languages '((go . t))))
+  (append org-babel-load-languages '((mermaid . t))))
 
 (use-package org-modern
   :ensure t

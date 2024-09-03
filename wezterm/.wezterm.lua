@@ -29,6 +29,14 @@ config.keys = {
       action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
    },
    {
+      key = 'p',
+      mods = 'LEADER',
+      action = wezterm.action.ActivateKeyTable {
+         name = 'pane',
+         one_shot = true,
+      },
+   },
+   {
       key = 's',
       mods = 'CTRL',
       action = wezterm.action.Search {CaseInSensitiveString = ''},
@@ -88,6 +96,21 @@ config.keys = {
       mods = 'LEADER',
       action = wezterm.action.ActivateTab(8),
    },
+}
+
+config.key_tables = {
+   pane = {
+      { key = "z", action = wezterm.action.TogglePaneZoomState },
+      { key = "k", action = wezterm.action.CloseCurrentPane { confirm = false }},
+      { key = "s", action = wezterm.action.ActivateKeyTable {
+           name = "pane_split",
+           one_shot = true,
+      }}
+   },
+   pane_split = {
+      { key = "h", action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+      { key = "v", action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } }
+   }
 }
 
 -- and finally, return the configuration to wezterm

@@ -18,7 +18,7 @@
     flake-utils.lib.eachSystem flake-utils.lib.allSystems (
       system:
       let
-        pkgs = import nixpkgs { system = "aarch64-darwin"; };
+        pkgs = import nixpkgs { system = system; };
         dotFiles = (
           let
             ignoredFiles = [
@@ -38,8 +38,8 @@
         mkDotfile =
           pname:
           pkgs.stdenv.mkDerivation {
-            pname = "${pname}-conf";
-            version = "0.0.1";
+            inherit pname;
+            name = pname;
             src = ./${pname};
             installPhase = ''
               mkdir -p $out

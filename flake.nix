@@ -47,12 +47,12 @@
               cp -r $src/* $out/  || true
             '';
           };
+        packages = pkgs.lib.attrsets.genAttrs dotFiles mkDotfile;
+        defaults = {default = packages;};
 
       in
       {
-        packages = pkgs.lib.foldr (
-          dotfile: attrSet: attrSet // { "${dotfile}" = mkDotfile dotfile; }
-        ) { } dotFiles;
+        packages = pkgs.lib.mergeAttrs packages defaults;
       }
     );
 }

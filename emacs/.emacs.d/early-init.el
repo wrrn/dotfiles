@@ -17,8 +17,8 @@
                             (height . 50)
                             (width . 95)))
 
-;; (add-to-list 'default-frame-alist '(undecorated . t))
-(add-to-list 'default-frame-alist '(undecorated-round . t))
+(add-to-list 'default-frame-alist '(undecorated . t))
+;; (add-to-list 'default-frame-alist '(undecorated-round . t))
 ;; (setq ns-auto-hide-menu-bar t)
 ;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 ;; (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme

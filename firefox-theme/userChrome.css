@@ -1,0 +1,104 @@
+:root {
+    --md-sys-color-surface-container: rgb(233 239 240);
+    --wrrn-background: var(--md-sys-color-surface-container);
+    --chrome-content-separator-color: var(--wrrn-background) !important;
+    --tabpanel-background-color: var(--wrrn-background) !important;
+    --wrrn-padding: 16px;
+    --wrrn-border-radius: 12px;
+    --wrrn-margin: 8px;
+}
+
+/* :root { */
+/*     --wrrn-background: #3b3f52; */
+/*     --chrome-content-separator-color: #3b3f52 !important; */
+/*     --tabpanel-background-color: #3b3f52 !important; */
+/*     --wrrn-padding: 10px; */
+/*     --wrrn-border-radius: 10px; */
+/*     --wrrn-margin: 10px; */
+/* } */
+
+.browser-toolbar {
+    padding-top: calc(var(--wrrn-padding) / 1.618 / 1.618) !important;
+    background-color: var(--wrrn-background) !important;
+}
+
+/* Element | chrome://browser/content/browser.xhtml */
+:root .urlbarView {
+    display: none !important;
+}
+
+/* Element | chrome://browser/content/browser.xhtml */
+:root #urlbar-background {
+    display: none !important;
+}
+
+#navigator-toolbox {
+    opacity: 50 !important;
+}
+
+#appcontent
+    > #tabbrowser-tabbox
+    > #tabbrowser-tabpanels
+    > .deck-selected
+    > .browserContainer
+    > .browserStack
+    > browser {
+    border-radius: var(--wrrn-border-radius) !important;
+    margin: var(--wrrn-margin) !important;
+}
+
+#tabbrowser-tabpanels {
+    background-color: var(--wrrn-background) !important;
+}
+
+.browserStack {
+    background: var(--wrrn-background);
+}
+
+#PersonalToolbar {
+    display: none;
+}
+
+#titlebar {
+    display: none !important;
+}
+
+.titlebar-buttonbox-container {
+    display: none !important;
+}
+
+#forward-button,
+#back-button,
+#reload-button {
+    display: none !important;
+}
+
+#identity-icon-box {
+    display: none !important;
+}
+
+#tracking-protection-icon-container {
+    display: none !important;
+}
+
+#urlbar-background {
+    background-color: var(--wrrn-background) !important;
+}
+
+#urlbar-go-button {
+    display: none;
+}
+
+#page-action-buttons {
+    display: none;
+}
+
+/* dev tools configuration */
+.devtools-horizontal-splitter {
+    background: var(--wrrn-background) !important;
+}
+
+.devtools-toolbox-bottom-iframe {
+    border-radius: var(--wrrn-border-radius) !important;
+    margin: var(--wrrn-margin) !important;
+}

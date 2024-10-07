@@ -1,6 +1,6 @@
 fish_add_path --prepend /usr/local/bin
 
-if ! string match -q Darwin "(uname)"
+if ! string match -q Darwin "$(uname)"
     return 0
 end
 

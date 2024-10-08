@@ -59,12 +59,15 @@ autocmd DocStart mail.google.com mode ignore
 
 " Sometimes the status bar in the bottom left corner overlaps the Tridactyl
 " command line, so set an option to move the status bar to the top.
-guiset_quiet hoverlink top
-guiset_quiet menubar default
-" guiset_quiet navbarnonaddonchildren hide
-guiset_quiet padwhenmaximised some
-guiset_quiet tabs none
-guiset_quiet statuspanel left
+""""" We are commenting these out and adding the changes directly to our
+    " custom-chrome so that we use it on nix.
+
+" guiset_quiet hoverlink top
+" guiset_quiet menubar default
+" " guiset_quiet navbarnonaddonchildren hide
+" guiset_quiet padwhenmaximised some
+" guiset_quiet tabs none
+" guiset_quiet statuspanel left
 
 " Set colorscheme
 colors midday

@@ -113,6 +113,7 @@ config.key_tables = {
    }
 }
 
+
 config.enable_wayland = true
 config.front_end="WebGpu"
 

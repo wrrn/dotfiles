@@ -13,7 +13,7 @@
                             (vertical-scroll-bars . nil)
                             (menu-bar-lines . 0)
                             (tool-bar-lines . 0) ;; <----- here
-                            (internal-border-width . 10)
+                            (internal-border-width . 25)
                             (height . 50)
                             (width . 95)))
 
@@ -28,8 +28,8 @@
 ;; (add-to-list 'default-frame-alist '(title . nil)) ;; assuming you are using a dark theme
 ;; (setq ns-use-proxy-icon nil)
 (setq frame-resize-pixelwise t)
-(set-face-foreground 'window-divider-first-pixel "gray")
-(set-face-background 'window-divider-first-pixel "gray")
+;; (set-face-foreground 'window-divider-first-pixel "gray")
+;; (set-face-background 'window-divider-first-pixel "gray")
 
-(set-face-foreground 'window-divider "gray")
-(set-face-background 'window-divider "gray")
+;; (set-face-foreground 'window-divider "gray")
+;; (set-face-background 'window-divider "gray")

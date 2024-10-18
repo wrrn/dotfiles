@@ -1,4 +1,5 @@
 ;; ui-config.el --- Configure the ui-components
+
 (use-package autothemer
   :ensure t)
 
@@ -67,7 +68,6 @@
   :ensure t
   ;; :config (load-theme 'gruvbox-light-soft)
   )
-
 
 (use-package kanagawa-theme
   :ensure t
@@ -138,6 +138,25 @@
   :init (setq visual-line-mode 80)
   :config (global-visual-line-mode))
 
+(use-package spacious-padding
+  :ensure t
+  :custom  (spacious-padding-widths '( :internal-border-width 25
+                                       :header-line-width 30
+                                       :mode-line-width 30
+                                       :tab-width 4
+                                       :right-divider-width 30
+                                       :scroll-bar-width 8))
+  :config (spacious-padding-mode 1))
+
+(use-package auto-dim-other-buffers
+  :ensure t
+  :custom
+  (auto-dim-other-buffers-dim-on-focus-out nil)
+  :custom-face
+  (auto-dim-other-buffers-face ((t (:background "#ddd"))))
+  :config
+  (auto-dim-other-buffers-mode t))
+
 ;; Make a small center margin
 ;; (use-package fringe
 ;;   :straight f
@@ -195,13 +214,13 @@
                     :overline (face-background 'nano-modeline-active))
 
 ;; Enable the window divider
-(setq window-divider-default-places t)
-(setq window-divider-default-right-width 10)
-(setq window-divider-default-bottom-width 3)
-(set-face-attribute 'window-divider nil
-                    :foreground (face-background 'default))
-(window-divider-mode 1)
-;; ;; (use-package mini-frame
+;; (setq window-divider-default-places t)
+;; (setq window-divider-default-right-width 10)
+;; (setq window-divider-default-bottom-width 3)
+;; (set-face-attribute 'window-divider nil
+;;                     :foreground (face-background 'default))
+;; (window-divider-mode 1)
+;; ;; ;; (use-package mini-frame
 ;;   :ensure t
 ;;   :config (mini-frame-mode)
 ;;   ;; :custom

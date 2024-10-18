@@ -1,0 +1,12 @@
+prog-mode
+
+(todo (if (derived-mode-p 'emacs-lisp-mode) ";; " comment-start) "TODO (WH): ")
+
+go-mode
+
+(structconvert "func " p "(in " (s in) ")" (s out) " {" n>
+               "return " out "{" n >
+               q n>
+               "}" n>
+               "}" n> 
+			         )

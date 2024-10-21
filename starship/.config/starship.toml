@@ -1,7 +1,4 @@
 format = """\
-    $cmd_duration\
-    $line_break\
-    $line_break\
     ($gcloud\n)\
     ($kubernetes\n)\
     ($direnv\n)\

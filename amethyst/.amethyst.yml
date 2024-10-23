@@ -36,7 +36,7 @@ smart-window-margins: false
 window-minimum-height: 0
 window-minimum-width: 0
 
-ignore-menu-bar: false
+ignore-menu-bar: true
 
 float-small-windows: true
 

@@ -8,5 +8,24 @@ go-mode
                "return " out "{" n >
                q n>
                "}" n>
-               "}" n> 
-			         )
+               "}" n>
+         )
+
+(errfail "if err != nil {" n>
+         >    "t.Fatalf(\"" (p "Error Description") ": %w\", err)" n>
+         > "}" n>
+         q
+)
+
+(tests "tests := map[string]struct{}{" n > q  n > "}" >)
+(subtest "\"" (p "Test Name") "\": {}," n > q)
+(fortests "for name, test := range tests {" n
+>              "t.Run(name, func (t *testing.T){" n
+>                  q                              n
+>              "})"                               n
+>         "}")
+
+(cnvrtwithmap "var "(p "Function Name" name) "Map = map[" (p "FromType" fromType)"]" (p "ToType" toType)"{}" n n
+              "func " name "(in " fromType ")" toType "{" n
+>                 "return convertFromMap(in, " (p "default") ", " name "Map)" n
+>             "}")

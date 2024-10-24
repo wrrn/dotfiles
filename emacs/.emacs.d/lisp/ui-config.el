@@ -145,7 +145,7 @@
                                        :mode-line-width 30
                                        :tab-width 4
                                        :right-divider-width 30
-                                       :scroll-bar-width 8))
+                                       :scroll-bar-width 0))
   :config (spacious-padding-mode 1))
 
 (use-package auto-dim-other-buffers

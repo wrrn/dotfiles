@@ -23,18 +23,29 @@ end
 
 if status is-interactive
     if type starship &>/dev/null
-        function starship_transient_rprompt_func
-            starship module time
-        end
         starship init fish | source
         enable_transience
-        starship init fish | source
+
+        function starship_transient_prompt_func
+            echo -n "┏⭘ "
+        end
 
 
         function write_box_start --on-event fish_preexec
             # This add a number of spaces before the empty string and then
             # replaces the spaces with ━.
-            printf '┗%*s┓\n\n' "$(math $(tput cols) - 3)" '' | sed 'y/ /━/'
+            set curr_time "$(date +%T)"
+            set box_prefix '┗'
+            set box_suffix "$(printf ' %s ┓' "$curr_time")"
+
+            set box_prefix_length (string length "$box_prefix")
+            set box_suffix_length (string length "$box_suffix")
+
+            set fill_count (math "$(tput cols) - $box_prefix_length - $box_suffix_length")
+
+            set box_fill "$(string repeat -n "$fill_count" "━")"
+
+            printf '%s%s%s\n\n' "$box_prefix" "$box_fill" "$box_suffix"
         end
 
         function write_box_end --on-event fish_postexec
@@ -45,7 +56,7 @@ if status is-interactive
             set box_prefix_length (string length "$box_prefix")
             set box_suffix_length (string length "$box_suffix")
 
-            set fill_count (math "$(tput cols) - $box_prefix_length - $box_suffix_length - 1")
+            set fill_count (math "$(tput cols) - $box_prefix_length - $box_suffix_length")
 
             set box_fill "$(string repeat -n "$fill_count" "━")"
 

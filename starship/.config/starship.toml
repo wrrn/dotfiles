@@ -27,8 +27,8 @@ format = """\
 add_newline = false
 
 [character]
-success_symbol = '[❯](bold green)'
-error_symbol = '[✗](bold red)'
+success_symbol = '[❯](bold)'
+error_symbol = '[✗](bold)'
 
 [cmd_duration]
 format = 'took [$duration]($style)'
@@ -37,31 +37,33 @@ style = "bg:purple fg:white"
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "
 truncation_length = 3
-truncation_symbol = "…/"
+truncation_symbol = "…/ "
+style = "bold"
 
 [direnv]
 disabled = false
 symbol = "\ue5fc "
 format = '[$symbol$loaded/$allowed]($style)'
+style = "bold"
 
 [gcloud]
 disabled = false
-format = '[$symbol$account(@$domain)(\($project)(:$region)\)]($style)'
+format = '[$symbol$account(@$domain)($project)(:$region)](bold)'
 symbol = "☁ "
 
 [git_branch]
 symbol = ""
-format = '[$symbol $branch]($style)'
+format = '[$symbol  $branch](bold)'
 
 [git_commit]
 commit_hash_length = 4
 
 [git_status]
-format = '[$all_status$ahead_behind]($style)'
+format = '[$all_status$ahead_behind](bold)'
 
 [kubernetes]
 disabled = false
-format = '[$symbol$context( \($namespace\))]($style)'
+format = '[$symbol$context( \($namespace\))](bold)'
 [kubernetes.context_aliases]
 "gke_pryon-mainline-e2e-1_us-central1_api-deployment-warrenharper-k8s" = "mainline-warrenharper-k8s"
 

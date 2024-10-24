@@ -1,13 +1,12 @@
 ;; term-config.el --- Configure Terminal specific packages
 
 (use-package vterm
-  ;; :config
-  ;; ;; Remove C-j from the vterm-keymap so that it doesn't conflict with wh-keymap.
-  ;; (customize-set-variable 'vterm-keymap-exceptions (add-to-list 'vterm-keymap-exceptions wh-keymap-prefix-key))
+  :custom
+  (vterm-min-window-width 20)
+  ;; Remove C-j from the vterm-keymap so that it doesn't conflict with
+  ;; wh-keymap.
   :bind (:map vterm-mode-map
               ("C-j" . nil))
-  ;; :hook
-  ;; (vterm-copy-mode . meow-insert-exit)
   :ensure t)
 
 

@@ -55,6 +55,7 @@
 ;; (require 'scala-development)
 (require 'writeroom-config)
 (require 'term-config)
+(require 'gpt)
 (require 'ux-config)
 (require 'meow)
 (require 'ui-config)

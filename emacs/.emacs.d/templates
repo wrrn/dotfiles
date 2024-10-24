@@ -17,6 +17,10 @@ go-mode
          q
 )
 
+(ifew > "if err != nil {" n >
+      >    "return" p", fmt.Errorf(\""p": %w\", err)"  n >
+      >"}" n>)
+
 (tests "tests := map[string]struct{}{" n > q  n > "}" >)
 (subtest "\"" (p "Test Name") "\": {}," n > q)
 (fortests "for name, test := range tests {" n

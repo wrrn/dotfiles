@@ -6,6 +6,8 @@
   ;; (setq lsp-keymap-prefix "C-l")
   :hook (;; Enable which-key integration         
          (lsp-mode . lsp-enable-which-key-integration))
+  :config
+  (push  "[/\\\\]\\vendor\\'" lsp-file-watch-ignored-directories)
   :bind (
          :map wh-keymap
          

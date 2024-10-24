@@ -45,7 +45,7 @@ if status is-interactive
 
             set box_fill "$(string repeat -n "$fill_count" "━")"
 
-            printf '%s%s%s\n\n' "$box_prefix" "$box_fill" "$box_suffix"
+            printf '%s%s%s\n' "$box_prefix" "$box_fill" "$box_suffix"
         end
 
         function write_box_end --on-event fish_postexec
@@ -61,7 +61,7 @@ if status is-interactive
             set box_fill "$(string repeat -n "$fill_count" "━")"
 
 
-            printf '\n%s%s%s\n\n' "$box_prefix" "$box_fill" "$box_suffix"
+            printf '%s%s%s\n\n' "$box_prefix" "$box_fill" "$box_suffix"
 
         end
 

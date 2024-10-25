@@ -45,12 +45,19 @@
         { pkgs }: pkgs.lib.attrsets.genAttrs dotFiles (dir: (pkgs.callPackage mkDotfile { pname = dir; }));
     in
     {
-      packages = flake-utils.lib.eachSystem flake-utils.lib.allSystems (
+      packages = flake-utils.lib.eachDefaultSystem (
         system:
         let
           pkgs = import nixpkgs { system = system; };
         in
         pkgs.callPackage packageDotfiles { }
       );
+
+      overlays.default = (
+        final: prev: {
+          dotfiles = (final.callPackage packageDotfiles { });
+        }
+      );
+
     };
 }

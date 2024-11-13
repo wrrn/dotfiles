@@ -51,6 +51,7 @@
 (require 'comments)
 (require 'typescript)
 (require 'go-config)
+(require 'nix-config)
 ;; (require 'java-development)
 ;; (require 'scala-development)
 (require 'writeroom-config)

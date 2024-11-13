@@ -260,6 +260,7 @@
          ("C-x C-p f" . project-find-file)
          ("C-x C-p t" . multi-vterm-project)
          ("C-x m" . meow--disable)
+         ("C-j m p" . meow-pop-to-mark)
          :map persp-mode-map
          ("C-x M-p C-s" . persp-switch)))
 (provide 'meow)

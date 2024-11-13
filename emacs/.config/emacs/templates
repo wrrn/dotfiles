@@ -22,7 +22,7 @@ go-mode
       >"}" n>)
 
 (tests "tests := map[string]struct{}{" n > q  n > "}" >)
-(subtest "\"" (p "Test Name") "\": {}," n > q)
+(tc "\"" (p "Test Name") "\": {}," n > q)
 (fortests "for name, test := range tests {" n
 >              "t.Run(name, func (t *testing.T){" n
 >                  q                              n

@@ -165,7 +165,7 @@
 ;; Set the font
 (defvar ui-config-fonts
   '(("Ellograph CF"          . 150)
-    ("EllographCF Nerd Font" . 165)
+    ("EllographCF Nerd Font" . 145)
     ("MonoLisa"              . 161)
     ("Berkeley Mono"         . 191)
     ("iA Writer Mono S"      . 151)
@@ -188,7 +188,8 @@
   ;; `variable-pitch' face supports it
   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
   ;; Enable all Cascadia Code ligatures in programming modes
-  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####"
+                                       "~~>" "***" "||=" "||>"
                                        ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
                                        "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
                                        "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
@@ -204,6 +205,12 @@
   ;; Enables ligature checks globally in all buffers. You can also do it
   ;; per mode with `ligature-mode'.
   (global-ligature-mode t))
+
+(use-package adaptive-wrap
+  :custom
+  (adaptive-wrap-extra-indent 2)
+  :init
+  (adaptive-wrap-prefix-mode))
 
 
 (require 'nano-modeline)

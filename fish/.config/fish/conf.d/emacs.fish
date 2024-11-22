@@ -1,4 +1,4 @@
-set -x EMACS_VTERM_PATH ~/.emacs.d/straight/build/vterm
+set -x EMACS_VTERM_PATH ~/.config/emacs/straight/build/vterm
 
 if [ "$INSIDE_EMACS" = vterm ] && [ -n $EMACS_VTERM_PATH ] && [ -f {$EMACS_VTERM_PATH}/etc/emacs-vterm.fish ]
     source {$EMACS_VTERM_PATH}/etc/emacs-vterm.fish

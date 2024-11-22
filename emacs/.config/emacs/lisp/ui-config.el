@@ -4,7 +4,7 @@
   :ensure t)
 
 (use-package minimal-theme
-  :ensure t
+  ;; :ensure t
   ;; :config (load-theme 'minimal-light t)
   )
 
@@ -19,10 +19,10 @@
 
 (use-package catppuccin-theme
   :ensure t
-  ;; :init
-  ;; (load-theme 'catppuccin :no-confirm)
-  ;; (setq catppuccin-flavor 'frappe) ;; or 'frappe, 'latte, 'macchiato, or 'mocha
-  ;; (catppuccin-reload)
+  :init
+  (load-theme 'catppuccin :no-confirm)
+  (setq catppuccin-flavor 'frappe) ;; or 'frappe, 'latte, 'macchiato, or 'mocha
+  (catppuccin-reload)
   )
 
 (use-package kaolin-themes

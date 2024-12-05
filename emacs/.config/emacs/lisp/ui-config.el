@@ -19,11 +19,21 @@
 
 (use-package catppuccin-theme
   :ensure t
-  :init
-  (load-theme 'catppuccin :no-confirm)
-  (setq catppuccin-flavor 'frappe) ;; or 'frappe, 'latte, 'macchiato, or 'mocha
-  (catppuccin-reload)
+  ;; :init
+  ;; (load-theme 'catppuccin :no-confirm)
+  ;; (setq catppuccin-flavor 'frappe) ;; or 'frappe, 'latte, 'macchiato, or 'mocha
+  ;; (catppuccin-reload)
   )
+
+(use-package rose-pine-color-theme
+  :ensure t
+  :straight (rose-pine-emacs
+             :host github
+             :repo "thongpv87/rose-pine-emacs"
+             :branch "master")
+  :requires autothemer
+  :init (load-theme 'rose-pine-dawn t))
+
 
 (use-package kaolin-themes
   :ensure t

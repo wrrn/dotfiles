@@ -23,7 +23,8 @@
                                    (5.0)))
                                  
 
-                                 mode-line-frame-identification moody-mode-line-persp-identification "  " "%b" "   " 
+                                 mode-line-frame-identification moody-mode-line-persp-identification "  " "%b" "   "
+                                 mode-line-position
                                  (vc-mode moody-vc-mode)))
 
 (redisplay)

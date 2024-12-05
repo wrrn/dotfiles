@@ -64,7 +64,7 @@ window-margins: true
 window-margin-size: 20
 screen-padding-left: 15.4
 screen-padding-right: 15.4
-screen-padding-top: 0
+screen-padding-top: 20
 screen-padding-bottom: 0
 
 # Modify the amethyst relaunch to use x and not z

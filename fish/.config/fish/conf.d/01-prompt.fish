@@ -62,8 +62,6 @@ if status is-interactive
 
 
             printf '%s%s%s\n\n' "$box_prefix" "$box_fill" "$box_suffix"
-
         end
-
     end
 end

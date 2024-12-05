@@ -1,4 +1,5 @@
 format = """\
+    $cmd_duration\
     ($gcloud\n)\
     ($kubernetes\n)\
     ($direnv\n)\
@@ -31,8 +32,10 @@ success_symbol = '[❯](bold)'
 error_symbol = '[✗](bold)'
 
 [cmd_duration]
-format = 'took [$duration]($style)'
+format = ''
 style = "bg:purple fg:white"
+show_notifications = true
+min_time_to_notify = 5_000
 
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "

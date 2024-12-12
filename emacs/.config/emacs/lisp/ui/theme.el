@@ -86,10 +86,21 @@
   :requires autothemer
   :config (load-theme 'kanagawa)
   :custom-face
-  (fringe ((t (:background "#181820")))))
+  (fringe ((t (:background "#181820"))))
 
-  (use-package modus-themes
-    :ensure t
-    ;; :config (load-theme 'modus-vivendi-tinted)
-    )
-  (provide 'theme)
+  )
+
+(use-package an-old-hope-theme
+  :ensure t
+  :straight (an-old-hope-theme
+             :type git
+             :host github
+             :repo "mohkale/an-old-hope-emacs"
+             :name an-old-hope-theme)
+  ;; :config (load-theme 'an-old-hope))
+  )
+(use-package modus-themes
+  :ensure t
+  ;; :config (load-theme 'modus-vivendi-tinted)
+  )
+(provide 'theme)

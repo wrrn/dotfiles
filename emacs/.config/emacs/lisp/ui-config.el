@@ -1,5 +1,6 @@
 ;; ui-config.el --- Configure the ui-components
 (require 'theme "./ui/theme.el")
+(require 'fonts "./ui/fonts.el")
 
 (use-package simple
   :straight f
@@ -22,49 +23,7 @@
 ;;   :straight f
 ;;   :init (fringe-mode 8))
 
-;; Set the font
-(defvar ui-config-fonts
-  '(("Ellograph CF"          . 150)
-    ("EllographCF Nerd Font" . 145)
-    ("MonoLisa"              . 161)
-    ("Berkeley Mono"         . 191)
-    ("iA Writer Mono S"      . 151)
-    ))
 
-(defun ui-config-set-font (font)
-  "Set the font for an alist value"
-  (let ((font-name (car font))
-        (font-size (cdr font)))
-    (set-face-attribute 'default nil :height font-size :font font-name)))
-
-(ui-config-set-font (assoc "EllographCF Nerd Font" ui-config-fonts))
-
-(use-package ligature
-  :ensure t
-  :config
-  ;; Enable the "www" ligature in every possible major mode
-  (ligature-set-ligatures 't '("www"))
-  ;; Enable traditional ligature support in eww-mode, if the
-  ;; `variable-pitch' face supports it
-  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
-  ;; Enable all Cascadia Code ligatures in programming modes
-  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####"
-                                       "~~>" "***" "||=" "||>"
-                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-                                       "\\\\" "://"))
-  ;; Enables ligature checks globally in all buffers. You can also do it
-  ;; per mode with `ligature-mode'.
-  (global-ligature-mode t))
 
 (use-package adaptive-wrap
   :custom

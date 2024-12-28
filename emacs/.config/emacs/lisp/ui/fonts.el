@@ -1,0 +1,67 @@
+;; fonts.el -- Configure the fonts to use.
+;;
+;; To install in the ui-config.el, add (require 'fonts "./ui/fonts")
+
+;; Set the font
+(defun font-exists-p (font-name)
+  "Check if FONT-NAME exists in both GUI and terminal."
+  (if (display-graphic-p)
+      (if (x-list-fonts font-name) t nil)
+    (if (font-info font-name) t nil)))
+
+
+(defun ui-config-set-font (name size)
+  "Set the font to the given name and size. Returns true if the font exists"
+  (if (font-exists-p name)
+      (progn
+        (set-face-attribute 'default nil :height size :font name)
+        t)))
+
+
+(defvar ui-config-fonts
+  '(
+    (ui-config-set-font "Berkeley Mono"         151)
+    (ui-config-set-font "MonoLisa"              161)
+    (ui-config-set-font "Ellograph CF"          150)
+    (ui-config-set-font "EllographCF Nerd Font" 145)
+    (ui-config-set-font "iA Writer Mono S"      151)
+    ))
+
+
+
+;; Trying setting the font until we find a font that is avaiable.
+(let ((fonts ui-config-fonts))
+  (while fonts
+    (if (eval (car fonts))
+        (setq fonts nil)
+      (setq fonts (cdr fonts)))))
+
+
+(use-package ligature
+  :ensure t
+  :config
+  ;; Enable the "www" ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+  ;; Enable traditional ligature support in eww-mode, if the
+  ;; `variable-pitch' face supports it
+  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+  ;; Enable all Cascadia Code ligatures in programming modes
+  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####"
+                                       "~~>" "***" "||=" "||>"
+                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                       "\\\\" "://"))
+  ;; Enables ligature checks globally in all buffers. You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
+
+(provide 'fonts)

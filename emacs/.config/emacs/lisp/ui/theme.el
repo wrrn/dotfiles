@@ -86,9 +86,7 @@
   :requires autothemer
   :config (load-theme 'kanagawa)
   :custom-face
-  (fringe ((t (:background "#181820"))))
-
-  )
+  (fringe ((t (:background "#181820")))))
 
 (use-package an-old-hope-theme
   :ensure t

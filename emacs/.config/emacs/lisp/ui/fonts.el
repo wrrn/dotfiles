@@ -27,15 +27,20 @@
     (ui-config-set-font "iA Writer Mono S"      151)
     ))
 
+(defun ui-config-set-frame-font (&optional frame)
+  (with-selected-frame (or frame (selected-frame))
+    (let ((fonts ui-config-fonts))
+      (while fonts
+        (if (eval (car fonts))
+            (progn
+              (setq fonts nil)
+              (message "font set"))
+          (setq fonts (cdr fonts)))))))
 
 
 ;; Trying setting the font until we find a font that is avaiable.
-(let ((fonts ui-config-fonts))
-  (while fonts
-    (if (eval (car fonts))
-        (setq fonts nil)
-      (setq fonts (cdr fonts)))))
-
+(add-hook 'after-make-frame-functions #'ui-config-set-frame-font)
+(add-hook 'window-setup-hook #'ui-config-set-frame-font)
 
 (use-package ligature
   :ensure t

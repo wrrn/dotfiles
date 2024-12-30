@@ -3,7 +3,7 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
-spawn-at-startup xwayland-satellite
+spawn-at-startup "xwayland-satellite"
 // spawn-at-startup waybar
 
 // Input device configuration.

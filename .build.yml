@@ -1,0 +1,11 @@
+image: alpine/edge
+secrets:
+  - 91c9830e-fda4-41a7-8b3b-a12993056b86
+sources:
+  - git+ssh://git@git.sr.ht/~warren/dotfiles
+tasks:
+  - mirror-to-github: |
+      cd ~/dotfiles
+      ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+      git remote add github git@github.com:wrrn/dotfiles
+      git push --mirror github

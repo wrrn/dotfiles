@@ -26,42 +26,22 @@ if status is-interactive
         starship init fish | source
         enable_transience
 
-        function starship_transient_prompt_func
-            echo -n "┏⭘ "
-        end
 
+        # function starship_transient_prompt_func
+        #     echo -n "┏⭘ "
+        # end
 
-        function write_box_start --on-event fish_preexec
-            # This add a number of spaces before the empty string and then
-            # replaces the spaces with ━.
-            set curr_time "$(date +%T)"
-            set box_prefix '┗'
-            set box_suffix "$(printf ' %s ┓' "$curr_time")"
+        #     function command_start_values --on-event fish_preexec
+        #         # This add a number of spaces before the empty string and then
+        #         # replaces the spaces with ━.
 
-            set box_prefix_length (string length "$box_prefix")
-            set box_suffix_length (string length "$box_suffix")
+        #         set curr_time "$(date +%T)"
+        #         printf '\033[A⧗ %s\n' "$curr_time"
+        #         printf '❯ %s\n' "$argv[1]"
+        #     end
 
-            set fill_count (math "$(tput cols) - $box_prefix_length - $box_suffix_length")
-
-            set box_fill "$(string repeat -n "$fill_count" "━")"
-
-            printf '%s%s%s\n' "$box_prefix" "$box_fill" "$box_suffix"
-        end
-
-        function write_box_end --on-event fish_postexec
-            set box_prefix "┗"
-            set box_suffix "$(printf " %s ┛" "$(humantime $CMD_DURATION)")"
-
-
-            set box_prefix_length (string length "$box_prefix")
-            set box_suffix_length (string length "$box_suffix")
-
-            set fill_count (math "$(tput cols) - $box_prefix_length - $box_suffix_length")
-
-            set box_fill "$(string repeat -n "$fill_count" "━")"
-
-
-            printf '%s%s%s\n\n' "$box_prefix" "$box_fill" "$box_suffix"
-        end
+        #     function command_end_values --on-event fish_postexec
+        #         printf "'%s' took %s\n\n" "$argv[1]" "$(humantime $CMD_DURATION)"
+        #     end
     end
 end

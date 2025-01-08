@@ -36,7 +36,7 @@
     opacity: 50 !important;
 }
 
-#appcontent
+#browser
     > #tabbrowser-tabbox
     > #tabbrowser-tabpanels
     > .deck-selected
@@ -103,16 +103,32 @@
     margin: var(--wrrn-margin) !important;
 }
 
+/* tridactyl changes */
+:root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) #urlbar {
+  min-height: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+statuspanel[type="overLink"],
+#statuspanel[type="overLink"] {
+  top: 2em;
+  z-index: 2;
+  display: inline;
+}
+
 #main-window[sizemode="maximized"] #content-deck {
-    padding-top: 8px;
+  padding-top: 8px;
 }
 
 #TabsToolbar {
-    visibility: collapse;
+  visibility: collapse;
 }
 
 :root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) {
-    max-height: 1px;
-    min-height: calc(0px);
-    overflow: hidden;
+  max-height: 1px;
+  min-height: calc(0px);
+  overflow: hidden;
 }
+
+/* End Tridactyl changes*/

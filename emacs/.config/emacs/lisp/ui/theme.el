@@ -73,20 +73,21 @@
   )
 
 (use-package goose-theme
-  :ensure t)
+  :ensure t
+  :config (load-theme 'goose))
 
 (use-package gruvbox-theme
   :ensure t
   ;; :config (load-theme 'gruvbox-light-soft)
   )
 
-(use-package kanagawa-theme
-  :ensure t
-  :straight (kanagawa-theme :type git :host github :repo  "jasonm23/emacs-theme-kanagawa")
-  :requires autothemer
-  :config (load-theme 'kanagawa)
-  :custom-face
-  (fringe ((t (:background "#181820")))))
+;; (use-package kanagawa-theme
+;;   :ensure t
+;;   :straight (kanagawa-theme :type git :host github :repo  "jasonm23/emacs-theme-kanagawa")
+;;   :requires autothemer
+;;   :config (load-theme 'kanagawa)
+;;   :custom-face
+;;   (fringe ((t (:background "#181820")))))
 
 (use-package an-old-hope-theme
   :ensure t

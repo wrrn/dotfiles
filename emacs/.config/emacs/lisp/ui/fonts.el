@@ -20,8 +20,8 @@
 
 (defvar ui-config-fonts
   '(
-    (ui-config-set-font "Berkeley Mono"         151)
     (ui-config-set-font "MonoLisa"              161)
+    (ui-config-set-font "Berkeley Mono"         151)
     (ui-config-set-font "EllographCF Nerd Font" 100)
     (ui-config-set-font "Ellograph CF"          100)
     (ui-config-set-font "iA Writer Mono S"      151)

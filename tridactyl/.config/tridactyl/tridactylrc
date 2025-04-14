@@ -73,6 +73,6 @@ autocmd DocStart mail.google.com mode ignore
 colors midday
 
 " Add custom search engines
-set searchurls.pulls https://bitbucket.org/pryoninc/%s/pull-requests/
-set searchurls.repo https://bitbucket.org/pryoninc/
-set searchurls.pipelines https://bitbucket.org/pryoninc/%s/pipelines
+set searchurls.pulls https://github.com/Stodge-Inc/%s/pulls/
+set searchurls.repo https://github.com/Stodge-Inc/
+set searchurls.actions https://github.com/Stodge-Inc/%s/actions

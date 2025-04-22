@@ -21,6 +21,7 @@
   lg = log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   wip = for-each-ref --color=always --sort='authordate:iso8601' --format=' %(color:green)%(authorname)%09%(authordate:relative)%09%(color:bold blue)%(refname:short)' refs/heads
   diff = diff -w
+  diff-upstream = diff @{upstream}
   last-diff = diff HEAD~1 HEAD
   s = status -s -b
   #Add non-whitespace changes

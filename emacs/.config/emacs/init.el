@@ -81,7 +81,9 @@
 
 ;;Package Setup
 (require 'package)
+
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("melpa" . "http://melpa.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 (package-initialize)

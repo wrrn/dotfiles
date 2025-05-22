@@ -111,7 +111,7 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
   
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
-         ("C-c c" . org-capture)
+         ;; ("C-c c" . org-capture)
          :map org-mode-map
          ("M-p" . org-metaup)
          ("M-n" . org-metadown))

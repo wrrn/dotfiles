@@ -57,6 +57,7 @@
 (require 'writeroom-config)
 (require 'term-config)
 (require 'gpt)
+(require 'claude)
 (require 'ux-config)
 (require 'meow)
 (require 'ui-config)

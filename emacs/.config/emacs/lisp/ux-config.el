@@ -76,7 +76,19 @@
                                                            (mapcar #'buffer-name
                                                                    (persp-buffer-list-filter
                                                                     (match-buffers multi-vterm-buffer-name))))))
-               'append))
+               'append)
+  (add-to-list 'consult-buffer-sources `(:name "eat"
+                                               :hidden f
+                                               :narrow ?e
+                                               :category buffer
+                                               :state  ,#'consult--buffer-state
+                                               :items ,(lambda()
+                                                         (when (boundp 'eat-buffer-name)
+                                                           (mapcar #'buffer-name
+                                                                   (persp-buffer-list-filter
+                                                                    (match-buffers "eat\\*"))))))
+               'append)
+  )
 
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia

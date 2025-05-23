@@ -100,7 +100,8 @@
   :ensure t
   :custom
   (meow-keypad-start-keys
-   '((?h . ?h)
+   '((?c . ?c)
+     (?h . ?h)
      (?x . ?x)
      (?j . ?j)
      (?l . ?l)

@@ -84,12 +84,23 @@
   (interactive)
   (meow--execute-kbd-macro meow--kbd-mark-sexp))
 
+(defun meow--eat-insert ()
+  (interactive)
+  (if (and (eq major-mode 'eat-mode)
+           (meow-normal-mode-p)
+           (not (bound-and-true-p eat--semi-char-mode)))
+      (progn
+        (eat-semi-char-mode)
+        (meow-insert)
+        (end-of-buffer))
+    (meow-insert)
+    ))
+
 (use-package meow
   :ensure t
   :custom
   (meow-keypad-start-keys
-   '((?c . ?c)
-     (?h . ?h)
+   '((?h . ?h)
      (?x . ?x)
      (?j . ?j)
      (?l . ?l)
@@ -123,6 +134,7 @@
      (term-mode . normal)
      (text-mode . normal)
      (vterm-mode . insert)
+     (eat-mode . insert)
      (magit-mode . insert)
      (Custom-mode . normal)))
   (meow-char-thing-table
@@ -212,7 +224,7 @@
              '("G" . meow-grab)
              '("h" . meow-left)
              '("H" . meow-left-expand)
-             '("i" . meow-insert)
+             '("i" . meow--eat-insert)
              '("I" . meow-open-above)
              '("j" . meow-next)
              '("J" . meow-next-expand)

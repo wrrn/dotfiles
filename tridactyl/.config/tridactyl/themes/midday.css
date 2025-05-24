@@ -30,11 +30,11 @@
 
     --md-sys-shape-corner-small-family: 1px;
     --md-sys-shape-corner-full-family: 3px;
-
     --md-sys-elevation-level3: 6px;
 
-    --tridactyl-header-font-size: 16px;
-    --tridactyl-border-radius: 36px;
+    --tridactyl-font-size: 14px !important;
+    --tridactyl-header-font-size: 14px;
+    --tridactyl-border-radius: 9px;
 
     --tridactyl-bg: var(--md-sys-color-surface-container-high);
     --tridactyl-fg: var(--md-sys-color-on-surface);
@@ -54,9 +54,12 @@
 
     --tridactyl-url-fg: #525e7d;
 
+    --tridactyl-font-family: "Ellograph CF", monospace;
     --tridactyl-cmdl-font-family: "Ellograph CF", monospace;
-    --tridactyl-cmdl-font-size: 1.5rem;
-    --tridactyl-cmplt-fg: --tridactyl-cmplt-option-height: 1.9em;
+    --tridactyl-cmdl-font-size: 16px;
+    --tridactyl-cmplt-option-height: 1.9em;
+    --tridactyl-cmplt-font-family: var(--tridactyl-font-family);
+    --tridactyl-cmplt-font-size: var(--tridactyl-font-size);
 }
 
 :root.TridactylOwnNamespace {
@@ -67,9 +70,11 @@
     order: 1;
 }
 
-:root #command-line-holder,
-:root #tridactyl-input {
-    border-radius: var(--tridactyl-border-radius) !important;
+:root #command-line-holder {
+    border-radius: var(--tridactyl-border-radius) var(--tridactyl-border-radius)
+        0 0 !important;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 :root #tridactyl-colon::before {
@@ -77,12 +82,12 @@
 }
 
 :root #tridactyl-input {
-    width: 94%;
-    padding: 1rem 1rem 1rem 2rem;
+    padding: 1rem 0rem 1rem 0rem;
+    width: 100%;
 }
 
 :root #completions table {
-    font-weight: 200;
+    font-weight: 400;
     table-layout: fixed;
     padding: 1rem;
     padding-top: 0;
@@ -97,21 +102,42 @@
     border: none !important;
     font-family: var(--tridactyl-font-family);
     order: 2;
-    margin-top: 10px;
-    border-radius: var(--tridactyl-border-radius);
+    margin-top: 1px;
+    border-radius: 0 0 var(--tridactyl-border-radius)
+        var(--tridactyl-border-radius);
 }
 
-:root #completions .HistoryCompletionSource table {
+.HistoryCompletionSource table {
     width: 100%;
     border-spacing: 0;
     table-layout: fixed;
 }
 
-:root #completions .BufferCompletionSource table {
-    width: unset;
-    font-size: unset;
-    border-spacing: unset;
-    table-layout: unset;
+.BufferCompletionSource table {
+    width: 100%;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+.HistoryCompletionOption td.prefix {
+    display: none;
+}
+
+.ExcmdCompletionOption td.excmd {
+    padding-left: 0.5em;
+    width: 20%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#completions table tr td.container,
+#completions table tr td.icon,
+#completions table tr td.privatewindow {
+    width: 1em;
+}
+
+#completions table tr td.prefix {
+    width: 1em;
 }
 
 :root #completions table tr .title {
@@ -124,22 +150,41 @@
     text-overflow: ellipsis;
 }
 
+#completions table tr td.content {
+    white-space: nowrap;
+    overflow: auto;
+    text-overflow: ellipsis;
+    padding-left: 12px;
+}
+
+root #completions table {
+    font-weight: 400;
+}
+
 :root #completions .sectionHeader {
     background: transparent;
     padding: 1rem 1rem 0.4rem !important;
 }
 
 :root #cmdline_iframe {
-    position: fixed !important;
-    bottom: unset;
-    top: 25% !important;
-    left: 10% !important;
+    display: block !important;
+    max-width: 663px !important;
+    width: 90% !important;
     z-index: 2147483647 !important;
-    width: 80% !important;
     filter: drop-shadow(
         0px 0px var(--md-sys-elevation-level3) #000000
     ) !important;
-    color-scheme: only light; /* Prevent Firefox from adding a white background on dark-mode sites */
+    color-scheme: only light;
+    border-radius: var(--tridactyl-border-radius) !important;
+    max-height: 60% !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+.sectionHeader {
+    display: none;
 }
 
 :root .TridactylStatusIndicator {

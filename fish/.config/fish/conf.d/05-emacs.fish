@@ -4,8 +4,8 @@ if [ "$INSIDE_EMACS" = vterm ] && [ -n $EMACS_VTERM_PATH ] && [ -f {$EMACS_VTERM
     source {$EMACS_VTERM_PATH}/etc/emacs-vterm.fish
 end
 
-if [ "$INSIDE_EMACS" = vterm ]
-    set -x EDITOR emacsclient
+if [ "$INSIDE_EMACS" = vterm ] || string match -q -- "*eat" "$INSIDE_EMACS"
+   set -x EDITOR emacsclient
 else if string match -q -- '*kitty' $TERM
     set -x EDITOR {$HOME}/.local/bin/kitty.emacs
 else

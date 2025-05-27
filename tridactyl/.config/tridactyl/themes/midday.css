@@ -167,7 +167,6 @@ root #completions table {
 }
 
 :root #cmdline_iframe {
-    display: block !important;
     max-width: 663px !important;
     width: 90% !important;
     z-index: 2147483647 !important;
@@ -177,10 +176,10 @@ root #completions table {
     color-scheme: only light;
     border-radius: var(--tridactyl-border-radius) !important;
     max-height: 60% !important;
-    position: absolute !important;
-    top: 50% !important;
+    position: fixed !important;
+    top: 33% !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%) !important;
 }
 
 .sectionHeader {

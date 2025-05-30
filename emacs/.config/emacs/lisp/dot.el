@@ -180,17 +180,6 @@
 (use-package jsonnet-mode
   :ensure t)
 
-;; ;; Automatically create closing parens, braces, and quotes
-;; (use-package elec-pair
-;;   :ensure t
-;;   :init
-;;   :config (electric-pair-mode))
-
-(use-package erc
-  :init(progn
-         (setq erc-fill-function 'erc-fill-static)
-         (setq erc-fill-static-center 22)))
-
 (use-package dockerfile-mode
   :ensure t
   :mode "Dockerfile.*\\'")
@@ -204,6 +193,7 @@
 (use-package protobuf-mode
   :ensure t
   :mode ".*\.proto\\'")
+
 (use-package rg
   :ensure t
   :init  (progn

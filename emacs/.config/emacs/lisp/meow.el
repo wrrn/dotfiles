@@ -270,6 +270,7 @@
           (unbind-key "C-x C-p"))
   :bind (("C-x C-o" . ace-window)
          ("C-x C-b" . consult-buffer)
+         ("C-x C-p c" . project-compile)
          ("C-x C-p f" . project-find-file)
          ("C-x C-p t" . multi-vterm-project)
          ("C-x m" . meow--disable)

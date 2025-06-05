@@ -74,7 +74,8 @@
 
 (use-package goose-theme
   :ensure t
-  :config (load-theme 'goose))
+  ;; :config (load-theme 'goose)
+  )
 
 (use-package gruvbox-theme
   :ensure t

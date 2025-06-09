@@ -52,6 +52,8 @@
 
   fp = push --force-with-lease
 
+  latest-tag = tag --format '%(refname:short) %(committerdate) %(is-base:main)' --sort=committerdate --contains origin/main
+
 [branch]
 	autosetuprebase = always
 [color]

@@ -154,7 +154,7 @@ root #completions table {
     border-radius: var(--tridactyl-border-radius) !important;
     max-height: 60% !important;
     position: fixed !important;
-    top: 33% !important;
+    top: 25% !important;
     left: 50% !important;
     transform: translate(-50%) !important;
 }

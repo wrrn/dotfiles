@@ -36,7 +36,7 @@
     --tridactyl-font-family: "Ellograph CF", monospace;
     --tridactyl-cmdl-font-family: "Ellograph CF", monospace;
     --tridactyl-cmdl-font-size: 16px;
-    --tridactyl-cmplt-option-height: 1.9em;
+    --tridactyl-cmplt-option-height: 32px;
     --tridactyl-cmplt-font-family: var(--tridactyl-font-family);
     --tridactyl-cmplt-font-size: var(--tridactyl-font-size);
 }
@@ -68,12 +68,12 @@
 :root #completions table {
     font-weight: 400;
     table-layout: fixed;
-    padding: 1rem;
+    padding: 1em;
     padding-top: 0;
 }
 
 :root #completions > div {
-    max-height: calc(20 * var(--tridactyl-cmplt-option-height));
+    max-height: calc(14 * var(--tridactyl-cmplt-option-height));
     min-height: calc(10 * var(--tridactyl-cmplt-option-height));
 }
 

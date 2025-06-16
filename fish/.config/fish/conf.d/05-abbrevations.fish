@@ -6,6 +6,7 @@ abbr -a g git
 abbr -a gs git status
 abbr -a glg git lg
 abbr -a gco git checkout
+abbr -a gsw git switch
 abbr -a gcln git clean -d
 abbr -a gr git restore
 abbr -a grs git restore --staged

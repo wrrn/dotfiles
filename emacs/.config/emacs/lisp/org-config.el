@@ -222,6 +222,19 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
   :init
   (append org-babel-load-languages '((mermaid . t))))
 
+(use-package ob-mongo
+  :ensure t
+  :straight (ob-mongo :type git
+                      :host sourcehut
+                      :repo "warren/ob-mongo"))
+
+(use-package ob-grpc
+  :straight (ob-grpc :type git :host github :repo "shsms/ob-grpc")
+  :bind (:map org-mode-map
+              ("C-c g i" . ob-grpc-init)
+              ("C-c g b" . ob-grpc-insert-block)))
+
+
 (use-package org-modern
   :ensure t
   :after (org)

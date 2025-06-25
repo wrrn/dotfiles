@@ -103,6 +103,8 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
   (org-outline-path-complete-in-steps nil)
   ;;;; Allow the creation of new parent nodes
   (org-refile-allow-creating-parent-nodes 'confirm)
+  ;;;; Disable asking if something is okay to evaluate for org-babel-eval
+  (org-confirm-babel-evaluate nil)
 
 
 

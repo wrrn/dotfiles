@@ -19,20 +19,19 @@
 
 (use-package catppuccin-theme
   :ensure t
-  ;; :init
-  ;; (load-theme 'catppuccin :no-confirm)
-  ;; (setq catppuccin-flavor 'frappe) ;; or 'frappe, 'latte, 'macchiato, or 'mocha
-  ;; (catppuccin-reload)
+  :init
+  (load-theme 'catppuccin :no-confirm)
+  (setq catppuccin-flavor 'frappe) ;; or 'frappe, 'latte, 'macchiato, or 'mocha
+  (catppuccin-reload)
   )
 
-(use-package rose-pine-color-theme
+(use-package rose-pine
   :ensure t
-  :straight (rose-pine-emacs
+  :straight (rose-pine
              :host github
-             :repo "thongpv87/rose-pine-emacs"
-             :branch "master")
-  :requires autothemer
-  ;; :init (load-theme 'rose-pine-moon t)
+             :repo "LuciusChen/rose-pine"
+             :branch "main")
+  ;; :config (load-theme 'rose-pine-night)
   )
 
 
@@ -49,7 +48,7 @@
   ;; Load black version
   ;; (load-theme 'sketch-black t)
   ;; Load white version
-  (load-theme 'sketch-white t)
+  ;; (load-theme 'sketch-white t)
   )
 
 (use-package subatomic-theme

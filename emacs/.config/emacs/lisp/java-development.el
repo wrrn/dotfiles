@@ -4,48 +4,53 @@
 (use-package google-c-style
   :straight (google-c-style :type git :host github :repo "google/styleguide"))
 
-;; (use-package lsp-java 
-;;   :ensure t
-;;   :config (add-hook 'java-mode-hook 'lsp))
+(use-package lsp-java 
+  :ensure t
+  :config
+  ;; Specify a newer java runtime
+  (setq lsp-java-java-path "/Users/warren.harper/.local/share/mise/installs/java/24.0.1/bin/java")
+  (setq lsp-java-import-gradle-wrapper-enabled t)
+  (setq lsp-java-configuration-update-build-configuration :interactive)
+  (add-hook 'java-mode-hook #'lsp))
 
-;; (use-package company :ensure t
-;;   :init (company-mode -1)
-;;   :bind ("C-c ." . company-yasnippet)
-;;   :custom
-;;   (company-backends '(company-semantic
-;;                       company-capf
-;;                       company-files
-;;                       (company-dabbrev-code company-gtags company-etags company-keywords)
-;;                       company-ddabrev
-;;                       company-yasnippet
-;;                       ))
-;;   (company-idle-delay 0)
-;;   ;; Scala docs required this. Not sure if it will work without it.
-;;   ;; :config
-;;   ;; (setq lsp-completion-provider :capf)
-;;   )
+(use-package company :ensure t
+  :init (company-mode -1)
+  :bind ("C-c ." . company-yasnippet)
+  :custom
+  (company-backends '(company-semantic
+                      company-capf
+                      company-files
+                      (company-dabbrev-code company-gtags company-etags company-keywords)
+                      company-ddabrev
+                      company-yasnippet
+                      ))
+  (company-idle-delay 0)
+  ;; Scala docs required this. Not sure if it will work without it.
+  ;; :config
+  ;; (setq lsp-completion-provider :capf)
+  )
 
 ;; Install projectile so that we get some project level commands
 (use-package projectile 
-  :ensure t
-  :config (progn()
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-update-project-type 'maven
-                                  :project-file "pom.xml"
-                                  :compile "mvn clean compile com.coveo:fmt-maven-plugin:format"
-                                  :test "mvn clean test com.coveo:fmt-maven-plugin:format"
-                                  :package "mvn clean package"
-                                  :test-suffix "Test"
-                                  :src-dir "main/src/"
-                                  :test-dir "main/test/")))
+  :ensure t)
+;;   :config (progn()
+;;                 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;;                 (projectile-update-project-type 'maven
+;;                                                 :project-file "pom.xml"
+;;                                                 :compile "mvn clean compile com.coveo:fmt-maven-plugin:format"
+;;                                                 :test "mvn clean test com.coveo:fmt-maven-plugin:format"
+;;                                                 :package "mvn clean package"
+;;                                                 :test-suffix "Test"
+;;                                                 :src-dir "main/src/"
+;;                                                 :test-dir "main/test/")))
 
-(use-package eglot-java
-  :hook (java-mode))
+;; (use-package eglot-java
+;; :hook (java-mode))
 
-(add-hook 'java-mode-hook #'eglot-ensure)
+;; (add-hook 'java-mode-hook #'eglot-ensure)
 (add-hook 'java-mode-hook
           (lambda ()
-            (projectile-mode 1)
+            ;; (projectile-mode 1)
             (google-set-c-style)
             (setq c-basic-offset 2
                   tab-width      2)

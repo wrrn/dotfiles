@@ -20,9 +20,9 @@
 (use-package catppuccin-theme
   :ensure t
   :init
-  (load-theme 'catppuccin :no-confirm)
-  (setq catppuccin-flavor 'frappe) ;; or 'frappe, 'latte, 'macchiato, or 'mocha
-  (catppuccin-reload)
+  ;; (load-theme 'catppuccin :no-confirm)
+  ;; (setq catppuccin-flavor 'frappe) ;; or 'frappe, 'latte, 'macchiato, or 'mocha
+  ;; (catppuccin-reload)
   )
 
 (use-package rose-pine
@@ -31,7 +31,7 @@
              :host github
              :repo "LuciusChen/rose-pine"
              :branch "main")
-  ;; :config (load-theme 'rose-pine-night)
+  ;; :config (load-theme 'rose-pine-night :no-confirm)
   )
 
 
@@ -45,10 +45,9 @@
 (use-package sketch-themes
   :ensure t
   :config
-  ;; Load black version
+  
   ;; (load-theme 'sketch-black t)
-  ;; Load white version
-  ;; (load-theme 'sketch-white t)
+  (load-theme 'sketch-white t)
   )
 
 (use-package subatomic-theme
@@ -73,7 +72,7 @@
 
 (use-package goose-theme
   :ensure t
-  ;; :config (load-theme 'goose)
+  :config (load-theme 'goose)
   )
 
 (use-package gruvbox-theme

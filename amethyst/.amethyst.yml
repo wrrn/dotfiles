@@ -36,7 +36,7 @@ smart-window-margins: false
 window-minimum-height: 0
 window-minimum-width: 0
 
-ignore-menu-bar: true
+ignore-menu-bar: false
 disable-padding-on-builtin-display: false
 
 float-small-windows: true
@@ -65,7 +65,7 @@ window-margins: true
 window-margin-size: 15
 screen-padding-left: 0
 screen-padding-right: 0
-screen-padding-top: 15
+screen-padding-top: 0
 screen-padding-bottom: 9.2
 
 # Modify the amethyst relaunch to use x and not z

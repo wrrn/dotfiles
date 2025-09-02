@@ -1,3 +1,10 @@
+if not command -q acli
+    ## ACLI is not installed
+    exit 0
+end
+
+acli completion fish | source
+
 function __acli_complete_my_tickets
     acli jira workitem search \
         --jql '(sprint IN futureSprints() OR sprint IN openSprints()) AND assignee = currentUser()' \

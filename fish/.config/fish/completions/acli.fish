@@ -7,7 +7,7 @@ acli completion fish | source
 
 function __acli_complete_my_tickets
     acli jira workitem search \
-        --jql '(sprint IN futureSprints() OR sprint IN openSprints()) AND assignee = currentUser()' \
+        --jql 'assignee = currentUser() and status NOT IN (Done)' \
         --json \
         | jq '.[] | "\(.key)\t\(.fields.summary):\(.fields.status.name)"' -r
 end

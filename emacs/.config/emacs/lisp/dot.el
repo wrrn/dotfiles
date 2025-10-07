@@ -21,9 +21,9 @@
 
 (require 'use-package)
 
-(use-package direnv
-  :ensure t
-  :config (direnv-mode))
+;; (use-package direnv
+;;   :ensure t
+;;   :config (direnv-mode))
 
 (use-package exec-path-from-shell
   ;; Used to get environment variables for mac
@@ -51,6 +51,7 @@
 (require 'comments)
 (require 'typescript)
 (require 'go-config)
+(require 'docker-config)
 (require 'yaml-config)
 (require 'toml-config)
 (require 'nix-config)
@@ -124,10 +125,6 @@
 ;; jsonnet is a superset of json
 (use-package jsonnet-mode
   :ensure t)
-
-(use-package dockerfile-ts-mode
-  :ensure t
-  :mode "Dockerfile.*\\'")
 
 (use-package load-dir
   :ensure t)

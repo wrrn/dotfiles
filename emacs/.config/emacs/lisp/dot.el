@@ -51,6 +51,8 @@
 (require 'comments)
 (require 'typescript)
 (require 'go-config)
+(require 'yaml-config)
+(require 'toml-config)
 (require 'nix-config)
 ;; (require 'java-development)
 ;; (require 'scala-development)
@@ -61,26 +63,8 @@
 (require 'minibuffer-config)
 (require 'meow)
 (require 'ui-config)
-
-
-(use-package magit
-  :ensure t
-  :init (progn
-          (setq magit-last-seen-setup-instructions "1.4.0")
-          (setq magit-diff-refine-hunk t))
-  :bind (:map wh-keymap
-              ("g s" . magit)
-              ("g d" . magit-diff-range)))
-
-(use-package forge
-  :after magit
-  :config (progn
-            (add-to-list 'forge-alist
-                         '("ghe.spotify.net"
-                           "ghe.spotify.net/api/v3"
-                           "ghe.spotify.net"
-                           forge-github-repository))
-            ))
+(require 'git-config)
+(require 'code-nav)
 
 (use-package view
   :bind (:map view-mode-map
@@ -106,11 +90,6 @@
   :mode "\\.scss\\'"
   :init (setq scss-sass-command "sass --style=compressed"))
 
-
-(use-package haskell-mode
-  :ensure t
-  :config (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation))
-
 (use-package ediff
   :init (setq ediff-window-setup-function 'ediff-setup-windows-plain))
 
@@ -122,22 +101,9 @@
               ("d r" . desktop-read)
               ("d d" . desktop-remove)))
 
-(use-package time
-  ;; Add time to modebar
-  :init (setq display-time-string-forms '(24-hours "." minutes))
-  :config (display-time))
-
 (use-package wgrep
   :ensure t
   :init (require 'wgrep))
-
-(use-package ansible
-  :ensure t
-  :defer t)
-
-(use-package ansible-doc
-  :ensure t
-  :defer t)
 
 (use-package markdown-mode
   :ensure t
@@ -155,32 +121,11 @@
   :hook ((web-mode-hook . rainbow-mode)
          (scss-mode-hook . rainbow-mode)))
 
-
-(use-package rust-mode
-  :ensure t
-  :init (setq rust-format-on-save t)
-  :mode "\\.rs\\'")
-
-(use-package toml-mode
-  :ensure t
-  :mode "\\.toml\\'")
-
-(use-package yaml-mode
-  :ensure t
-  :mode "\\.yml\\'")
-
-;; Editing gherkin files (.feature files)
-;; BDD
-(use-package feature-mode
-  :ensure t
-  :config (setq feature-default-lanaguage "en")
-  :mode "\\.feature\\'")
-
 ;; jsonnet is a superset of json
 (use-package jsonnet-mode
   :ensure t)
 
-(use-package dockerfile-mode
+(use-package dockerfile-ts-mode
   :ensure t
   :mode "Dockerfile.*\\'")
 
@@ -190,7 +135,7 @@
 (use-package ztree
   :ensure t)
 
-(use-package protobuf-mode
+(use-package protobuf-ts-mode
   :ensure t
   :mode ".*\.proto\\'")
 
@@ -285,24 +230,6 @@ fixes the bug where emacs dies when you try to kill a frame"
 
 (use-package rainbow-delimiters
   :ensure t)
-
-(use-package code-review
-  :straight t
-  :custom
-  (code-review-github-host "ghe.spotify.net/api/v3")
-  (code-review-github-graphql-host "ghe.spotify.net/api")
-  (code-review-github-base-url "ghe.spotify.net")
-  (code-review-log-raw-request-responses t)
-  (code-review-github-diffheader '(("Accept" . "application/vnd.github.v3.diff")))
-  :bind (:map forge-topic-mode-map
-              ("C-c r" . code-review-forge-pr-at-point))
-  )
-
-(use-package git-link
-  :ensure t
-  :config (progn
-            (add-to-list 'git-link-remote-alist '("ghe.spotify.net" git-link-github)))
-  :bind ("C-c g l" . git-link))
 
 (use-package project
   :ensure t

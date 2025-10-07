@@ -12,16 +12,25 @@
            "go test"
          "go build"))
   (subword-mode t))
-(use-package go-mode
+
+(use-package go-ts-mode
   ;; GO Mode for editing go programs
   :ensure t
   :mode "\\.go\\'"
-  :custom
-  (gofmt-command "goimports")
-  :hook ((go-mode . lsp)
-         (go-mode . go-mode--auto-fill-comments)
-         (go-mode . go-mode--set-compile-command)
-         (before-save . gofmt-before-save )))
+  :hook ((go-ts-mode . lsp-deferred)
+         (go-ts-mode . go-mode--auto-fill-comments)
+         (go-ts-mode . go-mode--set-compile-command))
+  :init
+  (add-to-list 'treesit-language-source-alist '(go "https://github.com/tree-sitter/tree-sitter-go")))
+
+(use-package go-mod-ts-mode
+  :ensure nil
+  :straight nil
+  :after go-ts-mode
+  :mode "/go\\.mod\\'"
+  :init
+  (add-to-list 'treesit-language-source-alist '(gomod "https://github.com/camdencheek/tree-sitter-go-mod")))
+
 (use-package ob-go
   :ensure t
   :init

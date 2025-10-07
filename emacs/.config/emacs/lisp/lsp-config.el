@@ -1,13 +1,14 @@
 ;; lsp-config.el --- configuring lsp since 2024
 
 (use-package lsp-mode
+  :commands (lsp lsp-deferred)
   :ensure t
-  :init
-  ;; (setq lsp-keymap-prefix "C-l")
   :hook (;; Enable which-key integration         
          (lsp-mode . lsp-enable-which-key-integration))
   :config
   (push  "[/\\\\]\\vendor\\'" lsp-file-watch-ignored-directories)
+  :custom
+  (lsp-completion-provide :none)
   :bind (
          :map wh-keymap
          
@@ -19,10 +20,7 @@
          ("t h"   . display-local-help)
          ("c a"   . lsp-execute-code-action)
          ("i f"   . lsp-find-implementation)
-         ("v r"   . lsp-rename))
-
-
-  :commands lsp)
+         ("v r"   . lsp-rename)))
 
 (use-package tree-sitter
   :ensure t
@@ -45,8 +43,6 @@
   :custom
   (tempel-trigger-prefix "<")
 
-  ;; :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
-  ;;        ("M-*" . tempel-insert))
   :bind (:map tempel-map
               ("TAB" . tempel-next)
               ("S-TAB" . tempel-previous))

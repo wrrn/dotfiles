@@ -47,7 +47,7 @@
   :config
   
   ;; (load-theme 'sketch-black t)
-  (load-theme 'sketch-white t)
+  ;; (load-theme 'sketch-white t)
   )
 
 (use-package subatomic-theme
@@ -72,7 +72,7 @@
 
 (use-package goose-theme
   :ensure t
-  :config (load-theme 'goose)
+  ;; :config (load-theme 'goose)
   )
 
 (use-package gruvbox-theme
@@ -97,8 +97,15 @@
              :name an-old-hope-theme)
   ;; :config (load-theme 'an-old-hope))
   )
-(use-package modus-themes
+
+(use-package doric-themes
   :ensure t
-  ;; :config (load-theme 'modus-vivendi-tinted)
-  )
+  :demand t
+  :config
+  ;; These are the default values.
+  (setq doric-themes-to-toggle '(doric-light doric-dark))
+  (setq doric-themes-to-rotate doric-themes-collection)
+
+  (doric-themes-select 'doric-marble))
+
 (provide 'theme)

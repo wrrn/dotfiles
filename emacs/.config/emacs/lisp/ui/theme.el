@@ -77,7 +77,7 @@
 
 (use-package gruvbox-theme
   :ensure t
-  ;; :config (load-theme 'gruvbox-light-soft)
+  ;; :Config (load-theme 'gruvbox-light-soft)
   )
 
 ;; (use-package kanagawa-theme

@@ -54,6 +54,7 @@
 (require 'docker-config)
 (require 'yaml-config)
 (require 'toml-config)
+(require 'json-config)
 (require 'nix-config)
 ;; (require 'java-development)
 ;; (require 'scala-development)
@@ -70,6 +71,10 @@
 (use-package view
   :bind (:map view-mode-map
               ("C-j" . nil)))
+
+(use-package editorconfig
+  :config
+  (editorconfig-mode))
 
 (use-package web-mode
   :ensure t
@@ -156,15 +161,6 @@
   :ensure t
   :bind (:map wh-keymap
               ("w z" . zoom-window-zoom)))
-
-;; Show emojis in emacs
-;; (use-package emojify
-;;   :ensure t
-;;   :hook (after-init . global-emojify-mode))
-
-;; (use-package linum-off
-;;   :ensure t
-;;   :init (defvar linum-disabled-modes-list '(eshell-mode term-mode ivy-mode compilation-mode org-mode text-mode dired-mode pdf-view-mode)))
 
 (use-package flyspell
   :ensure t

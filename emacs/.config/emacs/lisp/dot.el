@@ -1,62 +1,26 @@
 ;;; dot.el --- load all of my custom packages
 ;;; Commentary:
 ;;; Code:
-(defvar bootstrap-version)
-(defvar straight-use-package-by-default t)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(straight-use-package 'use-package)
 
 
-
+(require 'straight-wrrn)
 (require 'use-package)
-
-(use-package direnv
-  :ensure t
-  :config (direnv-mode))
-
-(use-package exec-path-from-shell
-  ;; Used to get environment variables for mac
-  :ensure t
-  :init (progn
-          (setq-default shell-file-name (getenv "SHELL"))
-          (setq-default exec-path-from-shell-variables '("PATH" "MANPATH" "GOPATH" "HOME"))
-          (setq-default default-directory (getenv "HOME"))
-          (exec-path-from-shell-initialize)))
-
-(use-package asdf
-  :ensure t
-  :straight (asdf :type git :host github :repo "tabfugnic/asdf.el")
-  :custom
-  (asdf-binary "/usr/local/opt/asdf/libexec/bin/asdf")
-  :config
-  (asdf-enable))
-
-
+(require 'env-config)
 (require 'no-littering)
 (require 'gcloud)
 (require 'org-config)
 (require 'lsp-config)
 (require 'dap-config)
 (require 'comments)
-(require 'typescript)
-(require 'go-config)
-(require 'python-config)
 (require 'docker-config)
-(require 'yaml-config)
-(require 'toml-config)
+(require 'fish-config)
+(require 'go-config)
 (require 'json-config)
 (require 'nix-config)
+(require 'python-config)
+(require 'toml-config)
+(require 'typescript)
+(require 'yaml-config)
 ;; (require 'java-development)
 ;; (require 'scala-development)
 (require 'writeroom-config)

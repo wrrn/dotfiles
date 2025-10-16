@@ -5,13 +5,13 @@ name = "Warren Harper"
 email = "warren@harperwarren.com"
 
 [[--scope]]
---when.commands = [ "status", "diff", "log" ]
-ui = {paginate = "never"}
+--when.commands = ["status", "diff", "log"]
+ui = { paginate = "auto" }
 
 [ui]
 default-command = "log"
 diff-formatter = "difft"
+pager = "bat"
 
 [mergetools.difft]
 diff-args = ["--color=always", "$left", "$right"]
-

@@ -62,6 +62,7 @@ Credit: https://d12frosted.io/posts/2020-06-24-task-management-with-roam-vol2.ht
      ("TO DEPLOY" . org-warning)
      ("IN PROGRESS" . (:foreground "#f1fa8c" :bold t :background "#373844"))))
   (org-log-done 'note) ;; Log when something was marked as done
+  (org-log-into-drawer t)
   (org-fontify-done-headline t) ;; Allow strike throughs for DONE items
   (org-enforce-todo-checkbox-dependencies t) ;; Force checkboxes to be a dependency before moving TODO's to DONE
   (org-hierarchical-todo-statistics nil) ;; Recursive count of todos

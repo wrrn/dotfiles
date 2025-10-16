@@ -51,6 +51,7 @@
 (require 'comments)
 (require 'typescript)
 (require 'go-config)
+(require 'python-config)
 (require 'docker-config)
 (require 'yaml-config)
 (require 'toml-config)

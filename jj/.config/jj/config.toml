@@ -11,7 +11,7 @@ ui = { paginate = "auto" }
 [ui]
 default-command = "log"
 diff-formatter = "difft"
-pager = "bat"
+pager = "bat --style=plain"
 
 [mergetools.difft]
 diff-args = ["--color=always", "$left", "$right"]

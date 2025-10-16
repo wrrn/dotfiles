@@ -26,6 +26,12 @@
 
 
 (use-package adaptive-wrap
+  :straight (adaptive-wrap
+             :type git
+             :host github
+             :repo "emacs-straight/adaptive-wrap"
+             :fork (:host git.sr.ht :repo "~warren/adaptive-wrap"))
+
   :custom
   (adaptive-wrap-extra-indent 2)
   :init

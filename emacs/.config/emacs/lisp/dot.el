@@ -16,6 +16,7 @@
 (require 'fish-config)
 (require 'go-config)
 (require 'json-config)
+(require 'lua-config)
 (require 'nix-config)
 (require 'python-config)
 (require 'toml-config)

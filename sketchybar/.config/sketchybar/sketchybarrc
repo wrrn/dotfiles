@@ -1,0 +1,14 @@
+#!/usr/bin/env lua
+
+-- TODO: Set the path correctly before running (something I could do in
+-- nix-darwin?)
+-- Setup the cpath so lua can find sbar lua
+package.cpath = package.cpath ..
+    ";/Users/" .. os.getenv("USER") .."/.nix-profile/lib/lua/5.4/?.so"
+
+-- Setup the path so lua looks in the correct directories
+package.path = package.path .. ";./?/init.lua"
+
+
+-- Load the sketchybar-package and prepare the helper binaries
+require("init")

@@ -1,0 +1,93 @@
+{
+   "actions": [
+      {
+         "actions": [
+            {
+               "key": "h",
+               "label": "h",
+               "type": "application",
+               "value": "/Applications/Google Chrome.app"
+            },
+            {
+               "key": "r",
+               "label": "r",
+               "type": "application",
+               "value": "/Applications/Create Booklet 2.app"
+            }
+         ],
+         "key": "c",
+         "label": "c",
+         "type": "group"
+      },
+      {
+         "key": "e",
+         "label": "e",
+         "type": "application",
+         "value": "/Users/warren.harper/Applications/Home Manager Apps/Emacs.app"
+      },
+      {
+         "actions": [
+            {
+               "key": "e",
+               "label": "e",
+               "type": "application",
+               "value": "/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app"
+            },
+            {
+               "key": "h",
+               "label": "h",
+               "type": "application",
+               "value": "/Applications/Ghostty.app"
+            }
+         ],
+         "key": "g",
+         "label": "g",
+         "type": "group"
+      },
+      {
+         "actions": [
+            {
+               "key": "e",
+               "label": "e",
+               "type": "application",
+               "value": "/System/Applications/Messages.app"
+            },
+            {
+               "key": "u",
+               "label": "u",
+               "type": "application",
+               "value": "/System/Applications/Music.app"
+            }
+         ],
+         "key": "m",
+         "label": "m",
+         "type": "group"
+      },
+      {
+         "key": "s",
+         "label": "s",
+         "type": "application",
+         "value": "/Applications/Slack.app"
+      },
+      {
+         "actions": [
+            {
+               "key": "e",
+               "label": "e",
+               "type": "application",
+               "value": "/Applications/Zen.app"
+            },
+            {
+               "key": "o",
+               "label": "o",
+               "type": "application",
+               "value": "/Applications/zoom.us.app"
+            }
+         ],
+         "key": "z",
+         "label": "z",
+         "type": "group"
+      }
+   ],
+   "type": "group"
+}

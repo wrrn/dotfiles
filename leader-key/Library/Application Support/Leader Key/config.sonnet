@@ -1,0 +1,57 @@
+local application(key, path) = {
+  key: key,
+  label: key,
+  value: path,
+  type: 'application',
+};
+
+local group(key, actions) = {
+  key: key,
+  label: key,
+  type: 'group',
+  actions: actions,
+};
+
+{
+  type: 'group',
+  actions: [
+    group('c', [
+      application('h',
+                  '/Applications/Google Chrome.app'),
+      application('r',
+                  '/Applications/Create Booklet 2.app'),
+    ]),
+
+    application('e',
+                '/Users/warren.harper/Applications/Home Manager Apps/Emacs.app'),
+
+    group(
+      'g',
+      [
+        application('e',
+                    '/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app'),
+        application('h',
+                    '/Applications/Ghostty.app',),
+      ]
+    ),
+
+
+    group(
+      'm',
+      [
+        application('e', '/System/Applications/Messages.app'),
+        application('u', '/System/Applications/Music.app'),
+      ]
+    ),
+
+    application('s', '/Applications/Slack.app'),
+
+    group(
+      'z',
+      [
+        application('e', '/Applications/Zen.app'),
+        application('o', '/Applications/zoom.us.app'),
+      ]
+    ),
+  ],
+}

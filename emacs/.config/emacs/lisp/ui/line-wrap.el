@@ -16,7 +16,9 @@
              :fork (:host sourcehut
                           :protocol ssh
                           :repo "~warren/adaptive-wrap"))
-  :hook (text-mode . adaptive-wrap-prefix-mode)
+  :hook
+  (text-mode . adaptive-wrap-prefix-mode)
+  (prog-mode . adaptive-wrap-prefix-mode)
   
   :custom
   (adaptive-wrap-extra-indent 2))

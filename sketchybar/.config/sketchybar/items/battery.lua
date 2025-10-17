@@ -33,40 +33,39 @@ local remaining_time = sbar.add("item", {
 battery:subscribe({"routine", "power_source_change", "system_woke"}, function()
   sbar.exec("pmset -g batt", function(batt_info)
     local icon = "!"
-    local label = "?"
-
+    local label = "No battery data"
+    local color = colors.white
+    
     local found, _, charge = batt_info:find("(%d+)%%")
     if found then
       charge = tonumber(charge)
-      label = charge .. "%"
+      label = string.format("%02d%%", charge)
     end
 
-    local color = colors.white
+
     local charging, _, _ = batt_info:find("AC Power")
-
-    if not charging and found and charge > 10 then
-        sbar.remove(battery)
-        return
-    end
+    print("here we are")
 
     if charging then
         icon = ""
-    else
+        color = colors.white
+    elseif found and charge > 10 then
+        -- Hide everything if we are over 10
+        icon = ""
+        label = "" 
+        color = colors.transparent
+    elseif found and charge <= 10 then
         icon = ""
         color = colors.red
     end
 
-    local lead = ""
-    if found and charge < 10 then
-      lead = "0"
-    end
 
     battery:set({
       icon = {
         string = icon,
         color = color
       },
-      label = { string = lead .. label },
+      label = label,
     })
   end)
 end)

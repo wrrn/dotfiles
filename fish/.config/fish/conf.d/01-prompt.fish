@@ -20,28 +20,26 @@ function humantime --argument-names ms --description "Turn milliseconds into a h
     set --query out && echo $out || echo $ms"ms"
 end
 
+# if status is-interactive
+#     if type starship &>/dev/null
+#         starship init fish | source
+#         enable_transience
 
-if status is-interactive
-    if type starship &>/dev/null
-        starship init fish | source
-        enable_transience
+#         # function starship_transient_prompt_func
+#         #     echo -n "┏⭘ "
+#         # end
 
+#         #     function command_start_values --on-event fish_preexec
+#         #         # This add a number of spaces before the empty string and then
+#         #         # replaces the spaces with ━.
 
-        # function starship_transient_prompt_func
-        #     echo -n "┏⭘ "
-        # end
+#         #         set curr_time "$(date +%T)"
+#         #         printf '\033[A⧗ %s\n' "$curr_time"
+#         #         printf '❯ %s\n' "$argv[1]"
+#         #     end
 
-        #     function command_start_values --on-event fish_preexec
-        #         # This add a number of spaces before the empty string and then
-        #         # replaces the spaces with ━.
-
-        #         set curr_time "$(date +%T)"
-        #         printf '\033[A⧗ %s\n' "$curr_time"
-        #         printf '❯ %s\n' "$argv[1]"
-        #     end
-
-        #     function command_end_values --on-event fish_postexec
-        #         printf "'%s' took %s\n\n" "$argv[1]" "$(humantime $CMD_DURATION)"
-        #     end
-    end
-end
+#         #     function command_end_values --on-event fish_postexec
+#         #         printf "'%s' took %s\n\n" "$argv[1]" "$(humantime $CMD_DURATION)"
+#         #     end
+#     end
+# end

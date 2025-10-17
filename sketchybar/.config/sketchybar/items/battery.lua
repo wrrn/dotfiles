@@ -5,7 +5,7 @@ local battery = sbar.add("item", "widgets.battery", {
   position = "right",
   icon = {
       font = {
-          family = "Hack Nerd Font",
+          family = "ZedMono Nerd Font",
           style = settings.font.style_map["Regular"],
       size = 19.0,
     }
@@ -41,25 +41,19 @@ battery:subscribe({"routine", "power_source_change", "system_woke"}, function()
       label = charge .. "%"
     end
 
-    local color = colors.green
+    local color = colors.white
     local charging, _, _ = batt_info:find("AC Power")
 
+    if not charging and found and charge > 10 then
+        sbar.remove(battery)
+        return
+    end
+
     if charging then
-      icon = ""
+        icon = ""
     else
-      if found and charge > 80 then
-        icon = ""
-      elseif found and charge > 60 then
-        icon = ""
-      elseif found and charge > 40 then
-        icon = ""
-      elseif found and charge > 20 then
-        icon = ""
-        color = colors.yellow
-      else
         icon = ""
         color = colors.red
-      end
     end
 
     local lead = ""

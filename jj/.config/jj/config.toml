@@ -7,7 +7,7 @@ name = "Warren Harper"
 auto-local-bookmark = false
 write-change-id-header = true
 
-[alias]
+[aliases]
 cat = ["file", "show"]
 
 # Find the closest ancestor with a bookmark pointing at it, and move it to the

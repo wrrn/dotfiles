@@ -3,44 +3,39 @@
 ;; To install in the ui-config.el, add (require 'fonts "./ui/fonts")
 
 ;; Set the font
-(defun font-exists-p (font-name)
-  "Check if FONT-NAME exists in both GUI and terminal."
-  (if (display-graphic-p)
-      (if (x-list-fonts font-name) t nil)
-    (if (font-info font-name) t nil)))
+;; NEW
 
+(defvar user/latin-font "MonoLisa"
+  "Default font for Latin characters.")
 
-(defun ui-config-set-font (name size)
-  "Set the font to the given name and size. Returns true if the font exists"
-  (if (font-exists-p name)
-      (progn
-        (set-face-attribute 'default nil :height size :font name)
-        t)))
+(defvar user/unicode-font "Symbols Nerd Font Mono"
+  "Default font for Unicode characters, including emojis.")
 
+(defvar user/font-size 14
+  "Default font size in px.")
 
-(defvar ui-config-fonts
-  '(
-    (ui-config-set-font "MonoLisa"              135)
-    (ui-config-set-font "Berkeley Mono"         151)
-    (ui-config-set-font "EllographCF Nerd Font" 100)
-    (ui-config-set-font "Ellograph CF"          100)
-    (ui-config-set-font "iA Writer Mono S"      151)
-    ))
+(defvar user/standard-fontset
+  (create-fontset-from-fontset-spec standard-fontset-spec)
+  "Standard fontset for user.")
 
-(defun ui-config-set-frame-font (&optional frame)
-  (with-selected-frame (or frame (selected-frame))
-    (let ((fonts ui-config-fonts))
-      (while fonts
-        (if (eval (car fonts))
-            (progn
-              (setq fonts nil)
-              (message "font set"))
-          (setq fonts (cdr fonts)))))))
+;; Ensure user/standard-fontset gets used for new frames.
+(add-to-list 'default-frame-alist (cons 'font user/standard-fontset))
+(add-to-list 'initial-frame-alist (cons 'font user/standard-fontset))
 
+(defun user/set-font ()
+  "Set Unicode, Latin and CJK font for user/standard-fontset."
+  ;; Unicode font.
+  (set-fontset-font user/standard-fontset 'unicode
+                    (font-spec :family user/unicode-font)
+                    nil 'prepend)
+  ;; Latin font.
+  ;; Only specify size here to allow text-scale-adjust work on other fonts.
+  (set-fontset-font user/standard-fontset 'latin
+                    (font-spec :family user/latin-font :size user/font-size)
+                    nil 'prepend))
 
-;; Trying setting the font until we find a font that is avaiable.
-(add-hook 'after-make-frame-functions #'ui-config-set-frame-font)
-(add-hook 'window-setup-hook #'ui-config-set-frame-font)
+(user/set-font)
+(set-frame-font user/standard-fontset)
 
 (use-package ligature
   :ensure t

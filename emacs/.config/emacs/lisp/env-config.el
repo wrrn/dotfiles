@@ -2,7 +2,9 @@
 
 (use-package direnv
   :ensure t
-  :config (direnv-mode))
+  :config (direnv-mode)
+  :custom
+  (direnv-always-show-summary nil "only show summary when direnv-update-environment is called interactively"))
 
 (use-package exec-path-from-shell
   ;; Used to get environment variables for mac

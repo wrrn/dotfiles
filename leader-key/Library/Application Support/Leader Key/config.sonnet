@@ -15,6 +15,7 @@ local group(key, actions) = {
 {
   type: 'group',
   actions: [
+    application('a', '/Applications/Apple Configurator.app'),
     group('c', [
       application('h',
                   '/Applications/Google Chrome.app'),

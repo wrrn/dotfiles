@@ -1,6 +1,12 @@
 {
    "actions": [
       {
+         "key": "a",
+         "label": "a",
+         "type": "application",
+         "value": "/Applications/Apple Configurator.app"
+      },
+      {
          "actions": [
             {
                "key": "h",

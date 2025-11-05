@@ -57,10 +57,23 @@
          "type": "group"
       },
       {
+         "actions": [
+            {
+               "key": "e",
+               "label": "Settings",
+               "type": "application",
+               "value": "/System/Applications/System Settings.app"
+            },
+            {
+               "key": "l",
+               "label": "Slack",
+               "type": "application",
+               "value": "/Applications/Slack.app"
+            }
+         ],
          "key": "s",
-         "label": "Slack",
-         "type": "application",
-         "value": "/Applications/Slack.app"
+         "label": "s",
+         "type": "group"
       },
       {
          "actions": [

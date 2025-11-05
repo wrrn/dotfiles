@@ -58,6 +58,11 @@ local applications = [
   application(
     path='/Applications/zoom.us.app'
   ),
+
+  application(
+    path='/System/Applications/System Settings.app',
+    alias='Settings',
+  ),
   application(
     path='/System/Applications/Messages.app'
   ),
@@ -85,56 +90,12 @@ lk_group('',
          prefix_tree.map(
            tree=tree,
            nodeFormatter=lk_group,
-           leafFormatter=function(key, name)
-           lk_application(key=key,
-           label=application_map[name].alias,
-           path=application_map[name].path),
+           leafFormatter=
+           function(key, name) (
+             lk_application(
+               key=key,
+               label=application_map[name].alias,
+               path=application_map[name].path
+             )
+           ),
          ))
-
-
-// {
-//   type: 'group',
-//   actions: [
-//     application('a', '/Applications/Apple Configurator.app'),
-//     group('c', [
-//       application(
-//         'h',
-//       ),
-//       application(
-//         'r',
-//       ),
-//     ]),
-
-//     application('e',
-//                 '/Users/warren.harper/Applications/Home Manager Apps/Emacs.app'),
-
-//     group(
-//       'g',
-//       [
-//         application('e',
-//                     '/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app'),
-//         application('h',
-//                     '/Applications/Ghostty.app',),
-//       ]
-//     ),
-
-
-//     group(
-//       'm',
-//       [
-//         application('e',),
-//         application('u',),
-//       ]
-//     ),
-
-//     application('s',),
-
-//     group(
-//       'z',
-//       [
-//         application('e',),
-//         application('o',),
-//       ]
-//     ),
-//   ],
-// }

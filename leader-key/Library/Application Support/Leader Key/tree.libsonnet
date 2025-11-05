@@ -5,7 +5,7 @@
 //   local prefixTree = import 'prefix_tree.jsonnet';
 //   local myTree = prefixTree.generate(["my", "list", "of", "strings"]);
 
-local generatePrefixTree(stringList, leafFormatter=null, groupFormatter=null) = (
+local generatePrefixTree(stringList) = (
   // 1. Pre-processing:
   //    - Convert all strings to lowercase.
   //    - Remove duplicates by using them as object keys.
@@ -15,23 +15,6 @@ local generatePrefixTree(stringList, leafFormatter=null, groupFormatter=null) = 
     function(x) std.asciiLower(x),
     stringList
   );
-
-  // Default formatters that match the original behavior
-  local defaultLeafFormatter = function(key, string) {
-    type: "leaf",
-    key: key,
-    string: string,
-  };
-
-  local defaultGroupFormatter = function(key, actions) {
-    type: "group",
-    key: key,
-    actions: actions,
-  };
-
-  // Use provided formatters or fall back to defaults
-  local formatLeaf = if leafFormatter != null then leafFormatter else defaultLeafFormatter;
-  local formatGroup = if groupFormatter != null then groupFormatter else defaultGroupFormatter;
 
   // 2. Define the main recursive tree-building function
   local buildTree(strings, depth) = (
@@ -61,12 +44,18 @@ local generatePrefixTree(stringList, leafFormatter=null, groupFormatter=null) = 
 
       // Rule 3.1 & 4: If multiple strings share a key, create a GroupNode
       // and recursively process the children at the next depth.
-      if childCount > 1 then
-        formatGroup(k, buildTree(childStrings, depth + 1))
+      if childCount > 1 then {
+        type: "group",
+        key: k,
+        actions: buildTree(childStrings, depth + 1),
+      }
       // Rule 3.2, 4 & 4.1: If only one string has this key (or it's a
       // terminated prefix with key "."), create a LeafNode.
-      else
-        formatLeaf(k, childStrings[0])
+      else {
+        type: "leaf",
+        key: k,
+        string: childStrings[0],
+      }
       for k in allKeys
     ]
   ); // end of buildTree
@@ -76,10 +65,26 @@ local generatePrefixTree(stringList, leafFormatter=null, groupFormatter=null) = 
   buildTree(normalizedList, 0)
 );
 
+// Map over a tree structure, transforming each node
+local mapTree(tree, leafFormatter, groupFormatter) = (
+  local mapNode(node) =
+    if node.type == "leaf" then
+      leafFormatter(node.key, node.string)
+    else if node.type == "group" then
+      groupFormatter(node.key, std.map(mapNode, node.actions))
+    else
+      error "Unknown node type: " + node.type;
+
+  std.map(mapNode, tree)
+);
+
 // --- Output ---
 {
   // The primary export of this library file is the `generate` function.
   generate: generatePrefixTree,
+
+  // Map function for transforming trees
+  mapTree: mapTree,
 
   // --- Verification Examples ---
   // These private fields (prefixed with _) are included to show
@@ -91,18 +96,21 @@ local generatePrefixTree(stringList, leafFormatter=null, groupFormatter=null) = 
   // Example 2: Prefix Overlaps & Case Insensitivity
   _example2_output: self.generate(["Car", "cart", "CAr"]),
 
-  // Example 3: Custom Formatters
-  // This example shows how to use custom formatters for leaves and groups.
-  // Here we create a simpler output format with just "label" and "children".
-  _example3_output: self.generate(
-    ["asfa", "asda", "bsd"],
-    leafFormatter=function(key, string) {
-      label: key,
-      value: string,
-    },
-    groupFormatter=function(key, actions) {
-      label: key,
-      children: actions,
-    }
+  // Example 3: Custom Formatters using mapTree
+  // This example shows how to generate a tree then transform it.
+  // First generate the standard tree, then map it to a custom format.
+  _example3_output: (
+    local standardTree = self.generate(["asfa", "asda", "bsd"]);
+    self.mapTree(
+      standardTree,
+      leafFormatter=function(key, string) {
+        label: key,
+        value: string,
+      },
+      groupFormatter=function(key, children) {
+        label: key,
+        children: children,
+      }
+    )
   ),
 }

@@ -1,22 +1,22 @@
 {
    "actions": [
       {
-         "key": "a",
-         "label": "a",
-         "type": "application",
-         "value": "/Applications/Apple Configurator.app"
-      },
-      {
          "actions": [
             {
                "key": "h",
-               "label": "h",
+               "label": "Chrome",
                "type": "application",
                "value": "/Applications/Google Chrome.app"
             },
             {
+               "key": "o",
+               "label": "Configurator",
+               "type": "application",
+               "value": "/Applications/Apple Configurator.app"
+            },
+            {
                "key": "r",
-               "label": "r",
+               "label": "CreateBooklet2",
                "type": "application",
                "value": "/Applications/Create Booklet 2.app"
             }
@@ -27,40 +27,27 @@
       },
       {
          "key": "e",
-         "label": "e",
+         "label": "Emacs",
          "type": "application",
          "value": "/Users/warren.harper/Applications/Home Manager Apps/Emacs.app"
       },
       {
-         "actions": [
-            {
-               "key": "e",
-               "label": "e",
-               "type": "application",
-               "value": "/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app"
-            },
-            {
-               "key": "h",
-               "label": "h",
-               "type": "application",
-               "value": "/Applications/Ghostty.app"
-            }
-         ],
          "key": "g",
-         "label": "g",
-         "type": "group"
+         "label": "Gemini",
+         "type": "application",
+         "value": "/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app"
       },
       {
          "actions": [
             {
                "key": "e",
-               "label": "e",
+               "label": "Messages",
                "type": "application",
                "value": "/System/Applications/Messages.app"
             },
             {
                "key": "u",
-               "label": "u",
+               "label": "Music",
                "type": "application",
                "value": "/System/Applications/Music.app"
             }
@@ -71,7 +58,7 @@
       },
       {
          "key": "s",
-         "label": "s",
+         "label": "Slack",
          "type": "application",
          "value": "/Applications/Slack.app"
       },
@@ -79,13 +66,13 @@
          "actions": [
             {
                "key": "e",
-               "label": "e",
+               "label": "Zen",
                "type": "application",
                "value": "/Applications/Zen.app"
             },
             {
                "key": "o",
-               "label": "o",
+               "label": "zoom",
                "type": "application",
                "value": "/Applications/zoom.us.app"
             }
@@ -95,5 +82,7 @@
          "type": "group"
       }
    ],
+   "key": "",
+   "label": "",
    "type": "group"
 }

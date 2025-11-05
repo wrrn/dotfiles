@@ -1,58 +1,140 @@
-local application(key, path) = {
+local prefix_tree = import 'tree.libsonnet';
+
+local lk_application(key, path, label=key) = {
   key: key,
-  label: key,
+  label: label,
   value: path,
   type: 'application',
 };
 
-local group(key, actions) = {
+local lk_group(key='', actions) = {
   key: key,
   label: key,
   type: 'group',
   actions: actions,
 };
 
-{
-  type: 'group',
-  actions: [
-    application('a', '/Applications/Apple Configurator.app'),
-    group('c', [
-      application('h',
-                  '/Applications/Google Chrome.app'),
-      application('r',
-                  '/Applications/Create Booklet 2.app'),
-    ]),
+local basename(str) = (
+  local parts = std.split(str, '/');
+  parts[std.length(parts) - 1]
+);
 
-    application('e',
-                '/Users/warren.harper/Applications/Home Manager Apps/Emacs.app'),
-
-    group(
-      'g',
-      [
-        application('e',
-                    '/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app'),
-        application('h',
-                    '/Applications/Ghostty.app',),
-      ]
-    ),
+local default_application_alias(path) = (
+  local app_name = std.split(basename(path), '.')[0];
+  std.strReplace(app_name, ' ', '')
+);
 
 
-    group(
-      'm',
-      [
-        application('e', '/System/Applications/Messages.app'),
-        application('u', '/System/Applications/Music.app'),
-      ]
-    ),
+local application(path, alias=null) = (
+  local _alias = (
+    if alias == null then default_application_alias(path)
+    else alias
+  );
+  {
+    path: path,
+    alias: _alias,
+  }
+);
 
-    application('s', '/Applications/Slack.app'),
 
-    group(
-      'z',
-      [
-        application('e', '/Applications/Zen.app'),
-        application('o', '/Applications/zoom.us.app'),
-      ]
-    ),
-  ],
-}
+local applications = [
+  application(
+    path='/Applications/Apple Configurator.app',
+    alias='Configurator'
+  ),
+  application(
+    path='/Applications/Create Booklet 2.app'
+  ),
+  application(
+    path='/Applications/Google Chrome.app',
+    alias='Chrome'
+  ),
+  application(
+    path='/Applications/Slack.app'
+  ),
+  application(
+    path='/Applications/Zen.app'
+  ),
+  application(
+    path='/Applications/zoom.us.app'
+  ),
+  application(
+    path='/System/Applications/Messages.app'
+  ),
+  application(
+    path='/System/Applications/Music.app'
+  ),
+  application(
+    path='/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app'
+  ),
+  application(
+    path='/Users/warren.harper/Applications/Home Manager Apps/Emacs.app'
+  ),
+];
+
+
+local application_map = {
+  [std.asciiLower(a.alias)]: a
+  for a in applications
+};
+
+
+local tree = prefix_tree.generate(std.objectFields(application_map));
+
+lk_group('',
+         prefix_tree.map(
+           tree=tree,
+           nodeFormatter=lk_group,
+           leafFormatter=function(key, name)
+           lk_application(key=key,
+           label=application_map[name].alias,
+           path=application_map[name].path),
+         ))
+
+
+// {
+//   type: 'group',
+//   actions: [
+//     application('a', '/Applications/Apple Configurator.app'),
+//     group('c', [
+//       application(
+//         'h',
+//       ),
+//       application(
+//         'r',
+//       ),
+//     ]),
+
+//     application('e',
+//                 '/Users/warren.harper/Applications/Home Manager Apps/Emacs.app'),
+
+//     group(
+//       'g',
+//       [
+//         application('e',
+//                     '/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app'),
+//         application('h',
+//                     '/Applications/Ghostty.app',),
+//       ]
+//     ),
+
+
+//     group(
+//       'm',
+//       [
+//         application('e',),
+//         application('u',),
+//       ]
+//     ),
+
+//     application('s',),
+
+//     group(
+//       'z',
+//       [
+//         application('e',),
+//         application('o',),
+//       ]
+//     ),
+//   ],
+// }

@@ -1,7 +1,64 @@
 {
    "actions": [
       {
+         "key": "1",
+         "label": "1Password",
+         "type": "application",
+         "value": "/Applications/1Password.app"
+      },
+      {
          "actions": [
+            {
+               "key": "e",
+               "label": "AeroSpace",
+               "type": "application",
+               "value": "/Applications/AeroSpace.app"
+            },
+            {
+               "key": "m",
+               "label": "Amethyst",
+               "type": "application",
+               "value": "/Users/warren.harper/Applications/Home Manager Apps/Amethyst.app"
+            },
+            {
+               "key": "w",
+               "label": "AWSVPNClient",
+               "type": "application",
+               "value": "/Applications/AWS VPN Client/AWS VPN Client.app"
+            }
+         ],
+         "key": "a",
+         "label": "a",
+         "type": "group"
+      },
+      {
+         "actions": [
+            {
+               "actions": [
+                  {
+                     "actions": [
+                        {
+                           "key": "c",
+                           "label": "Calculator",
+                           "type": "application",
+                           "value": "/System/Applications/Calculator.app"
+                        },
+                        {
+                           "key": "e",
+                           "label": "Calendar",
+                           "type": "application",
+                           "value": "/System/Applications/Calendar.app"
+                        }
+                     ],
+                     "key": "l",
+                     "label": "l",
+                     "type": "group"
+                  }
+               ],
+               "key": "a",
+               "label": "a",
+               "type": "group"
+            },
             {
                "key": "h",
                "label": "Chrome",
@@ -9,10 +66,23 @@
                "value": "/Applications/Google Chrome.app"
             },
             {
+               "actions": [
+                  {
+                     "key": "l",
+                     "label": "ColdTurkeyBlocker",
+                     "type": "application",
+                     "value": "/Applications/Cold Turkey Blocker.app"
+                  },
+                  {
+                     "key": "n",
+                     "label": "Configurator",
+                     "type": "application",
+                     "value": "/Applications/Apple Configurator.app"
+                  }
+               ],
                "key": "o",
-               "label": "Configurator",
-               "type": "application",
-               "value": "/Applications/Apple Configurator.app"
+               "label": "o",
+               "type": "group"
             },
             {
                "key": "r",
@@ -26,16 +96,47 @@
          "type": "group"
       },
       {
+         "key": "d",
+         "label": "Dayflow",
+         "type": "application",
+         "value": "/Applications/Dayflow.app"
+      },
+      {
          "key": "e",
          "label": "Emacs",
          "type": "application",
          "value": "/Users/warren.harper/Applications/Home Manager Apps/Emacs.app"
       },
       {
-         "key": "g",
-         "label": "Gemini",
+         "key": "f",
+         "label": "Finder",
          "type": "application",
-         "value": "/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app"
+         "value": "/System/Library/CoreServices/Finder.app"
+      },
+      {
+         "actions": [
+            {
+               "key": "e",
+               "label": "Gemini",
+               "type": "application",
+               "value": "/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app"
+            },
+            {
+               "key": "h",
+               "label": "Ghostty",
+               "type": "application",
+               "value": "/Applications/Ghostty.app"
+            }
+         ],
+         "key": "g",
+         "label": "g",
+         "type": "group"
+      },
+      {
+         "key": "l",
+         "label": "Lunar",
+         "type": "application",
+         "value": "/Applications/Lunar.app"
       },
       {
          "actions": [
@@ -55,6 +156,12 @@
          "key": "m",
          "label": "m",
          "type": "group"
+      },
+      {
+         "key": "n",
+         "label": "Notion",
+         "type": "application",
+         "value": "/Applications/Notion.app"
       },
       {
          "actions": [

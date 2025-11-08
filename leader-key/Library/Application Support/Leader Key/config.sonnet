@@ -39,16 +39,67 @@ local application(path, alias=null) = (
 
 local applications = [
   application(
+    path='/Applications/1Password.app'
+  ),
+  application(
+    path='/Applications/AeroSpace.app'
+  ),
+
+  application(
+    path='/Users/warren.harper/Applications/Home Manager Apps/Amethyst.app'
+  ),
+
+
+  application(
     path='/Applications/Apple Configurator.app',
     alias='Configurator'
   ),
+
+
+  application(
+    path='/Applications/AWS VPN Client/AWS VPN Client.app'
+  ),
+
+  application(
+    path='/System/Applications/Calculator.app',
+  ),
+
+  application(
+    path='/System/Applications/Calendar.app',
+  ),
+
+  application(
+    path='/Applications/Cold Turkey Blocker.app'
+  ),
   application(
     path='/Applications/Create Booklet 2.app'
+  ),
+
+  application(
+    path='/Applications/Dayflow.app'
+  ),
+
+
+  application(
+    path='/System/Library/CoreServices/Finder.app',
+  ),
+
+  application(
+    path='/Applications/Ghostty.app'
   ),
   application(
     path='/Applications/Google Chrome.app',
     alias='Chrome'
   ),
+
+  application(
+    path='/Applications/Lunar.app',
+  ),
+    application(
+    path='/Applications/Notion.app',
+  ),
+
+
   application(
     path='/Applications/Slack.app'
   ),

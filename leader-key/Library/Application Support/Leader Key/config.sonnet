@@ -115,6 +115,10 @@ local applications = [
   ),
 
   application(
+    path='/Applications/Overcast.app'
+  ),
+
+  application(
     path='/Users/warren.harper/Applications/Home Manager Apps/Shortcat.app'
   ),
   application(

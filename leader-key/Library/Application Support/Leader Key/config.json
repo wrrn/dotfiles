@@ -177,6 +177,12 @@
          "value": "/Applications/Notion.app"
       },
       {
+         "key": "o",
+         "label": "Overcast",
+         "type": "application",
+         "value": "/Applications/Overcast.app"
+      },
+      {
          "actions": [
             {
                "key": "e",

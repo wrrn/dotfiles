@@ -133,10 +133,23 @@
          "type": "group"
       },
       {
+         "actions": [
+            {
+               "key": "i",
+               "label": "LittleSnitch",
+               "type": "application",
+               "value": "/Applications/Little Snitch.app"
+            },
+            {
+               "key": "u",
+               "label": "Lunar",
+               "type": "application",
+               "value": "/Applications/Lunar.app"
+            }
+         ],
          "key": "l",
-         "label": "Lunar",
-         "type": "application",
-         "value": "/Applications/Lunar.app"
+         "label": "l",
+         "type": "group"
       },
       {
          "actions": [
@@ -172,15 +185,33 @@
                "value": "/System/Applications/System Settings.app"
             },
             {
+               "key": "h",
+               "label": "Shortcat",
+               "type": "application",
+               "value": "/Users/warren.harper/Applications/Home Manager Apps/Shortcat.app"
+            },
+            {
                "key": "l",
                "label": "Slack",
                "type": "application",
                "value": "/Applications/Slack.app"
+            },
+            {
+               "key": "u",
+               "label": "Superkey",
+               "type": "application",
+               "value": "/Applications/Superkey.app"
             }
          ],
          "key": "s",
          "label": "s",
          "type": "group"
+      },
+      {
+         "key": "t",
+         "label": "Tailscale",
+         "type": "application",
+         "value": "/Applications/Tailscale.app"
       },
       {
          "actions": [

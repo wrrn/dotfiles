@@ -79,11 +79,15 @@ local applications = [
     path='/Applications/Dayflow.app'
   ),
 
-
+  application(
+    path='/Users/warren.harper/Applications/Home Manager Apps/Emacs.app'
+  ),
   application(
     path='/System/Library/CoreServices/Finder.app',
   ),
-
+  application(
+    path='/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app'
+  ),
   application(
     path='/Applications/Ghostty.app'
   ),
@@ -93,16 +97,42 @@ local applications = [
   ),
 
   application(
+    path='/Applications/Little Snitch.app',
+  ),
+  application(
     path='/Applications/Lunar.app',
   ),
-    application(
+
+  application(
+    path='/System/Applications/Messages.app'
+  ),
+  application(
+    path='/System/Applications/Music.app'
+  ),
+
+  application(
     path='/Applications/Notion.app',
   ),
 
-
+  application(
+    path='/Users/warren.harper/Applications/Home Manager Apps/Shortcat.app'
+  ),
   application(
     path='/Applications/Slack.app'
   ),
+  application(
+    path='/Applications/Superkey.app'
+  ),
+  application(
+    path='/System/Applications/System Settings.app',
+    alias='Settings',
+  ),
+
+  application(
+    path='/Applications/Tailscale.app'
+  ),
+
+
   application(
     path='/Applications/Zen.app'
   ),
@@ -110,22 +140,7 @@ local applications = [
     path='/Applications/zoom.us.app'
   ),
 
-  application(
-    path='/System/Applications/System Settings.app',
-    alias='Settings',
-  ),
-  application(
-    path='/System/Applications/Messages.app'
-  ),
-  application(
-    path='/System/Applications/Music.app'
-  ),
-  application(
-    path='/Users/warren.harper/Applications/Chrome Apps.localized/Gemini.app'
-  ),
-  application(
-    path='/Users/warren.harper/Applications/Home Manager Apps/Emacs.app'
-  ),
+
 ];
 
 

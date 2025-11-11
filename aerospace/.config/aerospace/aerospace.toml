@@ -14,17 +14,16 @@ accordion-padding = 5
 [gaps]
 inner.horizontal = 15
 inner.vertical = 15
-# outer.top = 25 ## This is only for my curved monitor
-outer.top = 0
+outer.top = 25        ## This is only for my curved monitor
+# outer.top = 0
 outer.bottom = 9
 outer.left = 9
-
 outer.right = 9
 
 
 [mode.main.binding]
-alt-s = 'layout tiles horizontal vertical'
-alt-d = 'layout accordion horizontal vertical'
+alt-s = 'layout accordion horizontal vertical'
+alt-d = 'layout tiles horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'

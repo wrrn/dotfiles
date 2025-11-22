@@ -5,7 +5,7 @@
 ;; Set the font
 ;; NEW
 
-(defvar user/latin-font "MonoLisa"
+(defvar user/latin-font "Triplicate A Code"
   "Default font for Latin characters.")
 
 (defvar user/unicode-font "Symbols Nerd Font Mono"

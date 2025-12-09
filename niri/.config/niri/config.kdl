@@ -15,6 +15,8 @@ input {
               layout "us"
               options "ctrl:nocaps"
         }
+        
+        repeat-rate 100
     }
 
     touchpad {
@@ -48,7 +50,7 @@ output "eDP-1" {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "3200x1800@59.982"
+    mode "2560x1600@90.001"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 2
@@ -66,7 +68,7 @@ output "eDP-1" {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1280 y=0
+    position x=0 y=0
 }
 
 output "DP-1" {
@@ -79,7 +81,7 @@ output "DP-1" {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "2560x1080@60.000"
+    mode "3440x1440@59.973"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1
@@ -97,7 +99,9 @@ output "DP-1" {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1280 y=900
+
+    // This is negative because going down increases the Y value.
+    position x=-1080 y=-1440
 
 }
 

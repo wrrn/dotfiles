@@ -4,7 +4,6 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "wl-paste" "--watch" "cliphist store"
 // spawn-at-startup waybar
 
 // Input device configuration.
@@ -501,6 +500,8 @@ binds {
   // Powers off the monitors. To turn them back on, do any input like
   // moving the mouse or pressing any other key.
   Mod+Shift+P { power-off-monitors; }
+
+  Ctrl+Shift+V { spawn "cliphist-fuzzel-img"; }
 }
 
 environment {

@@ -205,8 +205,6 @@ fixes the bug where emacs dies when you try to kill a frame"
 (use-package apheleia
   :ensure t
   :config
-  (setf (alist-get 'go-mode apheleia-mode-alist)
-        '(gofumpt goimports))
   (apheleia-global-mode +1))
 
 

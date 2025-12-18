@@ -25,7 +25,10 @@
                '(go "https://github.com/tree-sitter/tree-sitter-go"))
   (add-to-list 'major-mode-remap-alist '(go-mode . go-ts-mode))
   :config
-  (add-to-list 'lsp-language-id-configuration '(go-ts-mode . "go")))
+  (add-to-list 'lsp-language-id-configuration '(go-ts-mode . "go"))
+  (with-eval-after-load 'apheleia
+    (setf (alist-get 'go-ts-mode apheleia-mode-alist)
+          '(gofumpt goimports))))
 
 (use-package go-mod-ts-mode
   :ensure nil

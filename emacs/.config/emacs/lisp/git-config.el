@@ -1,5 +1,4 @@
-;;; git-config.el --- configure toml mode
-
+;;; git-config.el --- configure version control packages
 (use-package magit
   :ensure t
   :init (progn
@@ -14,6 +13,10 @@
   :config (progn
             (add-to-list 'git-link-remote-alist '(git-link-github)))
   :bind ("C-c g l" . git-link))
+
+(use-package jj-mode
+  :ensure t
+  :straight (:host github :repo "bolivier/jj-mode.el"))
 
 
 (provide 'git-config)

@@ -502,6 +502,8 @@ binds {
   Mod+Shift+P { power-off-monitors; }
 
   Ctrl+Shift+V { spawn "cliphist-fuzzel-img"; }
+
+  Mod+A { spawn "wl-kbptr" "-o" "modes=floating,click" "-o" "mode_floating.source=detect"; }
 }
 
 environment {

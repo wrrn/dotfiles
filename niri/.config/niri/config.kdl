@@ -21,6 +21,7 @@ input {
 
   touchpad {
     tap
+    dwt
     natural-scroll
     accel-speed 0.2
     accel-profile "flat"
@@ -54,7 +55,7 @@ output "eDP-1" {
 
   // You can use integer or fractional scale, for example use 1.5 for 150% scale.
   // scale 2
-  scale 2
+  scale 1.5
 
   // Transform allows to rotate the output counter-clockwise, valid values are:
   // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -311,6 +312,9 @@ binds {
   XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
   XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
   XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+  XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "+1%"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "1%-"; }  
 
   Mod+Q { close-window; }
 

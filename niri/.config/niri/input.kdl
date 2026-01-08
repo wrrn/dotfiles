@@ -1,0 +1,28 @@
+// Input device configuration.
+// Find the full list of options on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+input {
+  keyboard {
+    xkb {
+      layout "us"
+      options "ctrl:nocaps"
+    }
+    
+    repeat-rate 100
+  }
+
+  touchpad {
+    tap
+    dwt
+    natural-scroll
+    accel-speed 0.2
+    accel-profile "flat"
+    scroll-method "two-finger"
+  }
+
+  mouse {
+    natural-scroll
+    accel-speed 0.2
+    accel-profile "flat"
+  }
+}

@@ -1,0 +1,6 @@
+workspace "messaging"
+
+window-rule {
+  match at-startup=true app-id="Slack"
+  open-on-workspace "messaging"
+}

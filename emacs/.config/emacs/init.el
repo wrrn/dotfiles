@@ -95,5 +95,5 @@
 ;; (when (file-exists-p "~/.emacs.d/project-inits")
 ;;   (load-dir-one "~/.emacs.d/project-inits"))
 
-(server-start)
+;; (server-start)
 ;;; init.el ends here

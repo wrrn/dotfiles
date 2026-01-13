@@ -191,10 +191,9 @@ fixes the bug where emacs dies when you try to kill a frame"
   :ensure t)
 
 (use-package project
-  :ensure t
+  :straight (:type built-in)
   :bind (:map wh-keymap
-              ("p f" . project-find-file)
-              ))
+              ("p f" . project-find-file)))
 
 (use-package smartparens
   :ensure t

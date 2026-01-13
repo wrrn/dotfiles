@@ -14,6 +14,13 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
+
+;; Mark built-in packages so straight doesn't try to install them.
+;; These conflict with tree-sitter modes (tsx-ts-mode, etc.) which
+;; expect the built-in versions.
+(straight-use-package '(project :type built-in))
+(straight-use-package '(xref :type built-in))
+
 (add-to-list 'straight-hosts
              '(sr.ht
                :type git

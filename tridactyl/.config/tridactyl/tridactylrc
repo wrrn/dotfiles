@@ -73,6 +73,8 @@ autocmd DocStart mail.google.com mode ignore
 colors midday
 
 " Add custom search engines
-set searchurls.pulls https://github.com/Stodge-Inc/%s/pulls/
-set searchurls.repo https://github.com/Stodge-Inc/
-set searchurls.actions https://github.com/Stodge-Inc/%s/actions
+set searchurls.pulls https://github.com/xonasystems/%s/pulls/
+set searchurls.repo https://github.com/xonasystems/
+set searchurls.actions https://github.com/xonasystems/%s/actions
+set searchurls.jira https://xonasystems.atlassian.net/browse/
+set searchurls.nixpkgs https://search.nixos.org/packages?channel=unstable&query=%s

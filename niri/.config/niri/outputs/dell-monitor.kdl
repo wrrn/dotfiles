@@ -2,7 +2,7 @@ output "DP-1" {
   // Resolution and, optionally, refresh rate of the output.
   // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
   mode "3440x1440@59.973"
-  
+
   // You can use integer or fractional scale, for example use 1.5 for 150% scale.
   scale 1.5
 
@@ -13,4 +13,7 @@ output "DP-1" {
   // This is negative because going down increases the Y value.
   position x=-1080 y=-1440
 
+  layout {
+    default-column-width { proportion 0.66667; }
+  }
 }

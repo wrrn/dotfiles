@@ -182,6 +182,7 @@ binds {
   Mod+Shift+F { fullscreen-window; }
   Mod+C { center-column; }
   Mod+G { toggle-window-floating; }
+  Mod+Shift+G { switch-focus-between-floating-and-tiling; }
 
   // Finer width adjustments.
   // This command can also:

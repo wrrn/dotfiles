@@ -10,7 +10,7 @@ packages.conflicts.delete = $(addsuffix .conflicts.delete,$(packages))
 
 $(packages.stow): # Placing this here gives us auto complete
 %.stow:
-	stow --no-folding --restow $(basename $@)
+	stow --no-folding --dotfiles --restow $(basename $@)
 
 $(packages.stow.force): #Here for the auto completion
 %.stow.force: package = $(@:.stow.force=)
@@ -33,6 +33,6 @@ FORCE:
 
 $(packages.unstow):
 %.unstow:
-	stow -D $(basename $@)
+	stow --dotfiles -D $(basename $@)
 
 

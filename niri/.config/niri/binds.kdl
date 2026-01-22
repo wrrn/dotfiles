@@ -220,5 +220,5 @@ binds {
 
   Ctrl+Shift+V { spawn "cliphist-fuzzel-img"; }
 
-  Mod+A { spawn "wl-kbptr" "-o" "modes=floating,click" "-o" "mode_floating.source=detect"; }
+  Mod+A { spawn "wl-kbptr" "-o" "modes=floating,click" "-o" "mode_floating.source=detect" "-o" "mode_floating.label_font_size=22 50% 100"; }
 }

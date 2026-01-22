@@ -49,6 +49,7 @@
 # resize-overlay-duration = 4s 200ms
 theme = Night Owlish Light
 font-family = Triplicate A Code
+font-size = 25
 copy-on-select = clipboard
 
 keybind = performable:ctrl+c=copy_to_clipboard

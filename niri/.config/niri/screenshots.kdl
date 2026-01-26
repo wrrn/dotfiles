@@ -1,9 +1,11 @@
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 window-rule {
-    // match app-id="com.obsproject.Studio"
-    match app-id="1password"
-
-    block-out-from "screencast"
+  match app-id="com.obsproject.Studio"
+  match app-id="1password"
+  match title=r#"^Focusmate.*- Focusmate$"#
+  match title="Picture in picture"
+  block-out-from "screencast"
 }
+
 

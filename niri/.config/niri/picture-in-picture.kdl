@@ -1,0 +1,8 @@
+window-rule {
+  match title="Picture in picture"
+  block-out-from "screencast"
+  open-floating true
+  default-floating-position x=0 y=0 relative-to="left"
+  default-column-width { fixed 559; }
+  default-window-height { fixed 314; }
+}

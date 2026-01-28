@@ -183,7 +183,7 @@ binds {
   Mod+C { center-column; }
 
   // Floating window stuff
-  Mod+Ctrl+G { toggle-window-floating; }
+  Mod+Ctrl+G { spawn "~/.local/bin/float-focusmate"; }
   Mod+G { switch-focus-between-floating-and-tiling; }
 
   // Finer width adjustments.

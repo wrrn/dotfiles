@@ -15,3 +15,5 @@ include "screenshots.kdl"
 include "picture-in-picture.kdl"
 include "environment.kdl"
 include "workspaces/messaging.kdl"
+
+include "focusmate.kdl"

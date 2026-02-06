@@ -1,13 +1,33 @@
 # General appearance
 font=Inter 10
-padding=8
-margin=12
-border-size=1
-border-radius=4
+padding=10
+border-size=2
+border-radius=12
+
+# Slight transparency
+background-color=#1e1e2ee6
+text-color=#cdd6f4
+border-color=#313244
+
+# Icon handling
+icons=1
+icon-location=left
+max-icon-size=32
+
+# Keep it "out of the way" on big screens:
+# fewer, cleaner popups instead of a tall stack.
+max-visible=3
 
 # Placement
-anchor=top-right
+anchor=top-left
 layer=overlay
+
+# Push the whole stack away from the edges:
+# top, right, bottom, left
+outer-margin=18,0,0,1
+
+# Per-notification spacing
+margin=10
 
 # Behavior
 default-timeout=5000

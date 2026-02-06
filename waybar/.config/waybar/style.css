@@ -1,0 +1,34 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #1e1e2e;
+  color: #cdd6f4;
+}
+
+#workspaces {
+  padding-top: 8px;
+}
+
+#workspaces button {
+  padding: 6px 4px;
+  margin: 2px 0;
+  color: #a6adc8;
+}
+
+#workspaces button.focused {
+  color: #cdd6f4;
+  font-weight: 600;
+}
+
+#network,
+#pulseaudio,
+#battery,
+#clock {
+  padding: 6px 6px;
+}

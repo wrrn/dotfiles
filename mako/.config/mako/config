@@ -1,0 +1,22 @@
+# General appearance
+font=Inter 10
+padding=8
+margin=12
+border-size=1
+border-radius=4
+
+# Placement
+anchor=top-right
+layer=overlay
+
+# Behavior
+default-timeout=5000
+ignore-timeout=0
+
+# Urgency handling
+[urgency=low]
+default-timeout=3000
+
+[urgency=critical]
+default-timeout=0
+border-color=#f38ba8

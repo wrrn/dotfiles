@@ -1,0 +1,11 @@
+# Lock after 5 minutes
+timeout 300 'swaylock -f'
+
+# Turn off displays shortly after locking
+timeout 330 'niri msg output "*" power off' || true
+
+# Suspend after 20 minutes
+timeout 1200 'systemctl suspend'
+
+# Always lock before suspend
+before-sleep 'swaylock -f'

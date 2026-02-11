@@ -11,31 +11,24 @@
 (defvar user/unicode-font "Symbols Nerd Font Mono"
   "Default font for Unicode characters, including emojis.")
 
-(defvar user/font-size 25
-  "Default font size in px.")
-
-(defvar user/standard-fontset
-  (create-fontset-from-fontset-spec standard-fontset-spec)
-  "Standard fontset for user.")
-
-;; Ensure user/standard-fontset gets used for new frames.
-(add-to-list 'default-frame-alist (cons 'font user/standard-fontset))
-(add-to-list 'initial-frame-alist (cons 'font user/standard-fontset))
+(defvar user/font-size 250
+  "Default font size in 1/10pt (250 = 25pt).")
 
 (defun user/set-font ()
-  "Set Unicode, Latin and CJK font for user/standard-fontset."
-  ;; Unicode font.
-  (set-fontset-font user/standard-fontset 'unicode
-                    (font-spec :family user/unicode-font)
-                    nil 'prepend)
-  ;; Latin font.
-  ;; Only specify size here to allow text-scale-adjust work on other fonts.
-  (set-fontset-font user/standard-fontset 'latin
-                    (font-spec :family user/latin-font :size user/font-size)
-                    nil 'prepend))
+  "Set up fonts with Unicode fallback."
+  ;; Set the default font.
+  (set-face-attribute 'default nil
+                      :family user/latin-font
+                      :height user/font-size)
+  ;; Fallback to Nerd Font for symbols not in the primary font.
+  ;; Nerd Font icons live in Private Use Area ranges.
+  (set-fontset-font t '(#xe000 . #xffff) (font-spec :family user/unicode-font))   ; BMP PUA
+  (set-fontset-font t '(#xf0000 . #xfffff) (font-spec :family user/unicode-font)) ; Supplementary PUA-A
+  (set-fontset-font t 'unicode (font-spec :family user/unicode-font) nil 'append))
 
-(user/set-font)
-(set-frame-font user/standard-fontset)
+(if (daemonp)
+    (add-hook 'server-after-make-frame-hook #'user/set-font)
+  (user/set-font))
 
 (use-package ligature
   :ensure t

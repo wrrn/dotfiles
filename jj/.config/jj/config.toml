@@ -27,7 +27,7 @@ curr-bookmark = [
 [ui]
 default-command = "log"
 diff-formatter = "difft"
-pager = "bat --style=plain"
+pager = "delta"
 graph.style = "square"
 
 [mergetools.difft]

@@ -119,6 +119,7 @@
   :ensure t
   :custom
   (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  (aw-scope 'frame)
   :bind (("C-x o" . ace-window)
          (:map wh-keymap
                ("w j" . ace-window))))

@@ -14,9 +14,8 @@
             (add-to-list 'git-link-remote-alist '(git-link-github)))
   :bind ("C-c g l" . git-link))
 
-(use-package jj-mode
-  :ensure t
-  :straight (:host github :repo "bolivier/jj-mode.el"))
 
+(use-package majutsu
+  :straight (:host github :repo "0WD0/majutsu"))
 
 (provide 'git-config)

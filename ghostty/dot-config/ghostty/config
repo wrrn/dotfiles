@@ -51,7 +51,7 @@
 theme = Wombat
 
 font-family = Triplicate A Code
-font-size = 25
+font-size = 18
 copy-on-select = clipboard
 
 keybind = performable:ctrl+c=copy_to_clipboard

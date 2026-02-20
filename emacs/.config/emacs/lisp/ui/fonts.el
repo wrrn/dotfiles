@@ -11,7 +11,7 @@
 (defvar user/unicode-font "Symbols Nerd Font Mono"
   "Default font for Unicode characters, including emojis.")
 
-(defvar user/font-size 250
+(defvar user/font-size 180
   "Default font size in 1/10pt (250 = 25pt).")
 
 (defun user/set-font ()

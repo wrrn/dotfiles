@@ -9,8 +9,8 @@
   ],
 
   "modules-center": [],
-
   "modules-right": [
+    "tray",
     "network",
     "pulseaudio",
     "battery",

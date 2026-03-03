@@ -19,6 +19,7 @@
 (require 'lua-config)
 (require 'nix-config)
 (require 'python-config)
+(require 'protobuf-config)
 (require 'toml-config)
 (require 'typescript)
 (require 'yaml-config)
@@ -103,9 +104,6 @@
 (use-package ztree
   :ensure t)
 
-(use-package protobuf-ts-mode
-  :ensure t
-  :mode ".*\.proto\\'")
 
 (use-package rg
   :ensure t

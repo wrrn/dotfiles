@@ -4,12 +4,12 @@ output "eDP-1" {
    mode "2560x1600@90.001"
 
   // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-  scale 1.5
+  scale 1
   
 
   // Uncomment this to use it as a screen
   // scale 2
-  // transform "180"
+  //  transform "180"
 
   // Position of the output in the global coordinate space.
   // This affects directional monitor actions like "focus-monitor-left", and cursor movement.

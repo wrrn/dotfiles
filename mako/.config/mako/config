@@ -30,12 +30,12 @@ outer-margin=18,0,0,1
 margin=10
 
 # Behavior
-default-timeout=5000
+default-timeout=50000
 ignore-timeout=0
 
 # Urgency handling
 [urgency=low]
-default-timeout=3000
+default-timeout=30000
 
 [urgency=critical]
 default-timeout=0

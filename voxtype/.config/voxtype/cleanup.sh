@@ -11,14 +11,20 @@ INPUT=$(cat)
 PROMPT=$(<"$PROMPT_FILE")
 
 JSON=$(jq -n --arg prompt "$PROMPT" --arg text "$INPUT" '{
-  model: "llama3.2:3b",
-  prompt: ($prompt + $text),
-  stream: false
+  model: "gemma3:1b",
+  messages: [
+    { role: "system", content: $prompt },
+    { role: "user", content: $text }
+  ],
+  stream: false,
+  options: {
+    temperature: 0.0,
+    num_predict: 256
+  }
 }')
 
-
-OUTPUT=$(curl -s http://localhost:11434/api/generate -d "$JSON" \
-  | jq -r '.response // empty' \
+OUTPUT=$(curl -s http://localhost:11434/api/chat -d "$JSON" \
+  | jq -r '.message.content // empty' \
   | sed 's/^"//;s/"$//' \
   | sed 's/<think>.*<\/think>//g')
 
@@ -27,4 +33,3 @@ if [[ -n "$OUTPUT" ]]; then
 else
     echo "$INPUT"
 fi
-

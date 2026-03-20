@@ -11,15 +11,14 @@ INPUT=$(cat)
 PROMPT=$(<"$PROMPT_FILE")
 
 JSON=$(jq -n --arg prompt "$PROMPT" --arg text "$INPUT" '{
-  model: "gemma3:1b",
+  model: "gemma3:4b",
   messages: [
     { role: "system", content: $prompt },
-    { role: "user", content: $text }
+    { role: "user", content: ("<transcription>" + $text + "</transcription>") }
   ],
   stream: false,
   options: {
-    temperature: 0.0,
-    num_predict: 256
+    temperature: 0.0
   }
 }')
 

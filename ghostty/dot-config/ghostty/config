@@ -60,38 +60,41 @@ keybind = ctrl+shift+j=scroll_page_lines:1
 keybind = ctrl+shift+k=scroll_page_lines:-1
 keybind = shift+enter=text:\x1b\r
 keybind = ctrl+x>o=goto_split:next
+keybind = alt+x=toggle_command_palette
 
 keybind = escape=activate_key_table:normal
 keybind = normal/i=deactivate_key_table
+keybind = normal/super+escape=deactivate_key_table
 keybind = normal/escape=text:\x1b
 
 
 
-keybind = normal/space=activate_key_table:commands
+keybind = normal/space=activate_key_table_once:commands
+keybind = commands/super+escape=deactivate_key_table
 keybind = commands/x>o=goto_split:next
-keybind = chain=deactivate_key_table
-
 keybind = commands/3=new_split:down
-keybind = chain=deactivate_key_table
-
 keybind = commands/3=new_split:right
-keybind = chain=deactivate_key_table
+keybind = commands/m>x=toggle_command_palette
+keybind = commands/x>p=activate_key_table_once:panes
 
-keybind = commands/x>p=activate_key_table:panes
+keybind = panes/super+escape=deactivate_key_table
 keybind = panes/z=toggle_split_zoom
-keybind = chain=deactivate_key_table
+keybind = panes/s=activate_key_table_once:panes_split
 
-keybind = panes/s=activate_key_table:panes_split
-
+keybind = panes_split/super+escape=deactivate_key_table
 keybind = panes_split/h=new_split:right
-keybind = chain=deactivate_key_table
-
 keybind = panes_split/v=new_split:down
-keybind = chain=deactivate_key_table
 
-
-
+# Editor mode: passthrough for emacs — super+escape to toggle
+keybind = super+escape=activate_key_table:editor
+keybind = editor/super+escape=deactivate_key_table
+keybind = editor/ctrl+x>o=text:\x18o
+keybind = editor/ctrl+shift+j=ignore
+keybind = editor/ctrl+shift+k=ignore
+keybind = editor/escape=text:\x1b
 
 notify-on-command-finish = unfocused
 notify-on-command-finish-action = bell,notify
 notify-on-command-finish-after = 5s
+
+gtk-tabs-location = top

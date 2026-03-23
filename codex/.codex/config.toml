@@ -56,6 +56,9 @@ trust_level = "trusted"
 [projects."/home/warren/.codex"]
 trust_level = "trusted"
 
+[projects."/home/warren/workshop/bench/pericles/PER-4784-unit-tests"]
+trust_level = "trusted"
+
 [notice]
 "hide_gpt-5.1-codex-max_migration_prompt" = true
 

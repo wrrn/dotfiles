@@ -98,3 +98,4 @@ notify-on-command-finish-action = bell,notify
 notify-on-command-finish-after = 5s
 
 gtk-tabs-location = top
+unfocused-split-opacity = 0.2

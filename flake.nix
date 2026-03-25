@@ -12,24 +12,12 @@
       ...
     }@inputs:
     let
-      dotFiles = (
-        let
-          ignoredFiles = [
-            ".git"
-            ".gitignore"
-            "LICENSE"
-            "Makefile"
-            "flake.lock"
-            "flake.nix"
-          ];
-          isIgnored = f: builtins.elem f ignoredFiles;
-          allFiles = builtins.attrNames (builtins.readDir ./.);
-        in
-        builtins.filter (p: !isIgnored p) allFiles
-      );
+      dirEntries = builtins.readDir ./.;
+      dotFiles = builtins.filter
+        (name: dirEntries.${name} == "directory" && name != ".git")
+        (builtins.attrNames dirEntries);
 
-      mkDotfile =
-        { pkgs, pname }:
+      mkDotfiles = pkgs: pkgs.lib.genAttrs dotFiles (pname:
         pkgs.stdenv.mkDerivation {
           inherit pname;
           name = pname;
@@ -39,25 +27,20 @@
             cp -r $src/.* $out/ || true
             cp -r $src/* $out/  || true
           '';
-        };
-
-      packageDotfiles =
-        { pkgs }: pkgs.lib.attrsets.genAttrs dotFiles (dir: (pkgs.callPackage mkDotfile { pname = dir; }));
-    in
-    {
-      packages = flake-utils.lib.eachDefaultSystem (
-        system:
-        let
-          pkgs = import nixpkgs { system = system; };
-        in
-        pkgs.callPackage packageDotfiles { }
-      );
-
-      overlays.default = (
-        final: prev: {
-          dotfiles = (final.callPackage packageDotfiles { });
         }
       );
-
-    };
+    in
+    {
+      overlays.default = final: prev: {
+        dotfiles = mkDotfiles final;
+      };
+    } // flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        packages = mkDotfiles pkgs;
+      }
+    );
 }

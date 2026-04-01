@@ -11,14 +11,13 @@ output "Dell Inc. SE2717H/HX 93JWK91Q0VVL" {
   transform "normal"
 
   // This is negative because going down increases the Y value.
-  position x=2560 y=-600
+  position x=0 y=0
 
   layout {
-    default-column-width { proportion 0.66667; }
-    gaps 30
+    default-column-width { proportion 1.0; }
     struts {
-      left 42
-      right 42
+      left 15
+      right 15
       bottom -9
       top -9
     }

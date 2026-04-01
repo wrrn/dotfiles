@@ -3,7 +3,6 @@ personality = "pragmatic"
 web_search = "cached"
 model_reasoning_effort = "high"
 approvals_reviewer = "user"
-service_tier = "fast"
 
 [projects."/home/warren"]
 trust_level = "untrusted"

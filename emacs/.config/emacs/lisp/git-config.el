@@ -16,6 +16,10 @@
 
 
 (use-package majutsu
+  :ensure t
   :straight (:host github :repo "0WD0/majutsu"))
+
+(use-package vc-jj
+  :ensure t)
 
 (provide 'git-config)

@@ -103,9 +103,9 @@
   :demand t
   :config
   ;; These are the default values.
-  (setq doric-themes-to-toggle '(doric-light doric-dark))
+  (setq doric-themes-to-toggle '(doric-earth doric-fire))
   (setq doric-themes-to-rotate doric-themes-collection)
 
-  (doric-themes-select 'doric-marble))
+  (doric-themes-select 'doric-earth))
 
 (provide 'theme)

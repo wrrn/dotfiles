@@ -111,7 +111,7 @@ translate = false
 
 # --- Eager processing settings ---
 eager_processing = true
-eager_chunk_secs = 5.0
+eager_chunk_secs = 4.0
 eager_overlap_secs = 0.5
 
 # --- Remote backend settings (used when backend = "remote") ---
@@ -209,6 +209,7 @@ spoken_punctuation = true
 "tilde slash" = "~/"
 "dot slash" = "./"
 "jujitsu" = "jujutsu"
+"neary" = "niri"
 
 # [vad]
 # Voice Activity Detection - filters silence-only recordings
@@ -255,4 +256,4 @@ spoken_punctuation = true
 # output_mode = "clipboard"
 
 [parakeet]
-model = "parakeet-tdt-0.6b-v3"
+model = "parakeet-tdt-0.6b-v3-int8"

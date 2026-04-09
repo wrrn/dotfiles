@@ -32,7 +32,7 @@
 (require 'minibuffer-config)
 (require 'meow)
 (require 'ui-config)
-(require 'git-config)
+(require 'vc-config)
 (require 'code-nav)
 
 (use-package view

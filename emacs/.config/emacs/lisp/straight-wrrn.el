@@ -21,11 +21,6 @@
 (straight-use-package '(project :type built-in))
 (straight-use-package '(xref :type built-in))
 
-(add-to-list 'straight-hosts
-             '(sr.ht
-               :type git
-               :protocol ssh
-               :repo-url "git@git.sr.ht:%s"))
 
 (provide 'straight-wrrn)
 ;; ;;; straight-wrrn.el ends here

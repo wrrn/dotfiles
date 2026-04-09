@@ -18,7 +18,8 @@
   :ensure t)
 
 (use-package jj-link
-  :straight (:host sr.ht :repo "~warren/jj-link"
+  :straight (:host sourcehut :repo "warren/jj-link"
+                   :protocol ssh
                    :files ("*.el"))
   :bind (:map wh-keymap
               ("j l" . jj-link)

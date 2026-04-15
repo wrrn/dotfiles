@@ -9,6 +9,15 @@ write-change-id-header = true
 
 [aliases]
 cat = ["file", "show"]
+pr-workspace = [
+  "workspace",
+  "add",
+  "../bench/pericles/$1",
+  "--revision",
+  "$1",
+  "--name",
+  "$1",
+]
 
 # Find the closest ancestor with a bookmark pointing at it, and move it to the
 # parent of the working copy.

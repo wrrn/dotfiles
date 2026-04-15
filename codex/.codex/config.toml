@@ -1,17 +1,17 @@
 model = "gpt-5.4"
 personality = "pragmatic"
 web_search = "cached"
-model_reasoning_effort = "high"
+model_reasoning_effort = "xhigh"
 approvals_reviewer = "user"
 
 [projects."/home/warren"]
-trust_level = "untrusted"
+trust_level = "trusted"
 
 [projects."/home/warren/workshop/perficles-pr-review"]
 trust_level = "untrusted"
 
 [projects."/home/warren/workshop/pericles"]
-trust_level = "untrusted"
+trust_level = "trusted"
 
 [projects."/home/warren/.roam"]
 trust_level = "trusted"
@@ -59,6 +59,12 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/home/warren/workshop/bench/pericles/PER-4902-active-defense-action-hanlder@origin"]
+trust_level = "trusted"
+
+[projects."/home/warren/pericles"]
+trust_level = "trusted"
+
+[projects."/home/warren/workshop/bench/pericles/PER-4561-Proxy-X-Connect-Handshake-Bridge"]
 trust_level = "trusted"
 
 [notice]

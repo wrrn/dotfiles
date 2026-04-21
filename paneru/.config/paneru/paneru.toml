@@ -1,0 +1,147 @@
+# Paneru configuration
+# Translated from niri binds.kdl
+# Mod (Super on niri) -> cmd on macOS
+
+# ── Global options ─────────────────────────────────────────────────────────────
+[options]
+focus_follows_mouse = true
+mouse_follows_focus = true
+preset_column_widths = [0.25, 0.33333, 0.50, 0.66667, 0.75]
+animation_speed = 50
+# Approximates niri's center-focused-column "on-overflow"
+auto_center = true
+
+# ── Screen edge padding ────────────────────────────────────────────────────────
+[padding]
+top = 0
+bottom = 0
+left = 0
+right = 0
+
+# ── Swipe & gestures ──────────────────────────────────────────────────────────
+[swipe]
+continuous = true
+
+[swipe.gesture]
+# 4 fingers to avoid clashing with macOS 3-finger workspace switching.
+# Horizontal swipe scrolls the window strip (niri-style).
+# Vertical swipe switches virtual workspace rows.
+fingers_count = 4
+direction = "Natural"
+
+[swipe.scroll]
+# Hold alt + scroll to slide windows horizontally (like Mod+scroll in niri).
+modifier = "alt"
+# Hold alt + shift + scroll to switch virtual workspace rows vertically.
+vertical_modifier = "shift"
+
+# ── Decorations ────────────────────────────────────────────────────────────────
+# Niri: border { on; width 4; active-color "#ffc87f"; inactive-color "#505050" }
+# Niri: geometry-corner-radius 12
+# Paneru only supports active-window borders; inactive border color has no equivalent.
+[decorations.active.border]
+enabled = true
+color = "#ffc87f"
+width = 4.0
+radius = 12.0
+
+# ── Keybindings ────────────────────────────────────────────────────────────────
+[bindings]
+
+# Focus ─────────────────────────────────────────────────────────────────────────
+# Mod+H/J/K/L → focus-column-left / focus-window-or-workspace-down / up / right
+window_focus_west = "cmd - h"
+window_focus_east = "cmd - l"
+window_focus_north = "cmd - k"
+window_focus_south = "cmd - j"
+
+# Jump to first / last window (paneru-only, no niri equivalent)
+window_focus_first = "shift + cmd - h"
+window_focus_last = "shift + cmd - l"
+
+# Move columns ──────────────────────────────────────────────────────────────────
+# Mod+Ctrl+H/L → move-column-left / move-column-right
+window_swap_west = "ctrl + cmd - h"
+window_swap_east = "ctrl + cmd - l"
+
+# Move to strip start/end (paneru-only, no niri equivalent)
+window_swap_first = "shift + alt - h"
+window_swap_last = "shift + alt - l"
+
+# Stack / unstack (consume-or-expel) ───────────────────────────────────────────
+# Mod+Alt+H → consume-or-expel-window-left  (stack into left neighbour)
+# Mod+Alt+L → consume-or-expel-window-right (unstack to right)
+window_stack = "alt + cmd - h"
+window_unstack = "alt + cmd - l"
+window_equalize = "shift + alt - e"
+
+# Resize ────────────────────────────────────────────────────────────────────────
+# Mod+R → switch-preset-column-width (cycle forward)
+window_resize = "cmd - r"
+
+# Full width / center ───────────────────────────────────────────────────────────
+# Mod+F → maximize-column
+# Mod+C → center-column
+window_fullwidth = "cmd - f"
+window_center = "cmd - c"
+
+# Display movement ──────────────────────────────────────────────────────────────
+# Mod+Alt+I → move-window-to-monitor-next (follow)
+# Mod+I     → focus-monitor-next
+window_nextdisplay = "alt + cmd - i"
+mouse_nextdisplay = "cmd - i"
+
+# Manage / float toggle ─────────────────────────────────────────────────────────
+# Mod+G → switch-focus-between-floating-and-tiling
+window_manage = "cmd - g"
+
+# Virtual workspaces (Experimental) ────────────────────────────────────────────
+# Maps your niri workspace navigation to Paneru's virtual workspace rows:
+#
+#   Mod+Shift+J/K  → move-workspace-down/up        → switch virtual row
+#   Mod+Alt+J/K    → move-window-down-or-to-workspace-down/up → move window + follow
+#   Mod+Ctrl+J/K   → move-column-to-workspace-down/up → send window, stay put
+#
+window_virtual_south = "shift + cmd - j"
+window_virtual_north = "shift + cmd - k"
+window_virtualmove_south = "alt + cmd - j"
+window_virtualmove_north = "alt + cmd - k"
+window_virtualsend_south = "ctrl + cmd - j"
+window_virtualsend_north = "ctrl + cmd - k"
+
+# Quit ──────────────────────────────────────────────────────────────────────────
+# Mod+Shift+E → quit
+quit = "shift + cmd - e"
+
+# ── Window rules ───────────────────────────────────────────────────────────────
+[windows.pip]
+title = "Picture.*(in)?.*[Pp]icture"
+floating = true
+
+# Niri: gaps 16 → 8px per side of each window = 16px between adjacent windows
+[windows.all]
+title = ".*"
+horizontal_padding = 8
+vertical_padding = 8
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Bindings WITHOUT a Paneru equivalent (handle outside Paneru):
+#
+#   Mod+T          spawn ghostty        → use Ghostty's own global hotkey setting
+#   Mod+Space      spawn fuzzel         → Raycast / Spotlight (Cmd+Space)
+#   Mod+Q          close-window         → Cmd+W or Cmd+Q (native macOS)
+#   Mod+Shift+R    switch-preset-window-height → no Paneru equivalent
+#   Mod+Ctrl+R     reset-window-height  → no Paneru equivalent
+#   Mod+Shift+F    fullscreen-window    → macOS native fullscreen (Ctrl+Cmd+F)
+#   Mod+U          focus-monitor-previous → Paneru only supports focus-monitor-next
+#   Mod+Alt+U      move-window-to-monitor-previous → Paneru only supports next
+#   Mod+Ctrl+U/I   move-column-to-monitor-prev/next → no Paneru equivalent
+#   Mod+Shift+U/I  move-workspace-to-monitor-prev/next → no Paneru equivalent
+#   Mod+W          toggle-column-tabbed → no Paneru equivalent
+#   Mod+Ctrl+Shift+H/J/K/L fine resize → Paneru only does preset widths
+#   Ctrl+Shift+3/4/5  screenshots       → Cmd+Shift+3/4/5 (native macOS)
+#   Mod+Shift+P    power-off-monitors   → display sleep shortcut
+#   Mod+semicolon  voxtype              → set a global shortcut in Voxtype itself
+#   Mod+A          wl-kbptr             → Wayland-specific, no macOS equivalent
+#   Ctrl+Shift+V   cliphist             → use a macOS clipboard manager (Maccy etc.)
+# ──────────────────────────────────────────────────────────────────────────────

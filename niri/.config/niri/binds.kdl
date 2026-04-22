@@ -36,7 +36,7 @@ binds {
   XF86AudioPrev        allow-when-locked=true { spawn "playerctl" "previous"; }
   
   // Trigger voxtype recording;
-  Mod+semicolon { spawn "voxtype" "record" "toggle"; }
+  Super+semicolon { spawn "voxtype" "record" "toggle"; }
   
 
   XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "+1%"; }
@@ -108,7 +108,7 @@ binds {
 
   Ctrl+Shift+V { spawn "cliphist-fuzzel-img"; }
 
-  Mod+A { spawn "wl-kbptr" "-o" "modes=floating,click" "-o" "mode_floating.source=detect" "-o" "mode_floating.label_font_size=22 50% 100"; }
+  Super+A { spawn "wl-kbptr" "-o" "modes=floating,click" "-o" "mode_floating.source=detect" "-o" "mode_floating.label_font_size=22 50% 100"; }
 
-   Mod+W { toggle-column-tabbed-display; }
+  Mod+W { toggle-column-tabbed-display; }
 }

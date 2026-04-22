@@ -25,4 +25,6 @@ input {
     accel-speed 0.2
     accel-profile "flat"
   }
+
+  mod-key "Alt"
 }

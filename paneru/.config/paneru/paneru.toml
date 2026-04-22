@@ -6,17 +6,17 @@
 [options]
 focus_follows_mouse = true
 mouse_follows_focus = true
-preset_column_widths = [0.25, 0.33333, 0.50, 0.66667, 0.75]
-animation_speed = 50
+preset_column_widths = [0.25, 0.33333, 0.50, 0.66667, 0.75, 0.99999]
+animation_speed = 150
 # Approximates niri's center-focused-column "on-overflow"
-auto_center = true
+auto_center = false
 
 # ── Screen edge padding ────────────────────────────────────────────────────────
 [padding]
 top = 0
 bottom = 0
-left = 0
-right = 0
+left = 8
+right = 8
 
 # ── Swipe & gestures ──────────────────────────────────────────────────────────
 [swipe]
@@ -50,10 +50,10 @@ radius = 12.0
 
 # Focus ─────────────────────────────────────────────────────────────────────────
 # Mod+H/J/K/L → focus-column-left / focus-window-or-workspace-down / up / right
-window_focus_west = "cmd - h"
-window_focus_east = "cmd - l"
-window_focus_north = "cmd - k"
-window_focus_south = "cmd - j"
+window_focus_west = "alt - h"
+window_focus_east = "alt - l"
+window_virtual_south = "alt - j"
+window_virtual_north = "alt - k"
 
 # Jump to first / last window (paneru-only, no niri equivalent)
 window_focus_first = "shift + cmd - h"
@@ -61,8 +61,8 @@ window_focus_last = "shift + cmd - l"
 
 # Move columns ──────────────────────────────────────────────────────────────────
 # Mod+Ctrl+H/L → move-column-left / move-column-right
-window_swap_west = "ctrl + cmd - h"
-window_swap_east = "ctrl + cmd - l"
+window_swap_west = "alt + ctrl - h"
+window_swap_east = "alt + ctrl - l"
 
 # Move to strip start/end (paneru-only, no niri equivalent)
 window_swap_first = "shift + alt - h"
@@ -73,27 +73,27 @@ window_swap_last = "shift + alt - l"
 # Mod+Alt+L → consume-or-expel-window-right (unstack to right)
 window_stack = "alt + cmd - h"
 window_unstack = "alt + cmd - l"
-window_equalize = "shift + alt - e"
+window_snap = "shift + alt - e"
 
 # Resize ────────────────────────────────────────────────────────────────────────
 # Mod+R → switch-preset-column-width (cycle forward)
-window_resize = "cmd - r"
+window_resize = "alt - r"
 
 # Full width / center ───────────────────────────────────────────────────────────
 # Mod+F → maximize-column
 # Mod+C → center-column
-window_fullwidth = "cmd - f"
-window_center = "cmd - c"
+window_fullwidth = "alt - f"
+window_center = "alt - c"
 
 # Display movement ──────────────────────────────────────────────────────────────
 # Mod+Alt+I → move-window-to-monitor-next (follow)
 # Mod+I     → focus-monitor-next
-window_nextdisplay = "alt + cmd - i"
-mouse_nextdisplay = "cmd - i"
+window_nextdisplay = "alt + ctrl - i"
+mouse_nextdisplay = "alt - i"
 
 # Manage / float toggle ─────────────────────────────────────────────────────────
 # Mod+G → switch-focus-between-floating-and-tiling
-window_manage = "cmd - g"
+window_manage = "alt - g"
 
 # Virtual workspaces (Experimental) ────────────────────────────────────────────
 # Maps your niri workspace navigation to Paneru's virtual workspace rows:
@@ -102,12 +102,8 @@ window_manage = "cmd - g"
 #   Mod+Alt+J/K    → move-window-down-or-to-workspace-down/up → move window + follow
 #   Mod+Ctrl+J/K   → move-column-to-workspace-down/up → send window, stay put
 #
-window_virtual_south = "shift + cmd - j"
-window_virtual_north = "shift + cmd - k"
-window_virtualmove_south = "alt + cmd - j"
-window_virtualmove_north = "alt + cmd - k"
-window_virtualsend_south = "ctrl + cmd - j"
-window_virtualsend_north = "ctrl + cmd - k"
+window_virtualmove_south = "alt + ctrl - j"
+window_virtualmove_north = "alt + ctrl - k"
 
 # Quit ──────────────────────────────────────────────────────────────────────────
 # Mod+Shift+E → quit

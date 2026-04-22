@@ -42,30 +42,30 @@ binds {
   XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "+1%"; }
   XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "1%-"; }  
 
-  Mod+Q { close-window; }
+  Super+Q { close-window; }
 
-  Mod+H     { focus-column-left; }
+  Mod+H     { focus-window-left; }
   Mod+J     { focus-window-or-workspace-down; }
   Mod+K     { focus-window-or-workspace-up; }
-  Mod+L     { focus-column-right; }
+  Mod+L     { focus-window-right; }
 
-  Mod+Ctrl+H { move-column-left; }
-  Mod+Ctrl+J { move-column-to-workspace-down; }
-  Mod+Ctrl+K { move-column-to-workspace-up; }
-  Mod+Ctrl+L { move-column-right; }
-  Mod+Ctrl+U { move-column-to-monitor-previous; }
-  Mod+Ctrl+I { move-column-to-monitor-next; }
+  Mod+Shift+Ctrl+H { move-column-left; }
+  Mod+Shift+Ctrl+J { move-column-to-workspace-down; }
+  Mod+Shift+Ctrl+K { move-column-to-workspace-up; }
+  Mod+Shift+Ctrl+L { move-column-right; }
+  Mod+Shift+Ctrl+U { move-column-to-monitor-previous; }
+  Mod+Shift+Ctrl+I { move-column-to-monitor-next; }
 
-  Mod+Alt+H { consume-or-expel-window-left; }
-  Mod+Alt+J { move-window-down-or-to-workspace-down; }
-  Mod+Alt+K { move-window-up-or-to-workspace-up; }
-  Mod+Alt+L { consume-or-expel-window-right; }
-  Mod+Alt+U { move-window-to-monitor-previous; }
-  Mod+Alt+I { move-window-to-monitor-next; }
-  Mod+Ctrl+Shift+H  {set-window-width "-10%";}
-  Mod+Ctrl+Shift+L  {set-window-width "+10%";}
-  Mod+Ctrl+Shift+J  {set-window-height "-10%";}
-  Mod+Ctrl+Shift+K  {set-window-height "+10%";}
+  Mod+Ctrl+H { consume-or-expel-window-left; }
+  Mod+Ctrl+J { move-window-down-or-to-workspace-down; }
+  Mod+Ctrl+K { move-window-up-or-to-workspace-up; }
+  Mod+Ctrl+L { consume-or-expel-window-right; }
+  Mod+Ctrl+U { move-window-to-monitor-previous; }
+  Mod+Ctrl+I { move-window-to-monitor-next; }
+  Mod+Ctrl+Super+H  {set-window-width "-10%";}
+  Mod+Ctrl+Super+L  {set-window-width "+10%";}
+  Mod+Ctrl+Super+J  {set-window-height "-10%";}
+  Mod+Ctrl+Super+K  {set-window-height "+10%";}
 
 
   Mod+Shift+U { move-workspace-to-monitor-previous; }

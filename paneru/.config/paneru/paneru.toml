@@ -5,7 +5,7 @@
 # ── Global options ─────────────────────────────────────────────────────────────
 [options]
 focus_follows_mouse = true
-mouse_follows_focus = true
+ mouse_follows_focus = true
 preset_column_widths = [0.25, 0.33333, 0.50, 0.66667, 0.75, 0.99999]
 animation_speed = 150
 # Approximates niri's center-focused-column "on-overflow"
@@ -26,7 +26,7 @@ continuous = true
 # 4 fingers to avoid clashing with macOS 3-finger workspace switching.
 # Horizontal swipe scrolls the window strip (niri-style).
 # Vertical swipe switches virtual workspace rows.
-fingers_count = 4
+fingers_count = 0
 direction = "Natural"
 
 [swipe.scroll]

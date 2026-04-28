@@ -109,6 +109,4 @@ binds {
   Ctrl+Shift+V { spawn "cliphist-fuzzel-img"; }
 
   Super+A { spawn "wl-kbptr" "-o" "modes=floating,click" "-o" "mode_floating.source=detect" "-o" "mode_floating.label_font_size=22 50% 100"; }
-
-  Mod+W { toggle-column-tabbed-display; }
 }

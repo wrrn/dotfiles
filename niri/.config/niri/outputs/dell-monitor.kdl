@@ -1,7 +1,7 @@
 output "Dell Inc. DELL U3421WE 62H8753" {
   // Resolution and, optionally, refresh rate of the output.
   // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
-  mode "3440x1440"
+//  mode "3440x1440"
 
   // You can use integer or fractional scale, for example use 1.5 for 150% scale.
   scale 1

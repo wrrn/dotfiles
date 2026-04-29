@@ -92,6 +92,8 @@
 (when (memq window-system '(mac ns))
   (setq mac-command-modifier 'super))
 
+(add-hook 'server-after-make-frame-hook #'raise-frame)
+
 ;; (when (file-exists-p "~/.emacs.d/project-inits")
 ;;   (load-dir-one "~/.emacs.d/project-inits"))
 

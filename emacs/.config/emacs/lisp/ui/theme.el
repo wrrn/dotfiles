@@ -101,11 +101,18 @@
 (use-package doric-themes
   :ensure t
   :demand t
-  :config
-  ;; These are the default values.
-  (setq doric-themes-to-toggle '(doric-earth doric-fire))
-  (setq doric-themes-to-rotate doric-themes-collection)
+  ;;   :config
+  ;;   ;; These are the default values.
+  ;;   (setq doric-themes-to-toggle '(doric-earth doric-fire))
+  ;;   (setq doric-themes-to-rotate doric-themes-collection)
 
-  (doric-themes-select 'doric-earth))
+  ;;   (doric-themes-select 'doric-earth)
+  )
+
+(use-package warm-burnout
+  :ensure t
+  :straight (:host github :repo "felipefdl/warm-burnout" :files ("emacs/*.el"))
+  :config
+  (load-theme 'warm-burnout-dark t))
 
 (provide 'theme)

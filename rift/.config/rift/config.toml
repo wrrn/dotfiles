@@ -15,7 +15,7 @@ animation_fps = 100
 # Default is true; uncomment to change.
 default_disable = false
 
-focus_follows_mouse = true
+focus_follows_mouse = false
 mouse_follows_focus = true
 mouse_hides_on_focus = true
 # focus_follows_mouse_disable_hotkey temporarily suspends focus-follows-mouse while held
@@ -112,14 +112,14 @@ default_orientation = "perpendicular"
 #   Use the display's UUID as the key (for example, from system profiler or via rift CLI).
 
 [settings.layout.gaps.outer]
-top = 0
+top = 8
 left = 10
-bottom = 0
+bottom = 15
 right = 10
 
 [settings.layout.gaps.inner]
-horizontal = 10
-vertical = 10
+horizontal = 18
+vertical = 18
 
 # Example per-display overrides:
 # Replace the quoted key with your display's UUID. Only specify values you want to override.

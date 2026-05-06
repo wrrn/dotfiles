@@ -3,10 +3,12 @@
 (use-package vterm
   :custom
   (vterm-min-window-width 20)
+  (vterm-set-bold-hightbright nil)
   ;; Remove C-j from the vterm-keymap so that it doesn't conflict with
   ;; wh-keymap.
   :bind (:map vterm-mode-map
               ("C-j" . nil))
+  
   :ensure t)
 
 

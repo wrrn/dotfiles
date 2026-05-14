@@ -1,7 +1,7 @@
-model = "gpt-5.4"
+model = "gpt-5.4-mini"
 personality = "pragmatic"
 web_search = "cached"
-model_reasoning_effort = "xhigh"
+model_reasoning_effort = "medium"
 approvals_reviewer = "user"
 
 [projects."/home/warren"]

@@ -65,7 +65,10 @@ keybind = alt+x=toggle_command_palette
 
 keybind = escape=activate_key_table:normal
 keybind = normal/i=deactivate_key_table
+keybind = normal/k=scroll_page_lines:1
+keybind = normal/l=scroll_page_lines:-1
 keybind = normal/super+escape=deactivate_key_table
+keybind = normal/q=activate_key_table:editor
 keybind = normal/escape=text:\x1b
 
 

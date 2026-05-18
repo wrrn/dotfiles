@@ -4,13 +4,14 @@ packages.stow = $(addsuffix .stow,$(packages))
 packages.unstow = $(addsuffix .unstow,$(packages))
 packages.stow.force = $(addsuffix .force,$(packages.stow))
 packages.conflicts.delete = $(addsuffix .conflicts.delete,$(packages))
+target = ~
 
 
 
 
 $(packages.stow): # Placing this here gives us auto complete
 %.stow:
-	stow --no-folding --dotfiles --restow $(basename $@)
+	stow --no-folding --dotfiles --restow $(basename $@) --target $(target)
 
 $(packages.stow.force): #Here for the auto completion
 %.stow.force: package = $(@:.stow.force=)
@@ -20,7 +21,7 @@ $(packages.stow.force): #Here for the auto completion
 $(packages.conflicts.delete): # Here for the autocompletion
 %.conflicts.delete: package = $*
 %.conflicts.delete: dotfiles = $(shell fd --type file --base-directory $(package) --hidden)
-%.conflicts.delete:	paths = $(addprefix ../,$(dotfiles))
+%.conflicts.delete:	paths = $(addprefix $(target)/,$(dotfiles:dot-%=.%))
 %.conflicts.delete:
 	rm -rf $(paths)
 

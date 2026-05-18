@@ -40,3 +40,35 @@ default-timeout=30000
 [urgency=critical]
 default-timeout=0
 border-color=#f38ba8
+
+# Focusmate — obnoxiously large and impossible to ignore
+# [app-name="Google Chrome"]
+# [body~=".*[Ff]ocusmate.*"]
+# width=1800
+# height=900
+# font=Inter Bold 32
+# padding=200
+# border-size=8
+# border-color=#cba6f7
+# background-color=#cba6f7
+# text-color=#1e1e2e
+# text-alignment=center
+# default-timeout=0
+# ignore-timeout=1
+# anchor=center
+
+# Fallback: browser notifications may put the title in summary instead of body
+[summary~=".*[Ff]ocusmate.*"]
+width=1800
+height=900
+font=Inter Bold 32
+padding=200
+border-size=8
+border-color=#cba6f7
+background-color=#cba6f7
+text-alignment=center
+text-color=#1e1e2e
+default-timeout=0
+ignore-timeout=1
+anchor=center
+max-icon-size=256

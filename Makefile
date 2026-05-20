@@ -34,6 +34,6 @@ FORCE:
 
 $(packages.unstow):
 %.unstow:
-	stow --dotfiles -D $(basename $@)
+	stow --dotfiles -D $(basename $@) --target $(target)
 
 

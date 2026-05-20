@@ -29,6 +29,15 @@ window#waybar {
 #network,
 #pulseaudio,
 #battery,
-#clock {
+#clock,
+#custom-focusmate {
     padding: 6px 6px;
+}
+
+#custom-focusmate {
+    color: #f38ba8;
+}
+
+#custom-focusmate.ending {
+    font-weight: 600;
 }

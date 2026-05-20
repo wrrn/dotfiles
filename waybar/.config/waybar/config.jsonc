@@ -8,6 +8,7 @@
 
     "modules-center": [],
     "modules-right": [
+        "custom/focusmate",
         "tray",
         "network",
         "wireplumber#source",
@@ -15,6 +16,15 @@
         "battery",
         "clock"
     ],
+
+    "custom/focusmate": {
+        "exec": "~/.config/waybar/scripts/focusmate.py",
+        "interval": 1,
+        "return-type": "json",
+        "hide-empty-text": true,
+        "format": "{}",
+        "on-click": "xdg-open https://www.focusmate.com/dashboard"
+    },
 
     "niri/workspaces": {
         "format": "{index}",

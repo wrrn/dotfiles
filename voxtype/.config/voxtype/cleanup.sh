@@ -2,30 +2,34 @@
 # Technical speech-to-text cleanup for software engineers
 set -euo pipefail
 
-SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
-PROMPT_FILE="$SCRIPT_DIR/cleanup-prompt.md"
-
 INPUT=$(cat)
 [[ -z "$INPUT" ]] && exit 0
 
-PROMPT=$(<"$PROMPT_FILE")
-
-JSON=$(jq -n --arg prompt "$PROMPT" --arg text "$INPUT" '{
-  model: "gemma3:4b",
-  messages: [
-    { role: "system", content: $prompt },
-    { role: "user", content: ("<transcription>" + $text + "</transcription>") }
-  ],
+# System prompt is baked into the "voxtype-cleaner" model via Modelfile.
+# Using /api/generate instead of /api/chat to avoid message-formatting overhead.
+JSON=$(jq -n --arg text "$INPUT" '{
+  model: "voxtype-cleaner",
+  prompt: ("<transcription>" + $text + "</transcription>"),
   stream: false,
   options: {
-    temperature: 0.0
-  }
+    num_predict: 200
+  },
+  keep_alive: "10m"
 }')
 
-OUTPUT=$(curl -s http://localhost:11434/api/chat -d "$JSON" \
-  | jq -r '.message.content // empty' \
+# Capture raw response for debugging
+RAW_RESPONSE=$(curl -sS http://localhost:11434/api/generate -d "$JSON" 2>&1)
+echo "$(date +%H:%M:%S) RAW: $RAW_RESPONSE" >> /tmp/voxtype-cleanup.log
+
+# /api/generate uses .response instead of .message.content
+OUTPUT=$(echo "$RAW_RESPONSE" \
+  | jq -r '.response // empty' \
   | sed 's/^"//;s/"$//' \
-  | sed 's/<think>.*<\/think>//g')
+  | sed 's/ thinking.*<\/think>//g')
+
+# Log every invocation for debugging
+echo "$(date +%H:%M:%S) IN: $INPUT" >> /tmp/voxtype-cleanup.log
+echo "$(date +%H:%M:%S) OUT: $OUTPUT" >> /tmp/voxtype-cleanup.log
 
 if [[ -n "$OUTPUT" ]]; then
     echo "$OUTPUT"

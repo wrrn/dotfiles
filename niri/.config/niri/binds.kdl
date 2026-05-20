@@ -98,6 +98,11 @@ binds {
   Ctrl+Shift+4 { screenshot; }
   Ctrl+Shift+3 { screenshot-screen; }
   Ctrl+Shift+5 { screenshot-window; }
+  Mod+Ctrl+Shift+Super+4 { set-dynamic-cast-window; }
+  Mod+Ctrl+Shift+Super+5 { clear-dynamic-cast-target; }
+    Mod+Ctrl+Shift+Super+3 { set-dynamic-cast-monitor; }
+
+  
 
   // The quit action will show a confirmation dialog to avoid accidental exits.
   Mod+Shift+E { quit; }

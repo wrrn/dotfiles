@@ -110,7 +110,7 @@ translate = false
 # cold_model_timeout_secs = 300
 
 # --- Eager processing settings ---
-eager_processing = true
+eager_processing = false
 eager_chunk_secs = 4.0
 eager_overlap_secs = 0.5
 

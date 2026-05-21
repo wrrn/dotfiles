@@ -43,8 +43,11 @@ bind tp tabprev
 bind tn tabnext
 bind tl tab #
 bind tc tabclose
+
 bind cpto fillcmdline tabopen -c personal
 bind cmto fillcmdline tabopen -c meta
+bind cto fillcmdline tabopen -c
+
 bind --mode=normal <M-t> fillcmdline tabopen
 
 bind tgs fillcmdline tgroupswitch

@@ -23,7 +23,7 @@
         "return-type": "json",
         "hide-empty-text": true,
         "format": "{}",
-        "on-click": "xdg-open https://www.focusmate.com/dashboard"
+        "on-click": "~/.config/waybar/scripts/focusmate-open.py"
     },
 
     "tray": {

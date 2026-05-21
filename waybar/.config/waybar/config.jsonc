@@ -26,6 +26,10 @@
         "on-click": "xdg-open https://www.focusmate.com/dashboard"
     },
 
+    "tray": {
+        "spacing": 7
+    },
+
     "niri/workspaces": {
         "format": "{index}",
         "disable-scroll": true

@@ -42,7 +42,7 @@ layout {
   // Top and bottom struts will simply add outer gaps in addition to the area occupied by
   // layer-shell panels and regular gaps.
   struts {
-    // left 300
+    left 292
     // right 64
     // top 64
     // bottom 64
@@ -50,7 +50,6 @@ layout {
 
   tab-indicator {
         width 15
-        
         gap 8
         place-within-column
         gaps-between-tabs 15

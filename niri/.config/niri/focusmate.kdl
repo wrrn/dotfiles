@@ -4,4 +4,13 @@ window-rule {
   block-out-from "screencast"
 }
 
+window-rule {
+  match title=r#"^Picture in picture$"#
+  default-floating-position x=0 y=0 relative-to="top-left"
+  default-column-width {fixed 284;}
+  default-window-height {fixed 160;}
+  block-out-from "screencast"
+  open-focused false
+}
+
 

@@ -136,7 +136,9 @@ def find_active(
             start = parse_iso(start_raw)
         except ValueError:
             continue
-        end = start + timedelta(seconds=int(duration))
+        # Focusmate returns duration in milliseconds (25/50/75 min sessions
+        # come back as 1500000 / 3000000 / 4500000).
+        end = start + timedelta(milliseconds=int(duration))
         if start <= now < end:
             return s, start, end
     return None

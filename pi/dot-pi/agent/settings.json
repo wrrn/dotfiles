@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.74.0",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "lastChangelogVersion": "0.75.3",
+  "defaultProvider": "ollama",
+  "defaultModel": "kimi-k2.6:cloud",
   "enabledModels": [
     "anthropic/claude-sonnet-4-6",
     "anthropic/claude-opus-4-6",
@@ -12,5 +12,10 @@
     "anthropic/claude-haiku-4-5",
     "ollama/kimi-k2.6:cloud"
   ],
-  "defaultThinkingLevel": "high"
+  "defaultThinkingLevel": "high",
+  "packages": [
+    "npm:@gotgenes/pi-subagents",
+    "git:git.sr.ht/~warren/pi-search",
+    "npm:@gotgenes/pi-anthropic-auth"
+  ]
 }

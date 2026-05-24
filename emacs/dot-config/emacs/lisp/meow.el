@@ -173,7 +173,7 @@
 
 
 
-  :hook
+
 
   :init (progn
           (require 'meow)

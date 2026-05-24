@@ -6,7 +6,7 @@
 ;; 2. Use sexp instead of meow-modes weird character implementation
 ;; 3. Add a meow-comment command to motion mode.
 
-(require 'meow-vterm)
+(require 'meow-ghostel)
 
 (defcustom meow-selection-char-bounds-table
   '((?i . inner)
@@ -84,17 +84,25 @@
   (interactive)
   (meow--execute-kbd-macro meow--kbd-mark-sexp))
 
-(defun meow--eat-insert ()
+(defvar ghostel--input-mode)
+
+(defun meow--terminal-insert ()
+  "Enter insert mode, switching terminal emulators to input mode if needed."
   (interactive)
-  (if (and (eq major-mode 'eat-mode)
-           (meow-normal-mode-p)
-           (not (bound-and-true-p eat--semi-char-mode)))
-      (progn
-        (eat-semi-char-mode)
-        (meow-insert)
-        (end-of-buffer))
+  (cond
+   ((and (eq major-mode 'ghostel-mode)
+         (meow-normal-mode-p)
+         (not (eq ghostel--input-mode 'semi-char)))
+    (ghostel-semi-char-mode)
     (meow-insert)
-    ))
+    (goto-char (point-max)))
+   ((and (eq major-mode 'eat-mode)
+         (meow-normal-mode-p)
+         (not (bound-and-true-p eat--semi-char-mode)))
+    (eat-semi-char-mode)
+    (meow-insert)
+    (goto-char (point-max)))
+   (t (meow-insert))))
 
 (use-package meow
   :ensure t
@@ -134,7 +142,7 @@
      (telega-chat-mode . normal)
      (term-mode . normal)
      (text-mode . normal)
-     (vterm-mode . insert)
+     (ghostel-mode . insert)
      (eat-mode . insert)
      (magit-mode . insert)
      (Custom-mode . normal)))
@@ -166,10 +174,6 @@
 
 
   :hook
-  ;; (vterm-mode . (lambda ()
-  ;;                 (interactive)
-  ;;                 (advice-add 'meow--execute-kbd-macro :before #'meow--vterm-execute-kbd-macro)))
-  (vterm-copy-mode . meow-insert-exit)
 
   :init (progn
           (require 'meow)
@@ -225,7 +229,7 @@
              '("G" . meow-grab)
              '("h" . meow-left)
              '("H" . meow-left-expand)
-             '("i" . meow--eat-insert)
+             '("i" . meow--terminal-insert)
              '("I" . meow-open-above)
              '("j" . meow-next)
              '("J" . meow-next-expand)
@@ -272,7 +276,7 @@
          ("C-x C-b" . consult-buffer)
          ("C-x C-p c" . project-compile)
          ("C-x C-p f" . project-find-file)
-         ("C-x C-p t" . multi-vterm-project)
+         ("C-x C-p t" . ghostel-project)
          ("C-x C-p e" . eat-project)
          ("C-x m" . meow--disable)
          ("C-j m p" . meow-pop-to-mark)

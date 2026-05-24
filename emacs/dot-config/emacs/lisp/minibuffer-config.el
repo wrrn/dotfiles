@@ -58,16 +58,15 @@
   (consult-customize consult--source-buffer :hidden t :default nil)
   (consult-customize consult--source-recent-file :hidden t :default nil)
   (add-to-list 'consult-buffer-sources persp-consult-source)
-  (add-to-list 'consult-buffer-sources `(:name "vterminal"
+  (add-to-list 'consult-buffer-sources `(:name "ghostel"
                                                :hidden f
-                                               :narrow ?v
+                                               :narrow ?g
                                                :category buffer
                                                :state    ,#'consult--buffer-state
                                                :items ,(lambda()
-                                                         (when (boundp 'multi-vterm-buffer-name)
-                                                           (mapcar #'buffer-name
-                                                                   (persp-buffer-list-filter
-                                                                    (match-buffers multi-vterm-buffer-name))))))
+                                                         (mapcar #'buffer-name
+                                                                 (persp-buffer-list-filter
+                                                                  (match-buffers "ghostel")))))
                'append)
   (add-to-list 'consult-buffer-sources `(:name "eat"
                                                :hidden f

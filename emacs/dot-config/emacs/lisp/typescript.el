@@ -3,7 +3,7 @@
 
 ;; TODO
 ;; 1. Figure out why SPC x f sometimes results C-x C-f.
-;; 2. ESC in vterm should drop into v-term-copy-mode
+;; 2. ESC in ghostel should drop into ghostel-emacs-mode
 ;; 3. Enable meow mode in the minibuffer
 
 (use-package typescript-ts-mode

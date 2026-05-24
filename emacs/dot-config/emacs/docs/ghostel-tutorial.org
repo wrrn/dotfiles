@@ -1,0 +1,305 @@
+#+TITLE: Ghostel: A Practical Tutorial for the vtermEscapee
+#+AUTHOR: A fellow Emacs traveller
+#+DATE: 2026-05-24
+
+* Introduction: Why Ghostel Feels Different
+
+So you have arrived here from =vterm= and =multi-vterm=. You know the drill: you open a terminal, it drops you into "insert mode," and when you want to copy something you hit =C-c C-t= to freeze the world and pop into copy-mode, then =q= to leave. It works. It is muscle memory.
+
+Ghostel (built on libghostty) asks you to rethink one core assumption: *a terminal buffer is not a text editor that happens to run a shell underneath.* It is a live, running surface with its own ideas about input, display, and time. Ghostel gives you five different ways to interact with that surface, and the trick to falling in love with it is understanding *when* each mode is the right tool.
+
+This tutorial assumes you know Emacs, you use =meow= for modal editing, you switch buffers with =consult=, and you manage packages with =straight.el=. We will focus on the practical, day-to-day tacit knowledge — the stuff nobody puts in a README because it only makes sense once you have lived with the tool for a week.
+
+* 1. The Mental Model: How Ghostel Thinks About Input
+
+** The Five Input Modes (and When to Live in Each)
+
+Ghostel does not have "insert mode" and "copy mode." It has five distinct input modes, and you will drift between them naturally once you learn their personalities:
+
+| Mode | Key to enter | What it feels like | Use it when |
+|------|-------------|-------------------|-------------|
+| *semi-char* | default on entry | You type; most keys go to the shell. =C-c= prefix and a few Emacs chords are intercepted. | Day-to-day shell work. This is "home base." |
+| *char* | =C-c M-d= | Every single keystroke goes raw to the TUI. Emacs gets nothing. | =vim=, =htop=, =less=, anything fullscreen |
+| *Emacs* | =C-c C-e= | Terminal keeps running in the background. You can point, search, select, copy. | Searching live scrollback, quick copy, navigating |
+| *copy* | =C-c C-t= | Display is frozen. Buffer is read-only. Full Emacs navigation. | Precise selection of text that is scrolling by |
+| *line* | =C-c C-l= | You are editing in an Emacs text area. =RET= sends the whole line. | REPLs, multi-line commands, bash completion |
+
+Ghostel starts in *semi-char mode* by default. If you have just switched from vterm, think of semi-char as "insert mode with escape hatches." You type normally, your shell sees everything, but you retain enough Emacs control to switch modes without leaving the buffer.
+
+** The Big Shift: Emacs Mode vs vterm-copy-mode
+
+In vterm, when you hit =C-c C-t= (copy mode), the terminal *stops.* The process is frozen in time. You select text, you yank, you hit =q=, and the world resumes. It is like pausing a movie.
+
+Ghostel's =C-c C-e= (Emacs mode) is something else entirely. The terminal *keeps running* while you navigate. Output continues to stream. The cursor in the terminal is still blinking. You are just not sending input anymore — you are looking, searching, and selecting from a living document.
+
+Think of it as the difference between:
+- vterm: "Pause the game, look at the map, unpause."
+- ghostel Emacs mode: "Pull out binoculars while walking."
+
+This matters because of search. In vterm copy mode, you might search for an error message, copy it, and quit to resume. In ghostel, you hit =C-c C-e=, run =consult-line= (which you have bound to =C-s=, of course), find the error, copy it with =M-w=, and the build has already continued in the background. You never stopped anything.
+
+The mental model is: *"look but don't touch."* Emacs mode lets you manipulate the text and point without intercepting shell input. The shell never knows you were there.
+
+** "Live" vs "Frozen" vs "Read-Only"
+
+- *Live* (semi-char, char, line): The terminal process receives input. Time moves forward.
+- *Frozen* (copy mode): The display is a snapshot. Nothing changes. Safe for precise selection.
+- *Read-only but live* (Emacs mode): The display updates, but your keystrokes edit Emacs text, not the shell. The process keeps running. This is the ghostel superpower.
+
+* 2. Meow + Ghostel Integration
+
+Ghostel starts in semi-char mode, which means your =meow= starts in *insert state.* That is correct and expected. You are effectively in insert mode, typing into a shell.
+
+** The Escape Hatch
+
+When you want meow normal state — when you want to search, navigate, select — you need ghostel to be in Emacs mode. The bridge is simple:
+
+Press =<escape>= in semi-char mode. Your config binds this to =meow--ghostel-emacs-mode=, which does two things:
+
+1. Calls =ghostel-emacs-mode= — the terminal keeps running, you now have free Emacs navigation.
+2. Calls =meow-insert-exit= — you drop into meow normal state.
+
+Now you are in meow normal state inside a live terminal buffer. You can =hjkl= around, use =n= to search with =meow-search=, select things with =w= / =W= / =x=, copy with =y=. The shell output continues underneath you.
+
+** Returning to Typing
+
+Here is the magic: in your config, =i= (meow insert) is bound to =meow--terminal-insert=. When you are in ghostel Emacs mode and you press =i=, it:
+
+1. Drops ghostel back into semi-char mode.
+2. Puts meow into insert state.
+3. Moves point to the end of the buffer (the prompt, ready for typing).
+
+So the workflow becomes muscle memory:
+
+#+begin_example
+Type in shell -> ESC -> meow normal, ghostel-emacs-mode -> search/copy/navigate -> i -> back to typing
+#+end_example
+
+** What About Copy Mode?
+
+If you enter copy mode (=C-c C-t=) while meow is active, you get a frozen read-only buffer with meow normal state. This is the closest analog to vterm copy mode, and it works exactly how you expect: =hjkl= navigation, selection, =y= to yank. The difference is how you exit. More on that in Section 9.
+
+* 3. Project & Buffer Management
+
+** No More Numbered Buffers
+
+multi-vterm gave you =*vterm*<1>=, =*vterm*<2>=, etc. Ghostel does not do that. Every ghostel buffer has a name derived from =ghostel-buffer-name=, and if you use =ghostel-project=, the buffer is named after the project root (e.g., =*ghostel:~/myproject*=).
+
+This works beautifully with =consult-buffer=. You do not hunt for =*vterm*<4>= and wonder which project it belongs to. The buffer name tells you.
+
+** The Project Buffer List
+
+Ghostel maintains a per-project list of buffers. The commands you care about:
+
+- =ghostel-project= (=C-x p t= in your config) — creates or switches to the project's terminal.
+- =ghostel-project-next= / =ghostel-project-prev= — cycle through the project's terminals.
+- =ghostel-other= (=C-j o t=) — switch to the last ghostel buffer, across any project, or create one.
+
+If you keep =C-x p t= and =C-j o t= in muscle memory, you rarely need to think about buffer names.
+
+** consult with =?g= Narrowing
+
+Your =consult-buffer= setup already includes a ghostel source with =:narrow ?g=. So =C-x b= then =g= restricts to ghostel buffers. I find this faster than project cycling when I have eight terminals open across three repos.
+
+** Killing on Exit
+
+You have =(ghostel-kill-buffer-on-exit t)= set. When a shell process dies, the buffer dies. This keeps =consult-buffer= clean. If you ever want to inspect output after a command finishes, set it to nil for that session.
+
+* 4. Practical Scrollback, Search & Copy Workflows
+
+** Searching Live Output (=C-c C-e=)
+
+You are running a long test suite. Errors fly by. In vterm you would frantically try to hit copy-mode before they scroll off. In ghostel:
+
+1. =C-c C-e= → Emacs mode.
+2. =C-s= (=consult-line=) — start typing the error pattern.
+3. =M-w= on the match to copy.
+4. =i= to drop back to semi-char and keep typing.
+
+The tests never stopped. If new output arrives while you are searching, =consult-line= sees it.
+
+You can also use =occur=, =isearch=, or =C-c s s= (=consult-ripgrep= from your config) on the buffer contents. Because Emacs mode is read-only but *live*, you are searching a moving target — but that's usually what you want.
+
+** Freezing for Precision (=C-c C-t=)
+
+Sometimes output scrolls too fast to search. A compiler spews thousands of lines. You want one specific mangled template error that just vanished. That's when you freeze:
+
+1. =C-c C-t= → copy mode. The display is a snapshot.
+2. =n= (=meow-search=) or =C-s= to find.
+3. =y= (=meow-save=) or =M-w= to copy.
+4. =C-c C-t= again to exit copy mode and return to semi-char.
+
+Notice: =C-c C-t= toggles copy mode. It is the *same* key you used in vterm — but the behavior is different. In vterm, =C-c C-t= was the *only* way to select text. In ghostel, it is the *heavy* way. Most of the time you will use Emacs mode instead.
+
+** Yank and Paste: The Whole Story
+
+Ghostel handles the clipboard dance with more nuance than vterm:
+
+- =C-y= — yanks from the Emacs kill ring *into* the terminal. This works in semi-char mode. The terminal receives the text as if you pasted it.
+- =C-c C-y= — some setups use this for bracketed paste, which tells the shell "this is a paste, not typed characters." Essential if you are pasting something with tabs or newlines that would otherwise trigger shell completion.
+- =M-y= (=consult-yank-pop= in your config) — cycle through the kill ring after a yank.
+- =C-c M-w= — copy the *entire scrollback* to the kill ring. Yes, the whole thing. You just got a 50,000-line log? One chord, and it is in your clipboard.
+
+Bracketed paste is on by default in ghostel (libghostty handles it), so =C-y= usually does the right thing automatically.
+
+** Mouse Selection
+
+If =ghostel-mouse-drag-input-mode= (default: ='copy) is set, dragging with the mouse enters copy mode automatically. You select like a normal Emacs buffer. This feels natural to anyone coming from a GUI terminal. When you release, you are in copy mode. Exit with =C-c C-t= again.
+
+* 5. Prompt Navigation (OSC 133)
+
+This is one of those features that seems minor until it saves you ten minutes a day.
+
+Ghostel's shell integration (enabled by =(ghostel-shell-integration t)= in your config, which is the default) emits OSC 133 escape sequences automatically for bash, zsh, and fish. You do not configure your shell. It Just Works.
+
+What this means practically:
+
+- =C-c M-n= — jump to the *next* prompt.
+- =C-c M-p= — jump to the *previous* prompt.
+
+If you just ran =make= and it produced 800 lines of output, =C-c M-p= takes you directly to the command you ran. =C-c M-n= jumps over the noise to the next prompt. It is like =C-c C-p= / =C-c C-n= in a comint buffer, but for a real terminal.
+
+This is transformational for REPL sessions and long build outputs. Combine it with meow: =ESC= (Emacs mode) → =C-c M-p= (previous prompt) → =y y= (meow line, save) → =i= (back to typing). You just copied a previous command in four keystrokes.
+
+* 6. Line Mode
+
+** When to Use It
+
+Line mode (=C-c C-l=) is for any situation where you want to compose text with full Emacs editing power *before* sending it to the shell:
+
+- Writing a long =curl= command with headers.
+- Composing a multi-line Python block for =ipython=.
+- Any time you want =M-b=, =C-a=, =C-k=, or =undo= while editing a command.
+
+In semi-char mode, =C-k= sends =\C-k= to the shell (which usually does nothing useful). In line mode, =C-k= kills to end-of-line, because you are in an Emacs text field.
+
+** How It Works
+
+Line mode spawns a local editing buffer attached to the terminal. You type, edit, navigate with all of Emacs. When you hit =RET=, the *entire line* is sent to the terminal process atomically. If you are in the middle of a multi-line edit, =C-j= inserts a newline without sending; only =RET= fires the payload.
+
+** Bash Completion
+
+If you enable =ghostel-line-mode-use-bash-completion=, =TAB= in line mode queries bash for completions. You get proper programmable completion (git, kubectl, docker, etc.) without giving up Emacs editing keys. This is the best of both worlds.
+
+** Auto-Pause/Resume with TUIs
+
+If a TUI program starts (e.g., you accidentally hit =git log= which launches =less=) while you are in line mode, ghostel automatically pauses line mode and lets the TUI take over. When the TUI exits, line mode resumes. You do not lose your half-edited command.
+
+* 7. TUIs and Char Mode
+
+** When Char Mode is Unavoidable
+
+Some programs fight your keymaps. =vim= inside ghostel is the classic example. In semi-char mode, =C-w= might close Emacs windows instead of vim's window navigation. =C-c= would be intercepted by Emacs. You need char mode.
+
+Hit =C-c M-d= to enter char mode. Every keystroke goes raw to the program. Emacs is completely out of the way.
+
+** Exiting Char Mode
+
+Char mode is powerful and dangerous. To escape:
+
+- =M-RET= (Meta-Return) — exits char mode and returns to semi-char.
+
+(Mnemonic: "Meta-Return to safety.")
+
+** Why Char Mode Overrides Even Minor Modes
+
+In semi-char mode, minor mode keymaps (like your =wh-keymap=, or company-mode) can still interfere. Char mode is the nuclear option: it bypasses *everything* — global keymaps, minor modes, everything. Only =M-RET= is listened for. This is why =vim=, =htop=, =emacs= inside =emacs= (don't do this), and anything using =ncurses= needs char mode.
+
+* 8. Directory Tracking & Remote (TRAMP) Terminals
+
+** =default-directory= Follows the Shell
+
+Ghostel tracks your shell's current working directory via OSC 7 sequences (again, automatic with shell integration). This means:
+
+- =C-x C-f= from a ghostel buffer starts =find-file= in the shell's current directory.
+- =C-j s s= (=consult-ripgrep=) searches the directory you are shelled into, not where the terminal was spawned.
+- Emacs's built-in file commands just work contextually.
+
+** Remote Terminals via TRAMP
+
+This is subtle and powerful. If you =cd /ssh:remotehost:/path= in your shell (using TRAMP syntax), ghostel automatically becomes a *remote terminal.* =default-directory= is now a TRAMP path. When you =C-x C-f= from this buffer, you browse the remote filesystem.
+
+Your config does not set =ghostel-tramp-shells=, which means the default remote shell is used. If you ever need a per-method override (e.g., force =bash= over =sh= for a specific TRAMP method), you set it there.
+
+* 9. Tips vterm Users Need to Unlearn
+
+| vterm habit | ghostel replacement | notes |
+|------------|-------------------|-------|
+| =C-c C-t= to enter copy mode, =q= to quit | =C-c C-t= toggles copy mode; =C-c C-t= again exits | No special "quit" key. It is a toggle. |
+| Copy mode freezes everything | Emacs mode (=C-c C-e=) is the default for searching/navigating; copy mode is for emergency freezing | Emacs mode is your new best friend |
+| =multi-vterm-rename-buffer= | Not needed. Ghostel renames automatically from OSC 2 (shell title) | Manual rename still available via =C-c r= |
+| =vterm-min-window-width= | Not applicable | Ghostel handles reflow via libghostty |
+| "I must pause the terminal to select text" | Terminal keeps running. Select in Emacs mode. | The big mental shift |
+| =C-c C-j= (vterm copy-mode) | =C-c C-e= for Emacs mode, =C-c C-t= for copy mode | Note the key change for Emacs mode |
+
+The renaming point is worth dwelling on. In vterm, you often had a pile of =*vterm*<N>= buffers and forgot which was which. In ghostel, if your shell sets the window title (most shells do automatically), ghostel picks it up via OSC 2. Your buffer becomes =*ghostel:~/proj (nvim)*= or whatever your shell reports. You can still hit =C-c r= to force a name, but you will rarely need to.
+
+* 10. Troubleshooting First-Run Issues
+
+** Native Module Auto-Download
+
+Ghostel requires a compiled native module. On first use, it can auto-download if you set:
+
+#+begin_src elisp
+(setq ghostel-module-auto-install t)
+#+end_src
+
+If it fails (NixOS, non-standard glibc, etc.), you will need to build it manually. The error message will tell you. Usually it is a matter of having =zig= or =gcc= available.
+
+** straight.el Cannot Find ghostel on MELPA
+
+If the package is not on MELPA yet or your cache is stale, use a direct recipe:
+
+#+begin_src elisp
+(use-package ghostel
+  :straight (ghostel :host github
+                     :repo "dakra/ghostel"
+                     :files ("lisp/*.el" "etc" ""))
+#+end_src
+
+(Adjust the repo if upstream moves. Check the ghostty ecosystem for the current canonical source.)
+
+** =TERM=xterm-ghostty= Breaks Remote SSH
+
+Ghostel sets =TERM=xterm-ghostty= by default so the remote host knows it has a modern terminal with pixel-perfect rendering, true-color, and advanced escape sequences. Some older SSH targets do not have the =xterm-ghostty= terminfo entry.
+
+If you see "unknown terminal type" on SSH, set:
+
+#+begin_src elisp
+(setq ghostel-term "xterm-256color")
+#+end_src
+
+This degrades gracefully. You lose a few bells and whistles on the remote host, but everything still works.
+
+* Appendix: My Daily Ghostel Keymap Cheat Sheet
+
+| Task | Keys / Command |
+|------|---------------|
+| New terminal here | =C-x p t= (=ghostel-project=) |
+| New terminal (global) | =C-x t c= (=ghostel=) |
+| Switch between project terminals | =ghostel-project-next= / =ghostel-project-prev= |
+| Switch to any terminal | =C-j o t= (=ghostel-other=) |
+| Search live scrollback & copy | =ESC= (=ghostel-emacs-mode=) → =C-s= → copy → =i= |
+| Freeze & select text | =C-c C-t= → select → =C-c C-t= |
+| Enter a TUI (vim, htop) | =C-c M-d= → do TUI things → =M-RET= |
+| Compose a long command | =C-c C-l= → type freely → =RET= |
+| Copy all scrollback | =C-c M-w= |
+| Next/previous prompt | =C-c M-n= / =C-c M-p= |
+| Rename buffer manually | =C-c r= |
+| Yank from kill ring | =C-y= (or =M-y= to cycle) |
+| Bracketed paste | =C-c C-y= (if you need it) |
+
+* Closing Thoughts
+
+Ghostel rewards the same investment that Emacs itself does: you spend a week feeling slightly disoriented, and then you cannot imagine going back. The key insight is that *the terminal is alive.* Most of the time, you do not need to pause it. You just borrow the Emacs machinery to look at it while it keeps running.
+
+Your workflow, once internalized:
+
+1. Start in semi-char; type like normal.
+2. Hit =ESC= to inspect/search/copy without stopping anything.
+3. Hit =i= to return to typing.
+4. Use =C-c C-t= only when the world is moving too fast and you need to freeze it.
+5. Use =C-c C-l= when composing complex input.
+6. Use =C-c M-d= when entering foreign TUIs, and =M-RET= to escape.
+
+Welcome to the future of terminal emulation in Emacs.

@@ -1,37 +1,23 @@
 ;; term-config.el --- Configure Terminal specific packages
 
-(use-package vterm
-  :custom
-  (vterm-min-window-width 20)
-  (vterm-set-bold-hightbright nil)
-  ;; Remove C-j from the vterm-keymap so that it doesn't conflict with
-  ;; wh-keymap.
-  :bind (:map vterm-mode-map
-              ("C-j" . nil))
-  
-  :ensure t)
-
-
-(use-package multi-vterm
+(use-package ghostel
   :ensure t
-  :requires vterm
-  :bind (
-         ("C-x p t"   . multi-vterm-project)
-         :map vterm-mode-map
-         ("C-c r" . multi-vterm-rename-buffer)
+  :custom
+  (ghostel-kill-buffer-on-exit t)
+  :bind (("C-x p t" . ghostel-project)
+         :map ghostel-semi-char-mode-map
+         ("<escape>" . meow--ghostel-emacs-mode)
+         ("C-c r" . rename-buffer)
          :map wh-keymap
-         ("t c" . multi-vterm-dedicated-toggle)
-         ("t c" . multi-vterm)
-         ("p t" . multi-vterm-project))
-  )
+         ("t c" . ghostel)          ; create new terminal
+         ("o t" . ghostel-other)      ; switch to or create terminal
+         ("p t" . ghostel-project)))
 
 (defun eat--meow-emacs-mode ()
   (interactive)
   (progn
     (eat-emacs-mode)
     (meow-insert-exit)))
-
-
 
 (use-package eat
   :straight  (eat :type git
@@ -54,7 +40,6 @@
          ("C-c C-t" . eat-semi-char-mode)
          )
   )
-
 
 
 (provide 'term-config)

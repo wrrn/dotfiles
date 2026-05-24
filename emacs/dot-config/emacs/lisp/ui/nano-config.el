@@ -2,19 +2,15 @@
 ;;
 ;; To install in the ui-config.el, add (require 'nano-config "./ui/nano-config")
 
-(defun nano-modeline-vterm-shell-mode ()
-  "Show COPY if vterm is in copy mode"
-  (propertize (if vterm-copy-mode
-                  "(copy mode)"
-                "")
-              'face (nano-modeline-face 'primary)))
-
-(defun nano-modeline-vterm-mode ()
-  "Nano line for vterm-mode"
+(defun nano-modeline-ghostel-mode ()
+  "Nano line for ghostel-mode"
   (funcall nano-modeline-position
            '((nano-modeline-buffer-status ">_") " "
              (nano-modeline-buffer-name) " "
-             (nano-modeline-vterm-shell-mode))
+             (propertize (if (bound-and-true-p ghostel--mode-line-tag)
+                             ghostel--mode-line-tag
+                           "")
+                         'face (nano-modeline-face 'primary)))
            '((nano-modeline-default-directory) " "
              (nano-modeline-window-dedicated))))
 
@@ -42,7 +38,7 @@
   (elfeed-search-mode   . nano-modeline-elfeed-search-mode)
   (elpher-mode          . nano-modeline-elpher-mode)
   (term-mode            . nano-modeline-term-mode)
-  (vterm-mode           . nano-modeline-vterm-mode)
+  (ghostel-mode         . nano-modeline-ghostel-mode)
   (eat-mode             . nano-modeline-eat-mode)
   (xwidget-webkit-mode  . nano-modeline-xwidget-mode)
   (messages-buffer-mode . nano-modeline-message-mode)

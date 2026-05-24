@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.75.3",
-  "defaultProvider": "ollama",
-  "defaultModel": "kimi-k2.6:cloud",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-sonnet-4-6",
   "enabledModels": [
     "anthropic/claude-sonnet-4-6",
     "anthropic/claude-opus-4-6",

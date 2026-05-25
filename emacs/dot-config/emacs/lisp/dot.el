@@ -91,8 +91,8 @@
 (use-package rainbow-mode
   :ensure t
   :diminish rainbow-mode
-  :hook ((web-mode-hook . rainbow-mode)
-         (scss-mode-hook . rainbow-mode)))
+  :hook ((web-mode . rainbow-mode)
+         (scss-mode . rainbow-mode)))
 
 ;; jsonnet is a superset of json
 (use-package jsonnet-mode

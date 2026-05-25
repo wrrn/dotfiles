@@ -1,7 +1,21 @@
 ;; term-config.el --- Configure Terminal specific packages
 
 (use-package with-editor
-  :ensure t)
+  :ensure t
+  :hook ((server-visit . with-editor-mode)
+         (shell-mode . with-editor-export-editor)
+         (eshell-mode . with-editor-export-editor)
+         (term-exec . with-editor-export-editor))
+  :config
+  ;; Ensure with-editor-mode is enabled when editing git commit messages
+  ;; and other editor-invoked files. C-c C-c will then save and exit.
+  (add-hook 'with-editor-mode-hook
+            (lambda ()
+              (when (derived-mode-p 'text-mode)
+                (message "Git/editor buffer opened. Use C-c C-c to finish, C-c C-k to cancel."))
+              ;; Override markdown-mode's C-c C-c binding to work with with-editor
+              (when (derived-mode-p 'markdown-mode)
+                (local-set-key (kbd "C-c C-c") #'with-editor-finish)))))
 
 ;; Helper function for ghostel-pre-spawn-hook
 ;; Uses with-editor's internal setup to configure EDITOR in spawned shells
@@ -9,6 +23,7 @@
   "Set up EDITOR environment variable for ghostel terminal.
   Calls the internal with-editor setup function to configure
   emacsclient as the EDITOR for git commits and other editor-opening commands."
+  (require 'with-editor)
   (with-editor--setup))
 
 (use-package ghostel

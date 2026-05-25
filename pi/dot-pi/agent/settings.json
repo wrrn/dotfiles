@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.75.3",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-6",
+  "defaultModel": "kimi-k2.6:cloud",
+  "defaultProvider": "ollama",
+  "defaultThinkingLevel": "high",
   "enabledModels": [
     "anthropic/claude-sonnet-4-6",
     "anthropic/claude-opus-4-6",
@@ -12,7 +12,7 @@
     "anthropic/claude-haiku-4-5",
     "ollama/kimi-k2.6:cloud"
   ],
-  "defaultThinkingLevel": "high",
+  "lastChangelogVersion": "0.75.3",
   "packages": [
     "npm:@gotgenes/pi-subagents",
     "git:git.sr.ht/~warren/pi-search",

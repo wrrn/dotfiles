@@ -10,7 +10,6 @@
   (ghostel-readonly-fast-exit nil)
   :bind (("C-x p t" . ghostel-project)
          :map ghostel-semi-char-mode-map
-         ("<escape>" . meow--ghostel-emacs-mode)
          ("C-c r" . rename-buffer)
          :map wh-keymap
          ("t c" . ghostel)          ; create new terminal

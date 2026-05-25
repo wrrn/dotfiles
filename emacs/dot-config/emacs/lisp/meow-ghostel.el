@@ -1,16 +1,20 @@
 ;;; meow-ghostel.el --- meow-mode integration for ghostel -*- lexical-binding: t; -*-
 
-;; Integration between meow modal editing and ghostel's input modes.
-;; Ghostel starts in semi-char mode (like insert), so meow also
-;; starts in insert state.  <escape> in semi-char switches to
-;; ghostel-emacs-mode and meow normal state.
+;; Ghostel starts in semi-char mode and meow starts in insert state.
+;; Meow's insert-state keymap binds <escape> to `meow-insert-exit',
+;; which shadows any per-mode <escape> binding we add to
+;; `ghostel-semi-char-mode-map'.  Instead of fighting that, advise
+;; `meow-insert-exit' so that exiting insert in a ghostel semi-char
+;; buffer also flips ghostel into Emacs mode — keeping ghostel's
+;; input-mode in lockstep with meow's editing state.
 
 (declare-function ghostel-emacs-mode "ghostel")
 
-(defun meow--ghostel-emacs-mode ()
-  "Switch ghostel to Emacs mode and exit meow insert state."
-  (interactive)
-  (ghostel-emacs-mode)
-  (meow-insert-exit))
+(defun meow--ghostel-sync-emacs-mode (&rest _)
+  (when (and (eq major-mode 'ghostel-mode)
+             (eq ghostel--input-mode 'semi-char))
+    (ghostel-emacs-mode)))
+
+(advice-add 'meow-insert-exit :after #'meow--ghostel-sync-emacs-mode)
 
 (provide 'meow-ghostel)

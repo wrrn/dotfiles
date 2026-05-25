@@ -1,5 +1,16 @@
 ;; term-config.el --- Configure Terminal specific packages
 
+(use-package with-editor
+  :ensure t)
+
+;; Helper function for ghostel-pre-spawn-hook
+;; Uses with-editor's internal setup to configure EDITOR in spawned shells
+(defun ghostel-with-editor-setup ()
+  "Set up EDITOR environment variable for ghostel terminal.
+  Calls the internal with-editor setup function to configure
+  emacsclient as the EDITOR for git commits and other editor-opening commands."
+  (with-editor--setup))
+
 (use-package ghostel
   :ensure t
   :custom
@@ -8,6 +19,7 @@
   ;; forward the key to the shell — so meow's j/k/h/l/n would drop us out
   ;; of Emacs mode and cycle shell history instead of navigating the buffer.
   (ghostel-readonly-fast-exit nil)
+  :hook (ghostel-pre-spawn . ghostel-with-editor-setup)
   :bind (("C-x p t" . ghostel-project)
          :map ghostel-semi-char-mode-map
          ("C-c r" . rename-buffer)

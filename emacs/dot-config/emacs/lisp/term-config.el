@@ -4,6 +4,10 @@
   :ensure t
   :custom
   (ghostel-kill-buffer-on-exit t)
+  ;; Without this, self-insert keys in Emacs/copy mode exit read-only and
+  ;; forward the key to the shell — so meow's j/k/h/l/n would drop us out
+  ;; of Emacs mode and cycle shell history instead of navigating the buffer.
+  (ghostel-readonly-fast-exit nil)
   :bind (("C-x p t" . ghostel-project)
          :map ghostel-semi-char-mode-map
          ("<escape>" . meow--ghostel-emacs-mode)

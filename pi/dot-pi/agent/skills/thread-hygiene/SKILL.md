@@ -64,6 +64,14 @@ Memory has a risk the workspace doesn't — you might write things Warren never 
 
 Proactive memory writes should always start as `inferred`. Promote to `demonstrated` after the pattern repeats; to `stated` only when Warren confirms.
 
+### Provenance fields (Two-local additions)
+
+Alongside `confidence`, add three more fields to every entry. They make the write-discipline rules below implementable.
+
+- **`added`** — ISO date the entry was created.
+- **`last_verified`** — ISO date an instance most recently confirmed the entry. Bump on confirming instances; do **not** bump on contradictions (those demote).
+- **`source`** — short note on what generated the entry. For `stated`, it's "warren-said" plus session/date context. For `inferred`, the pattern that triggered it.
+
 ### Example entry
 
 ```markdown
@@ -72,12 +80,67 @@ name: terse-sync-style
 description: Warren prefers short Slack-style replies for quick sync exchanges.
 type: user
 confidence: stated
+added: 2026-05-25
+last_verified: 2026-05-25
+source: warren-said-2026-05-25
 ---
 
 For quick syncs and one-off questions, default to terse Slack-style replies
 — no headers, no bullet lists, no preamble. Reserve structured answers for
 multi-part questions or decisions.
 ```
+
+## Write discipline
+
+When to write to memory, when to surface, when to delete.
+
+### When to write
+
+| Trigger | Write policy | Confidence at creation |
+|---|---|---|
+| **Explicit** — Warren says "remember X" / "from now on do Y" | Write immediately. Brief acknowledgment, no friction. | `stated` |
+| **Strong proactive** — clear repeated pattern that passes all four gates below | Write as `inferred`. Mention once, in-band (see "Acting on inferred entries"). Do not ask permission. | `inferred` |
+| **Weak proactive** — single instance, ambiguous, possibly one-off | Don't write. Hold in working memory for the session. Wait for recurrence. | — |
+
+### Strong-pattern gates
+
+All four must hold before a proactive write:
+
+1. **Recurrence** — at least 2 instances in different contexts. Same task twice doesn't count.
+2. **Generality** — about *how to operate*, not a specific one-off task.
+3. **Stability** — not obviously time-bound. "Warren is in EST right now" fails this gate.
+4. **Non-sensitive** — not about a person, a relationship, or a strategic judgment. Those require an explicit write.
+
+If any gate fails: don't write proactively. Either ask Warren explicitly or adapt for the session and let it go.
+
+### Acting on inferred entries
+
+When about to *act* on an `inferred` entry (not just internally rely on it), surface it in one line, in-band, no apology, no permission-ask:
+
+> *Defaulting to terse Slack-style for this reply since you've used that pattern — flag if wrong.*
+
+Stakes calibration:
+
+- **Low** (style, formatting, terseness) — act and note in one line.
+- **Medium** (dispatch defaults, tool choices) — act and note, slightly more verbosely.
+- **High** (consequential decisions, anything affecting other people) — do not act on `inferred` alone. Ask first, then promote to `stated` once Warren confirms.
+
+### Promotion, demotion, deletion
+
+| Transition | Trigger |
+|---|---|
+| `inferred` → `demonstrated` | Another consistent instance, no contradiction. Bump `last_verified`. |
+| `demonstrated` → `stated` | Warren explicitly confirms or references the entry. |
+| `stated` → `demonstrated` | Warren contradicts in a specific case. |
+| `demonstrated` → `inferred` | Warren contradicts; the broader pattern is in doubt. |
+| `inferred` → deleted | Warren contradicts; or `last_verified` is more than 30 days old. |
+| any → deleted | Warren says "forget X", or removes the underlying thing the entry references. |
+
+Demotion before deletion: one contradiction might be context-specific. Drop a confidence step, observe, then delete only if the pattern doesn't recover.
+
+### Staleness
+
+`inferred` entries with `last_verified` more than 30 days old are deleted on next encounter — they were tentative bets that didn't pan out. `demonstrated` and `stated` entries do **not** auto-decay; they require active contradiction or an explicit "forget X" to remove. The standing rule ("verify the underlying file/state before recommending") still applies on every read.
 
 ## Hygiene
 

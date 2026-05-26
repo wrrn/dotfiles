@@ -254,11 +254,11 @@ comb1 = "Alt + Ctrl"
 "Alt + Equal" = "resize_window_grow"
 "Alt + Minus" = "resize_window_shrink"
 
-"Alt + Enter" = { "exec" = [
-  "/bin/bash",
-  "-c",
-  "open -a \"/System/Applications/Utilities/Terminal.app\"",
-] }
+# "Alt + Enter" = { "exec" = [
+#   "/bin/bash",
+#   "-c",
+#   "open -a \"/System/Applications/Utilities/Terminal.app\"",
+# ] }
 
 "Alt + Shift + D" = "debug" # prints layout tree
 

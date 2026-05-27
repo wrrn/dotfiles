@@ -1,6 +1,6 @@
 {
-  "defaultModel": "kimi-k2.6:cloud",
-  "defaultProvider": "ollama",
+  "defaultModel": "gpt-5.5",
+  "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "anthropic/claude-sonnet-4-6",

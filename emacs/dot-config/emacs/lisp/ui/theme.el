@@ -113,6 +113,22 @@
   :ensure t
   :straight (:host github :repo "felipefdl/warm-burnout" :files ("emacs/*.el"))
   :config
-  (load-theme 'warm-burnout-dark t))
+  ;; Preload both variants without enabling them so auto-dark can switch without
+  ;; prompting about theme safety on startup.
+  (load-theme 'warm-burnout-dark t t)
+  (load-theme 'warm-burnout-light t t))
+
+(use-package auto-dark
+  :ensure t
+  :straight (:host github :repo "LionyxML/auto-dark-emacs" :files ("auto-dark.el"))
+  :after warm-burnout
+  :custom
+  ;; Allow macOS fallback detection when the Emacs build lacks built-in
+  ;; AppleScript support.
+  (auto-dark-allow-osascript t)
+  ;; `auto-dark-themes' is ordered as (DARK-THEMES LIGHT-THEMES).
+  (auto-dark-themes '((warm-burnout-dark) (warm-burnout-light)))
+  :config
+  (auto-dark-mode 1))
 
 (provide 'theme)

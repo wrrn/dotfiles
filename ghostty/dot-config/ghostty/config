@@ -49,7 +49,7 @@
 # resize-overlay-duration = 4s 200ms
 # theme = Everforest Light Med
 # theme = Wombat
-theme = warm-burnout-dark
+theme = light:warm-burnout-light,dark:warm-burnout-dark
 
 font-family = Triplicate A Code
 font-size = 18

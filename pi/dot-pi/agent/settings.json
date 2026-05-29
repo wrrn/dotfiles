@@ -1,18 +1,17 @@
 {
-  "defaultModel": "gpt-5.5",
-  "defaultProvider": "openai-codex",
+  "defaultModel": "claude-haiku-4-5",
+  "defaultProvider": "anthropic",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "anthropic/claude-sonnet-4-6",
-    "anthropic/claude-opus-4-6",
-    "anthropic/claude-opus-4-7",
-    "openai-codex/gpt-5.4",
     "openai-codex/gpt-5.5",
     "openai-codex/gpt-5.4-mini",
     "anthropic/claude-haiku-4-5",
-    "ollama/kimi-k2.6:cloud"
+    "ollama/kimi-k2.6:cloud",
+    "anthropic/claude-opus-4-8",
+    "openai-codex/gpt-5.4"
   ],
-  "lastChangelogVersion": "0.75.3",
+  "lastChangelogVersion": "0.77.0",
   "packages": [
     "npm:@gotgenes/pi-subagents",
     "git:git.sr.ht/~warren/pi-search",

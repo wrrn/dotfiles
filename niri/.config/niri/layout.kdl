@@ -31,7 +31,7 @@ layout {
 
   border {
     on
-    width 4
+    width 1
     // active-color "#ffc87f"
     active-color "#1a151060"
     inactive-color "#b4a89c40"
@@ -88,7 +88,7 @@ layer-rule {
   opacity 0.8
   geometry-corner-radius 12
   background-effect {
-    xray true        // blur the wallpaper behind, cheaply
+    xray false        // blur the wallpaper behind, cheaply
     noise 0.15       // bump past the 0.05 anti-band default for visible grain
     // saturation 1.2   // optional: richer brown
   }
@@ -96,7 +96,7 @@ layer-rule {
 
 layer-rule {
   match namespace="^waybar$"
-  opacity 0.6
+  opacity 0.5
   background-effect {
     xray true
     noise 0.15

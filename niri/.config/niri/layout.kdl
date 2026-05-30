@@ -32,8 +32,9 @@ layout {
   border {
     on
     width 4
-    active-color "#ffc87f"
-    inactive-color "#505050"
+    // active-color "#ffc87f"
+    active-color "#1a151060"
+    inactive-color "#b4a89c40"
   }
 
   // Struts shrink the area occupied by windows, similarly to layer-shell panels.
@@ -49,11 +50,11 @@ layout {
   }
 
   tab-indicator {
-        width 15
-        gap 8
-        place-within-column
-        gaps-between-tabs 15
-    }
+    width 15
+    gap 8
+    place-within-column
+    gaps-between-tabs 15
+  }
 }
 
 // Add lines like this to spawn processes at startup.
@@ -72,4 +73,32 @@ window-rule {
   geometry-corner-radius 12
   clip-to-geometry true
   draw-border-with-background true
+  opacity 0.77
+  background-effect {
+    xray true
+    noise 0.8
+    saturation 2   // optional: richer brown
+  }
+
+}
+
+
+layer-rule {
+  match namespace="^launcher$"   // fuzzel
+  opacity 0.8
+  geometry-corner-radius 12
+  background-effect {
+    xray true        // blur the wallpaper behind, cheaply
+    noise 0.15       // bump past the 0.05 anti-band default for visible grain
+    // saturation 1.2   // optional: richer brown
+  }
+}
+
+layer-rule {
+  match namespace="^waybar$"
+  opacity 0.6
+  background-effect {
+    xray true
+    noise 0.15
+  }
 }

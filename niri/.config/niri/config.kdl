@@ -4,7 +4,6 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "swww-daemon"
 
 include "input.kdl"
 include "outputs/laptop-screen.kdl"

@@ -9,21 +9,6 @@
       },
       "models": [
         {
-          "compat": {
-            "supportsDeveloperRole": true
-          },
-          "contextWindow": 262144,
-          "id": "kimi-k2.6:cloud",
-          "maxTokens": 32768,
-          "name": "Kimi K2.6 (Ollama Cloud)",
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "minimal": "low",
-            "off": "none",
-            "xhigh": "max"
-          }
-        },
-        {
           "contextWindow": 128000,
           "id": "gemma3:4b",
           "input": [
@@ -63,7 +48,14 @@
             "text",
             "image"
           ],
-          "reasoning": true
+          "maxTokens": 262144,
+          "name": "Kimi K2.6 (Ollama Cloud)",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": "low",
+            "xhigh": "max"
+          }
         },
         {
           "_launch": true,

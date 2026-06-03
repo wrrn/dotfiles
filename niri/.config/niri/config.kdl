@@ -18,4 +18,5 @@ include "workspaces/messaging.kdl"
 include "animations.kdl"
 
 include "wallpaper.kdl"
+include "cursor.kdl"
 include "focusmate.kdl"

@@ -1,3 +1,5 @@
 environment {
   DISPLAY ":0"
+  XCURSOR_THEME "BreezeX-RosePine-Linux"
+  XCURSOR_SIZE "24"
 }

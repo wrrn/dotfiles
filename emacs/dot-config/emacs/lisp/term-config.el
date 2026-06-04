@@ -18,13 +18,27 @@
                 (local-set-key (kbd "C-c C-c") #'with-editor-finish)))))
 
 ;; Helper function for ghostel-pre-spawn-hook
-;; Uses with-editor's internal setup to configure EDITOR in spawned shells
+;; Uses with-editor's internal setup to configure EDITOR in spawned shells.
+;;
+;; We call the internal `with-editor--setup' directly (rather than the public
+;; `with-editor-export-editor') because ghostel has a unique advantage: its
+;; `ghostel-pre-spawn' hook fires *before* the shell process starts.  That lets
+;; us mutate `process-environment' up front and have the new EDITOR inherited
+;; cleanly by the child shell at spawn time -- no need to inject the variable
+;; into an already-running process the way `with-editor-export-editor' does.
 (defun ghostel-with-editor-setup ()
   "Set up EDITOR environment variable for ghostel terminal.
   Calls the internal with-editor setup function to configure
-  emacsclient as the EDITOR for git commits and other editor-opening commands."
+  emacsclient as the EDITOR for git commits and other editor-opening commands.
+
+  `with-editor--setup' relies on the dynamic variable `with-editor--envvar'
+  being bound to the name of the variable to export (normally done by the
+  public `with-editor-export-editor').  Called directly it is nil, which makes
+  with-editor export a garbage variable named "" instead of EDITOR.  Bind it
+  explicitly here so the spawned shell gets a real EDITOR=emacsclient ..."
   (require 'with-editor)
-  (with-editor--setup))
+  (let ((with-editor--envvar "EDITOR"))
+    (with-editor--setup)))
 
 (use-package ghostel
   :ensure t

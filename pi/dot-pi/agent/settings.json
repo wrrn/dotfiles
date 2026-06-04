@@ -1,6 +1,6 @@
 {
-  "defaultModel": "kimi-k2.6:cloud",
-  "defaultProvider": "ollama",
+  "defaultModel": "claude-opus-4-8",
+  "defaultProvider": "anthropic",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "anthropic/claude-sonnet-4-6",
@@ -16,5 +16,6 @@
     "npm:@gotgenes/pi-subagents",
     "git:git.sr.ht/~warren/pi-search",
     "npm:@gotgenes/pi-anthropic-auth"
-  ]
+  ],
+  "hideThinkingBlock": true
 }

@@ -1,6 +1,6 @@
 {
-  "defaultModel": "claude-opus-4-8",
-  "defaultProvider": "anthropic",
+  "defaultModel": "kimi-k2.6:cloud",
+  "defaultProvider": "ollama",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "anthropic/claude-sonnet-4-6",

@@ -8,6 +8,7 @@
 
     "modules-center": [],
     "modules-right": [
+        "custom/timer",
         "custom/focusmate",
         "tray",
         "network",
@@ -16,6 +17,14 @@
         "battery",
         "clock"
     ],
+
+    "custom/timer": {
+        "exec": "~/.config/waybar/scripts/timer.py",
+        "interval": 1,
+        "return-type": "json",
+        "hide-empty-text": true,
+        "format": "{}"
+    },
 
     "custom/focusmate": {
         "exec": "~/.config/waybar/scripts/focusmate.py",

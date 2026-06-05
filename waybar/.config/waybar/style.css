@@ -34,6 +34,18 @@ window#waybar {
     padding: 6px 6px;
 }
 
+#custom-timer {
+    color: #a6e3a1;
+    padding: 6px 6px;
+    text-align: center;
+    min-width: 44px;
+}
+
+#custom-timer.ending {
+    color: #f38ba8;
+    font-weight: 600;
+}
+
 #custom-focusmate {
     color: #f38ba8;
 }

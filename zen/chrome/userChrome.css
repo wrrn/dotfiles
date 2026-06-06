@@ -1,11 +1,1 @@
-:root[zen-compact-mode="true"] {
-	@media -moz-pref("zen.view.compact.hide-tabbar") or -moz-pref("zen.view.compact.hide-toolbar") or -moz-pref("zen.view.use-single-toolbar") {
-		& #zen-appcontent-wrapper {
-			--zen-element-separation: 0;
-		}
-		& .browserSidebarContainer {
-			--zen-native-inner-radius: 0;
-			--zen-big-shadow: none;
-		}
-	}
-}
+/nix/store/3jjljx00bzj1jrx2rxm7y4j4kgyscbxl-home-manager-files/Library/Application Support/Zen/Profiles/default/chrome/userChrome.css

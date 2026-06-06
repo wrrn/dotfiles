@@ -93,6 +93,14 @@
   (setq mac-command-modifier 'super))
 
 (add-hook 'server-after-make-frame-hook #'raise-frame)
+(add-hook 'after-delete-frame-functions
+          (lambda (_frame)
+            (when (frame-live-p (selected-frame))
+              (raise-frame (selected-frame)))))
+
+
+(add-hook 'corfu-quit-hook #'raise-frame)
+
 
 ;; (when (file-exists-p "~/.emacs.d/project-inits")
 ;;   (load-dir-one "~/.emacs.d/project-inits"))

@@ -5,9 +5,9 @@
 # ── Global options ─────────────────────────────────────────────────────────────
 [options]
 focus_follows_mouse = true
- mouse_follows_focus = true
+mouse_follows_focus = true
 preset_column_widths = [0.25, 0.33333, 0.50, 0.66667, 0.75, 0.99999]
-animation_speed = 150
+animation_speed = 120
 # Approximates niri's center-focused-column "on-overflow"
 auto_center = false
 
@@ -93,7 +93,8 @@ mouse_nextdisplay = "alt - i"
 
 # Manage / float toggle ─────────────────────────────────────────────────────────
 # Mod+G → switch-focus-between-floating-and-tiling
-window_manage = "alt - g"
+window_focus_unmanaged = "alt - g"
+window_manage = "alt + ctrl - g"
 
 # Virtual workspaces (Experimental) ────────────────────────────────────────────
 # Maps your niri workspace navigation to Paneru's virtual workspace rows:
@@ -114,11 +115,17 @@ quit = "shift + cmd - e"
 title = "Picture.*(in)?.*[Pp]icture"
 floating = true
 
+[windows.corfu]
+app_name = "emacs"
+title = "^EmacsCorfuGUI.*"
+floating = true
+
 # Niri: gaps 16 → 8px per side of each window = 16px between adjacent windows
 [windows.all]
 title = ".*"
 horizontal_padding = 8
 vertical_padding = 8
+
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Bindings WITHOUT a Paneru equivalent (handle outside Paneru):

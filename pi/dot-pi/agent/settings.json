@@ -14,6 +14,7 @@
   "lastChangelogVersion": "0.78.0",
   "packages": [
     "npm:@gotgenes/pi-subagents",
+    "npm:@gotgenes/pi-subagents-worktrees",
     "git:git.sr.ht/~warren/pi-search",
     "npm:@gotgenes/pi-anthropic-auth"
   ],

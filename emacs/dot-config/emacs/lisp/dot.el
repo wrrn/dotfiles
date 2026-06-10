@@ -34,6 +34,7 @@
 (require 'ui-config)
 (require 'vc-config)
 (require 'code-nav)
+(require 'verb-config)
 
 (use-package view
   :bind (:map view-mode-map
@@ -187,7 +188,9 @@ fixes the bug where emacs dies when you try to kill a frame"
   :bind ("C-x t s" . tab-bar-select-tab-by-name))
 
 (use-package rainbow-delimiters
-  :ensure t)
+  :ensure t
+  :custom
+  (rainbow-delimiters-mode t))
 
 (use-package project
   :straight (:type built-in)

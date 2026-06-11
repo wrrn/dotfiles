@@ -10,7 +10,12 @@
   (writeroom-fullscreen-effect "maximized")
   (writeroom-major-modes '(prog-mode ghostel-mode text-mode))
   :hook
-  (writeroom-mode . centered-cursor-mode)
-  (writeroom-disable . centered-cursor-mode))
+  (writeroom-mode . maybe-centered-cursor-mode)
+  (writeroom-disable . maybe-centered-cursor-mode))
+
+(defun maybe-centered-cursor-mode ()
+  "Toggle `centered-cursor-mode' unless in `ghostel-mode'."
+  (unless (derived-mode-p 'ghostel-mode)
+    (centered-cursor-mode)))
 
 (provide 'writeroom-config)

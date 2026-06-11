@@ -5,8 +5,8 @@
 # - animation_fps: frames per second (0.0 = display refresh rate). 60–120 recommended.
 #   ease_in_circ, ease_out_circ, ease_in_out_circ
 animate = true
-animation_duration = 1
-animation_fps = 100
+animation_duration = 0.1
+animation_fps = 60
 
 # space activation behavior
 # - If true, spaces start inactive (rift does not manage windows there)

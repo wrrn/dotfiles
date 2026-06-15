@@ -17,6 +17,7 @@ binds {
   Mod+T { spawn "ghostty"; }
   Super+Space { spawn "fuzzel"; }
   Mod+Shift+Ctrl+Super+L { spawn "swaylock"; }
+  Super+Shift+P { spawn "1password" "--quick-access"; }
   
 
   // You can also use a shell. Do this if you need pipes, multiple commands, etc.
@@ -49,17 +50,17 @@ binds {
   Mod+K     { focus-window-or-workspace-up; }
   Mod+L     { focus-column-right; }
 
-  Mod+Shift+Ctrl+H { move-column-left; }
+  Mod+Shift+Ctrl+H { consume-or-expel-window-left; }
   Mod+Shift+Ctrl+J { move-column-to-workspace-down; }
   Mod+Shift+Ctrl+K { move-column-to-workspace-up; }
-  Mod+Shift+Ctrl+L { move-column-right; }
+  Mod+Shift+Ctrl+L { consume-or-expel-window-right; }
   Mod+Shift+Ctrl+U { move-column-to-monitor-previous; }
   Mod+Shift+Ctrl+I { move-column-to-monitor-next; }
 
-  Mod+Ctrl+H { consume-or-expel-window-left; }
+  Mod+Ctrl+H { move-column-left; }
   Mod+Ctrl+J { move-window-down-or-to-workspace-down; }
   Mod+Ctrl+K { move-window-up-or-to-workspace-up; }
-  Mod+Ctrl+L { consume-or-expel-window-right; }
+  Mod+Ctrl+L { move-column-right; }
   Mod+Ctrl+U { move-window-to-monitor-previous; }
   Mod+Ctrl+I { move-window-to-monitor-next; }
   Mod+Ctrl+Super+H  {set-window-width "-10%";}
@@ -100,7 +101,7 @@ binds {
   Ctrl+Shift+5 { screenshot-window; }
   Mod+Ctrl+Shift+Super+4 { set-dynamic-cast-window; }
   Mod+Ctrl+Shift+Super+5 { clear-dynamic-cast-target; }
-    Mod+Ctrl+Shift+Super+3 { set-dynamic-cast-monitor; }
+  Mod+Ctrl+Shift+Super+3 { set-dynamic-cast-monitor; }
 
   
 

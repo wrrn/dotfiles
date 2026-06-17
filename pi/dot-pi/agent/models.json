@@ -33,16 +33,6 @@
         {
           "_launch": true,
           "contextWindow": 262144,
-          "id": "qwen3.5",
-          "input": [
-            "text",
-            "image"
-          ],
-          "reasoning": true
-        },
-        {
-          "_launch": true,
-          "contextWindow": 262144,
           "id": "kimi-k2.6:cloud",
           "input": [
             "text",
@@ -52,15 +42,15 @@
           "name": "Kimi K2.6 (Ollama Cloud)",
           "reasoning": true,
           "thinkingLevelMap": {
-            "off": "none",
             "minimal": "low",
+            "off": "none",
             "xhigh": "max"
           }
         },
         {
           "_launch": true,
           "contextWindow": 262144,
-          "id": "qwen3.5:cloud",
+          "id": "kimi-k2.7-code:cloud",
           "input": [
             "text",
             "image"
@@ -69,11 +59,19 @@
         },
         {
           "_launch": true,
-          "contextWindow": 131072,
-          "id": "gemma4",
+          "contextWindow": 1000000,
+          "id": "glm-5.2:cloud",
           "input": [
-            "text",
-            "image"
+            "text"
+          ],
+          "reasoning": true
+        },
+        {
+          "_launch": true,
+          "contextWindow": 1048576,
+          "id": "deepseek-v4-pro:cloud",
+          "input": [
+            "text"
           ],
           "reasoning": true
         }

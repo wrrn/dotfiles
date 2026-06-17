@@ -1,6 +1,6 @@
 {
-  "defaultModel": "gpt-5.5",
-  "defaultProvider": "openai-codex",
+  "defaultModel": "claude-opus-4-8",
+  "defaultProvider": "anthropic",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "anthropic/claude-sonnet-4-6",
@@ -11,12 +11,13 @@
     "anthropic/claude-opus-4-8",
     "openai-codex/gpt-5.4"
   ],
-  "lastChangelogVersion": "0.79.0",
+  "hideThinkingBlock": false,
+  "lastChangelogVersion": "0.79.6",
   "packages": [
     "npm:@gotgenes/pi-subagents",
     "npm:@gotgenes/pi-subagents-worktrees",
     "git:git.sr.ht/~warren/pi-search",
     "npm:@gotgenes/pi-anthropic-auth"
   ],
-  "hideThinkingBlock": true
+  "theme": "dark"
 }

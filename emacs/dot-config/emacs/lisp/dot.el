@@ -34,6 +34,7 @@
 (require 'ui-config)
 (require 'vc-config)
 (require 'code-nav)
+(require '1password-config)
 (require 'verb-config)
 
 (use-package view

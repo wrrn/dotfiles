@@ -8,7 +8,7 @@
 # a custom path, or "disabled" to turn off. The daemon writes state
 # ("idle", "recording", "transcribing") to this file whenever it changes.
 # Required for `voxtype record toggle` and `voxtype status` commands.
-engine = "parakeet"
+engine = "cohere"
 
 state_file = "auto"
 
@@ -22,6 +22,7 @@ enabled = true
 # Optional modifier keys that must also be held
 # Example: modifiers = ["LEFTCTRL", "LEFTALT"]
 modifiers = []
+mode = "push_to_talk"
 
 # Activation mode: "push_to_talk" or "toggle"
 # - push_to_talk: Hold hotkey to record, release to transcribe (default)
@@ -48,16 +49,17 @@ sample_rate = 16000
 
 # Maximum recording duration in seconds (safety limit)
 max_duration_secs = 60
+pause_media = false
 
-# [audio.feedback]
+[audio.feedback]
 # Enable audio feedback sounds (beeps when recording starts/stops)
-# enabled = true
-#
+enabled = true
+
 # Sound theme: "default", "subtle", "mechanical", or path to custom theme directory
-# theme = "default"
-#
+theme = "mechanical"
+
 # Volume level (0.0 to 1.0)
-# volume = 0.7
+volume = 0.3
 
 [whisper]
 # Transcription backend: "local" or "remote"
@@ -113,6 +115,10 @@ translate = false
 eager_processing = false
 eager_chunk_secs = 4.0
 eager_overlap_secs = 0.5
+mode = "local"
+flash_attention = false
+on_demand_loading = false
+gpu_isolation = false
 
 # --- Remote backend settings (used when backend = "remote") ---
 #
@@ -153,6 +159,9 @@ fallback_to_clipboard = true
 # Delay between typed characters in milliseconds
 # 0 = fastest possible, increase if characters are dropped
 type_delay_ms = 0
+auto_submit = false
+shift_enter_newlines = false
+pre_type_delay_ms = 0
 
 # Automatically submit (send Enter key) after outputting transcribed text
 # Useful for chat applications, command lines, or forms where you want
@@ -185,9 +194,9 @@ type_delay_ms = 0
 # The command receives text on stdin and outputs processed text on stdout.
 # Useful for LLM-based text cleanup, grammar correction, filler word removal.
 # On any failure (timeout, error), falls back to original transcription.
-[output.post_process]
-command = "~/.config/voxtype/cleanup.sh"
-timeout_ms = 30000
+# [output.post_process]
+# command = "~/.config/voxtype/cleanup.sh"
+# timeout_ms = 30000
 
 [output.notification]
 # Show notification when recording starts (hotkey pressed)
@@ -198,9 +207,11 @@ on_recording_stop = true
 
 # Show notification with transcribed text after transcription completes
 on_transcription = true
+show_engine_icon = false
 
 [text]
 spoken_punctuation = true
+smart_auto_submit = false
 
 [text.replacements]
 "vox type" = "voxtype"
@@ -257,3 +268,37 @@ spoken_punctuation = true
 
 [parakeet]
 model = "parakeet-tdt-0.6b-v3-int8"
+on_demand_loading = false
+
+[cohere]
+model = "cohere-transcribe-q4f16"
+language = "en"
+on_demand_loading = false
+initial_prompt = "Technical discussion about Go, Rust, TypeScript, Nix, fish, bash, Kubernetes, Ollama, pi, jujutsu, niri, JSON, API, and CLI tools. Numbers are written as digits, for example 3.75, 0.5, 42, 128, 1.25, and version 2.0."
+
+[osd]
+enabled = true
+frontend = "native"
+position = "bottom-center"
+width_px = 400
+height_px = 48
+margin_px = 24
+top_margin = 0.85
+opacity = 0.95
+waveform_window_secs = 3.0
+peak_decay_db_per_sec = 6.0
+waveform_gain = 10.0
+
+[vad]
+enabled = false
+backend = "auto"
+threshold = 0.5
+
+[meeting]
+enabled = false
+
+[meeting.diarization]
+enabled = false
+
+[meeting.audio]
+source = "mic"

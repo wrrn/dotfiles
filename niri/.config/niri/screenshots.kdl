@@ -8,4 +8,10 @@ window-rule {
   block-out-from "screencast"
 }
 
+layer-rule {
+  match namespace="^launcher$"
+  block-out-from "screencast"
+}
+
+
 

@@ -11,7 +11,7 @@ output "Dell Inc. DELL U3421WE 62H8753" {
   transform "normal"
 
   // This is negative because going down increases the Y value.
-  position x=-1080 y=-1440
+  position x=-853 y=-1440
 
   layout {
     default-column-width { proportion 0.66667; }

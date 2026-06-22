@@ -37,7 +37,7 @@ binds {
   XF86AudioPrev        allow-when-locked=true { spawn "playerctl" "previous"; }
   
   // Trigger voxtype recording;
-  Super+semicolon { spawn "voxtype" "record" "toggle"; }
+  Super+Period { spawn "voxtype" "record" "toggle"; }
   
 
   XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "+1%"; }

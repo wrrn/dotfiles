@@ -10,7 +10,7 @@ preset_column_widths = [0.25, 0.33333, 0.50, 0.66667, 0.75, 0.99999]
 animation_speed = 120
 # Approximates niri's center-focused-column "on-overflow"
 auto_center = false
-menubar_height = 0
+# menubar_height = 0
 insert_windows_mid_strip = true
 reap_empty_workspaces = true
 

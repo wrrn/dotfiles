@@ -1,5 +1,5 @@
 {
-  "defaultModel": "gpt-5.5",
+  "defaultModel": "gpt-5.6-sol",
   "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "high",
   "enabledModels": [
@@ -9,10 +9,11 @@
     "anthropic/claude-haiku-4-5",
     "ollama/kimi-k2.6:cloud",
     "anthropic/claude-opus-4-8",
-    "openai-codex/gpt-5.4"
+    "openai-codex/gpt-5.4",
+    "openai-codex/gpt-5.6-sol"
   ],
   "hideThinkingBlock": false,
-  "lastChangelogVersion": "0.79.6",
+  "lastChangelogVersion": "0.80.6",
   "packages": [
     "npm:@gotgenes/pi-subagents",
     "npm:@gotgenes/pi-subagents-worktrees",

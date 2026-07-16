@@ -1,5 +1,5 @@
 {
-  "defaultModel": "claude-opus-4-8",
+  "defaultModel": "claude-sonnet-5",
   "defaultProvider": "anthropic",
   "defaultThinkingLevel": "high",
   "enabledModels": [

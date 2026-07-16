@@ -37,8 +37,6 @@ binds {
   XF86AudioNext        allow-when-locked=true { spawn "playerctl" "next"; }
   XF86AudioPrev        allow-when-locked=true { spawn "playerctl" "previous"; }
   
-  // Trigger voxtype recording;
-  Super+Period { spawn "voxtype" "record" "toggle"; }
   
 
   XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "+1%"; }
@@ -113,8 +111,11 @@ binds {
   // moving the mouse or pressing any other key.
   Mod+Shift+P { power-off-monitors; }
   Mod+Ctrl+Shift+A { spawn "ddcutil" "setvcp" "60" "0x0f"; }
-
   Ctrl+Shift+V { spawn "cliphist-fuzzel-img"; }
+  Super+Comma { spawn "~/.local/bin/rcmd"; }
+  // Trigger voxtype recording;
+  Super+Period { spawn "voxtype" "record" "toggle"; }
+  
 
   Super+Shift+Space { spawn "wl-kbptr" "-o" "modes=floating,click" "-o" "mode_floating.source=detect" "-o" "mode_floating.label_font_size=22 50% 100"; }
 }

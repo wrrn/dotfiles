@@ -1,1 +1,1 @@
-devenv hook fish | source
+devenv hook fish --no-tui --no-reload | source

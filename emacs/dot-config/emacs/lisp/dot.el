@@ -5,6 +5,7 @@
 
 (require 'straight-wrrn)
 (require 'use-package)
+
 (require 'env-config)
 (require 'no-littering)
 (require 'gcloud)
@@ -17,6 +18,7 @@
 (require 'go-config)
 (require 'json-config)
 (require 'lua-config)
+(require 'kdl-config)
 (require 'nix-config)
 (require 'python-config)
 (require 'protobuf-config)
@@ -28,6 +30,7 @@
 (require 'writeroom-config)
 (require 'term-config)
 (require 'gpt)
+(require 'pi-config)
 (require 'ux-config)
 (require 'minibuffer-config)
 (require 'meow)

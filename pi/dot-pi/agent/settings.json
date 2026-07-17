@@ -1,16 +1,16 @@
 {
-  "defaultModel": "claude-sonnet-5",
+  "defaultModel": "claude-opus-4-8",
   "defaultProvider": "anthropic",
   "defaultThinkingLevel": "high",
   "enabledModels": [
-    "anthropic/claude-sonnet-4-6",
     "openai-codex/gpt-5.5",
     "openai-codex/gpt-5.4-mini",
     "anthropic/claude-haiku-4-5",
     "ollama/kimi-k2.6:cloud",
     "anthropic/claude-opus-4-8",
     "openai-codex/gpt-5.4",
-    "openai-codex/gpt-5.6-sol"
+    "openai-codex/gpt-5.6-sol",
+    "anthropic/claude-sonnet-5"
   ],
   "hideThinkingBlock": false,
   "lastChangelogVersion": "0.80.6",
@@ -18,7 +18,7 @@
     "npm:@gotgenes/pi-subagents",
     "npm:@gotgenes/pi-subagents-worktrees",
     "git:git.sr.ht/~warren/pi-search",
-    "npm:@gotgenes/pi-anthropic-auth"
+    "npm@earendil-works/pi-ai/compat"
   ],
   "theme": "dark"
 }

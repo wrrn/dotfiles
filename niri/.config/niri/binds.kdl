@@ -16,6 +16,7 @@ binds {
   // Suggested binds for running programs: terminal, app launcher, screen locker.
   Mod+T { spawn "ghostty"; }
   Super+E { spawn "emacsclient" "-c"; }
+  Super+B { spawn "qutebrowser"; }
   Super+Space { spawn "fuzzel"; }
   Mod+Shift+Ctrl+Super+L { spawn "swaylock"; }
   Super+Shift+P { spawn "1password" "--quick-access"; }

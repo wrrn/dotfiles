@@ -74,7 +74,7 @@ layout {
 prefer-no-csd
 
 window-rule {
-  geometry-corner-radius 12
+  geometry-corner-radius 6
   clip-to-geometry true
   draw-border-with-background true
   opacity 0.77
@@ -83,7 +83,6 @@ window-rule {
     noise 0.8
     saturation 2   // optional: richer brown
   }
-
 }
 
 

@@ -1,7 +1,7 @@
-;;; pi-wrrn.el  --- configure pi-coding-agent
+;;; pi-config.el  --- configure pi-coding-agent
 ;; Configuration
 
 (use-package pi-coding-agent
   :ensure t)
 
-(provide 'pi-wrrn)
+(provide 'pi-config)

@@ -1,6 +1,6 @@
 {
-  "defaultModel": "claude-opus-4-8",
-  "defaultProvider": "anthropic",
+  "defaultModel": "kimi-k2.6:cloud",
+  "defaultProvider": "ollama",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "openai-codex/gpt-5.5",
@@ -13,7 +13,7 @@
     "anthropic/claude-sonnet-5"
   ],
   "hideThinkingBlock": false,
-  "lastChangelogVersion": "0.80.6",
+  "lastChangelogVersion": "0.81.1",
   "packages": [
     "npm:@gotgenes/pi-subagents",
     "npm:@gotgenes/pi-subagents-worktrees",

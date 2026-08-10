@@ -113,7 +113,7 @@ binds {
   Mod+Shift+P { power-off-monitors; }
   Mod+Ctrl+Shift+A { spawn "ddcutil" "setvcp" "60" "0x0f"; }
   Ctrl+Shift+V { spawn "cliphist-fuzzel-img"; }
-  Super+Comma { spawn "~/.local/bin/rcmd"; }
+  Super+M { spawn "~/.local/bin/rcmd"; }
   // Trigger voxtype recording;
   Super+Period { spawn "voxtype" "record" "toggle"; }
   

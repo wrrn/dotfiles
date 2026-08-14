@@ -6,6 +6,7 @@ name = "Warren Harper"
 [git]
 auto-local-bookmark = false
 write-change-id-header = true
+private-commits = "description('private:*')"
 
 [aliases]
 cat = ["file", "show"]

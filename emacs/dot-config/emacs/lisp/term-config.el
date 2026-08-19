@@ -26,6 +26,14 @@
 ;; us mutate `process-environment' up front and have the new EDITOR inherited
 ;; cleanly by the child shell at spawn time -- no need to inject the variable
 ;; into an already-running process the way `with-editor-export-editor' does.
+(defun wrrn-ghostel--pixel-anchor-safe (fn &rest args)
+  "Fall back to Ghostel's line anchor if Emacs pixel measurement fails.
+`window-text-pixel-size' can transiently signal `args-out-of-range' when
+Ghostel measures a window immediately after rewriting or evicting scrollback."
+  (condition-case nil
+      (apply fn args)
+    (args-out-of-range nil)))
+
 (defun ghostel-with-editor-setup ()
   "Set up EDITOR environment variable for ghostel terminal.
   Calls the internal with-editor setup function to configure
@@ -49,6 +57,11 @@
   ;; of Emacs mode and cycle shell history instead of navigating the buffer.
   (ghostel-readonly-fast-exit nil)
   :hook (ghostel-pre-spawn . ghostel-with-editor-setup)
+  :config
+  ;; Returning nil makes `ghostel--anchor-window' use its line-based fallback.
+  ;; This prevents transient pixel-layout errors from aborting terminal redraws.
+  (advice-add 'ghostel--pixel-anchor :around
+              #'wrrn-ghostel--pixel-anchor-safe)
   :bind (("C-x p t" . ghostel-project)
          :map ghostel-semi-char-mode-map
          ("C-c r" . rename-buffer)

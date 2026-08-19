@@ -25,16 +25,6 @@
   ;; (catppuccin-reload)
   )
 
-(use-package rose-pine
-  :ensure t
-  :straight (rose-pine
-             :host github
-             :repo "LuciusChen/rose-pine"
-             :branch "main")
-  ;; :config (load-theme 'rose-pine-night :no-confirm)
-  )
-
-
 (use-package kaolin-themes
   :ensure t
   ;;   :config
@@ -88,15 +78,7 @@
 ;;   :custom-face
 ;;   (fringe ((t (:background "#181820")))))
 
-(use-package an-old-hope-theme
-  :ensure t
-  :straight (an-old-hope-theme
-             :type git
-             :host github
-             :repo "mohkale/an-old-hope-emacs"
-             :name an-old-hope-theme)
-  ;; :config (load-theme 'an-old-hope))
-  )
+
 
 (use-package doric-themes
   :ensure t
@@ -111,7 +93,7 @@
 
 (use-package warm-burnout
   :ensure t
-  :straight (:host github :repo "felipefdl/warm-burnout" :files ("emacs/*.el"))
+  :straight (:host sourcehut :protocol ssh :repo "wrrn/warm-burnout" :files ("emacs/*.el"))
   :config
   ;; Preload both variants without enabling them so auto-dark can switch without
   ;; prompting about theme safety on startup.

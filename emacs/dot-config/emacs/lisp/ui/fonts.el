@@ -9,7 +9,10 @@
   "Default font for Latin characters.")
 
 (defvar user/unicode-font "Symbols Nerd Font Mono"
-  "Default font for Unicode characters, including emojis.")
+  "Default fallback font for Unicode symbols.")
+
+(defvar user/emoji-font "OpenMoji Black"
+  "Font used for emoji characters not provided by the symbol font.")
 
 (defvar user/font-size 180
   "Default font size in 1/10pt (250 = 25pt).")
@@ -24,6 +27,9 @@
   ;; Nerd Font icons live in Private Use Area ranges.
   (set-fontset-font t '(#xe000 . #xffff) (font-spec :family user/unicode-font))   ; BMP PUA
   (set-fontset-font t '(#xf0000 . #xfffff) (font-spec :family user/unicode-font)) ; Supplementary PUA-A
+  ;; U+1F441 EYE is absent from Symbols Nerd Font Mono.  Prefer the emoji font
+  ;; for the base character; this also lets U+1F441 U+FE0F use emoji presentation.
+  (set-fontset-font t #x1f441 (font-spec :family user/emoji-font) nil 'prepend)
   (set-fontset-font t 'unicode (font-spec :family user/unicode-font) nil 'append))
 
 (if (daemonp)

@@ -1,4 +1,4 @@
-;;; fish-config.el  --- configure meow mode
+;;; fish-config.el  --- configure meow mode  -*- lexical-binding: t; -*-
 ;; fish configuration
 
 ;; 

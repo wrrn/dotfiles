@@ -2,6 +2,8 @@
 ;; Configuration
 
 (use-package pi-coding-agent
-  :ensure t)
+  :ensure t
+  :bind ("C-c p" . pi-coding-agent-toggle)
+  )
 
 (provide 'pi-config)

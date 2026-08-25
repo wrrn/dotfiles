@@ -10,10 +10,20 @@ private-commits = "description('private:*')"
 
 [aliases]
 cat = ["file", "show"]
+workspace-pr = [
+  "util",
+  "exec",
+  "--",
+  "jj-workspace-bootstrap",
+  "--revision",
+  "$1",
+  "--name",
+  "$1",
+]
 pr-workspace = [
   "workspace",
   "add",
-  "../bench/pericles/$1",
+  "../bench/trees/pericles/$1",
   "--revision",
   "$1",
   "--name",
@@ -45,3 +55,17 @@ diff-args = ["--color=always", "$left", "$right"]
 
 [templates]
 git_push_bookmark = '"wrrn/push-" ++ change_id.short()'
+
+[revset-aliases]
+'trunk()' = '''
+latest(
+  remote_bookmarks(exact:"main", exact:"origin") |
+  remote_bookmarks(exact:"master", exact:"origin") |
+  remote_bookmarks(exact:"trunk", exact:"origin") |
+  remote_bookmarks(exact:"main", exact:"upstream") |
+  remote_bookmarks(exact:"main", exact:"upstream") |
+  root()
+)
+'''
+
+'base(x)' = 'fork_point(trunk() | x)'

@@ -2,7 +2,7 @@
 name: os-handy
 description: System administration and OS-level task agent. Operates directly in the parent directory without git isolation — safe for non-repo system changes.
 tools: read, write, edit, bash, find, ls, web_search, web_fetch
-model: claude-sonnet-4-5
+model: claude-sonnet-5
 thinking: medium
 ---
 

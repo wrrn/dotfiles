@@ -2,7 +2,7 @@
 name: coder
 description: General-purpose coding agent with full file/tool access. Runs in an isolated git worktree when available.
 tools: read, write, edit, bash, grep, find, ls, semantic_search, web_search, web_fetch
-model: claude-sonnet-4-5
+model: claude-sonnet-5
 thinking: high
 ---
 

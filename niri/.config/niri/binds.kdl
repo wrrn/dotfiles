@@ -15,6 +15,8 @@ binds {
 
   // Suggested binds for running programs: terminal, app launcher, screen locker.
   Mod+T { spawn "ghostty"; }
+  Super+S { spawn "nirius" "scratchpad-show" "--app-id" "slack";}
+  Super+T { spawn "nirius" "scratchpad-show" "--app-id" "teams-for-linux";}
   Super+E { spawn "emacsclient" "-c"; }
   Super+B { spawn "qutebrowser"; }
   Super+Space { spawn "fuzzel"; }

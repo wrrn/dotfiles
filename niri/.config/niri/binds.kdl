@@ -17,7 +17,9 @@ binds {
   Mod+T { spawn "ghostty"; }
   Super+S { spawn "nirius" "scratchpad-show" "--app-id" "slack";}
   Super+T { spawn "nirius" "scratchpad-show" "--app-id" "teams-for-linux"; }
+  Super+M { spawn "nirius" "scratchpad-show" "--app-id" "Cider"; }
   Super+F { spawn "nirius" "toggle-follow-mode" "--policy" "if-invisible"; }
+  Super+H { spawn "nirius" "scratchpad-toggle"; }
   Super+E { spawn "emacsclient" "-c"; }
   Super+B { spawn "qutebrowser"; }
   
@@ -117,7 +119,7 @@ binds {
   Mod+Shift+P { power-off-monitors; }
   Mod+Ctrl+Shift+A { spawn "ddcutil" "setvcp" "60" "0x0f"; }
   Ctrl+Shift+V { spawn "cliphist-fuzzel-img"; }
-  Super+M { spawn "~/.local/bin/rcmd"; }
+  // Super+M { spawn "~/.local/bin/rcmd"; }
   // Trigger voxtype recording;
   Super+Period { spawn "voxtype" "record" "toggle"; }
   

@@ -18,6 +18,7 @@ binds {
   Super+S { spawn "nirius" "scratchpad-show" "--app-id" "slack";}
   Super+T { spawn "nirius" "scratchpad-show" "--app-id" "teams-for-linux"; }
   Super+M { spawn "nirius" "scratchpad-show" "--app-id" "Cider"; }
+  Super+O { spawn "nirius" "scratchpad-show" "--app-id" "com.obsproject.Studio"; }
   Super+F { spawn "nirius" "toggle-follow-mode" "--policy" "if-invisible"; }
   Super+H { spawn "nirius" "scratchpad-toggle"; }
   Super+E { spawn "emacsclient" "-c"; }

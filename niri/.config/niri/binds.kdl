@@ -21,6 +21,7 @@ binds {
   Super+O { spawn "nirius" "scratchpad-show" "--app-id" "com.obsproject.Studio"; }
   Super+F { spawn "nirius" "toggle-follow-mode" "--policy" "if-invisible"; }
   Super+H { spawn "nirius" "scratchpad-toggle"; }
+  Super+Shift+H {spawn "nirius" "scratchpad-show"; }
   Super+E { spawn "emacsclient" "-c"; }
   Super+B { spawn "qutebrowser"; }
   

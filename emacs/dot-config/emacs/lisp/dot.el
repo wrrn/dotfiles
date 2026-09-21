@@ -39,7 +39,7 @@
 (require 'code-nav)
 (require '1password-config)
 (require 'verb-config)
-
+(require 'pr-review-config)
 (use-package view
   :bind (:map view-mode-map
               ("C-j" . nil)))

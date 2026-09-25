@@ -1,1 +1,8 @@
+layer-rule {
+    match namespace="^awww-daemon"
+    place-within-backdrop true
+}
 
+layout {
+    background-color "transparent"
+}

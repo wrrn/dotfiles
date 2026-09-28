@@ -1,4 +1,3 @@
-
 packages = $(wildcard *)
 packages.stow = $(addsuffix .stow,$(packages))
 packages.unstow = $(addsuffix .unstow,$(packages))

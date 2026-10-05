@@ -26,6 +26,21 @@ window#waybar {
     font-weight: 600;
 }
 
+/* Hide the last two workspaces (whichever two are currently last).
+   niri/workspaces has no option for this, and GTK3 CSS has no display:none,
+   so collapse the buttons to nothing instead. The label needs targeting too,
+   because the `*` rule above sets its font-size directly. */
+#workspaces button:nth-last-child(-n+2),
+#workspaces button:nth-last-child(-n+2) label {
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+    font-size: 0;
+    border: none;
+    color: transparent;
+}
+
 #network,
 #pulseaudio,
 #battery,

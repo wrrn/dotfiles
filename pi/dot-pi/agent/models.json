@@ -74,6 +74,32 @@
             "text"
           ],
           "reasoning": true
+        },
+        {
+          "_launch": true,
+          "id": "gemma4:26b",
+          "input": [
+            "text"
+          ],
+          "reasoning": true
+        },
+        {
+          "_launch": true,
+          "contextWindow": 1048576,
+          "id": "kimi-k3:cloud",
+          "input": [
+            "text",
+            "image"
+          ],
+          "reasoning": true
+        },
+        {
+          "_launch": true,
+          "contextWindow": 524288,
+          "id": "minimax-m3:cloud",
+          "input": [
+            "text"
+          ]
         }
       ]
     }

@@ -57,6 +57,10 @@ If it errors, fix before dispatching. Common cause is an unquoted colon mid-valu
 
 This applies to skills too — pi-subagents requires `description` in every skill's frontmatter, and a malformed or missing one will surface as a skill conflict warning rather than a hard error, but will still degrade the loaded agent.
 
+## Editing the process files
+
+`~/.pi/agent/agents/`, `skills/`, and `prompts/` are directory symlinks into `~/loft/dotfiles/pi/dot-pi/agent/` (stow, folded). Any edit there is an uncommitted change in Warren's dotfiles repo. After editing, say so in the reply — file names and a one-line summary — so Warren can describe and commit. Don't commit to `~/loft/dotfiles` unasked.
+
 ## Rule of thumb when in doubt
 
 Choose the pattern that minimizes your context cost without losing Warren's leverage. If your involvement wouldn't add synthesis value, push the work to background or to Warren-direct.

@@ -4,13 +4,16 @@ packages.unstow = $(addsuffix .unstow,$(packages))
 packages.stow.force = $(addsuffix .force,$(packages.stow))
 packages.conflicts.delete = $(addsuffix .conflicts.delete,$(packages))
 target = ~
+# Packages where stow links whole directories, so files created in place
+# land in the repo. Everything else links leaves (--no-folding).
+folded = pi
 
 
 
 
 $(packages.stow): # Placing this here gives us auto complete
 %.stow:
-	stow --no-folding --dotfiles --restow $(basename $@) --target $(target)
+	stow $(if $(filter $(basename $@),$(folded)),,--no-folding) --dotfiles --restow $(basename $@) --target $(target)
 
 $(packages.stow.force): #Here for the auto completion
 %.stow.force: package = $(@:.stow.force=)

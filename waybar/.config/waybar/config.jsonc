@@ -3,6 +3,7 @@
     "position": "left",
     "width": 56,
     "spacing": 10,
+    "exclusive": true,
 
     "modules-left": ["niri/workspaces"],
 

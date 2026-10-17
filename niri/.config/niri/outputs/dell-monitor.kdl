@@ -17,8 +17,8 @@ output "Dell Inc. DELL U3421WE 62H8753" {
     default-column-width { proportion 0.66667; }
     gaps 30
     struts {
-      left 42
-      right 42
+      left 58
+      right 58
       bottom -9
       top -9
     }

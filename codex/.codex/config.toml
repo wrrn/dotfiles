@@ -79,6 +79,7 @@ fast_default_opt_out = true
 "gpt-5.3-codex" = "gpt-5.4"
 
 [features]
+hooks = true
 shell_snapshot = true
 
 [plugins."github@openai-curated"]

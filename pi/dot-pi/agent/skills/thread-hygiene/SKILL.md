@@ -9,7 +9,7 @@ How to capture decisions, manage thread directories in the workspace, and keep p
 
 ## Thread layout
 
-One directory per **workstream** (not per ticket) under `~/dev/work/threads/`. A workstream is the unit you'd describe in one sentence; neighbouring tickets that share decisions belong in the same directory.
+One directory per **workstream** (not per ticket) under `~/honeycomb/threads/`. A workstream is the unit you'd describe in one sentence; neighbouring tickets that share decisions belong in the same directory.
 
 ```
 threads/<slug>/
@@ -45,7 +45,7 @@ Target ≤ 60 lines. If it's growing past that, something belongs in `log.md` or
 - When a meaningful decision gets made, append a dated entry to the thread's `log.md`. The point is so future-Warren (and future-you) can pick it up cold.
 - **After every `log.md` append, update `index.md`** — status, decisions in force (replace the superseded one), next, files. An append without an index update is the main way the index rots.
 - When a new thread becomes substantive enough to warrant a directory, **propose** creating one — don't create directories unilaterally for quick exchanges.
-- After substantive thread updates, check the active-threads table in `~/dev/work/AGENTS.md`. It holds only name, link and a one-word status; the index owns everything else. Don't let detail creep back into the table.
+- After substantive thread updates, check the active-threads table in `~/honeycomb/AGENTS.md`. It holds only name, link and a one-word status; the index owns everything else. Don't let detail creep back into the table.
 
 ## Where things belong — four buckets
 
@@ -54,7 +54,7 @@ A fact has one correct home. Pick deliberately.
 | Bucket | Lives in | What goes there | Test |
 |---|---|---|---|
 | **Project / codebase facts** | `<repo>/AGENTS.md` | Build commands, conventions, repo layout, what not to touch | True for anyone working on this repo |
-| **Cross-project workspace state** | `~/dev/work/*.md` | Active threads, decisions, people, repo index | True regardless of who is asking |
+| **Cross-project workspace state** | `~/honeycomb/*.md` | Active threads, decisions, people, repo index | True regardless of who is asking |
 | **Operating heuristics about Warren** | `~/.pi/agent-memory/two/` | Style prefs, dispatch shortcuts, learned working patterns | True for Warren specifically |
 | **Reusable coordinator protocols** | `~/.pi/agent/skills/` | Dispatch rubric, hygiene rules, anything another coordinator would also want | True for any coordinator agent |
 
@@ -96,7 +96,9 @@ Memory has a risk the workspace doesn't — you might write things Warren never 
 - **`confidence: demonstrated`** — Warren has repeatedly done or asked for X. Treat as default but stay open to override.
 - **`confidence: inferred`** — you guessed Warren prefers X. Surface for confirmation before treating as established; raise in conversation, don't silently rely.
 
-Proactive memory writes should always start as `inferred`. Promote to `demonstrated` after the pattern repeats; to `stated` only when Warren confirms.
+- **`confidence: verified`** — for `type: reference` entries only. The entry is a fact about a tool, file, or system (not about Warren) that an instance checked against docs or reproduced directly. Treat as fact until the thing it describes changes.
+
+Proactive memory writes about Warren should always start as `inferred`. Promote to `demonstrated` after the pattern repeats; to `stated` only when Warren confirms. Tool facts skip that ladder: write them as `verified` with the check you did in `source`, or don't write them.
 
 ### Provenance fields (Two-local additions)
 
@@ -168,18 +170,19 @@ Stakes calibration:
 | `stated` → `demonstrated` | Warren contradicts in a specific case. |
 | `demonstrated` → `inferred` | Warren contradicts; the broader pattern is in doubt. |
 | `inferred` → deleted | Warren contradicts; or `last_verified` is more than 30 days old. |
+| `verified` → deleted | The tool, file, or version the entry describes has changed and the fact no longer reproduces. Re-check on upgrade, not on a timer. |
 | any → deleted | Warren says "forget X", or removes the underlying thing the entry references. |
 
 Demotion before deletion: one contradiction might be context-specific. Drop a confidence step, observe, then delete only if the pattern doesn't recover.
 
 ### Staleness
 
-`inferred` entries with `last_verified` more than 30 days old are deleted on next encounter — they were tentative bets that didn't pan out. `demonstrated` and `stated` entries do **not** auto-decay; they require active contradiction or an explicit "forget X" to remove. The standing rule ("verify the underlying file/state before recommending") still applies on every read.
+`verified` entries don't decay by time either; they decay by the underlying tool changing — when you notice a version bump in something an entry names, re-check it. `inferred` entries with `last_verified` more than 30 days old are deleted on next encounter — they were tentative bets that didn't pan out. `demonstrated` and `stated` entries do **not** auto-decay; they require active contradiction or an explicit "forget X" to remove. The standing rule ("verify the underlying file/state before recommending") still applies on every read.
 
 ## Hygiene
 
 - Threads complete eventually. When one wraps: set `index.md` status to **Done** with a date and a one-line outcome, `mv threads/<slug> threads/_archive/<slug>`, and drop the row from the `AGENTS.md` table. Propose it; don't do it unasked.
-- `~/dev/work` is a colocated jj+git repo. Describe the working-copy change when a session makes substantive workspace edits (`jj describe -m ...` then `jj new`); no manual backup files.
+- `~/honeycomb` is a colocated jj+git repo. Describe the working-copy change when a session makes substantive workspace edits (`jj describe -m ...` then `jj new`); no manual backup files.
 - Memory entries can go stale. **Before recommending from memory, verify the underlying file/state still matches.** Update or remove stale memories rather than acting on them.
-- `~/dev/work/repos.md` should be refreshed when repos are added or removed under `~/dev/`.
+- `~/honeycomb/repos.md` should be refreshed when repos are added or removed under `~/dev/`.
 - Don't fabricate references to repos, files, threads, or people. If unsure, search or ask.

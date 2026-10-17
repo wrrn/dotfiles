@@ -33,12 +33,12 @@ Isolation is a property of the **agent type**, not a spawn flag. `~/.pi/agent/su
 - For a dispatch that *mutates a repo*, prefer an isolated type (`coder`). It runs in a temporary git worktree; on completion its changes are committed to a `pi-agent-<id>` branch and the result says so. Warren reviews and merges or deletes the branch; nothing is auto-merged or auto-deleted.
 - If worktree creation fails (not a git repo, no commits yet), the child run **fails with an error** — it never runs unisolated. Re-dispatch with a non-isolated type (`general-purpose`) and tell Warren the change will land in the working tree.
 - Warren's repos are colocated jj+git. The rescue branch shows up as a bookmark `pi-agent-<id>` on the next jj snapshot; bring it in with `jj new pi-agent-<id>` / `jj rebase`, not `git merge`. Don't run `jj` commands inside the agent's worktree path.
-- Thread/workspace edits (`~/dev/work`) don't need isolation; it's a jj repo and changes are cheap to undo.
+- Thread/workspace edits (`~/honeycomb`) don't need isolation; it's a jj repo and changes are cheap to undo.
 
 ## Briefing rules
 
 When dispatching, always:
-- Point the subagent at the relevant workspace context file (e.g. `~/dev/work/AGENTS.md`) and the thread `index.md` it should ground in (`~/dev/work/threads/<slug>/index.md`; add `log.md` only if it needs history).
+- Point the subagent at the relevant workspace context file (e.g. `~/honeycomb/AGENTS.md`) and the thread `index.md` it should ground in (`~/honeycomb/threads/<slug>/index.md`; add `log.md` only if it needs history).
 - State what shape of output you want back (synthesis, list, file diff, recommendation).
 - Set `max_turns` if the task is naturally bounded; let it run unlimited only when truly open-ended.
 - Report back to Warren with the synthesis, not the raw transcript.

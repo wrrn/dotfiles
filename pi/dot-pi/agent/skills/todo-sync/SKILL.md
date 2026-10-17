@@ -5,7 +5,7 @@ description: Read Warren's tasks from his org-roam log, keep Two's own task stat
 
 # Todo sync
 
-Warren's tasks have **one** home: `~/.roam/YYYY-MM.org`. `~/dev/work/todo.md` is not a copy of it; it holds only agent-owned state. Nothing lives in both.
+Warren's tasks have **one** home: `~/.roam/YYYY-MM.org`. `~/honeycomb/todo.md` is not a copy of it; it holds only agent-owned state. Nothing lives in both.
 
 ## The org log
 
@@ -17,7 +17,7 @@ Warren's tasks have **one** home: `~/.roam/YYYY-MM.org`. `~/dev/work/todo.md` is
 - Tasks: `** TODO <short title>`, optional free-form body lines beneath; sub-tasks nest as `*** TODO`. Keywords in use: `TODO`, `DONE`, `NOT DOING`, `QUESTION`.
 - Done items get `CLOSED: [date]` plus a `:LOGBOOK:` closing-note drawer, and stay where they are. `NOT DOING` items get a body line saying why.
 - Timestamped journal entries use `** HH:MM <title>`; sub-entries nest with `***`.
-- Links are org links: `[[file:...]]`, `[[id:...]]`, `[[https://...]]`. Thread links point at `~/dev/work/threads/<slug>/index.md`.
+- Links are org links: `[[file:...]]`, `[[id:...]]`, `[[https://...]]`. Thread links point at `~/honeycomb/threads/<slug>/index.md`.
 - **Monthly migration (Bullet Journal style):** at month start, unfinished TODOs are *cut* from the old month and pasted under the new month's first day heading, subtrees intact. So: open items live only in the current month's file. Absence *after* a migration means done or deliberately dropped; mid-month absence means nothing.
 - No time buckets. Order within the file is chronological by day heading, not by priority.
 
@@ -25,7 +25,7 @@ Warren's tasks have **one** home: `~/.roam/YYYY-MM.org`. `~/dev/work/todo.md` is
 
 At session start, read the current month's log (and the previous month's during the first few days of a month, before migration). Open `TODO`s are the task list. Don't copy them anywhere.
 
-## `~/dev/work/todo.md` — agent-owned state only
+## `~/honeycomb/todo.md` — agent-owned state only
 
 Three sections, all agent-only:
 

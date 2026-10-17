@@ -1,42 +1,45 @@
 ---
 name: todo-sync
-description: Maintain todo.md and reconcile it with Warren's external to-do source.
+description: Read Warren's tasks from his org-roam log, keep Two's own task state in todo.md, and push session-created tasks into the log.
 ---
 
 # Todo sync
 
-How to maintain `~/dev/work/todo.md` (the session-layer task list) and reconcile it with Warren's external to-do source.
+Warren's tasks have **one** home: `~/.roam/YYYY-MM.org`. `~/dev/work/todo.md` is not a copy of it; it holds only agent-owned state. Nothing lives in both.
 
-## External source: org-roam monthly logs
+## The org log
 
-Warren's ground truth is `~/.roam/` — an org-roam directory with one monthly log per month (`YYYY-MM.org`, e.g. `2026-10.org`) plus timestamped topic notes.
+`~/.roam/` is an org-roam directory with one monthly log per month (`YYYY-MM.org`) plus timestamped topic notes. Warren reads and edits it in Emacs; Two reads it every session and writes to it only as described below.
 
 **Conventions (observed 2026-10-13 — match them exactly, never impose new ones):**
 
 - Day headings: `* Dayname, YYYY-MM-DD` with a properties drawer `:PROPERTIES:` / `:CREATED:  YYYYMMDD` / `:END:`.
-- Tasks: `** TODO <short title>`, optional free-form body lines beneath. Keywords in use: `TODO`, `DONE`, `QUESTION`.
-- Done items get `CLOSED: [date]` plus a `:LOGBOOK:` closing-note drawer, and stay where they are.
+- Tasks: `** TODO <short title>`, optional free-form body lines beneath; sub-tasks nest as `*** TODO`. Keywords in use: `TODO`, `DONE`, `NOT DOING`, `QUESTION`.
+- Done items get `CLOSED: [date]` plus a `:LOGBOOK:` closing-note drawer, and stay where they are. `NOT DOING` items get a body line saying why.
 - Timestamped journal entries use `** HH:MM <title>`; sub-entries nest with `***`.
-- Links are org links: `[[file:...]]`, `[[id:...]]`, `[[https://...]]`.
-- **Monthly migration (Bullet Journal style):** at month start, unfinished TODOs are *cut* from the old month and pasted under the new month's first day heading, subtrees intact (verified: an October TODO carries a `<2026-02-10 ...>` sub-entry; carried items exist only in the current month). So: open items live only in the current month's file; absence *after* a migration means done or deliberately dropped. Mid-month absence means nothing — the item may simply never have been logged.
+- Links are org links: `[[file:...]]`, `[[id:...]]`, `[[https://...]]`. Thread links point at `~/dev/work/threads/<slug>/index.md`.
+- **Monthly migration (Bullet Journal style):** at month start, unfinished TODOs are *cut* from the old month and pasted under the new month's first day heading, subtrees intact. So: open items live only in the current month's file. Absence *after* a migration means done or deliberately dropped; mid-month absence means nothing.
+- No time buckets. Order within the file is chronological by day heading, not by priority.
 
-## Maintaining todo.md
+## Reading
 
-- When a task gets done in a session, mark it `[x]` in `todo.md`.
-- When a new task is decided in a session, add it to the right section.
-- When a background agent job finishes, remove or update its entry under "In progress."
-- Keep the file honest: don't let it grow stale. A task that's clearly done but unmarked is noise.
+At session start, read the current month's log (and the previous month's during the first few days of a month, before migration). Open `TODO`s are the task list. Don't copy them anywhere.
 
-## "Sync our to-do lists"
+## `~/dev/work/todo.md` — agent-owned state only
 
-When Warren says this (or similar), do the following:
+Three sections, all agent-only:
 
-1. Read the current month's log (`~/.roam/YYYY-MM.org`). If it's within the first few days of a month, also read the previous month's — migration may not have happened yet.
-2. Read `~/dev/work/todo.md`.
-3. **Add** open `TODO`s from the log that are missing from `todo.md`. The log has no time buckets, so place by judgment (This week / Sooner / Later) and say where you put them; ask if genuinely unclear.
-4. **Mark done or remove** `todo.md` items that are `DONE` in the log, or that are absent from the current month *after* a monthly migration.
-5. **Push** session-created tasks into the log: append under a day heading for today (create it with the `:CREATED:` drawer if absent), as `** TODO <title>` with a brief body line and an org `[[file:...]]` link to the thread file where relevant. Match the existing style exactly.
-6. **Never touch** sections that are agent-only additions (In progress) — those don't exist in the log and shouldn't be deleted.
-7. Report a brief diff: what was added, removed, and pushed.
+- **In progress** — background agent jobs and work Two started but hasn't finished. Remove on completion.
+- **Pending push** — tasks decided in a session that aren't in the org log yet. Each entry is a candidate `** TODO`; push on sync, then delete here.
+- **Two's own** — housekeeping for the agent setup. Never pushed to org.
 
-The external list is Warren's ground truth for personal tasks. `todo.md` adds the agent/session layer on top. Sync merges them without clobbering either side.
+Before adding to Pending push, check the org log: if the item already exists there, don't add it. The test for every line in `todo.md`: *would this be wrong to put in Warren's journal?* If it belongs in the journal, it goes to Pending push and leaves on the next sync.
+
+## Writing to the org log
+
+Two writes to the log in two cases:
+
+1. **"Sync our to-do lists"** (or similar): push every Pending push item under a day heading for today — create it with the `:CREATED:` drawer if absent — as `** TODO <title>` with a brief body line and a `[[file:...]]` link to the thread index where relevant. Match the existing style exactly. Delete the pushed items from `todo.md`. Report what was pushed.
+2. **Warren says something is done** in a session: mark it `DONE` in the log with `CLOSED:` and a one-line closing note in the logbook drawer, in the existing format. Only when he says so; don't infer completion from thread state.
+
+Never reorder, re-bucket, or rewrite existing entries. Never touch `DONE` or `NOT DOING` items except to add a closing note Warren dictates.

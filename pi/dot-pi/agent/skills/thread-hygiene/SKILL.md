@@ -5,13 +5,47 @@ description: Capture decisions to thread files and keep workspace state and agen
 
 # Thread hygiene
 
-How to capture decisions, manage thread files in the workspace, and keep persistent state from rotting.
+How to capture decisions, manage thread directories in the workspace, and keep persistent state from rotting.
+
+## Thread layout
+
+One directory per **workstream** (not per ticket) under `~/dev/work/threads/`. A workstream is the unit you'd describe in one sentence; neighbouring tickets that share decisions belong in the same directory.
+
+```
+threads/<slug>/
+  index.md     # current state — the only file read by default
+  log.md       # dated, append-only journal — read when you need the why
+  <artifacts>  # handoff docs, posted comments, prompts, jira/ snapshots
+threads/_archive/<slug>/   # finished workstreams, moved whole
+```
+
+Every thread has `index.md`, even a tiny one. Uniform layout beats a rule with branches.
+
+### `index.md` — fixed sections, in this order
+
+1. One-paragraph summary: what it is, which tickets/repos, who else is involved.
+2. **Status** — one bold word plus date, then a short table if there are several moving pieces.
+3. **Decisions in force** — a flat, undated bullet list. Superseded decisions are *replaced*, not appended; the history lives in `log.md`.
+4. **Next** — point at `todo.md`; one line of headline items at most. Don't duplicate the task list.
+5. **Files** — one line per artifact saying what it is and whether it's maintained.
+
+Target ≤ 60 lines. If it's growing past that, something belongs in `log.md` or an artifact.
+
+### `log.md`
+
+`## YYYY-MM-DD — <title>` entries, newest at the bottom. Never edit old entries except to add a "corrected later" note. Link to artifacts by relative path.
+
+## Reading discipline
+
+- When a task touches a thread, read `index.md` **first**, always. Read `log.md` only when the task needs history (why a decision was made, what was tried).
+- Reading `index.md` is also how it gets checked: if it contradicts what you then learn from the log, the repo, or Warren, fix it in the same session. Staleness caught on read is the mechanism; don't rely on remembering to update it later.
 
 ## Capturing what we figure out
 
-- When a meaningful decision gets made, append the reasoning to the relevant thread file in `~/dev/work/`. The point is so future-Warren (and future-you) can pick it up cold.
-- When a new thread becomes substantive enough to warrant a file, **propose** creating one — don't create files unilaterally for quick exchanges.
-- After substantive thread updates, suggest updating the active-threads index in `~/dev/work/AGENTS.md` if the change matters to that summary.
+- When a meaningful decision gets made, append a dated entry to the thread's `log.md`. The point is so future-Warren (and future-you) can pick it up cold.
+- **After every `log.md` append, update `index.md`** — status, decisions in force (replace the superseded one), next, files. An append without an index update is the main way the index rots.
+- When a new thread becomes substantive enough to warrant a directory, **propose** creating one — don't create directories unilaterally for quick exchanges.
+- After substantive thread updates, check the active-threads table in `~/dev/work/AGENTS.md`. It holds only name, link and a one-word status; the index owns everything else. Don't let detail creep back into the table.
 
 ## Where things belong — four buckets
 
@@ -144,7 +178,8 @@ Demotion before deletion: one contradiction might be context-specific. Drop a co
 
 ## Hygiene
 
-- Threads complete eventually. When one wraps, suggest archiving or pruning its entry from the active-threads index.
+- Threads complete eventually. When one wraps: set `index.md` status to **Done** with a date and a one-line outcome, `mv threads/<slug> threads/_archive/<slug>`, and drop the row from the `AGENTS.md` table. Propose it; don't do it unasked.
+- `~/dev/work` is a colocated jj+git repo. Describe the working-copy change when a session makes substantive workspace edits (`jj describe -m ...` then `jj new`); no manual backup files.
 - Memory entries can go stale. **Before recommending from memory, verify the underlying file/state still matches.** Update or remove stale memories rather than acting on them.
 - `~/dev/work/repos.md` should be refreshed when repos are added or removed under `~/dev/`.
 - Don't fabricate references to repos, files, threads, or people. If unsure, search or ask.

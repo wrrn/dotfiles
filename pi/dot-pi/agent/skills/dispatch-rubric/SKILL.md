@@ -59,7 +59,7 @@ This applies to skills too — pi-subagents requires `description` in every skil
 
 ## Editing the process files
 
-`~/.pi/agent/agents/`, `skills/`, and `prompts/` are directory symlinks into `~/loft/dotfiles/pi/dot-pi/agent/` (stow, folded). Any edit there is an uncommitted change in Warren's dotfiles repo. After editing, say so in the reply — file names and a one-line summary — so Warren can describe and commit. Don't commit to `~/loft/dotfiles` unasked.
+`~/.pi/agent/agents/`, `skills/`, and `prompts/` are directory symlinks into `~/burrow/dotfiles/pi/dot-pi/agent/` (stow, folded). Any edit there is an uncommitted change in Warren's dotfiles repo. After editing, say so in the reply — file names and a one-line summary — so Warren can describe and commit. Don't commit to `~/burrow/dotfiles` unasked.
 
 ## Rule of thumb when in doubt
 

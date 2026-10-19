@@ -14,7 +14,8 @@
     "anthropic/claude-sonnet-5-5",
     "anthropic/claude-haiku-5-5",
     "claude-bridge/claude-fable-5-1",
-    "claude-bridge/claude-sonnet-5-5"
+    "claude-bridge/claude-sonnet-5-5",
+    "anthropic/claude-opus-5-5"
   ],
   "hideThinkingBlock": true,
   "lastChangelogVersion": "1.0.2",

@@ -1,28 +1,42 @@
-# General appearance
-font=Inter 10
-padding=10
+# mako config — Dell U3421WE full-width (3440x1440, ~110 ppi, ~65 cm)
+# Sizing targets ~1–1.3% of screen area per notification.
+
+# anchor=top-right
+# width=380
+# height=110          
+# font=Triplicate A Poly 12
+
+anchor=top-center
+width=520
+height=130
+font=Triplicate A Poly 14
+
+padding=12,14
+margin=10
 border-size=2
-border-radius=12
-
-# Slight transparency
-background-color=#1e1e2ee6
-text-color=#cdd6f4
-border-color=#313244
-
+border-radius=8
 # Icon handling
 icons=1
 icon-location=left
-max-icon-size=32
+max-icon-size=40
 
 # Keep it "out of the way" on big screens:
 # fewer, cleaner popups instead of a tall stack.
 max-visible=3
 
-# Placement
-anchor=top-left
-layer=overlay
 
-# Push the whole stack away from the edges:
+# Dark card against light Rosé Pine Dawn windows: opaque, high contrast
+background-color=#191724ff
+text-color=#e0def4ff
+border-color=#31748fff
+
+
+
+# TODO: Work on this
+# # Placement
+# layer=overlay
+
+# # Push the whole stack away from the edges:
 # top, right, bottom, left
 outer-margin=18,0,0,1
 
@@ -30,16 +44,26 @@ outer-margin=18,0,0,1
 margin=10
 
 # Behavior
-default-timeout=50000
+# default-timeout=50000
+default-timeout=7000
 ignore-timeout=0
 
-# Urgency handling
 [urgency=low]
-default-timeout=30000
+# Calm: same size, lower contrast, partly transparent
+background-color=#f2e9e1cc
+text-color=#575279ff
+border-size=0
+default-timeout=4000
 
 [urgency=critical]
+# Overlay layer shows above fullscreen; also lets a niri layer rule target it
+layer=overlay
+width=640
+border-color=#eb6f92ff
+border-size=3
 default-timeout=0
-border-color=#f38ba8
+
+
 
 # Focusmate — obnoxiously large and impossible to ignore
 # [app-name="Google Chrome"]

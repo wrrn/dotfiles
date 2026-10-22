@@ -103,3 +103,4 @@ notify-on-command-finish-after = 5s
 
 gtk-tabs-location = top
 unfocused-split-opacity = 0.2
+window-padding-y=0,16

@@ -1,8 +1,9 @@
-;; ui-config.el --- Configure the ui-components
+;; ui-config.el --- Configure the ui-components  -*- lexical-binding: t; -*-
 (require 'theme "./ui/theme.el")
 (require 'fonts "./ui/fonts.el")
 (require 'line-wrap "./ui/line-wrap.el")
 (require 'moody-config "./ui/moody-config.el")
+(require 'margin "./ui/margin.el")
 
 ;; (use-package auto-dim-other-buffers
 ;;   :ensure t

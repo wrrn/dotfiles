@@ -1,0 +1,6 @@
+/* One tab per window: the window manager handles switching, so hide the tab
+   bar. The nav bar stays visible so the URL bar and extension popups (for
+   example, 1Password) keep working. */
+#TabsToolbar {
+  visibility: collapse !important;
+}

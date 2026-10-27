@@ -18,7 +18,7 @@
     "anthropic/claude-opus-5-5"
   ],
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "1.0.2",
+  "lastChangelogVersion": "1.4.0",
   "packages": [
     "npm:@gotgenes/pi-subagents",
     "npm:@gotgenes/pi-subagents-worktrees",

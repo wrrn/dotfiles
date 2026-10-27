@@ -23,7 +23,7 @@ binds {
   Super+H { spawn "nirius" "scratchpad-toggle"; }
   Super+Shift+H {spawn "nirius" "scratchpad-show"; }
   Super+E { spawn "emacsclient" "-c"; }
-  Super+B { spawn "qutebrowser"; }
+  Super+B { spawn "firefox"; }
   
   Super+Space { spawn "fuzzel"; }
   Mod+Shift+Ctrl+Super+L { spawn "swaylock"; }

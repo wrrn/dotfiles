@@ -1,6 +1,61 @@
-/* One tab per window: the window manager handles switching, so hide the tab
-   bar. The nav bar stays visible so the URL bar and extension popups (for
-   example, 1Password) keep working. */
+/* Equivalent of Tridactyl's `:guiset gui none`. guiset can't write this file
+   because home-manager manages it, so the rules live here instead. Copied from
+   Tridactyl's src/lib/css_util.ts (metaRules.gui.none). */
+
+/* --- tabs none ------------------------------------------------------------ */
+/* One tab per window: the window manager handles switching. */
 #TabsToolbar {
   visibility: collapse !important;
+}
+
+/* Collapse the toolbox until it's hovered or focused. */
+:root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) {
+  max-height: 1px;
+  min-height: calc(0px);
+  overflow: hidden;
+}
+
+/* --- navbar autohide ------------------------------------------------------ */
+/* The nav bar is hidden, not removed, so hovering it or focusing it (Ctrl+L)
+   brings back the URL bar and extension buttons such as 1Password. */
+:root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) #nav-bar {
+  max-height: 0;
+  min-height: 0 !important;
+  --tridactyl-auto-show-zone: 10px;
+  margin-bottom: calc(-1 * var(--tridactyl-auto-show-zone));
+  opacity: 0;
+}
+
+/* Annoying black line at the top in fullscreen. */
+#navigator-toolbox::after {
+  display: none !important;
+}
+
+/* Firefox otherwise shows the URL bar even when the nav bar is hidden. */
+:root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) #urlbar {
+  min-height: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Keeps typing in the URL bar visible after the rule above. */
+:root:not([customizing]) #navigator-toolbox #urlbar-container {
+  --urlbar-container-height: auto !important;
+}
+
+/* --- hoverlink none ------------------------------------------------------- */
+/* Hide the link URL that appears at the bottom when hovering a link. */
+statuspanel[type="overLink"],
+#statuspanel[type="overLink"] {
+  display: none !important;
+}
+
+/* --- menubar grey --------------------------------------------------------- */
+#navigator-toolbox:not(:hover):not(:focus-within) #toolbar-menubar > * {
+  background-color: rgb(232, 232, 231);
+}
+
+/* --- padwhenmaximised some ------------------------------------------------ */
+#main-window[sizemode="maximized"] #content-deck {
+  padding-top: 8px;
 }

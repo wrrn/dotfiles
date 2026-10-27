@@ -3,11 +3,6 @@
 " as an enforced single point of truth for Tridactyl's configuration.
 sanitize tridactyllocal tridactylsync
 
-" Use the firefox developer profile that was created.
-" NOTE: This will need to be set for each firefox installation until
-" TODO: Figure out have to name a profile
-set profiledir /Users/warrenharper/Library/Application Support/Firefox/Profiles/exfow7xo.dev-edition-default
-
 " Just use a blank page for new tab. It would be nicer to use the standard
 " Firefox homepage, but Tridactyl doesn't support this yet.
 set newtab about:blank
@@ -31,30 +26,29 @@ set smoothscroll true
 bind j scrollline 5
 bind k scrollline -5
 
-" Unbind the default new tab key
-unbind t
+" One tab per window: every page gets its own window and the window manager
+" handles switching. t and w both open a window; the uppercase versions open
+" one with the current URL prefilled. w/W match Tridactyl's defaults, but
+" they're bound here explicitly so the intent is recorded.
+bind t fillcmdline winopen
+bind T current_url winopen
+bind w fillcmdline winopen
+bind W current_url winopen
 
-" Use kakoune-esque tab mangement
-bind to fillcmdline tabopen
-bind tb fillcmdcline bmarks -t
-bind ts fillcmdline tab
-bind tr fillcmdline tabrename %
-bind tp tabprev
-bind tn tabnext
-bind tl tab #
-bind tc tabclose
+" Follow a hinted link into a new window.
+bind F hint -w
 
-bind cpto fillcmdline tabopen -c personal
-bind cmto fillcmdline tabopen -c meta
-bind cto fillcmdline tabopen -c
+" Plain b only lists tabs in the current window, which is one page here.
+" Search pages across all windows instead.
+bind b fillcmdline taball
 
-bind --mode=normal <M-t> fillcmdline tabopen
+" Escape hatch: Ctrl+T and "Open Link in New Tab" can't be intercepted, so
+" detach a stray tab into its own window.
+bind gd tabdetach
 
-bind tgs fillcmdline tgroupswitch
-bind tgr fillcmdline tgrouprename
-bind tgm fillcmdline tgroupmove
-bind tgl tgrouplast
-bind tgc fillcmdline tgroupclose
+" Open a window in a container.
+bind cpto fillcmdline winopen -c personal
+bind cto fillcmdline winopen -c
 
 " Don't run Tridactyl on some web sites because it doesn't work well, or
 " because the web site has its own keybindings.

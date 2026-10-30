@@ -1,6 +1,7 @@
 ---
 name: todo-sync
 description: Read Warren's tasks from his org-roam log, keep Two's own task state in todo.md, and push session-created tasks into the log.
+disable-model-invocation: true
 ---
 
 # Todo sync

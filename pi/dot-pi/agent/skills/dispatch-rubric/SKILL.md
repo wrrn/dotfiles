@@ -1,6 +1,7 @@
 ---
 name: dispatch-rubric
 description: Decide when to tackle work directly vs. dispatch a subagent, and which of the three dispatch patterns to use.
+disable-model-invocation: true
 ---
 
 # Dispatch rubric

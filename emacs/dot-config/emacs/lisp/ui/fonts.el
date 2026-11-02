@@ -14,23 +14,30 @@
 (defvar user/emoji-font "OpenMoji Black"
   "Font used for emoji characters not provided by the symbol font.")
 
+(defvar user/prose-font "Century Supra A"
+  "Proportional font for prose (used by mixed-pitch).")
+
 (defvar user/font-size 180
   "Default font size in 1/10pt (250 = 25pt).")
 
 (defun user/set-font ()
   "Set up fonts with Unicode fallback."
-  ;; Set the default font.
   (set-face-attribute 'default nil
                       :family user/latin-font
                       :height user/font-size)
-  ;; Fallback to Nerd Font for symbols not in the primary font.
-  ;; Nerd Font icons live in Private Use Area ranges.
-  (set-fontset-font t '(#xe000 . #xffff) (font-spec :family user/unicode-font))   ; BMP PUA
-  (set-fontset-font t '(#xf0000 . #xfffff) (font-spec :family user/unicode-font)) ; Supplementary PUA-A
-  ;; U+1F441 EYE is absent from Symbols Nerd Font Mono.  Prefer the emoji font
-  ;; for the base character; this also lets U+1F441 U+FE0F use emoji presentation.
+  ;; Code, tables etc. under mixed-pitch should match the default font.
+  (set-face-attribute 'fixed-pitch nil :family user/latin-font :height 1.0)
+  ;; Prose font; height is relative to default so it follows user/font-size.
+  (set-face-attribute 'variable-pitch nil :family user/prose-font :height 1.05)
+  (set-fontset-font t '(#xe000 . #xffff) (font-spec :family user/unicode-font))
+  (set-fontset-font t '(#xf0000 . #xfffff) (font-spec :family user/unicode-font))
   (set-fontset-font t #x1f441 (font-spec :family user/emoji-font) nil 'prepend)
   (set-fontset-font t 'unicode (font-spec :family user/unicode-font) nil 'append))
+
+(use-package mixed-pitch
+  :ensure t
+  :custom (mixed-pitch-set-height t)
+  :hook (markdown-modern-mode . mixed-pitch-mode))
 
 (if (daemonp)
     (add-hook 'server-after-make-frame-hook #'user/set-font)
@@ -62,5 +69,6 @@
   ;; Enables ligature checks globally in all buffers. You can also do it
   ;; per mode with `ligature-mode'.
   (global-ligature-mode t))
+
 
 (provide 'fonts)

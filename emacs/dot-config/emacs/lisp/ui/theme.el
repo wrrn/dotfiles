@@ -93,7 +93,8 @@
 
 (use-package warm-burnout
   :ensure t
-  :straight (:host sourcehut :protocol ssh :repo "wrrn/warm-burnout" :files ("emacs/*.el"))
+  ;; :straight (:host sourcehut :protocol ssh :repo "wrrn/warm-burnout" :files ("emacs/*.el"))
+  :straight (:type git :host nil :protocol ssh :repo "git@wrrn.sr.ht:~wrrn/warm-burnout" :files ("emacs/*.el"))
   :config
   ;; Preload both variants without enabling them so auto-dark can switch without
   ;; prompting about theme safety on startup.

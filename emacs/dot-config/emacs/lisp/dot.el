@@ -28,6 +28,7 @@
 ;; (require 'java-development)
 ;; (require 'scala-development)
 (require 'writeroom-config)
+(require 'markdown-reader)
 (require 'term-config)
 (require 'gpt)
 (require 'pi-config)

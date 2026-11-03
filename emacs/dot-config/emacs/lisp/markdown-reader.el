@@ -4,10 +4,10 @@
 ;; paging.  centered-cursor-mode is deliberately left off.
 ;;; Code:
 
-(require 'markdown-mode)
-(require 'mixed-pitch)
-(require 'view)
-(require 'writeroom-mode)
+(use-package mixed-pitch
+  :ensure t
+  :custom (mixed-pitch-set-height t)
+  :hook (markdown-modern-mode . mixed-pitch-mode))
 
 (define-derived-mode markdown-reader-mode markdown-view-mode "Markdown-Reader"
   "Major mode for reading Markdown with `writeroom-mode' and `mixed-pitch-mode'."

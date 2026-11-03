@@ -30,6 +30,7 @@
 (require 'writeroom-config)
 (require 'markdown-reader)
 (require 'term-config)
+(require 'herdr-config)
 (require 'gpt)
 (require 'pi-config)
 (require 'ux-config)

@@ -20,6 +20,9 @@
 ;; expect the built-in versions.
 (straight-use-package '(project :type built-in))
 (straight-use-package '(xref :type built-in))
+;; tramp-rpc's Package-Requires names tramp; keep Emacs's own TRAMP
+;; instead of letting straight shadow it with GNU ELPA's.
+(straight-use-package '(tramp :type built-in))
 
 
 (provide 'straight-wrrn)

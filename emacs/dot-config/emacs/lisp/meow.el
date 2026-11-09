@@ -267,6 +267,7 @@
              '("}"  . meow-normal-self-insert)
              '("("  . meow-normal-self-insert)
              '(")"  . meow-normal-self-insert)
+             '("`"  . meow-normal-self-insert)
              '("<escape>" . ignore)))
           (meow-setup)
           (meow-global-mode 1)

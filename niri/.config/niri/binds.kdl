@@ -112,6 +112,9 @@ binds {
   // moving the mouse or pressing any other key.
   Mod+Shift+P { power-off-monitors; }
   Mod+Ctrl+Shift+A { spawn "ddcutil" "setvcp" "60" "0x0f"; }
+  // Dell KVM: hand the monitor, keyboard and mouse to the other computer.
+  // --noverify because the monitor stops answering this machine once it switches.
+  Mod+Ctrl+Shift+S { spawn "ddcutil" "setvcp" "0xE7" "0xFF00" "--noverify"; }
   Ctrl+Shift+V { spawn "cliphist-fuzzel-img"; }
   Super+Comma { spawn "~/.local/bin/rcmd"; }
   // Trigger voxtype recording;

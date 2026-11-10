@@ -119,6 +119,8 @@
 (defun wrrn-pilish-jump ()
   "Pick a pilish session and switch to it."
   (interactive)
+  ;; `consult--multi' isn't autoloaded, and consult loads lazily.
+  (require 'consult)
   (consult--multi '(wrrn-pilish-consult-source) :prompt "Agent: "))
 
 ;;; Desktop notifications

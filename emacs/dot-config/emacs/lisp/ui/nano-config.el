@@ -1,4 +1,4 @@
-;; nano-config.el --- Configure the nano-modeline
+;; nano-config.el --- Configure the nano-modeline -*- lexical-binding: t; -*-
 ;;
 ;; To install in the ui-config.el, add (require 'nano-config "./ui/nano-config")
 

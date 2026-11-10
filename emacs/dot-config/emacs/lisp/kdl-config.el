@@ -1,4 +1,4 @@
-;;; kdl-config.el  --- configure kdl-mode
+;;; kdl-config.el  --- configure kdl-mode -*- lexical-binding: t; -*-
 ;; Nix configuration
 
 (use-package kdl-mode

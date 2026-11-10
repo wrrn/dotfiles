@@ -1,4 +1,4 @@
-;;; nix-config.el  --- configure nix-mode
+;;; nix-config.el  --- configure nix-mode -*- lexical-binding: t; -*-
 ;; Nix configuration
 
 (use-package nix-ts-mode

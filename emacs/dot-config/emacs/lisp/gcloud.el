@@ -1,4 +1,4 @@
-;;; gcloud.el --- load all of my custom packages
+;;; gcloud.el --- load all of my custom packages -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; protobuf-config.el  --- configure protobuf editing packages
+;;; protobuf-config.el  --- configure protobuf editing packages -*- lexical-binding: t; -*-
 
 (use-package protobuf-ts-mode
   :ensure t

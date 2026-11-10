@@ -1,4 +1,4 @@
-;; ui-config.el --- Configure the ui-components
+;; ui-config.el --- Configure the ui-components -*- lexical-binding: t; -*-
 (use-package perspective
   :ensure t
   :bind (("C-x k" . persp-kill-buffer*))

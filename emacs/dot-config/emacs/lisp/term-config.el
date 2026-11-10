@@ -1,4 +1,4 @@
-;; term-config.el --- Configure Terminal specific packages
+;; term-config.el --- Configure Terminal specific packages -*- lexical-binding: t; -*-
 
 (use-package with-editor
   :ensure t

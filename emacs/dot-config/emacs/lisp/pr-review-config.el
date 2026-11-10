@@ -1,4 +1,4 @@
-;;; pr-review-config.el  --- configure pr-review.el
+;;; pr-review-config.el  --- configure pr-review.el -*- lexical-binding: t; -*-
 ;; pr-review configuration
 
 (use-package pr-review

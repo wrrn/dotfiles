@@ -1,4 +1,4 @@
-;;; claude.el --- configure claude-code.el
+;;; claude.el --- configure claude-code.el -*- lexical-binding: t; -*-
 
 (use-package transient
   :ensure t)

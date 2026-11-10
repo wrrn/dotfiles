@@ -1,4 +1,4 @@
-;; Start up into scratch
+;; Start up into scratch  -*- lexical-binding: t; -*-
 (setq inhibit-startup-screen t
       backup-inhibited t)
 
@@ -20,16 +20,5 @@
 (if (eq system-type 'darwin)
     (add-to-list 'default-frame-alist '(undecorated-round . t))
   (add-to-list 'default-frame-alist '(undecorated . t)))
-;; (setq ns-auto-hide-menu-bar t)
-;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-;; (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
-;; (add-to-list 'default-frame-alist '(frame-title-format . nil)) ;; assuming you are using a dark theme
-;; (add-to-list 'default-frame-alist '(icon-title-format . nil)) ;; assuming you are using a dark theme
-;; (add-to-list 'default-frame-alist '(title . nil)) ;; assuming you are using a dark theme
-;; (setq ns-use-proxy-icon nil)
-(setq frame-resize-pixelwise t)
-;; (set-face-foreground 'window-divider-first-pixel "gray")
-;; (set-face-background 'window-divider-first-pixel "gray")
 
-;; (set-face-foreground 'window-divider "gray")
-;; (set-face-background 'window-divider "gray")
+(setq frame-resize-pixelwise t)

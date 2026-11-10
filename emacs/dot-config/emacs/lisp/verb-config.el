@@ -1,4 +1,4 @@
-;;; verb-config.el  --- configure verb.el
+;;; verb-config.el  --- configure verb.el -*- lexical-binding: t; -*-
 ;; Verb configuration
 
 (use-package verb

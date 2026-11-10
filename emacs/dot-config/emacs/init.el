@@ -1,4 +1,4 @@
-;;; init.el
+;;; init.el  -*- lexical-binding: t; -*-
 
 ;; Set the initial directory to start from
 (setq default-directory "~/")

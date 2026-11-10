@@ -1,4 +1,4 @@
-;; theme.el -- Configure the them we want to use
+;; theme.el -- Configure the them we want to use -*- lexical-binding: t; -*-
 
 (use-package autothemer
   :ensure t)

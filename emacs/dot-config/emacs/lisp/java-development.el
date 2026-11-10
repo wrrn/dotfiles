@@ -1,4 +1,4 @@
-;;; java-development.el  --- load all the java development packages
+;;; java-development.el  --- load all the java development packages -*- lexical-binding: t; -*-
 
 
 (use-package google-c-style

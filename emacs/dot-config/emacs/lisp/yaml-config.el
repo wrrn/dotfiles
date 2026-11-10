@@ -1,4 +1,4 @@
-;;; yaml-config.el --- configure yaml mode
+;;; yaml-config.el --- configure yaml mode -*- lexical-binding: t; -*-
 
 (use-package yaml-ts-mode
   :ensure t

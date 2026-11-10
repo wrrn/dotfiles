@@ -1,4 +1,4 @@
-;;; dot.el --- load all of my custom packages
+;;; dot.el --- load all of my custom packages  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

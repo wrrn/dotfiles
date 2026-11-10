@@ -1,4 +1,4 @@
-;;; lua-config.el --- configure lua mode
+;;; lua-config.el --- configure lua mode -*- lexical-binding: t; -*-
 
 (use-package lua-ts-mode
   :ensure t

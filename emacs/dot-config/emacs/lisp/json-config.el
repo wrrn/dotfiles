@@ -1,4 +1,4 @@
-;;; json-config.el --- configure json mode
+;;; json-config.el --- configure json mode -*- lexical-binding: t; -*-
 
 (use-package json-ts-mode
   :ensure t

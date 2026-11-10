@@ -1,4 +1,4 @@
-;;; straight-wrrn.el --- Initialize and setup straight
+;;; straight-wrrn.el --- Initialize and setup straight  -*- lexical-binding: t; -*-
 (defvar bootstrap-version)
 (defvar straight-use-package-by-default t)
 (let ((bootstrap-file

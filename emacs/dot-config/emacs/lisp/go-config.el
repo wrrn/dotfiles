@@ -1,4 +1,4 @@
-;;; go-config.el  --- configure meow mode
+;;; go-config.el  --- configure meow mode -*- lexical-binding: t; -*-
 ;; Go configuration
 
 (defun go-mode--auto-fill-comments ()

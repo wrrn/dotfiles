@@ -1,4 +1,4 @@
-;; org-config.el --- Org-mode configurations
+;; org-config.el --- Org-mode configurations -*- lexical-binding: t; -*-
 ;; Code:
 
 (defun wrrn-org-buffer-prop-get (name)

@@ -1,4 +1,4 @@
-;; minibuffer-config.el -- Configure minibuffer packages
+;; minibuffer-config.el -- Configure minibuffer packages -*- lexical-binding: t; -*-
 (use-package vertico
   :init
   (vertico-mode))
@@ -10,7 +10,12 @@
   ;;       orderless-component-separator #'orderless-escapable-split-on-space)
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
+        completion-category-overrides '((file (styles partial-completion))
+                                        (fish (styles wrrn/orderless-flex))))
+  :config
+  ;; Fuzzy orderless for the fish capf in fish-config.el.
+  (orderless-define-completion-style wrrn/orderless-flex
+    (orderless-matching-styles '(orderless-literal orderless-flex))))
 
 (use-package consult
   :ensure t
@@ -51,7 +56,7 @@
   ;; Set the root of the project so that consult-ripgrep starts searches there.
   (setq consult-project-root-function
         (lambda ()
-          (when-let (project (project-current))
+          (and-let* (project (project-current))
             (car (project-roots project)))))
 
   :config

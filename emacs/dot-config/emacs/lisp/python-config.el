@@ -1,4 +1,4 @@
-;;; python-config.el  --- configure meow mode
+;;; python-config.el  --- configure meow mode -*- lexical-binding: t; -*-
 ;; Go configuration
 
 (use-package python-ts-mode

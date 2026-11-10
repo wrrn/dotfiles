@@ -1,4 +1,4 @@
-;; darwin-config.el -- Configure windows for darwin to use.
+;; darwin-config.el -- Configure windows for darwin to use. -*- lexical-binding: t; -*-
 
 (when (memq window-system '(mac ns))
   (use-package frame

@@ -1,4 +1,4 @@
-;; moody-config.el --- configure the moody mode-line
+;; moody-config.el --- configure the moody mode-line -*- lexical-binding: t; -*-
 ;;
 ;; To install in the ui-config.el, add (require 'moody-config "./ui/moody-config")
 (defvar-local moody-mode-line-persp-identification

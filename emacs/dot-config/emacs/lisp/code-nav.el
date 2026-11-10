@@ -1,4 +1,4 @@
-;;; code-nav.el --- Install code navigation primitives
+;;; code-nav.el --- Install code navigation primitives -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package combobulate

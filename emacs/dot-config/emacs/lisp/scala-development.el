@@ -1,4 +1,4 @@
-;;; scala-development.el  --- load all the scala development packages
+;;; scala-development.el  --- load all the scala development packages -*- lexical-binding: t; -*-
 ;; Enable scala-mode for highlighting, indentation and motion commands
 
 ;; Enable scala mode

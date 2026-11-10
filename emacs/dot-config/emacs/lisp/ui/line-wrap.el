@@ -1,4 +1,4 @@
-;; line-wrap.el --- Configure the line wrapping
+;; line-wrap.el --- Configure the line wrapping -*- lexical-binding: t; -*-
 
 (use-package simple
   :straight f

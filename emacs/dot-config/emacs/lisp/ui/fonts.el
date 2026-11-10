@@ -1,4 +1,4 @@
-;; fonts.el -- Configure the fonts to use.
+;; fonts.el -- Configure the fonts to use. -*- lexical-binding: t; -*-
 ;;
 ;; To install in the ui-config.el, add (require 'fonts "./ui/fonts")
 

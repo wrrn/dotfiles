@@ -1,4 +1,4 @@
-;;; 1password-config.el  --- configure 1password.el
+;;; 1password-config.el  --- configure 1password.el -*- lexical-binding: t; -*-
 ;; 1password configuration
 
 (use-package auth-source-1password

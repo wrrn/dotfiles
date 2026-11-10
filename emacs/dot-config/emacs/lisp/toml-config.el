@@ -1,4 +1,4 @@
-;;; toml-config.el --- configure toml mode
+;;; toml-config.el --- configure toml mode -*- lexical-binding: t; -*-
 
 (use-package toml-ts-mode
   :ensure t

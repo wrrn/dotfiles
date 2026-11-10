@@ -1,4 +1,4 @@
-;;; vc-config.el --- configure version control packages
+;;; vc-config.el --- configure version control packages -*- lexical-binding: t; -*-
 (use-package magit
   :ensure t
   :init (progn

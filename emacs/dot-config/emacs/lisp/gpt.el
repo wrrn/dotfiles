@@ -1,4 +1,4 @@
-;;; gpt.el  --- configure gptel
+;;; gpt.el  --- configure gptel -*- lexical-binding: t; -*-
 (use-package gptel
   :ensure t
   :custom

@@ -1,4 +1,4 @@
-;; kubernetes-config.el -- Add kube.el packages with ghostel support
+;; kubernetes-config.el -- Add kube.el packages with ghostel support -*- lexical-binding: t; -*-
 (use-package kubel
   :config
   (defun kubel-exec-ghostel-pod ()

@@ -1,4 +1,4 @@
-;;; writeroom-config.el  --- configure writeroom
+;;; writeroom-config.el  --- configure writeroom -*- lexical-binding: t; -*-
 (use-package centered-cursor-mode
   :ensure t)
 

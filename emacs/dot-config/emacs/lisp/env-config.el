@@ -1,4 +1,4 @@
-;;; env-config.el --- setup the environment in which emacs runs in
+;;; env-config.el --- setup the environment in which emacs runs in -*- lexical-binding: t; -*-
 
 (use-package direnv
   :ensure t

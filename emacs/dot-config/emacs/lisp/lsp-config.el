@@ -1,4 +1,4 @@
-;; lsp-config.el --- configuring lsp since 2024
+;; lsp-config.el --- configuring lsp since 2024 -*- lexical-binding: t; -*-
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)

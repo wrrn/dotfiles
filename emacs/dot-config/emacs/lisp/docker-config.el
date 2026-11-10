@@ -1,4 +1,4 @@
-;;; docker-config.el --- configure docker mode
+;;; docker-config.el --- configure docker mode -*- lexical-binding: t; -*-
 
 (use-package dockerfile-ts-mode
   :ensure t

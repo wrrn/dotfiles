@@ -1,4 +1,4 @@
-;;; typescript.el  --- configure type script
+;;; typescript.el  --- configure type script -*- lexical-binding: t; -*-
 ;; Enable typescript editing and indentation
 
 ;; TODO

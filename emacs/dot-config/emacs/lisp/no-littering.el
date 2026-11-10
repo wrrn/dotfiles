@@ -1,4 +1,4 @@
-;;; no-littering.el --- Help keeping your directories clean  -*- lexical-binding:t -*-
+;;; no-littering.el --- Help keeping your directories clean  -*- lexical-binding:t -*- -*- lexical-binding: t; -*-
 ;; Pulled from https://github.com/emacscollective/no-littering/blob/main/no-littering.el#L483-L542
 ;; Copyright (C) 2016-2023 Jonas Bernoulli
 

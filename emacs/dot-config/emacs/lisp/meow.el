@@ -1,4 +1,4 @@
-;;; meow.el  --- configure meow mode
+;;; meow.el  --- configure meow mode -*- lexical-binding: t; -*-
 ;; Enable scala-mode for highlighting, indentation and motion commands
 
 ;; TODO

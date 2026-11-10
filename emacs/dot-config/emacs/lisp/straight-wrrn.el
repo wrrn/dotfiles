@@ -23,6 +23,10 @@
 ;; tramp-rpc's Package-Requires names tramp; keep Emacs's own TRAMP
 ;; instead of letting straight shadow it with GNU ELPA's.
 (straight-use-package '(tramp :type built-in))
+;; dape's Package-Requires names jsonrpc; keep the built-in one that
+;; Eglot is written against.
+(straight-use-package '(eglot :type built-in))
+(straight-use-package '(jsonrpc :type built-in))
 
 
 (provide 'straight-wrrn)

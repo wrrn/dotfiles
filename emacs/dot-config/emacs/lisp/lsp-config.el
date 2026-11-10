@@ -1,26 +1,26 @@
 ;; lsp-config.el --- configuring lsp since 2024 -*- lexical-binding: t; -*-
 
-(use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :ensure t
-  :hook (;; Enable which-key integration         
-         (lsp-mode . lsp-enable-which-key-integration))
+;; Language server.  Eglot is built in; modes start it with
+;; `eglot-ensure' in their own config files.
+(use-package eglot
+  :straight (:type built-in)
   :config
-  (push  "[/\\\\]\\vendor\\'" lsp-file-watch-ignored-directories)
-  :custom
-  (lsp-completion-provide :none)
+  ;; Flymake skips backends in files outside `trusted-content' unless
+  ;; they are marked safe.  Eglot's backend only shows what the server
+  ;; reports, and the server is already running on the project.
+  (function-put 'eglot-flymake-backend 'flymake-always-safe t)
   :bind (
          :map wh-keymap
-         
+
          ("r f"   . xref-find-references)
          ("d f"   . xref-find-definitions)
          ("4 d f" . xref-find-definitions-other-window)
          ("s f"   . xref-find-apropos)
          ("l l"   . xref-go-back)
          ("t h"   . display-local-help)
-         ("c a"   . lsp-execute-code-action)
-         ("i f"   . lsp-find-implementation)
-         ("v r"   . lsp-rename)))
+         ("c a"   . eglot-code-actions)
+         ("i f"   . eglot-find-implementation)
+         ("v r"   . eglot-rename)))
 
 (use-package tree-sitter
   :ensure t
@@ -102,21 +102,6 @@
   ;; See also `corfu-excluded-modes'.
   :init
   (global-corfu-mode))
-
-
-;; Language server
-;; (use-package eglot
-;;   :ensure t
-;;   :bind (
-;;          :map wh-keymap
-;;               ("r f"   . xref-find-references)
-;;               ("c a"   . eglot-code-actions)
-;;               ("t d"   . display-local-help)
-;;               ("d f"   . xref-find-definitions)
-;;               ("i f"   . eglot-find-implementation)
-;;               ("v r"   . eglot-rename)
-;;               ("4 d f" . xref-find-definitions-other-window)
-;;               ("s f"   . xref-find-apropos)))
 
 
 (provide 'lsp-config)

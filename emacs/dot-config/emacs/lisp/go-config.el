@@ -17,7 +17,7 @@
   ;; GO Mode for editing go programs
   :ensure t
   :mode "\\.go\\'"
-  :hook ((go-ts-mode . lsp-deferred)
+  :hook ((go-ts-mode . eglot-ensure)
          (go-ts-mode . go-mode--auto-fill-comments)
          (go-ts-mode . go-mode--set-compile-command))
   :init
@@ -25,7 +25,6 @@
                '(go "https://github.com/tree-sitter/tree-sitter-go"))
   (add-to-list 'major-mode-remap-alist '(go-mode . go-ts-mode))
   :config
-  (add-to-list 'lsp-language-id-configuration '(go-ts-mode . "go"))
   (with-eval-after-load 'apheleia
     (setf (alist-get 'go-ts-mode apheleia-mode-alist)
           '(gofumpt goimports))))
@@ -46,7 +45,5 @@
 
 (use-package go-rename
   :ensure t)
-
-(require 'dap-dlv-go)
 
 (provide 'go-config)

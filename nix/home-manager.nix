@@ -4,7 +4,7 @@
 #
 # A package's links mirror its stow layout: fish/dot-config/fish/config.fish
 # becomes ~/.config/fish/config.fish. Each file gets its own link, like
-# `stow --no-folding`; list directories in `fold` to link them whole.
+# `stow --no-folding`, so programs can keep their own files next to yours.
 #
 # `source` picks what the links point at:
 # - "store": this flake's store copy. Read-only; updated with
@@ -14,8 +14,7 @@
 #
 # In both modes the file list comes from this flake's store copy, because pure
 # evaluation can't read the clone. A new file is linked after
-# `nix flake update dotfiles` and a rebuild, unless it's under a folded
-# directory.
+# `nix flake update dotfiles` and a rebuild.
 #
 # See design-log/2026-11-11-home-manager-module.md.
 self:
@@ -39,9 +38,8 @@ let
   join = dir: name: if dir == "" then name else "${dir}/${name}";
 
   # [ { path = "dot-config/fish/config.fish"; target = ".config/fish/config.fish"; } ]
-  # Stops at directories listed in `fold`, returning the directory itself.
   walk =
-    pkg: fold: path: target:
+    pkg: path: target:
     lib.concatLists (
       lib.mapAttrsToList (
         name: type:
@@ -51,15 +49,11 @@ let
             target = join target (targetName name);
           };
         in
-        if type == "directory" && !lib.elem entry.target fold then
-          walk pkg fold entry.path entry.target
-        else
-          [ entry ]
+        if type == "directory" then walk pkg entry.path entry.target else [ entry ]
       ) (builtins.readDir "${src}/${pkg}${lib.optionalString (path != "") "/${path}"}")
     );
 
-  foldOf = pkg: map (lib.removeSuffix "/") cfg.${pkg}.fold;
-  entriesOf = pkg: walk pkg (foldOf pkg) "" "";
+  entriesOf = pkg: walk pkg "" "";
 
   sourceOf =
     pkg: path:
@@ -91,18 +85,6 @@ let
         `wrrn.dotfiles.localPath` (edits take effect without a rebuild).
       '';
     };
-
-    fold = mkOption {
-      type = types.listOf types.str;
-      default = [ ];
-      example = [ ".config/${pkg}" ];
-      description = ''
-        Directories, as paths relative to the home directory, to link whole
-        instead of file by file. With source "localPath", new files under a
-        folded directory appear without a rebuild, and files the program
-        creates there land in the repo.
-      '';
-    };
   };
 in
 {
@@ -126,22 +108,10 @@ in
   );
 
   config = lib.mkIf (enabled != [ ]) {
-    assertions = lib.concatMap (
-      pkg:
-      let
-        targets = map (entry: entry.target) (entriesOf pkg);
-      in
-      [
-        {
-          assertion = cfg.${pkg}.source != "localPath" || cfg.localPath != null;
-          message = "wrrn.dotfiles.${pkg}.source is \"localPath\" but wrrn.dotfiles.localPath is not set.";
-        }
-      ]
-      ++ map (dir: {
-        assertion = lib.elem dir targets;
-        message = "wrrn.dotfiles.${pkg}.fold: ${dir} is not a directory in the ${pkg} package.";
-      }) (foldOf pkg)
-    ) enabled;
+    assertions = map (pkg: {
+      assertion = cfg.${pkg}.source != "localPath" || cfg.localPath != null;
+      message = "wrrn.dotfiles.${pkg}.source is \"localPath\" but wrrn.dotfiles.localPath is not set.";
+    }) enabled;
 
     home.file = lib.listToAttrs (
       lib.concatMap (

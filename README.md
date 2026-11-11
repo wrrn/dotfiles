@@ -29,15 +29,14 @@ wrrn.dotfiles = {
 };
 ```
 
-Each package has three options:
+Each package has two options:
 
 | Option | Default | What it does |
 |---|---|---|
 | `enable` | `false` | Link the package into `$HOME`. |
 | `source` | `"localPath"` if `localPath` is set, else `"store"` | `"store"` links to the flake's store copy: changes need a push, `nix flake update dotfiles` and a rebuild. `"localPath"` links to the clone at `localPath`, so edits take effect without a rebuild. |
-| `fold` | `[ ]` | Directories (relative to `$HOME`, such as `".config/emacs"`) to link whole instead of file by file. |
 
-Every file gets its own link, like `stow --no-folding`, so programs can keep their own files next to yours. The file list comes from the flake's store copy, even with `localPath`: a new file is linked after `nix flake update dotfiles` and a rebuild, unless it's under a folded directory. Clone the repo yourself; activation warns if `localPath` is missing.
+Every file gets its own link, like `stow --no-folding`, so programs can keep their own files next to yours. The file list comes from the flake's store copy, even with `localPath`: a new file is linked after `nix flake update dotfiles` and a rebuild. Clone the repo yourself; activation warns if `localPath` is missing.
 
 `~/nixos-config` uses the module with `localPath` set. Options are in `nix/home-manager.nix`; the design is in `design-log/2026-11-11-home-manager-module.md`.
 

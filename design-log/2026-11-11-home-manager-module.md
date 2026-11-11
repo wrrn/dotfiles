@@ -196,3 +196,11 @@ Deviations from the discussion before this log:
   No host imports that module.
 - `nix-builder` doesn't evaluate before or after this change (`called
   without required argument 'niri'`), so it wasn't compared.
+
+Follow-up: removed `fold`. Nothing used it, and no package benefits:
+folding `pi` would make `~/.pi/agent` one link, putting `auth.json` and
+sessions in the repo and pi-agents' links inside the clone; folding emacs
+would do the same with `elpa/` and `straight/`. pi only needs its config
+files writable, which per-file out-of-store links already give it. Every
+package is now linked file by file. Adding `fold` back is a small change if
+a real case appears.

@@ -17,18 +17,20 @@
    :options {:focus_follows_mouse true
              :mouse_follows_focus true
              ;; niri: preset-column-widths
-             :preset_column_widths [0.25 0.33333 0.5 0.66667 0.75]
-             :animation_speed 120.0
+             :preset_column_widths [0.25 0.33333 0.499999 0.66667 0.75]
+             :animation_speed 20
              ;; niri: center-focused-column "on-overflow". Paneru only has
              ;; always/never; never is the closer of the two.
              :auto_center false
              :insert_windows_mid_strip true
-             :reap_empty_workspaces true}
+             :create_virtual_workspace_automatically true
+             :reap_empty_workspaces true
+             :menubar_height 0}
 
    ;; ── Screen edge padding ──────────────────────────────────────────────────
    ;; niri: struts { left 56; right 56 } plus 16px gaps. Paneru adds the
    ;; per-window padding below on top of this, so 64 + 8 = 72 = 56 + 16.
-   :padding {:top window-gap :bottom window-gap :left 64 :right 64}
+   :padding {:top 0 :bottom 0 :left window-gap :right window-gap}
 
    ;; ── Swipe & gestures ─────────────────────────────────────────────────────
    :swipe {:continuous true
@@ -245,7 +247,7 @@ left edge, vertically centred, at its current size."
 ;; Mod+V      → toggle-window-floating (niri's default bind; not in binds.kdl)
 (paneru.bind "alt - g" switch-focus-floating-tiling)
 (paneru.bind "alt + ctrl - g" float-focusmate)
-(paneru.bind "alt - v" "window manage")
+(paneru.bind "alt + ctrl - v" "window manage")
 
 ;; Session ───────────────────────────────────────────────────────────────────
 ;; Mod+Shift+P → power-off-monitors

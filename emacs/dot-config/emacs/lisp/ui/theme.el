@@ -70,13 +70,6 @@
   ;; :Config (load-theme 'gruvbox-light-soft)
   )
 
-;; (use-package kanagawa-theme
-;;   :ensure t
-;;   :straight (kanagawa-theme :type git :host github :repo  "jasonm23/emacs-theme-kanagawa")
-;;   :requires autothemer
-;;   :config (load-theme 'kanagawa)
-;;   :custom-face
-;;   (fringe ((t (:background "#181820")))))
 
 
 
@@ -91,6 +84,12 @@
   ;;   (doric-themes-select 'doric-earth)
   )
 
+;; (use-package au-themes
+;;   :vc (:url "https://github.com/szymonwilczek/au-themes" :rev :newest)
+;;   ;; :config
+;;   ;; (load-theme 'au-salina-night t)
+;;   )
+ 
 (use-package warm-burnout
   :ensure t
   ;; :straight (:host sourcehut :protocol ssh :repo "wrrn/warm-burnout" :files ("emacs/*.el"))
@@ -100,6 +99,8 @@
   ;; prompting about theme safety on startup.
   (load-theme 'warm-burnout-dark t t)
   (load-theme 'warm-burnout-light t t))
+
+
 
 (use-package auto-dark
   :ensure t

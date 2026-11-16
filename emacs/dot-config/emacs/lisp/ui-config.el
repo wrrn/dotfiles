@@ -2,7 +2,8 @@
 (require 'theme "./ui/theme.el")
 (require 'fonts "./ui/fonts.el")
 (require 'line-wrap "./ui/line-wrap.el")
-(require 'moody-config "./ui/moody-config.el")
+;; (require 'moody-config "./ui/moody-config.el")
+(require 'wrrn-modeline "./ui/wrrn-modeline.el")
 (require 'margin "./ui/margin.el")
 
 ;; (use-package auto-dim-other-buffers

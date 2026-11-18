@@ -62,6 +62,15 @@ Ghostel measures a window immediately after rewriting or evicting scrollback."
   ;; This prevents transient pixel-layout errors from aborting terminal redraws.
   (advice-add 'ghostel--pixel-anchor :around
               #'wrrn-ghostel--pixel-anchor-safe)
+  ;; ghostel only knows the shell for ssh, sshx, scp and docker.  Other
+  ;; methods get TRAMP's connection-local `shell-file-name', /bin/sh, so
+  ;; /rpc: terminals would skip rc files and shell integration.
+  (with-eval-after-load 'ghostel-shell
+    (add-to-list 'ghostel-tramp-shells '("rpc" login-shell)))
+  ;; When ssh in a local ghostel reports a remote directory (OSC 7),
+  ;; build an /rpc: path for it.  The host needs tramp-rpc-server; see
+  ;; pi-config.el.
+  (setq ghostel-tramp-default-method "rpc")
   :bind (("C-x p t" . ghostel-project)
          :map ghostel-semi-char-mode-map
          ("C-c r" . rename-buffer)

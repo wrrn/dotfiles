@@ -43,6 +43,31 @@
   (tramp-rpc-deploy-remote-binary-path
    "/home/warren/.local/state/tramp-rpc/server/bin/tramp-rpc-server"))
 
+;; When direct SSH PTYs are off, and always for sudo hops, a tramp-rpc
+;; terminal's PTY lives in the remote server and Emacs holds only a
+;; local `cat' relay.  tramp-rpc resizes it from vterm's and eat's
+;; resize hooks, but ghostel calls `set-process-window-size' directly,
+;; which does nothing on a pipe.  Send that call to the remote PTY.
+;; This uses tramp-rpc internals, hence the `fboundp' guard.
+(defun wrrn-ghostel-tramp-rpc-resize (orig proc height width)
+  "Forward `set-process-window-size' on tramp-rpc RPC PTY relays.
+Call ORIG with PROC, HEIGHT and WIDTH for every other process."
+  (if (and (fboundp 'tramp-rpc--rpc-pty-process-p)
+           (tramp-rpc--rpc-pty-process-p proc))
+      (let ((remote (tramp-rpc--remote-process proc)))
+        (ignore-errors
+          (tramp-rpc--call-fast (tramp-rpc-remote-process-vec remote)
+                                "process.resize_pty"
+                                `((pid . ,(tramp-rpc-remote-process-pid remote))
+                                  (cols . ,width)
+                                  (rows . ,height))))
+        t)
+    (funcall orig proc height width)))
+
+(with-eval-after-load 'tramp-rpc
+  (advice-add 'set-process-window-size :around
+              #'wrrn-ghostel-tramp-rpc-resize))
+
 ;; No `tramp-direct-async-process': it hands the remote login shell a
 ;; POSIX command line, which fish on lona rejects.  In TRAMP 2.8.2 it
 ;; also skips the ControlMaster options above (tramp.el still calls the

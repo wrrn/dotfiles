@@ -84,12 +84,13 @@
   ;;   (doric-themes-select 'doric-earth)
   )
 
-;; (use-package au-themes
-;;   :vc (:url "https://github.com/szymonwilczek/au-themes" :rev :newest)
-;;   ;; :config
-;;   ;; (load-theme 'au-salina-night t)
-;;   )
- 
+(use-package au-themes
+  :ensure t
+  :straight (:type git :host github :repo "szymonwilczek/au-themes")
+  ;; :config
+  ;; (load-theme 'au-salina-night t)
+  )
+
 (use-package warm-burnout
   :ensure t
   ;; :straight (:host sourcehut :protocol ssh :repo "wrrn/warm-burnout" :files ("emacs/*.el"))

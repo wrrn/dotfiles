@@ -69,6 +69,11 @@ changes nothing on screen, so the remap only costs."
   ;; forward the key to the shell — so meow's j/k/h/l/n would drop us out
   ;; of Emacs mode and cycle shell history instead of navigating the buffer.
   (ghostel-readonly-fast-exit nil)
+  ;; Output within this long of a keystroke counts as its echo and is
+  ;; redrawn at once; later output waits for the batch redraw timer.
+  ;; Echoes from remote hosts over Wi-Fi often take longer than the
+  ;; default 0.05 s, which added 30-50 ms on top of the network delay.
+  (ghostel-immediate-redraw-interval 0.3)
   :hook ((ghostel-pre-spawn . ghostel-with-editor-setup)
          (ghostel-mode . wrrn-ghostel--drop-empty-default-remap))
   :config

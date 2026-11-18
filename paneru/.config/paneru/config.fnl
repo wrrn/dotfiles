@@ -246,8 +246,7 @@ left edge, vertically centred, at its current size."
 ;; Mod+Ctrl+G → float-focusmate
 ;; Mod+V      → toggle-window-floating (niri's default bind; not in binds.kdl)
 (paneru.bind "alt - g" switch-focus-floating-tiling)
-(paneru.bind "alt + ctrl - g" float-focusmate)
-(paneru.bind "alt + ctrl - v" "window manage")
+(paneru.bind "alt + ctrl - g" "window manage")
 
 ;; Session ───────────────────────────────────────────────────────────────────
 ;; Mod+Shift+P → power-off-monitors

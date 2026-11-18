@@ -34,6 +34,19 @@ Ghostel measures a window immediately after rewriting or evicting scrollback."
       (apply fn args)
     (args-out-of-range nil)))
 
+(defun wrrn-ghostel--drop-empty-default-remap ()
+  "Remove ghostel's `default' face remap while `ghostel-default' is empty.
+`ghostel-mode' remaps `default' to `ghostel-default' in every buffer.
+With that remap, each redraw of the terminal's colored text conses
+about 190 KB, so typing triggers a garbage collection about once a
+second and Emacs stalls for 60-90 ms each time.  An empty face
+changes nothing on screen, so the remap only costs."
+  (when (seq-every-p (lambda (attr) (eq (cdr attr) 'unspecified))
+                     (face-all-attributes 'ghostel-default (selected-frame)))
+    (setq-local face-remapping-alist
+                (delete '(default ghostel-default default)
+                        face-remapping-alist))))
+
 (defun ghostel-with-editor-setup ()
   "Set up EDITOR environment variable for ghostel terminal.
   Calls the internal with-editor setup function to configure
@@ -56,7 +69,8 @@ Ghostel measures a window immediately after rewriting or evicting scrollback."
   ;; forward the key to the shell — so meow's j/k/h/l/n would drop us out
   ;; of Emacs mode and cycle shell history instead of navigating the buffer.
   (ghostel-readonly-fast-exit nil)
-  :hook (ghostel-pre-spawn . ghostel-with-editor-setup)
+  :hook ((ghostel-pre-spawn . ghostel-with-editor-setup)
+         (ghostel-mode . wrrn-ghostel--drop-empty-default-remap))
   :config
   ;; Returning nil makes `ghostel--anchor-window' use its line-based fallback.
   ;; This prevents transient pixel-layout errors from aborting terminal redraws.
